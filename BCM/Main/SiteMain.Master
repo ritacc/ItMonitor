@@ -1,0 +1,91 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="SiteMain.master.cs" Inherits="GDK.BCM.Main.SiteMain" %>
+
+<%@ Register src="../UI/HTMLMap.ascx" tagname="HTMLMap" tagprefix="uc1" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>ITMonitor</title>    
+    <link href="../Styles/gridview.css" rel="Stylesheet" />
+    <link href="../Styles/Site.css" rel="Stylesheet" />
+    <link href="../Styles/menu.css" rel="Stylesheet" />
+    <link href="../Styles/right.css" rel="Stylesheet" />
+    <link href="../Styles/PopuWindow.css" rel="Stylesheet" />
+    <script type="text/javascript" src="../Scripts/Date.js"></script>
+    <script type="text/javascript" src="../Scripts/jquery-1.4.4.min.js"></script>    
+    <script type="text/javascript" src="../Scripts/jquery.bgiframe.min.js"></script>
+    <script type="text/javascript" src="../Scripts/jquery.popup.js"></script>
+    <script type="text/javascript" src="../Scripts/jquery.validator.js"></script>
+    <script type="text/javascript" src="../Scripts/Common.js"></script>
+    <script type="text/javascript" src="../Scripts/menu.js"></script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    
+</head>
+<body>
+    <form id="form1" runat="server" style="width: 100%; height: 100%;">
+    <div class="page" id="pagediv">
+        <div class="webheader">
+            <%--<div class="picleft"></div>
+            <div class="picright"></div>--%>
+        </div>
+        <table class="txt" cellpadding="0" cellspacing="0" border="0" width="100%">
+            <tr>
+                <td class="txtleft">
+                    <script type="text/javascript">
+                        document.write(new Date().toLocaleDateString());
+                    </script>
+                    <span id="datetxt"></span>
+                </td>
+                <td class="txtright" align="right">
+                    欢迎您,
+                    <asp:Label ID="lblUserName" runat="server"></asp:Label>
+                </td>
+                <td width="80">
+                    <asp:ImageButton ID="ibtnLogout" runat="server" ImageUrl="~/images/web_08.gif" OnClick="ibtnLogout_Click" CssClass="vertical_middle" />
+                </td>
+            </tr>
+        </table>
+        <table id="MainTab" runat="server" cellpadding="0" cellspacing="0" border="0" width="100%" style="table-layout:fixed;">
+            <tr>
+               <td class="webleft" valign="top">
+                    <div>
+                        <img src="../images/web_13.gif" alt="" /></div>
+                    <div id="my_menu" class="sdmenu">
+                        <asp:Repeater ID="rptMenu0" runat="server">
+                            <ItemTemplate>
+                                <div>
+                                    <span>
+                                        <%# Eval("MOD_NAME") %></span>
+                                        <div  style=" display:none;">
+                                    <asp:Repeater ID="rptMenu1" runat="server" DataSource='<%# GetMenuLevel(Eval("MOD_URL")) %>'>
+                                        <ItemTemplate>
+                                        <a id="item" runat="server" href='<%# Request.ApplicationPath +  Eval("MOD_URL").ToString() %>'><%# Eval("MOD_NAME")%></a>                                           
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                                    </div>
+                                </div>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </div>
+                </td>
+                <td class="vhr">
+                   <img alt="" src="../images/web_21.gif" />
+                </td>
+                <td valign="top" id="webmain" width="100%">
+                    <uc1:HTMLMap ID="HTMLMap1" runat="server" />
+                    <div class="webmain">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <div class="footer">
+            深圳技术有限公司技术支持
+        </div>
+    </div>
+    <script type="text/javascript" src="../Scripts/overflowgrid.js"></script>
+    </form>
+   </body>
+</html>

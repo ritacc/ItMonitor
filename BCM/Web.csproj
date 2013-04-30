@@ -1,0 +1,701 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{656CAD1A-0BC9-445E-87D0-5D63C2D53DE0}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GDK.BCM</RootNamespace>
+    <AssemblyName>BCM</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <UseIISExpress>false</UseIISExpress>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DES, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\DES.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DAL\Ref\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DAL\Ref\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ObjectBuilder, Version=1.0.51205.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DAL\Ref\Microsoft.Practices.ObjectBuilder.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ObjectBuilder2, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DAL\Ref\Microsoft.Practices.ObjectBuilder2.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DAL\Ref\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="OUAndPermissions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=a0caea7f89ad8c80">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Ref\OUAndPermissions.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.DomainServices.EntityFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="System.ServiceModel.DomainServices.Hosting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.ServiceModel.DomainServices.Server, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.DataVisualization" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DropdownDeviceList.aspx" />
+    <Content Include="images\ajax-loader.gif" />
+    <Content Include="images\br_bg.gif" />
+    <Content Include="images\btn_bg.gif" />
+    <Content Include="images\btn_bg_left.gif" />
+    <Content Include="images\build.png" />
+    <Content Include="images\Common\add-.gif" />
+    <Content Include="images\Common\add.gif" />
+    <Content Include="images\Common\add_btn.gif" />
+    <Content Include="images\Common\advanced_search.gif" />
+    <Content Include="images\Common\btn_refresh.gif" />
+    <Content Include="images\Common\cancel.gif" />
+    <Content Include="images\Common\category_add.gif" />
+    <Content Include="images\Common\char.gif" />
+    <Content Include="images\Common\char_pie.gif" />
+    <Content Include="images\Common\delete.gif" />
+    <Content Include="images\Common\edit.gif" />
+    <Content Include="images\Common\find.png" />
+    <Content Include="images\Common\green.gif" />
+    <Content Include="images\Common\list.gif" />
+    <Content Include="images\Common\loading.gif" />
+    <Content Include="images\Common\minus.gif" />
+    <Content Include="images\Common\monitorStata0.png" />
+    <Content Include="images\Common\monitorStata1.png" />
+    <Content Include="images\Common\more.png" />
+    <Content Include="images\Common\no_image.gif" />
+    <Content Include="images\Common\page_white_get.png" />
+    <Content Include="images\Common\page_white_magnify.png" />
+    <Content Include="images\Common\pass.png" />
+    <Content Include="images\Common\plus.gif" />
+    <Content Include="images\Common\Proexcel.gif" />
+    <Content Include="images\Common\red.gif" />
+    <Content Include="images\Common\refresh.gif" />
+    <Content Include="images\Common\reset.gif" />
+    <Content Include="images\Common\roseSetRight.gif" />
+    <Content Include="images\Common\search_all.gif" />
+    <Content Include="images\Common\selectInfo.gif" />
+    <Content Include="images\Common\server_edit.png" />
+    <Content Include="images\Common\stata0.gif" />
+    <Content Include="images\Common\stata1.gif" />
+    <Content Include="images\Common\stata2.gif" />
+    <Content Include="images\Common\sub_add.gif" />
+    <Content Include="images\contextmenu\menu_bg.gif" />
+    <Content Include="images\contextmenu\m_arrow.gif" />
+    <Content Include="images\contextmenu\m_item.gif" />
+    <Content Include="images\contextmenu\m_splitLine.gif" />
+    <Content Include="images\cpu.gif" />
+    <Content Include="images\cpu_bg.gif" />
+    <Content Include="images\device_dropdown\back.png" />
+    <Content Include="images\device_dropdown\button-bg.png" />
+    <Content Include="images\device_dropdown\clear.gif" />
+    <Content Include="images\device_dropdown\device.gif" />
+    <Content Include="images\device_dropdown\empty.gif" />
+    <Content Include="images\device_dropdown\keywords.gif" />
+    <Content Include="images\device_dropdown\search.gif" />
+    <Content Include="images\device_dropdown\textbox.gif" />
+    <Content Include="images\device_dropdown\title.gif" />
+    <Content Include="images\disk.gif" />
+    <Content Include="images\gridview\gridheader_03.gif" />
+    <Content Include="images\gridview\gridheader_04.gif" />
+    <Content Include="images\gridview\gridheader_06.gif" />
+    <Content Include="images\gridview\grid_th.gif" />
+    <Content Include="images\gridview\triangle_down.gif" />
+    <Content Include="images\gridview\triangle_up.gif" />
+    <Content Include="images\gridview_header.gif" />
+    <Content Include="images\help\img1.gif" />
+    <Content Include="images\help\img2.gif" />
+    <Content Include="images\help\img3.gif" />
+    <Content Include="images\help\img4.gif" />
+    <Content Include="images\help\img5.gif" />
+    <Content Include="images\help\img6.gif" />
+    <Content Include="images\icon\add.png" />
+    <Content Include="images\icon\building_edit.png" />
+    <Content Include="images\icon\changeList.gif" />
+    <Content Include="images\icon\changeList.png" />
+    <Content Include="images\icon\char.gif" />
+    <Content Include="images\icon\close.gif" />
+    <Content Include="images\icon\delete.gif" />
+    <Content Include="images\icon\list.gif" />
+    <Content Include="images\icon\logout.gif" />
+    <Content Include="images\icon\look.gif" />
+    <Content Include="images\icon\options.png" />
+    <Content Include="images\icon\property.gif" />
+    <Content Include="images\icon\remote.png" />
+    <Content Include="images\icon\restart.gif" />
+    <Content Include="images\icon\save.gif" />
+    <Content Include="images\icon\server_connect.gif" />
+    <Content Include="images\kdivbg.jpg" />
+    <Content Include="images\login\login_03.gif" />
+    <Content Include="images\login\login_06.gif" />
+    <Content Include="images\login\复件 login_03.gif" />
+    <Content Include="images\menu\arrow.gif" />
+    <Content Include="images\menu\bg.gif" />
+    <Content Include="images\menu\bg_hover.gif" />
+    <Content Include="images\menu\sub_icon.gif" />
+    <Content Include="images\Pagenavigate\first.gif" />
+    <Content Include="images\Pagenavigate\go.gif" />
+    <Content Include="images\Pagenavigate\last.gif" />
+    <Content Include="images\Pagenavigate\next.gif" />
+    <Content Include="images\Pagenavigate\Pagenavigate_bg.gif" />
+    <Content Include="images\Pagenavigate\Pagenavigate_left.gif" />
+    <Content Include="images\Pagenavigate\Pagenavigate_right.gif" />
+    <Content Include="images\Pagenavigate\previous.gif" />
+    <Content Include="images\PopWin\from_23.gif" />
+    <Content Include="images\PopWin\loading-mini.gif" />
+    <Content Include="images\PopWin\loading.gif" />
+    <Content Include="images\PopWin\red_close_hover.png" />
+    <Content Include="images\PopWin\red_close_normal.png" />
+    <Content Include="images\PopWin\sel0.gif" />
+    <Content Include="images\PopWin\sel1.gif" />
+    <Content Include="images\PopWin\web_26.gif" />
+    <Content Include="images\PopWin\window_footer.gif" />
+    <Content Include="images\right_20.gif" />
+    <Content Include="images\right_23.gif" />
+    <Content Include="images\selected.gif" />
+    <Content Include="images\selected80.gif" />
+    <Content Include="images\Suffix\accdb.gif" />
+    <Content Include="images\Suffix\attach.gif" />
+    <Content Include="images\Suffix\attachment.gif" />
+    <Content Include="images\Suffix\bat.gif" />
+    <Content Include="images\Suffix\doc.gif" />
+    <Content Include="images\Suffix\docx.gif" />
+    <Content Include="images\Suffix\exe.gif" />
+    <Content Include="images\Suffix\hitogram.gif" />
+    <Content Include="images\Suffix\htm.gif" />
+    <Content Include="images\Suffix\html.gif" />
+    <Content Include="images\Suffix\icon_att.gif" />
+    <Content Include="images\Suffix\img.gif" />
+    <Content Include="images\Suffix\inf.gif" />
+    <Content Include="images\Suffix\ini.gif" />
+    <Content Include="images\Suffix\iso.gif" />
+    <Content Include="images\Suffix\line.gif" />
+    <Content Include="images\Suffix\mdb.gif" />
+    <Content Include="images\Suffix\mht.gif" />
+    <Content Include="images\Suffix\msc.gif" />
+    <Content Include="images\Suffix\nosuffix.gif" />
+    <Content Include="images\Suffix\pie.gif" />
+    <Content Include="images\Suffix\ppt.gif" />
+    <Content Include="images\Suffix\pptx.gif" />
+    <Content Include="images\Suffix\rar.gif" />
+    <Content Include="images\Suffix\reg.gif" />
+    <Content Include="images\Suffix\txt.gif" />
+    <Content Include="images\Suffix\xls.gif" />
+    <Content Include="images\Suffix\xlsx.gif" />
+    <Content Include="images\Suffix\xml.gif" />
+    <Content Include="images\Suffix\zip.gif" />
+    <Content Include="images\SysAdmin\category_edit.gif" />
+    <Content Include="images\SysAdmin\device-.gif" />
+    <Content Include="images\SysAdmin\device.gif" />
+    <Content Include="images\SysAdmin\dictionary_add.gif" />
+    <Content Include="images\SysAdmin\dictionary_delete.gif" />
+    <Content Include="images\SysAdmin\dictionary_edit.gif" />
+    <Content Include="images\SysAdmin\expand.gif" />
+    <Content Include="images\SysAdmin\fold.gif" />
+    <Content Include="images\SysAdmin\newOrg.gif" />
+    <Content Include="images\SysAdmin\newuser.gif" />
+    <Content Include="images\SysAdmin\org.gif" />
+    <Content Include="images\SysAdmin\organization_add.gif" />
+    <Content Include="images\SysAdmin\recycle.gif" />
+    <Content Include="images\SysAdmin\trash.gif" />
+    <Content Include="images\SysAdmin\update.png" />
+    <Content Include="images\SysAdmin\user.gif" />
+    <Content Include="images\SysAdmin\user_add.gif" />
+    <Content Include="images\top_04.gif" />
+    <Content Include="images\top_bg.jpg" />
+    <Content Include="images\unselected.gif" />
+    <Content Include="images\unselected80.gif" />
+    <Content Include="images\view.gif" />
+    <Content Include="images\web_02.gif" />
+    <Content Include="images\web_04.gif" />
+    <Content Include="images\web_05.gif" />
+    <Content Include="images\web_08.gif" />
+    <Content Include="images\web_10.gif" />
+    <Content Include="images\web_13.gif" />
+    <Content Include="images\web_17.gif" />
+    <Content Include="images\web_20.gif" />
+    <Content Include="images\web_21.gif" />
+    <Content Include="images\web_24.gif" />
+    <Content Include="images\web_26.gif" />
+    <Content Include="Login.aspx" />
+    <Content Include="Main\Default.aspx" />
+    <Content Include="Main\DownFile.aspx" />
+    <Content Include="Main\MissingParameter.aspx" />
+    <Content Include="Main\OutoffTime.aspx" />
+    <Content Include="Map.aspx" />
+    <Content Include="PerfMonitor\Net.aspx" />
+    <Content Include="PerfMonitor\PerfMonitorIndex.aspx" />
+    <Content Include="Ref\DBUtility.dll" />
+    <Content Include="Scripts\fullScreen.js" />
+    <Content Include="Scripts\jquery.cookie.js" />
+    <Content Include="Scripts\My97DatePicker\calendar.js" />
+    <Content Include="Scripts\My97DatePicker\lang\en.js" />
+    <Content Include="Scripts\My97DatePicker\lang\zh-cn.js" />
+    <Content Include="Scripts\My97DatePicker\lang\zh-tw.js" />
+    <Content Include="Scripts\My97DatePicker\skin\datePicker.gif" />
+    <Content Include="Scripts\My97DatePicker\skin\default\datepicker.css" />
+    <Content Include="Scripts\My97DatePicker\skin\default\img.gif" />
+    <Content Include="Scripts\My97DatePicker\skin\WdatePicker.css" />
+    <Content Include="Scripts\My97DatePicker\skin\whyGreen\bg.jpg" />
+    <Content Include="Scripts\My97DatePicker\skin\whyGreen\datepicker.css" />
+    <Content Include="Scripts\My97DatePicker\skin\whyGreen\img.gif" />
+    <Content Include="Scripts\My97DatePicker\WdatePicker.js" />
+    <Content Include="Scripts\Silverlight.js" />
+    <Content Include="Scripts\TaskSyxzcEdit.js" />
+    <Content Include="StateMonitor\StateList.aspx" />
+    <Content Include="StateMonitor\StateMonitorIndex.aspx" />
+    <Content Include="Styles\jquery.device-supply.css" />
+    <Content Include="Styles\page.css" />
+    <Content Include="Ref\AjaxControlToolkit.dll" />
+    <Content Include="Ref\DES.dll" />
+    <Content Include="Ref\HBPassportSDK.dll" />
+    <Content Include="Ref\OUAndPermissions.dll" />
+    <Content Include="Role\RoleEdit.aspx" />
+    <Content Include="Role\RoleList.aspx" />
+    <Content Include="Role\RoleSet.aspx" />
+    <Content Include="Role\UserAuthEdit.aspx" />
+    <Content Include="Role\UserAuthList.aspx" />
+    <Content Include="Scripts\AppInfoEdit.js" />
+    <Content Include="Scripts\CombAssetEdit.js" />
+    <Content Include="Scripts\Common.js" />
+    <Content Include="Scripts\Date.js" />
+    <Content Include="Scripts\EditCommon.js" />
+    <Content Include="Scripts\jquery-1.4.4.min.js" />
+    <Content Include="Scripts\jquery.bgiframe.min.js" />
+    <Content Include="Scripts\jquery.contextmenu.js" />
+    <Content Include="Scripts\jquery.device-supply.js" />
+    <Content Include="Scripts\jquery.popup.js" />
+    <Content Include="Scripts\jquery.tab.js" />
+    <Content Include="Scripts\jquery.validator.js" />
+    <Content Include="Scripts\lang\en.js" />
+    <Content Include="Scripts\lang\zh-cn.js" />
+    <Content Include="Scripts\lang\zh-tw.js" />
+    <Content Include="Scripts\menu.js" />
+    <Content Include="Scripts\overflowgrid.js" />
+    <Content Include="Scripts\ServerInfo.js" />
+    <Content Include="Scripts\ServerInfoEdit.js" />
+    <Content Include="Scripts\skin\datePicker.gif" />
+    <Content Include="Scripts\skin\default\datepicker.css" />
+    <Content Include="Scripts\skin\default\img.gif" />
+    <Content Include="Scripts\skin\WdatePicker.css" />
+    <Content Include="Scripts\skin\whyGreen\bg.jpg" />
+    <Content Include="Scripts\skin\whyGreen\datepicker.css" />
+    <Content Include="Scripts\skin\whyGreen\img.gif" />
+    <Content Include="Scripts\UpFile.js" />
+    <Content Include="Styles\Common.css" />
+    <Content Include="Styles\contextmenu.css" />
+    <Content Include="Styles\contextmenu2.css" />
+    <Content Include="Styles\login.css" />
+    <Content Include="Styles\main.css" />
+    <Content Include="Styles\menu.css" />
+    <Content Include="Styles\permission .css" />
+    <Content Include="Styles\PopuWindow.css" />
+    <Content Include="Styles\gridview.css" />
+    <Content Include="Styles\Site.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Styles\right.css" />
+    <Content Include="Styles\tab.css" />
+    <Content Include="Sysadmin\DepartmentLoadDep.aspx" />
+    <Content Include="Sysadmin\DepartmentsEdit.aspx" />
+    <Content Include="Sysadmin\DepartmentsList.aspx" />
+    <Content Include="Sysadmin\DepartmentsMain.aspx" />
+    <Content Include="Sysadmin\UserEdit.aspx" />
+    <Content Include="TempImageFiles\txt.txt" />
+    <Content Include="修改记录.txt" />
+    <Content Include="UI\HTMLMap.ascx" />
+    <Content Include="UI\pagenavigate.ascx" />
+    <Content Include="UI\SelectFile.ascx" />
+    <Content Include="UI\SelectFileLoadFile.aspx" />
+    <Content Include="UI\SelectFileMain.aspx" />
+    <Content Include="UI\SelectFileUpFile.aspx" />
+    <Content Include="UI\UpFileAdnAdmin.aspx" />
+    <Content Include="UI\UpLoadFile.ascx" />
+    <Content Include="Upload\PIC\bg1.jpg" />
+    <Content Include="Upload\PIC\jump.jpg" />
+    <Content Include="Upload\PIC\Near2.jpg" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Code\Common.cs" />
+    <Compile Include="App_Code\ControlCommon.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Code\Logger.cs" />
+    <Compile Include="DropdownDeviceList.aspx.cs">
+      <DependentUpon>DropdownDeviceList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DropdownDeviceList.aspx.designer.cs">
+      <DependentUpon>DropdownDeviceList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Main\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Main\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Main\DownFile.aspx.cs">
+      <DependentUpon>DownFile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Main\DownFile.aspx.designer.cs">
+      <DependentUpon>DownFile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Main\MissingParameter.aspx.cs">
+      <DependentUpon>MissingParameter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Main\MissingParameter.aspx.designer.cs">
+      <DependentUpon>MissingParameter.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Main\OutoffTime.aspx.cs">
+      <DependentUpon>OutoffTime.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Main\OutoffTime.aspx.designer.cs">
+      <DependentUpon>OutoffTime.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Main\SiteMain.Master.cs">
+      <DependentUpon>SiteMain.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Main\SiteMain.Master.designer.cs">
+      <DependentUpon>SiteMain.Master</DependentUpon>
+    </Compile>
+    <Compile Include="App_Code\PageBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Map.aspx.cs">
+      <DependentUpon>Map.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Map.aspx.designer.cs">
+      <DependentUpon>Map.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PerfMonitor\Net.aspx.cs">
+      <DependentUpon>Net.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PerfMonitor\Net.aspx.designer.cs">
+      <DependentUpon>Net.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfMonitorIndex.aspx.cs">
+      <DependentUpon>PerfMonitorIndex.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfMonitorIndex.aspx.designer.cs">
+      <DependentUpon>PerfMonitorIndex.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Role\RoleEdit.aspx.cs">
+      <DependentUpon>RoleEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Role\RoleEdit.aspx.designer.cs">
+      <DependentUpon>RoleEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Role\RoleList.aspx.cs">
+      <DependentUpon>RoleList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Role\RoleList.aspx.designer.cs">
+      <DependentUpon>RoleList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Role\RoleSet.aspx.cs">
+      <DependentUpon>RoleSet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Role\RoleSet.aspx.designer.cs">
+      <DependentUpon>RoleSet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Role\UserAuthEdit.aspx.cs">
+      <DependentUpon>UserAuthEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Role\UserAuthEdit.aspx.designer.cs">
+      <DependentUpon>UserAuthEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Role\UserAuthList.aspx.cs">
+      <DependentUpon>UserAuthList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Role\UserAuthList.aspx.designer.cs">
+      <DependentUpon>UserAuthList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StateMonitor\StateList.aspx.cs">
+      <DependentUpon>StateList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StateMonitor\StateList.aspx.designer.cs">
+      <DependentUpon>StateList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StateMonitor\StateMonitorIndex.aspx.cs">
+      <DependentUpon>StateMonitorIndex.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StateMonitor\StateMonitorIndex.aspx.designer.cs">
+      <DependentUpon>StateMonitorIndex.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sysadmin\DepartmentLoadDep.aspx.cs">
+      <DependentUpon>DepartmentLoadDep.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sysadmin\DepartmentLoadDep.aspx.designer.cs">
+      <DependentUpon>DepartmentLoadDep.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sysadmin\DepartmentsEdit.aspx.cs">
+      <DependentUpon>DepartmentsEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sysadmin\DepartmentsEdit.aspx.designer.cs">
+      <DependentUpon>DepartmentsEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sysadmin\DepartmentsList.aspx.cs">
+      <DependentUpon>DepartmentsList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sysadmin\DepartmentsList.aspx.designer.cs">
+      <DependentUpon>DepartmentsList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sysadmin\DepartmentsMain.aspx.cs">
+      <DependentUpon>DepartmentsMain.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sysadmin\DepartmentsMain.aspx.designer.cs">
+      <DependentUpon>DepartmentsMain.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sysadmin\UserEdit.aspx.cs">
+      <DependentUpon>UserEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sysadmin\UserEdit.aspx.designer.cs">
+      <DependentUpon>UserEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\HTMLMap.ascx.cs">
+      <DependentUpon>HTMLMap.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\HTMLMap.ascx.designer.cs">
+      <DependentUpon>HTMLMap.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\pagenavigate.ascx.cs">
+      <DependentUpon>pagenavigate.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\pagenavigate.ascx.designer.cs">
+      <DependentUpon>pagenavigate.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SelectFile.ascx.cs">
+      <DependentUpon>SelectFile.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\SelectFile.ascx.designer.cs">
+      <DependentUpon>SelectFile.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SelectFileLoadFile.aspx.cs">
+      <DependentUpon>SelectFileLoadFile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\SelectFileLoadFile.aspx.designer.cs">
+      <DependentUpon>SelectFileLoadFile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SelectFileMain.aspx.cs">
+      <DependentUpon>SelectFileMain.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\SelectFileMain.aspx.designer.cs">
+      <DependentUpon>SelectFileMain.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SelectFileUpFile.aspx.cs">
+      <DependentUpon>SelectFileUpFile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\SelectFileUpFile.aspx.designer.cs">
+      <DependentUpon>SelectFileUpFile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UpFileAdnAdmin.aspx.cs">
+      <DependentUpon>UpFileAdnAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\UpFileAdnAdmin.aspx.designer.cs">
+      <DependentUpon>UpFileAdnAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UpLoadFile.ascx.cs">
+      <DependentUpon>UpLoadFile.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\UpLoadFile.ascx.designer.cs">
+      <DependentUpon>UpLoadFile.ascx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="ClientBin\" />
+    <Folder Include="Log\" />
+    <Folder Include="SLFile\" />
+    <Folder Include="Upload\Audio\" />
+    <Folder Include="Upload\ImageMap\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Main\SiteMain.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.sitemap">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Themes\Default\Default.skin" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{41DCC35A-42C6-4AD1-A0D4-76F711860A14}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DBUtility\DBUtility.csproj">
+      <Project>{DFA6E11F-3F14-4C8E-ADDC-59DB187198E8}</Project>
+      <Name>DBUtility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Entity.csproj">
+      <Project>{25434127-F8B4-465E-A823-F9797293943D}</Project>
+      <Name>Entity</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\Common\Thumbs.db" />
+    <None Include="images\Common\vssver2.scc" />
+    <None Include="images\contextmenu\Thumbs.db" />
+    <None Include="images\contextmenu\vssver2.scc" />
+    <None Include="images\device_dropdown\Thumbs.db" />
+    <None Include="images\device_dropdown\vssver2.scc" />
+    <None Include="images\gridview\Thumbs.db" />
+    <None Include="images\gridview\vssver2.scc" />
+    <None Include="images\help\Thumbs.db" />
+    <None Include="images\help\vssver2.scc" />
+    <None Include="images\icon\Thumbs.db" />
+    <None Include="images\icon\vssver2.scc" />
+    <None Include="images\login\Thumbs.db" />
+    <None Include="images\login\vssver2.scc" />
+    <None Include="images\menu\Thumbs.db" />
+    <None Include="images\menu\vssver2.scc" />
+    <None Include="images\Pagenavigate\Thumbs.db" />
+    <None Include="images\Pagenavigate\vssver2.scc" />
+    <None Include="images\PopWin\Thumbs.db" />
+    <None Include="images\PopWin\vssver2.scc" />
+    <None Include="images\Suffix\Thumbs.db" />
+    <None Include="images\Suffix\vssver2.scc" />
+    <None Include="images\SysAdmin\Thumbs.db" />
+    <None Include="images\SysAdmin\vssver2.scc" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>6385</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

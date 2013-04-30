@@ -1,0 +1,26 @@
+﻿.page_table_out
+{
+    border:1px solid #CCC;
+    padding:2px; 
+    background-color:#EFEFEF; 
+}
+.page_table
+{
+	background-color:#fafafc;
+	border-top:1px solid #cdced0;
+	border-left:1px solid #cdced0;
+	font-size:12px;
+	width:100%;
+	border-collapse:collapse;
+}
+.page_table td
+{
+	border-right:1px solid #cdced0;
+	border-bottom:1px solid #cdced0;
+	padding:5px;
+}
+.last_btn
+{
+    text-align:center;
+    margin-top:5px;
+}

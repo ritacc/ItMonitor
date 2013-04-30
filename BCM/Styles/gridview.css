@@ -1,0 +1,164 @@
+﻿html,body {margin:0px;padding:0px; font-family:Arial,宋体;}
+.NoShow{display:none;}
+
+
+/** skin 皮肤**/
+.gridheader_table
+{
+    width:100%;
+    background:url(../images/gridview/gridheader_04.gif) repeat-x; 
+    font-weight:bold;
+}
+.gridheader_table img
+{
+    vertical-align:middle;
+}
+.divgrid
+{  
+    border:1px solid #78c5ec;
+    padding:2px; 
+    background-color:#c1e5f9; 
+    
+}
+.overflow_grid
+{
+    width:100%;
+    overflow-x:auto;
+    overflow-y:hidden;
+}
+.overflow_grid_select
+{
+    width:100%;
+    overflow-x:auto;
+    overflow-y:hidden;
+}
+.searchtable
+{
+    width:100%;
+    border:1px solid #78c5ec; 
+    background-color:#d9f4fd; 
+    margin-bottom:1px;
+}
+.searchtable td
+{
+    padding:3px;
+}
+.gridview_skin 
+{
+    width:100%;
+	border-left:solid 1px #78c5ec;
+	border-right:solid 1px #78c5ec;
+	border-bottom:solid 1px #a8c5cb;
+	border-collapse:collapse;
+}
+.gridview_skin_header
+{
+	height:26px;
+	line-height:26px;
+	font-size:12px;
+    background-image:url(../images/gridview/grid_th.gif);
+	text-align:center;
+	color:#333333;
+}
+.RowStyle
+{
+    background-color:#f0fbff;
+	cursor:pointer;
+}
+.AlternatingRowStyle
+{
+    background-color:#f0fbff;
+	cursor:pointer;
+}
+
+.gridview_skin th
+{
+    padding:0px 8px;
+    border-bottom:1px solid #78c5ec;
+    border-right:1px solid #78c5ec;
+	white-space:nowrap;
+}
+.AlternatingRowStyle td, .RowStyle td
+{
+    padding:5px 8px;
+	border-bottom:1px solid #a8c5cb;
+	border-right:1px solid #a8c5cb;
+	text-align:center;
+	empty-cells:show;
+    table-layout:fixed;
+	word-break:break-all;
+}
+
+/*------------------------------------------------------------------*/
+/*合并列的皮肤样式*/
+
+.Rowspangridview_skin 
+{
+	width:100%;
+	border-left:solid 1px #78c5ec;
+	border-right:solid 1px #78c5ec;
+	border-collapse:collapse;
+}
+.Rowspangridview_skin_header
+{
+	height:26px;
+	line-height:26px;
+	font-size:12px;
+    background-image:url(../images/gridview/grid_th.gif);
+	text-align:center;
+}
+.Rowspangridview_skin th
+{
+    padding:0px 8px;
+    border-right:1px solid #78c5ec;
+    border-bottom:1px solid #78c5ec;
+    white-space:nowrap;
+}
+.RowspanAlternatingRowStyle
+{
+    background-color:#f0fbff;
+}
+.RowspanRowStyle
+{
+    background-color:#f0fbff;
+}
+.RowspanAlternatingRowStyle td, .RowspanRowStyle td
+{
+    padding:5px 8px;
+	border-bottom:1px solid #a8c5cb;
+	border-right:1px solid #a8c5cb;
+	text-align:center;
+	empty-cells:show;
+}
+/*---------------------------------------------------------------------------*/
+.empty_gridview
+{
+    width:100%;
+}
+.empty_gridview th
+{
+    height:26px;
+	line-height:26px;
+    padding:0px 5px;
+    background-image:url(../images/gridview/grid_th.gif);
+	font-weight:bold;
+}
+.empty_gridview td
+{
+    text-align:center;
+    height:25px;
+    line-height:25px;
+    background-color:White;
+}
+
+/***GridView先中样式**/
+.ObjSelectItem,.ObjSelectItem a:link
+{
+    background-color:#d9f4fd;
+    color:#0066ff;
+}
+
+.ObjSelectItem img
+{
+	text-align:center;
+}

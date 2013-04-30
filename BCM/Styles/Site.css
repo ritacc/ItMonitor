@@ -1,0 +1,149 @@
+﻿body   
+{
+    font-family:Arial,宋体;
+    font-size:12px;
+    margin: 0px;
+    padding: 0px;
+    
+}
+.page,html,body{ width:100%; height:100%;}
+
+/* 网页架构 -- Star   
+----------------------------------------------------------*/
+
+.webheader
+{
+    width:100%;
+    height:82px;
+    background-image:url(../images/top_bg.jpg);
+    background-repeat:repeat-x;
+}
+
+/*.picleft
+{
+    width:521px;
+    height:82px;
+    float:left;
+    background-image:url(../images/top_01.gif);
+    background-repeat:repeat-x;
+}
+.picright
+{
+    width:323px;
+    height:82px;
+    float:right;
+    background-image:url(../images/top_04.gif);
+    background-repeat:repeat-x;
+}*/
+.txt
+{
+    width:100%;
+    height:30px;
+    line-height:30px;
+    background-image:url(../images/web_05.gif);
+    background-repeat:repeat-x;
+}
+.txtleft
+{
+    width:241px;
+    background-image:url(../images/web_04.gif);
+    background-repeat:no-repeat;
+    padding-left:10px;
+}
+.txtright
+{
+    padding-right:20px;
+    color:White;
+}
+.webleft
+{
+    width:200px;
+}
+.webmain
+{
+    padding:3px;
+}
+.vhr
+{
+    width:8px;
+    background-color:#1171c8;
+}
+.footer
+{
+    height:31px;
+    line-height:31px;
+    background-image:url(../images/web_26.gif);
+    color:White;
+    padding-left:10px;
+}
+/* 网页架构 -- End 
+----------------------------------------------------------*/
+
+
+
+
+/* TAB MENU   
+----------------------------------------------------------
+
+a:link, a:visited
+{
+    color: #034af3;
+}
+
+a:hover
+{
+    color: #1d60ff;
+    text-decoration: none;
+}
+
+a:active
+{
+    color: #034af3;
+}
+
+div.hideSkiplink
+{
+    background-color:#3a4f63;
+    width:100%;
+}
+
+div.menu
+{
+    padding: 4px 0px 4px 8px;
+}
+
+div.menu ul
+{
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    width: auto;
+}
+
+div.menu ul li a, div.menu ul li a:visited
+{
+    background-color: #465c71;
+    border: 1px #4e667d solid;
+    color: #dde4ec;
+    display: block;
+    line-height: 1.35em;
+    padding: 4px 20px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+div.menu ul li a:hover
+{
+    background-color: #bfcbd6;
+    color: #465c71;
+    text-decoration: none;
+}
+
+div.menu ul li a:active
+{
+    background-color: #465c71;
+    color: #cfdbe6;
+    text-decoration: none;
+}
+/* TAB MENU   
+----------------------------------------------------------*/

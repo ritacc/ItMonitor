@@ -1,0 +1,20 @@
+﻿* { margin:0px; }
+body { font-size:12px; }
+.column_bg { background-image:url(../images/br_bg.gif);height:25px; color:#003366;font-weight:bold; line-height:25px;border-bottom:solid 1px #AACCEE;text-align:left;cursor:move }
+.column { height:150px; border:solid 1px #AACCEE;background-color:#F4F8F9; }
+.column_right{float:right;}
+.column_left{float:left;}
+.column_bg div { height:25px;line-height:25px; padding:0px 5px; }
+.float { position : absolute ; width: 300px; z-index:99999; }
+.hidden { display : none; }
+a:visited{color:blue;}
+.tableOneline { background-color:#b5d6e6; width:100%; border:solid 1px #b5d6e6; _border:0px; 
+	border-top:1px solid #E4EEF8;border-left:1px solid #E4EEF8; }
+.tableOneline td {	height:20px; background-color:#FFFFFF; text-align:center; padding:3px; }
+.tableOneline .tdRight {text-align:right; }
+.tableOneline .tdLeft {text-align:left; padding-left:3px; }
+.tableOneline .tdNRight {text-align:right; width:15% }
+.tableOneline .tdNLeft {text-align:left; padding-left:3px; width:35% }
+.tableOneline .tdWRight {text-align:right; width:30% }
+.tableOneline .tdWLeft {text-align:left; padding-left:3px; width:70% }
+.toolbar { background-color : #939393 ; padding:5px;  }

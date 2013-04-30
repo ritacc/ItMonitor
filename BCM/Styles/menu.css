@@ -1,0 +1,43 @@
+﻿div.sdmenu {
+	width: 200px; font-size:12px; 
+}
+div.sdmenu div {
+	background: url(../images/menu/bg_hover.gif) repeat-x;overflow: hidden;
+}
+/* www.codefans.net */
+* html div.sdmenu div{
+    
+}
+div.sdmenu div.collapsed {
+	height: 28px;
+}
+div.sdmenu div span {
+	display: block;line-height:28px;width:165px;font-weight: bold;color: white;cursor: pointer; padding-left:35px;/*该处padding-left，ie不兼容*/
+}
+div.sdmenu div span a{
+    background:none; border:0; font-size:14px;line-height:28px;display:block;
+}
+div.sdmenu div.collapsed {
+	background: url(../images/menu/bg.gif) repeat-x; width:200px;
+}
+div.sdmenu div.collapsed span{
+    color:#000; line-height:28px; padding-left:35px; color:White;/*一级菜单字体颜色*/
+}
+div.sdmenu div.collapsed span a.current{
+    color:#ad8634;
+}
+div.sdmenu div a {
+	padding-left:35px;display: block;background:url(../images/menu/sub_icon.gif) no-repeat; line-height:30px; font-size:12px;text-decoration: none;color:#505050;
+}
+div.sdmenu div div a.current2 {
+	background : url(../images/menu/arrow.gif) no-repeat;color:Red;
+}
+div.sdmenu div span a.current {
+	background :none; color:#fff;
+}
+div.sdmenu div a:hover {
+	background : url(../images/menu/arrow.gif) no-repeat;text-decoration: none;
+}
+div.sdmenu div span a:hover {
+	background:none;
+}

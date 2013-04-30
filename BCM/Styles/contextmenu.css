@@ -1,0 +1,47 @@
+﻿.b-m-mpanel {
+	border-right: #718bb7 1px solid; padding-right: 0px; border-top: #718bb7 1px solid; padding-left: 0px; z-index: 99997; 
+	background: url(../images/contextmenu/menu_bg.gif) #f0f0f0 repeat-y left 50%; left: 0px; padding-bottom: 2px; 
+	border-left: #718bb7 1px solid; padding-top: 2px; border-bottom: #718bb7 1px solid; position: absolute; top: 0px;
+}
+.b-m-split {
+	font-size: 0px; background: url(../images/contextmenu/m_splitLine.gif) repeat-x center 50%; margin: 0px 2px; height: 6px
+}
+.b-m-item {
+	padding-right: 2px; padding-left: 2px; padding-bottom: 4px; margin: 0px 2px 0px 3px; line-height: 100%; padding-top: 4px;
+}
+.b-m-idisable {
+	padding-right: 2px; padding-left: 2px; padding-bottom: 4px; margin: 0px 2px 0px 3px; line-height: 100%; padding-top: 4px
+}
+.b-m-idisable {
+	color: #808080
+}
+.b-m-ibody {
+	overflow: hidden; text-overflow: ellipsis
+}
+.b-m-arrow {
+	overflow: hidden; text-overflow: ellipsis
+}
+.b-m-arrow {
+	background: url(../images/contextmenu/m_arrow.gif) no-repeat right 50%
+}
+.b-m-idisable .b-m-arrow {
+	background: none transparent scroll repeat 0% 0%
+}
+.b-m-item img {
+	margin-right: 8px
+}
+.b-m-ifocus img {
+	margin-right: 8px
+}
+.b-m-idisable img {
+	margin-right: 8px
+}
+.b-m-ifocus {
+	border-right: #aaccf6 1px solid; padding-right: 1px; border-top: #aaccf6 1px solid; 
+	padding-left: 1px; background: url(../images/contextmenu/m_item.gif) repeat-x 50% bottom; padding-bottom: 3px; 
+	margin: 0px 2px 0px 3px; border-left: #aaccf6 1px solid; line-height: 100%; padding-top: 3px; border-bottom: #aaccf6 1px solid
+}
+.b-m-idisable img {
+	VISIBILITY: hidden
+}
+

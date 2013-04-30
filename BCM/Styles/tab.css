@@ -1,0 +1,20 @@
+﻿	.tab { text-align: center; border-left:solid 3px #333399 ;border-right:solid 3px #333399;border-bottom:solid 3px #333399;border-top:solid 3px #333399; background-color:#FFFFFF}
+	.tab * { margin:0px; }
+	#tab_nav { height:25px;float:left; overflow:hidden;margin:0px }
+	#tab_nav li { width:70px;float:left; margin:0px 3px; cursor:pointer; position:relative }
+	#tab_nav .tab_left { width:5px;height:25px;background-image:url(../images/tab/tab1.gif);background-position:0px 0px; float:left;}
+	#tab_nav .tab_center { width:60px;height:25px;background-image:url(../images/tab/tab2.gif);background-position:0px 0px; float:left;}
+	#tab_nav .tab_right { width:5px;height:25px;background-image:url(../images/tab/tab3.gif);background-position:0px 0px; float:right;}
+	#tab_nav .hover .tab_left{ background-position:0px 84px; }
+	#tab_nav .hover .tab_center{ background-position:0px 84px; }
+	#tab_nav .hover .tab_right{ background-position:0px 84px; }
+	#tab_nav .selected { cursor: default; }
+	#tab_nav .selected .tab_left{ background-position:0px 42px; }
+	#tab_nav .selected .tab_center{ background-position:0px 42px; color:#FFFFFF; }
+	#tab_nav .selected .tab_right{ background-position:0px 42px; }
+	ul#tab_body li { display: none; list-style:none; height:200px; padding:10px;  }
+	#tab_body .selected { display : block }
+	#tab_nav .tab_btn { height:25px; line-height:25px; width:60px; text-align:center; }
+	.tooltip { height:25px; float:left; line-height:25px; text-align:center; text-decoration:underline; color:blue;display:none; }
+	.splitLine { font-size:0px; height:25px !important;height:0px; width:100%;border-bottom:none; margin-top : -2px; }
+	

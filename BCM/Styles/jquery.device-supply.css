@@ -1,0 +1,415 @@
+﻿
+	
+/* 只读形态按钮样式 */
+	.device-dropdown
+	{
+		text-align:left;
+		-moz-user-focus:ignore;
+		-moz-user-select:none;
+		font-weight:normal;
+		cursor:default;
+	}
+	span.device-dropdown
+	{
+		font:normal 11pt arial,sans-serif;
+	}
+
+	/* 只读形态按钮外框 */
+	span.device-dropdown .outer-box
+	{
+		border-right:0;
+		border-top:solid 1px #BCBCBC;
+		border-left:0;
+		border-bottom:solid 1px #BCBCBC;
+		display: inline-block;
+		zoom: 1; 
+		*display: inline;
+	}
+
+	/* 只读形态按钮外框鼠标经过和展开样式 */
+	span.device-dropdown span.hover .outer-box, span.device-dropdown-expended .outer-box
+	{
+		border-top-color:black;
+		border-bottom-color:black;
+	}
+    span.device-dropdown span.hover .outer-box
+    {
+        cursor:pointer;
+    }
+	/* 只读形态按钮外框验证样式 */
+	span.device-dropdown span.valid .outer-box
+	{
+		border-top-color:red;
+		border-bottom-color:red;
+	}
+	
+	/* 只读形态按钮内框 */
+	span.device-dropdown .inner-box
+	{
+		border-right:solid 1px #BCBCBC;
+		border-top:0;
+		border-left:solid 1px #BCBCBC;
+		border-bottom:0;
+		margin-top:0px;
+		margin-bottom:0px;
+		margin-right:-1px;
+		margin-left:-1px;
+		*margin-right:0px;
+		*margin-left:0px;
+		padding-top:3px;
+		padding-right:5px;
+		padding-bottom:3px;
+		padding-left:5px;
+		background:#ddd url(../images/device_dropdown/button-bg.png) repeat-x top left;
+	}
+
+	/* 只读形态按钮外内框鼠标经过和展开样式 */
+	span.device-dropdown span.hover .inner-box, span.device-dropdown-expended .inner-box
+	{
+		border-right-color:black;
+		border-left-color:black;
+	}
+
+	/* 只读形态按钮外框鼠验证样式 */
+	span.device-dropdown span.valid .inner-box
+	{
+		border-right-color:red;
+		border-left-color:red;
+	}
+
+	/* 只读形态按钮的下拉三角符号样式 */
+	span.device-dropdown .inner-box div
+	{
+		display:inline;
+		white-space:nowrap;
+	}
+
+	/* 下拉面板样式 */
+	div.device-dropdown-popup
+	{
+		z-index:1000;
+        display:none;
+        position:absolute;
+        background-color:#FFFFFF;
+        border:solid 1px #A4B7CA;
+	}
+
+	div.device-dropdown div.search-bar
+	{
+		background-image:url(../images/device_dropdown/back.png);
+		background-repeat:repeat-x;
+		border-bottom:solid 1px #DAE3EC;
+		padding-left:5px;
+		height:25px;
+		padding-top:5px;
+	}
+	
+	div.device-dropdown div.device div.search-bar,div.device-dropdown div.supply div.search-bar
+	{
+		width:440px !important;
+		width:440px;
+	}
+	
+	div.device-dropdown div.department div.search-bar
+	{
+		width:300px !important;
+		width:300px;
+	}
+	
+	div.device-dropdown div.background
+	{
+		background-image:url(../images/device_dropdown/textbox.gif);
+		background-repeat:no-repeat;
+		height:25px;
+		width:171px;
+		padding-left:11px;
+		margin-left:5px !important;
+		margin-left:0;
+	}
+
+	div.device-dropdown input.search-input
+	{
+		width:130px !important;
+		width:130px;
+		height:12px;
+		margin:0;
+		border:0;
+		background-color:#FFFFFF;
+		background-repeat:no-repeat;
+	}
+
+	div.device-dropdown input.keywords
+	{
+		background-image:url(../images/device_dropdown/keywords.gif);
+	}
+
+	div.device-dropdown div.title 
+	{
+		height:25px;
+		line-height:25px;
+		padding-left:5px;
+		background-image:url(../images/device_dropdown/title.gif);
+		background-repeat:repeat-x;
+		border-bottom:solid 1px #A4B7CA;
+	}
+	
+	div.device-dropdown div.device div.title,div.device-dropdown div.supply div.title 
+	{
+		width:440px;
+	}
+	
+	div.device-dropdown span.empty-button
+	{
+        background-image:url(../images/device_dropdown/empty.gif);
+        background-repeat:no-repeat;
+        height:16px;
+        width:16px;
+        float:right;
+        margin-top:4px !important;
+        margin-top:-20px;
+        margin-left:0px !important;
+        margin-right:5px !important;
+        margin-left:-20px;
+	}
+	
+	div.device-dropdown div.department div.title
+	{
+		width:300px;
+	}
+
+	div.device-dropdown div.title span
+	{
+		font-size:10pt;
+		color:#6885B5;
+	}
+
+	div.device-dropdown div.search-button
+	{
+		margin-top:2px;
+		height:16px;
+		width:16px;
+		background-image:url(../images/device_dropdown/search.gif);
+		background-repeat:no-repeat;
+		cursor:pointer;
+		display: inline-block;
+		zoom: 1; 
+		*display: inline;
+	}
+
+	div.device-dropdown div.clear-button 
+	{
+		background-image:url(../images/device_dropdown/clear.gif);
+	}
+
+	/* 参数列表容器 */
+	div.device-dropdown div.content
+	{
+		color:#555555;
+		font-size:10pt;
+		padding:3px;
+		height:350px;
+		overflow:auto;
+	}
+	
+    div.device-dropdown div.device div.content,div.device-dropdown div.supply div.content
+	{
+		width:440px !important;
+		width:440px;
+	}
+	
+	div.device-dropdown div.department div.content
+	{
+		width:300px !important;
+		width:300px;
+	}
+	
+	/* 第一级样式 */
+	div.device-dropdown .content span.level1-title
+	{
+		height:18px;
+		line-height:18px;
+	}
+	
+	div.device-dropdown span.level1-content, .device-dropdown span.level1,.device-dropdown span.level1-title
+	{
+	    display:block;
+	}
+
+	/* 第一级标题样式 */
+	div.device-dropdown div.device span.level1-title b,div.device-dropdown div.supply span.level1-title b
+	{
+		height:18px;
+		width:18px;
+		background-image:url(../images/device_dropdown/device.gif);
+		background-repeat:no-repeat;
+		float:left;
+	}
+
+	/* 第一级选中标题样式 */
+	div.device-dropdown .content .level1-selected .level1-title
+	{
+		background-color:#EFF3F8;
+	}
+
+	/* 第一级鼠标经过标题样式 */
+	div.device-dropdown .content .level1-hover .level1-title
+	{
+		background-color:#BCDAF0;
+	}
+
+	/* 第一级内容样式 */
+	div.device-dropdown .content .level1-content
+	{
+		display:none;
+		padding-left:18px;
+	}
+	
+	/* 第一级内容隐藏样式 */
+	div.device-dropdown .content .level1-collapse .level1-content
+	{
+		display:none;
+	}
+	
+	/* 第一级内容展开样式 */
+	div.device-dropdown .content .level1-expand .level1-content
+	{
+		display:block;
+	}
+
+	/* 第一级内容展开标题图标样式 */
+	div.device-dropdown div.content .level1-expand .level1-title b
+	{
+		background-position:bottom;
+	}
+
+	/* 耗材类, 第二级样式 */
+	div.device-dropdown div.supply .level2
+	{
+	    display:block;
+	    border:dashed 1px #FFFFFF;
+	}
+	div.device-dropdown div.supply .level2-title
+	{
+		color:#03589E;
+		font-weight:bold;
+		font-size:11pt;
+		display:block;
+	}
+
+	/* 设备类, 第二级样式 */
+	div.device-dropdown div.supply .level3
+	{
+		display:block;
+		padding:2px 0;
+	}
+
+	/* 设备类, 第二级标题样式 */
+	div.device-dropdown div.supply .level3-title
+	{
+		color:#FF6600;
+		display: inline-block;
+		zoom: 1;
+		*display: inline;
+		height:18px;
+		width:100px;
+		overflow:hidden;
+		white-space:nowrap;
+		text-overflow : ellipsis; /* IE Only */
+	}
+
+	div.device-dropdown div.supply .level4
+	{
+		display: inline-block;
+		zoom: 1;
+		*display: inline;
+		height:18px;
+		width:100px;
+		overflow:hidden;
+		white-space:nowrap;
+		text-overflow : ellipsis; /* IE Only */
+	}
+
+	/* 设备类, 第二级样式 */
+	div.device-dropdown div.device .level2
+	{
+		display:block;
+		padding:2px 0;
+	}
+
+	/* 设备类, 第二级标题样式 */
+	div.device-dropdown div.device .level2-title
+	{
+		color:#FF6600;
+		display: inline-block;
+		zoom: 1;
+		*display: inline;
+		height:18px;
+		width:100px;
+		overflow:hidden;
+		white-space:nowrap;
+		text-overflow : ellipsis; /* IE Only */
+	}
+
+	div.device-dropdown div.device .level3-title
+	{
+	    cursor:pointer;
+		display: inline-block;
+		zoom: 1;
+		*display: inline;
+		height:18px;
+		width:100px;
+		overflow:hidden;
+		white-space:nowrap;
+		text-overflow : ellipsis; /* IE Only */
+	}
+	
+	div.device-dropdown div.device span.enter span.level2-title
+	{
+	    font-weight:bold;
+	}
+
+	/* 设备类, 隐藏样式 */
+	div.device-dropdown div.device .hide
+	{
+		display:none;
+	}
+
+	/* 设备类, 耗材样式 */
+	div.device-dropdown .supply .hide
+	{
+		display:none;
+	}
+	
+	div.device-dropdown div.device span.level2-hover
+	{
+	    background-color:#F2FAFF;
+	}
+	
+	div.device-dropdown div.supply span.level2-hover
+	{
+	    border-color:#F1F1F1;
+	}
+	
+	div.device-dropdown div.supply span.level3-hover
+	{
+	    background-color:#F2FAFF;
+	}
+	
+	div.device-dropdown div.supply span.level4-hover, div.device-dropdown div.device span.level3-hover, div.device-dropdown .any-hover
+	{
+	    background-color:#558BE3;
+	    color:#FFFFFF;	    
+	    cursor:pointer;
+	}
+
+	/* 查询结果自动展开样式 */
+	div.device-dropdown .hit .level1-content
+	{
+		display:block;
+	}
+
+	/* 查询结果图标自动展开样式 */
+	div.device-dropdown .hit .level1-title b
+	{
+		background-position:bottom;
+	}

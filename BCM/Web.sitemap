@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+	<siteMapNode url="Main/Default.aspx"  title="主页"  description="ITMonitor"> 
+		
+		<siteMapNode url="SysAdmin/DepartmentsList.aspx?id=sysadmin" title="系统管理"  description="系统管理"> 
+			<siteMapNode url="Role/RoleList.aspx" title="角色列表" description="角色列表"  imagePath="group.gif">
+				<siteMapNode url="Role/RoleSet.aspx" title="权限设置" description="权限设置" />
+				<siteMapNode url="Role/RoleEdit.aspx" title="编辑" description="添加、修改角色" isFunction="true" />
+				<siteMapNode url="Role/RoleList.aspx?Delete" title="删除" description="删除" />
+			</siteMapNode>
+			<siteMapNode url="Role/UserAuthList.aspx" title="用户授权列表"  description="用户授权列表">
+				<siteMapNode url="Role/UserAuthEdit.aspx" title="授权" description="授权授权" />
+			</siteMapNode>
+			<siteMapNode url="SysAdmin/DepartmentsList.aspx" title="用户机构管理"  description="用户机构管理">
+				<siteMapNode url="SysAdmin/DepartmentsEdit.aspx" title="机构编辑" description="机构编辑"  />
+				<siteMapNode url="SysAdmin/UserEdit.aspx" title="用户编辑" description="用户编辑"  />
+				<siteMapNode url="SysAdmin/DepartmentsMain.aspx?Delete" title="用户机构删除" description="删除用户和机构" isFunction="true" />
+			</siteMapNode>
+		</siteMapNode>
+		<siteMapNode url="StateMonitor/StateMonitorIndex.aspx?id=sysadmin" title="系统监控" description="系统监控">
+			<siteMapNode url="PerfMonitor/PerfMonitorIndex.aspx" title="性能监控" description="性能监控"  />
+			<siteMapNode url="StateMonitor/StateMonitorIndex.aspx" title="状态监控" description="状态监控"  />
+		</siteMapNode>
+
+
+	</siteMapNode>
+</siteMap>

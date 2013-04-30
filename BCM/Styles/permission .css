@@ -1,0 +1,42 @@
+﻿.tb
+{
+	border-top:1px solid #ccc;
+	border-left:1px solid #ccc;
+}
+.tbNoShow
+{
+	border-top:1px solid #ccc;
+	border-left:1px solid #ccc;
+	display:none;
+}
+
+.lefttd
+{
+	height:25px;
+	border-top:0;
+	border-left:0;
+	border-right:1px solid #ccc;
+	border-bottom:1px solid #CCC;
+	width:180px;
+	background-color:#cfecfe;
+}
+.secondtd
+{
+	border-top:0;
+	border-left:0;
+	border-right:1px solid #ccc;
+	border-bottom:1px solid #CCC;
+	background-color:#FFF;
+}
+
+.divbotton
+{
+	text-align:center;
+}
+
+#DivRole table
+{
+	margin-left:20px;	
+	width:95%;
+}
+hr{width:97%;}
