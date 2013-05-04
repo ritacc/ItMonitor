@@ -84,9 +84,6 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
-    <Reference Include="System.ServiceModel.DomainServices.EntityFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
-    <Reference Include="System.ServiceModel.DomainServices.Hosting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.ServiceModel.DomainServices.Server, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms" />
@@ -288,6 +285,7 @@
     <Content Include="Main\OutoffTime.aspx" />
     <Content Include="Map.aspx" />
     <Content Include="PerfMonitor\Net.aspx" />
+    <Content Include="PerfMonitor\NetDetail.aspx" />
     <Content Include="PerfMonitor\PerfMonitorIndex.aspx" />
     <Content Include="Ref\DBUtility.dll" />
     <Content Include="Scripts\fullScreen.js" />
@@ -461,6 +459,13 @@
     </Compile>
     <Compile Include="PerfMonitor\Net.aspx.designer.cs">
       <DependentUpon>Net.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PerfMonitor\NetDetail.aspx.cs">
+      <DependentUpon>NetDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PerfMonitor\NetDetail.aspx.designer.cs">
+      <DependentUpon>NetDetail.aspx</DependentUpon>
     </Compile>
     <Compile Include="PerfMonitor\PerfMonitorIndex.aspx.cs">
       <DependentUpon>PerfMonitorIndex.aspx</DependentUpon>

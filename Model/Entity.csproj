@@ -52,6 +52,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="JSClass.cs" />
+    <Compile Include="PerfMonitor\DeviceOR.cs" />
+    <Compile Include="PerfMonitor\DeviceTypeOR.cs" />
+    <Compile Include="PerfMonitor\ServersTypeOR.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sys\ControlOR.cs" />
     <Compile Include="Sys\DEVICETYPEOR.cs" />
@@ -71,9 +74,7 @@
     <Compile Include="Sys\UsersOR.cs" />
     <Compile Include="Sys\VHC_USER_PERMISSIONS.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="PerfMonitor\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

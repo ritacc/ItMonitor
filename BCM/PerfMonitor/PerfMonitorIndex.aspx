@@ -96,16 +96,16 @@
                 $("#<%= txtSelectItem.ClientID %>").val($(this).attr("divName"));
             });
 
-
-           
-           
-            
-           
-
-           
-
-
         });
+
+        function iFrameHeight(obj) {
+            var ifm = document.getElementById(obj);
+            var subWeb = document.frames ? document.frames[obj].document : ifm.contentDocument;
+            if (ifm != null && subWeb != null) {
+                ifm.height = subWeb.body.scrollHeight;
+            }
+        }
+
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -123,7 +123,8 @@
         <li id="ljwd" divname="divljwd"><a>系统故障</a></li>
         <li id="gzms" divname="divgzms"><a>应用系统</a></li>
     </ul>
-    <div>
-        <iframe id="frmMain" src="Net.aspx"></iframe>
+    <div style="border:1px solid #cfcfcf; height:400px; height: auto !important;min-height: 400px;">
+        <iframe id="frmMain" src="Net.aspx" width="100%"  name="iframeApplpage"
+                frameborder="0" scrolling="no" width="100%" onload="iFrameHeight('frmMain')"></iframe>
     </div>
 </asp:Content>
