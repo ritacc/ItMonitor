@@ -51,11 +51,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlertAdmin\HealthConfigOR.cs" />
     <Compile Include="JSClass.cs" />
     <Compile Include="PerfMonitor\DeviceOR.cs" />
     <Compile Include="PerfMonitor\DeviceTypeOR.cs" />
     <Compile Include="PerfMonitor\ServersTypeOR.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SerMonitor\DeviceObj.cs" />
     <Compile Include="Sys\ControlOR.cs" />
     <Compile Include="Sys\DEVICETYPEOR.cs" />
     <Compile Include="Sys\FunctionOR.cs" />

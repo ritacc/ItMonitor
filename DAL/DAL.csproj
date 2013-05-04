@@ -70,11 +70,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlertAdmin\HealthConfigDA.cs" />
     <Compile Include="common\Utils.cs" />
     <Compile Include="DALBase.cs" />
     <Compile Include="ModelConvertHelper.cs" />
     <Compile Include="PerfMonitor\DeviceDA.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SerMonitor\DeviceDA.cs" />
     <Compile Include="Sys\DEVICETYPEDA.cs" />
     <Compile Include="Sys\FunctionDA.cs" />
     <Compile Include="Sys\KnowledgeBaseConfigDA.cs" />

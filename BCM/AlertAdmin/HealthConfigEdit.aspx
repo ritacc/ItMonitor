@@ -1,43 +1,64 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RoleEdit.aspx.cs" Inherits="GDK.BCM.Role.RoleEdit" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="HealthConfigEdit.aspx.cs"
+    Inherits="GDK.BCM.AlertAdmin.HealthConfigEdit" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title>角色信息</title>
+    <title>健康度配置</title>
     <link href="../Styles/PopuWindow.css" rel="Stylesheet" />
     <link href="../Styles/right.css" rel="Stylesheet" />
     <script type="text/javascript" src="../Scripts/jquery-1.4.4.min.js"></script>
     <script type="text/javascript" src="../Scripts/jquery.bgiframe.min.js"></script>
     <script type="text/javascript" src="../Scripts/jquery.popup.js"></script>
     <script type="text/javascript" src="../Scripts/EditCommon.js"></script>
-    <script type="text/javascript" src="../Scripts/jquery.validator.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#<%= txtName.ClientID  %>").yz({ title: "角色名称", type: "string", max: 50, isSave: true });
-            $("#<%= txtROLE_DESC.ClientID  %>").yz({ title: "角色描述", type: "string", max: 250, isSave: true });
+
         });
     </script>
 </head>
 <body>
     <form id="form1" runat="server">
     <div id="wdiv" class="wdiv">
-        <table id="tbContentMain" border="0" cellpadding="0" cellspacing="0" class="window_table"
-            runat="server">
+        <table  id="tbContentMain" border="0" cellpadding="0" cellspacing="0" class="window_table" runat="server">
             <tr>
-                <td width="35%" align="right">
-                    角色名称：
+                <td class="tdRight">
+                    Deviceid：
                 </td>
-                <td>
-                    <asp:TextBox runat="server" ID="txtName" />
+                <td class="tdLeft">
+                    <asp:TextBox runat="server" ID="txtDeviceid" CssClass="textbox_skin" />
                 </td>
             </tr>
             <tr>
-                <td align="right">
-                    描述：
+                <td class="tdRight">
+                    Sdid：
                 </td>
-                <td>
-                    <asp:TextBox runat="server" MaxLength="250" Width="200" Height="80" ID="txtROLE_DESC"
-                        TextMode="MultiLine" />
+                <td class="tdLeft">
+                    <asp:TextBox runat="server" ID="txtSdid" CssClass="textbox_skin" />
+                </td>
+            </tr>
+            <tr>
+                <td class="tdRight">
+                    Pdid：
+                </td>
+                <td class="tdLeft">
+                    <asp:TextBox runat="server" ID="txtPdid" CssClass="textbox_skin" />
+                </td>
+            </tr>
+            <tr>
+                <td class="tdRight">
+                    Channelno：
+                </td>
+                <td class="tdLeft">
+                    <asp:TextBox runat="server" ID="txtChannelno" CssClass="textbox_skin" />
+                </td>
+            </tr>
+            <tr>
+                <td class="tdRight">
+                    Effectlevel：
+                </td>
+                <td class="tdLeft">
+                    <asp:TextBox runat="server" ID="txtEffectlevel" CssClass="textbox_skin" />
                 </td>
             </tr>
         </table>

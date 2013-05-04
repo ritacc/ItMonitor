@@ -99,6 +99,9 @@
     <Reference Include="System.Web.ApplicationServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AlertAdmin\HealthConfigEdit.aspx" />
+    <Content Include="AlertAdmin\HealthConfigList.aspx" />
+    <Content Include="AlertAdmin\HealthConfigMain.aspx" />
     <Content Include="DropdownDeviceList.aspx" />
     <Content Include="images\ajax-loader.gif" />
     <Content Include="images\br_bg.gif" />
@@ -386,6 +389,27 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlertAdmin\HealthConfigEdit.aspx.cs">
+      <DependentUpon>HealthConfigEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AlertAdmin\HealthConfigEdit.aspx.designer.cs">
+      <DependentUpon>HealthConfigEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AlertAdmin\HealthConfigList.aspx.cs">
+      <DependentUpon>HealthConfigList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AlertAdmin\HealthConfigList.aspx.designer.cs">
+      <DependentUpon>HealthConfigList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AlertAdmin\HealthConfigMain.aspx.cs">
+      <DependentUpon>HealthConfigMain.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AlertAdmin\HealthConfigMain.aspx.designer.cs">
+      <DependentUpon>HealthConfigMain.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Code\Common.cs" />
     <Compile Include="App_Code\ControlCommon.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -619,6 +643,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="ClientBin\" />
+    <Folder Include="CompReport\" />
     <Folder Include="Log\" />
     <Folder Include="SLFile\" />
     <Folder Include="Upload\Audio\" />
