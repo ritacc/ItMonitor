@@ -48,7 +48,12 @@ namespace GDK.BCM.AlertAdmin
         {
             HealthConfigOR m_Heal = new HealthConfigOR();
             if (Request.QueryString["opType"] == "alert")
-                m_Heal.Sdid = Convert.ToInt32(Request.QueryString["id"]);
+                m_Heal.ID = Request.QueryString["id"].ToString(); 
+
+            if (Request.QueryString["opType"] == "add")
+            {
+                m_Heal.Deviceid = Convert.ToInt32(Request.QueryString["deviceID"]);
+            }
             m_Heal.Sdid = int.Parse(txtSdid.Text);//
             m_Heal.Pdid = int.Parse(txtPdid.Text);//
             m_Heal.Channelno = int.Parse(txtChannelno.Text);//

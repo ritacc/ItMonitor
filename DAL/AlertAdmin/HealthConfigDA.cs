@@ -35,9 +35,9 @@ namespace GDK.DAL.AlertAdmin
             pageCount = returnC;
             return dt;
         }
-        public DataTable selectAllDateByWhere()
+        public DataTable selectDataByDeviceID(string strID)
         {
-            string sql = "select * from t_HealthConfig";
+            string sql = "select * from t_HealthConfig where DeviceID="+ strID;
            
             DataTable dt = null;
             try
@@ -82,9 +82,11 @@ namespace GDK.DAL.AlertAdmin
         /// </summary>
         public virtual bool Insert(HealthConfigOR healthConfig)
         {
-            string sql = "insert into t_HealthConfig (DeviceID, SDID, PDID, ChannelNO, EffectLevel) values (@DeviceID, @SDID, @PDID, @ChannelNO, @EffectLevel)";
+            string sql = @"insert into t_HealthConfig (ID,DeviceID, SDID, PDID, ChannelNO, EffectLevel) 
+values (@ID,@DeviceID, @SDID, @PDID, @ChannelNO, @EffectLevel)";
             SqlParameter[] parameters = new SqlParameter[]
 			{
+                new SqlParameter("@ID", SqlDbType.VarChar, 36, ParameterDirection.Input, false, 0, 0, "ID", DataRowVersion.Default, healthConfig.ID),
 				new SqlParameter("@DeviceID", SqlDbType.Int, 4, ParameterDirection.Input, false, 0, 0, "DeviceID", DataRowVersion.Default, healthConfig.Deviceid),
 				new SqlParameter("@SDID", SqlDbType.Int, 4, ParameterDirection.Input, false, 0, 0, "SDID", DataRowVersion.Default, healthConfig.Sdid),
 				new SqlParameter("@PDID", SqlDbType.Int, 4, ParameterDirection.Input, false, 0, 0, "PDID", DataRowVersion.Default, healthConfig.Pdid),
@@ -101,9 +103,10 @@ namespace GDK.DAL.AlertAdmin
         /// </summary>
         public virtual bool Update(HealthConfigOR healthConfig)
         {
-            string sql = "update t_HealthConfig set  SDID = @SDID,  PDID = @PDID,  ChannelNO = @ChannelNO,  EffectLevel = @EffectLevel where  DeviceID = @DeviceID";
+            string sql = "update t_HealthConfig set  SDID = @SDID,  PDID = @PDID,  ChannelNO = @ChannelNO,  EffectLevel = @EffectLevel where  ID = @ID";
             SqlParameter[] parameters = new SqlParameter[]
 			{
+                 new SqlParameter("@ID", SqlDbType.VarChar, 36, ParameterDirection.Input, false, 0, 0, "ID", DataRowVersion.Default, healthConfig.ID),
 				new SqlParameter("@DeviceID", SqlDbType.Int, 4, ParameterDirection.Input, false, 0, 0, "DeviceID", DataRowVersion.Default, healthConfig.Deviceid),
 				new SqlParameter("@SDID", SqlDbType.Int, 4, ParameterDirection.Input, false, 0, 0, "SDID", DataRowVersion.Default, healthConfig.Sdid),
 				new SqlParameter("@PDID", SqlDbType.Int, 4, ParameterDirection.Input, false, 0, 0, "PDID", DataRowVersion.Default, healthConfig.Pdid),
@@ -118,10 +121,10 @@ namespace GDK.DAL.AlertAdmin
         /// <summary>
         /// 删除t_HealthConfig
         /// </summary>
-        public virtual bool Delete(string strDeviceid)
+        public virtual bool Delete(string strID)
         {
-            string sql = "delete from t_HealthConfig where  DeviceID = @DeviceID";
-            SqlParameter parameter = new SqlParameter("@DeviceID", strDeviceid);
+            string sql = "delete from t_HealthConfig where  ID = @DeviceID";
+            SqlParameter parameter = new SqlParameter("@DeviceID", strID);
             return db.ExecuteNoQuery(sql, parameter) > -1;
         }
         #endregion

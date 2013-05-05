@@ -27,7 +27,7 @@
 
         $(document).ready(function () {
             $(".headerBtnAdd").click(function () {
-                var strVar = 'HealthConfigEdit.aspx';
+                var strVar = 'HealthConfigEdit.aspx?opType=add&deviceID=' + request("DeviceID");
                 $.popup({ title: "添加健康度配置", url: strVar, borderStyle: { height: 300, width: 400 }, ok: function (obj) {
 
                     $.popup.Refrsh();

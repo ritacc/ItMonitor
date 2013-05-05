@@ -10,7 +10,16 @@ namespace GDK.Entity.AlertAdmin
     /// </summary>
     public class HealthConfigOR
     {
-       
+        string _ID;
+        /// <summary>
+        /// ID
+        /// </summary>
+        public string ID
+        {
+            get { return _ID; }
+            set { _ID = value; }
+        }
+
 		private int _Deviceid;
 		/// <summary>
 		/// 
@@ -66,7 +75,7 @@ namespace GDK.Entity.AlertAdmin
 		/// </summary>
 		public HealthConfigOR()
 		{
-
+            _ID = Guid.NewGuid().ToString();
 		}
 
 		/// <summary>
@@ -74,6 +83,7 @@ namespace GDK.Entity.AlertAdmin
 		/// </summary>
 		public HealthConfigOR(DataRow row)
 		{
+            _ID = row["id"].ToString();
 			// 
 			_Deviceid = Convert.ToInt32(row["DeviceID"]);
 			// 

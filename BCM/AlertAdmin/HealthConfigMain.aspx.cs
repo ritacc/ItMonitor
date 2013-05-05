@@ -43,8 +43,8 @@ namespace GDK.BCM.AlertAdmin
 
         private void BindGraid()
         {
-            
-            this.gvHealthConfig.DataSource = new HealthConfigDA().selectAllDateByWhere();
+            string strID = Request.QueryString["DeviceID"].ToString();
+            this.gvHealthConfig.DataSource = new HealthConfigDA().selectDataByDeviceID(strID);
 
             this.gvHealthConfig.DataBind();
             
