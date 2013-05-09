@@ -13,7 +13,7 @@
     <script type="text/javascript" src="../Scripts/EditCommon.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-
+            $("#txtEffectlevel").yz({ title: "健康影响度", type: "int", canEmpty: false, min: 1,max:100 });
         });
     </script>
 </head>
@@ -23,7 +23,7 @@
         <table  id="tbContentMain" border="0" cellpadding="0" cellspacing="0" class="window_table" runat="server">
             <tr>
                 <td class="tdRight">
-                    Deviceid：
+                    设备ID：
                 </td>
                 <td class="tdLeft">
                     <asp:TextBox runat="server" ID="txtDeviceid" CssClass="textbox_skin" />
@@ -31,23 +31,16 @@
             </tr>
             <tr>
                 <td class="tdRight">
-                    Sdid：
+                    关联设备ID：
                 </td>
                 <td class="tdLeft">
                     <asp:TextBox runat="server" ID="txtSdid" CssClass="textbox_skin" />
                 </td>
             </tr>
+            
             <tr>
                 <td class="tdRight">
-                    Pdid：
-                </td>
-                <td class="tdLeft">
-                    <asp:TextBox runat="server" ID="txtPdid" CssClass="textbox_skin" />
-                </td>
-            </tr>
-            <tr>
-                <td class="tdRight">
-                    Channelno：
+                    关联设备通道：
                 </td>
                 <td class="tdLeft">
                     <asp:TextBox runat="server" ID="txtChannelno" CssClass="textbox_skin" />
@@ -55,7 +48,7 @@
             </tr>
             <tr>
                 <td class="tdRight">
-                    Effectlevel：
+                    健康影响度：
                 </td>
                 <td class="tdLeft">
                     <asp:TextBox runat="server" ID="txtEffectlevel" CssClass="textbox_skin" />

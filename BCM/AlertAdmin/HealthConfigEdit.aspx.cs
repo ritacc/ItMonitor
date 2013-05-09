@@ -31,8 +31,9 @@ namespace GDK.BCM.AlertAdmin
             {
                 string m_id = Request.QueryString["id"];
                 HealthConfigOR m_Heal = new HealthConfigDA().selectARowDate(m_id);
+
                 txtSdid.Text = m_Heal.Sdid.ToString();//
-                txtPdid.Text = m_Heal.Pdid.ToString();//
+                
                 txtChannelno.Text = m_Heal.Channelno.ToString();//
                 txtEffectlevel.Text = m_Heal.Effectlevel.ToString();//
             }
@@ -48,14 +49,16 @@ namespace GDK.BCM.AlertAdmin
         {
             HealthConfigOR m_Heal = new HealthConfigOR();
             if (Request.QueryString["opType"] == "alert")
-                m_Heal.ID = Request.QueryString["id"].ToString(); 
+                m_Heal.ID = Request.QueryString["id"].ToString();
+            else
+                m_Heal.Deviceid = Convert.ToInt32(Request.QueryString["DeviceID"]);
 
             if (Request.QueryString["opType"] == "add")
             {
                 m_Heal.Deviceid = Convert.ToInt32(Request.QueryString["deviceID"]);
             }
             m_Heal.Sdid = int.Parse(txtSdid.Text);//
-            m_Heal.Pdid = int.Parse(txtPdid.Text);//
+            
             m_Heal.Channelno = int.Parse(txtChannelno.Text);//
             m_Heal.Effectlevel = int.Parse(txtEffectlevel.Text);//
 
