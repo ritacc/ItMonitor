@@ -102,6 +102,7 @@
     <Content Include="AlertAdmin\HealthConfigEdit.aspx" />
     <Content Include="AlertAdmin\HealthConfigList.aspx" />
     <Content Include="AlertAdmin\HealthConfigMain.aspx" />
+    <Content Include="ClientBin\ITMonitorControl.xap" />
     <Content Include="DropdownDeviceList.aspx" />
     <Content Include="images\ajax-loader.gif" />
     <Content Include="images\br_bg.gif" />
@@ -366,6 +367,7 @@
     <Content Include="Sysadmin\DepartmentsMain.aspx" />
     <Content Include="Sysadmin\UserEdit.aspx" />
     <Content Include="TempImageFiles\txt.txt" />
+    <Content Include="WCF\WCFControlGetValue.svc" />
     <Content Include="修改记录.txt" />
     <Content Include="UI\HTMLMap.ascx" />
     <Content Include="UI\pagenavigate.ascx" />
@@ -639,10 +641,13 @@
     <Compile Include="UI\UpLoadFile.ascx.designer.cs">
       <DependentUpon>UpLoadFile.ascx</DependentUpon>
     </Compile>
+    <Compile Include="WCF\IWCFControlGetValue.cs" />
+    <Compile Include="WCF\WCFControlGetValue.svc.cs">
+      <DependentUpon>WCFControlGetValue.svc</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="ClientBin\" />
     <Folder Include="CompReport\" />
     <Folder Include="Log\" />
     <Folder Include="SLFile\" />

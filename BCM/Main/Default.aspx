@@ -74,10 +74,24 @@
             </tr>
         </table>
         <div class="divgrid">
-            <div class="divMSChart" id="divMSChart">
-                <div id="divloading">
-                    <img src="../images/popWin/loading.gif" alt="数据加载中" title="" />数据加载中.....
-                </div>
+            <div class="divMSChart" id="divMSChart" style="height: 200px; width: 400px;">
+                <object data="data:application/x-silverlight-2," type="application/x-silverlight-2"
+                 width="100%" height="100%">
+                    <param name="source" value="../ClientBin/ITMonitorControl.xap" />
+                    <param name="onError" value="onSilverlightError" />
+                    <param name="background" value="white" />
+                    <param name="initParams" value="Target=meter1,DeviceID=123,ChanncelNo=3" />
+                    <param name="Target" value="meter1" />
+                    <param name="DeviceID" value="123" />
+                    <param name="ChanncelNo" value="11" />
+                    <param name="minRuntimeVersion" value="4.0.50826.0" />
+                    <param name="autoUpgrade" value="true" />
+                    <a href="../SLFile/Silverlight.zip" style="text-decoration: none">
+                        <img src="../SLFile/SLMedallion_CHS.png" alt="获取 Microsoft Silverlight" style="border-style: none" />
+                    </a>
+                </object>
+                <iframe id="_sl_historyFrame" style="visibility: hidden; height: 0px; width: 0px;
+                    border: 0px"></iframe>
             </div>
         </div>
 
