@@ -140,10 +140,7 @@ a.headerBtnAdd
     border: 1px solid #CCCCCC; padding: 10px; background-color: #fafafc;
 }
 
-        a
-        {
-            cursor:pointer;
-        }
+        
 .TextBox_skin
 {
     border:1px solid #BBBBBB;

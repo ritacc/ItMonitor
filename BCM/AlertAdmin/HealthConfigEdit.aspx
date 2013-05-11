@@ -11,8 +11,10 @@
     <script type="text/javascript" src="../Scripts/jquery.bgiframe.min.js"></script>
     <script type="text/javascript" src="../Scripts/jquery.popup.js"></script>
     <script type="text/javascript" src="../Scripts/EditCommon.js"></script>
+    <script type="text/javascript" src="../Scripts/jquery.validator.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
+            $("#dpdDeviceid").yz({ title: "设备名称", type: "int", canEmpty: false});
             $("#txtEffectlevel").yz({ title: "健康影响度", type: "int", canEmpty: false, min: 1,max:100 });
         });
     </script>
@@ -21,29 +23,34 @@
     <form id="form1" runat="server">
     <div id="wdiv" class="wdiv">
         <table  id="tbContentMain" border="0" cellpadding="0" cellspacing="0" class="window_table" runat="server">
+
             <tr>
                 <td class="tdRight">
-                    设备ID：
+                    站点名称：
                 </td>
                 <td class="tdLeft">
-                    <asp:TextBox runat="server" ID="txtDeviceid" CssClass="textbox_skin" />
+                    <asp:DropDownList ID="dpdStationID" Width="180px" runat="server" AutoPostBack="true"
+                        OnSelectedIndexChanged="dpdStationID_SelectedIndexChanged">
+                    </asp:DropDownList>
+                </td>
+            </tr>
+            <tr>
+             <td class="tdRight">
+                    设备名称：
+                </td>
+                <td class="tdLeft">
+                    <asp:DropDownList ID="dpdDeviceid" AutoPostBack="true" Width="180px" 
+                        runat="server" onselectedindexchanged="dpdDeviceid_SelectedIndexChanged">
+                    </asp:DropDownList>
                 </td>
             </tr>
             <tr>
                 <td class="tdRight">
-                    关联设备ID：
+                    通道名称：
                 </td>
                 <td class="tdLeft">
-                    <asp:TextBox runat="server" ID="txtSdid" CssClass="textbox_skin" />
-                </td>
-            </tr>
-            
-            <tr>
-                <td class="tdRight">
-                    关联设备通道：
-                </td>
-                <td class="tdLeft">
-                    <asp:TextBox runat="server" ID="txtChannelno" CssClass="textbox_skin" />
+                    <asp:DropDownList ID="dpdchannelno" Width="180px" runat="server">
+                    </asp:DropDownList>
                 </td>
             </tr>
             <tr>

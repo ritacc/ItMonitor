@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using GDK.DAL.PerfMonitor;
 using System.Data;
+using GDK.Entity.PerfMonitor;
 
 namespace GDK.BCM.PerfMonitor
 {
@@ -21,24 +22,20 @@ namespace GDK.BCM.PerfMonitor
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack) {
-                //BindData();
+                InitData();
             }
         }
-        public void BindData() 
+
+        private void InitData()
         {
-            try
-            {        
-                string id=Request.QueryString["id"].ToString();
-                DataTable dt = new DataTable();
-                dt = new DeviceDA().selectDetailDateByWhere(id);
-                rptnetdetail.DataSource = dt;
-                rptnetdetail.DataBind();
-            }
-            catch (Exception e)
-            {
-                base.Alert(e.Message);
-                return;
-            }
+           string mDeviceID= Request.QueryString["id"];
+           PerfNetDetailOR _Obj = new PerfNetDA().SelectDeviceDetail(mDeviceID);
+           lblIP.Text = _Obj.IP;
+           lblFirm.Text = _Obj.Firm;
+
+           gvPortList.DataSource = _Obj.SubProts;
+           gvPortList.DataBind();
         }
+       
     }
 }

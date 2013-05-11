@@ -13,6 +13,24 @@ namespace GDK.BCM.AlertAdmin {
     public partial class HealthConfigMain {
         
         /// <summary>
+        /// Head1 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
+        
+        /// <summary>
+        /// form1 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        
+        /// <summary>
         /// aBtnAdd 控件。
         /// </summary>
         /// <remarks>
@@ -22,6 +40,15 @@ namespace GDK.BCM.AlertAdmin {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor aBtnAdd;
         
         /// <summary>
+        /// lblName 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblName;
+        
+        /// <summary>
         /// gvHealthConfig 控件。
         /// </summary>
         /// <remarks>
@@ -29,14 +56,5 @@ namespace GDK.BCM.AlertAdmin {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvHealthConfig;
-        
-        /// <summary>
-        /// pg 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::GDK.BCM.UI.pagenavigate pg;
     }
 }

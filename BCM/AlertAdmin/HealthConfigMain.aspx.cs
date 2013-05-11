@@ -6,6 +6,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using GDK.Entity.AlertAdmin;
 using GDK.DAL.AlertAdmin;
+using GDK.DAL.SerMonitor;
+using GDK.Entity.PerfMonitor;
+
 
 
 namespace GDK.BCM.AlertAdmin
@@ -34,6 +37,10 @@ namespace GDK.BCM.AlertAdmin
             //btnAdd.Visible = base.HasPermission("Admin");
             //aBtnAdd.Visible = gvHealthConfig.Columns[1].Visible = base.HasPermission("Edit");
             //gvHealthConfig.Columns[2].Visible = base.HasPermission("Delete");
+            string strID = Request.QueryString["DeviceID"];
+            DeviceOR m_DeviceOR = new DeviceDA().SelectDeviceORByID(strID);
+            if (m_DeviceOR != null)
+                lblName.Text = m_DeviceOR.DeviceName;
         }
 
         protected void PageChanged(object sender, EventArgs e)
@@ -43,7 +50,7 @@ namespace GDK.BCM.AlertAdmin
 
         private void BindGraid()
         {
-            string strID = Request.QueryString["DeviceID"].ToString();
+            string strID = Request.QueryString["DeviceID"];
             this.gvHealthConfig.DataSource = new HealthConfigDA().selectDataByDeviceID(strID);
 
             this.gvHealthConfig.DataBind();

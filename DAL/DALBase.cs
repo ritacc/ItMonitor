@@ -30,5 +30,19 @@ namespace GDK.DAL
         //        throw ex;
         //    }
         //}
+
+        protected SqlParameter[] InsertPara(SqlParameter[] ParaArr, SqlParameter mobj)
+        {
+            int len = ParaArr.Length + 1;
+            SqlParameter[] pNew = new SqlParameter[len];
+            int index = 0;
+            foreach (SqlParameter mp in ParaArr)
+            {
+                pNew[index] = mp;
+                index++;
+            }
+            pNew[index] = mobj;
+            return pNew;
+        }
     }
 }

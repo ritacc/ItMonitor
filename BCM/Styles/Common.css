@@ -5,7 +5,7 @@ body
 }
 *
 {
-	font-size:13px;
+	font-size:12px;
 }
 #box
 {
@@ -49,9 +49,9 @@ body
 {
 	color:Blue;
 }	
-	.NoShow
-	{
-	    display:none;
-	}
+.NoShow
+{
+    display:none;
+}
 	
 	

@@ -38,6 +38,53 @@ $.cookie = function (name, value, options) {
     }
 };
 
+
+/************** 获取当前页面大小和文档区域大小 **********/
+$.getLayout = function (win) {
+    win = win || window.top;
+    var oTopBody = $(win.document.body);
+    var scrW, scrH;
+    if (win.innerHeight && win.scrollMaxY) {
+        /* Mozilla     */
+        scrW = win.innerWidth + win.scrollMaxX;
+        scrH = win.innerHeight + win.scrollMaxY;
+    } else if (win.document.body.scrollHeight > win.document.body.offsetHeight) {
+        /* all but IE Mac  */
+        scrW = win.document.body.scrollWidth;
+        scrH = win.document.body.scrollHeight;
+    } else if (win.document.body) {
+        /* IE Mac    */
+        scrW = win.document.body.offsetWidth;
+        scrH = win.document.body.offsetHeight;
+    }
+    var innerWidth, innerHeight;
+
+    if (win.innerHeight) {
+        /* all except IE    */
+        innerWidth = win.innerWidth;
+        innerHeight = win.innerHeight;
+    } else if (win.document.documentElement
+			&& win.document.documentElement.clientHeight) {
+        /* IE 6 Strict Mode    */
+        innerWidth = win.document.documentElement.clientWidth;
+        innerHeight = win.document.documentElement.clientHeight;
+    } else if (win.document.body) {
+        /* other    */
+        innerWidth = win.document.body.clientWidth;
+        innerHeight = win.document.body.clientHeigh;
+    }
+    var oWin = $(win);
+    var scrollTop = oWin.scrollTop();
+    var scrollLeft = oWin.scrollLeft();
+    /* for small pages with total size less then the viewport */
+    var outerWidth = Math.max(scrW, innerWidth);
+    var outerHeight = Math.max(scrH, innerHeight);
+    outerWidth = Math.max(outerWidth, oTopBody.outerWidth(true));
+    outerHeight = Math.max(outerHeight, oTopBody.outerHeight(true));
+    return { outerWidth: outerWidth, outerHeight: outerHeight, innerWidth: innerWidth, innerHeight: innerHeight, scrollTop: scrollTop, scrollLeft: scrollLeft };
+}
+
+
 // change color for single click ##################################################################################
 //背景颜色
 var lastobj = null;

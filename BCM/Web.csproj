@@ -288,12 +288,27 @@
     <Content Include="Main\MissingParameter.aspx" />
     <Content Include="Main\OutoffTime.aspx" />
     <Content Include="Map.aspx" />
-    <Content Include="PerfMonitor\Net.aspx" />
-    <Content Include="PerfMonitor\NetDetail.aspx" />
+    <Content Include="PerfMonitor\PerfDB.aspx" />
+    <Content Include="PerfMonitor\PerfDBDetail.aspx" />
+    <Content Include="PerfMonitor\PerfDomain.aspx" />
+    <Content Include="PerfMonitor\PerfDomainDetail.aspx" />
+    <Content Include="PerfMonitor\PerfHost.aspx" />
+    <Content Include="PerfMonitor\PerfHostDetail.aspx" />
+    <Content Include="PerfMonitor\PerfMiddleware.aspx" />
+    <Content Include="PerfMonitor\PerfMiddlewareDetail.aspx" />
+    <Content Include="PerfMonitor\PerfNet.aspx" />
+    <Content Include="PerfMonitor\PerfNetDetail.aspx" />
     <Content Include="PerfMonitor\PerfMonitorIndex.aspx" />
+    <Content Include="PerfMonitor\PerfVirtualMachine.aspx" />
+    <Content Include="PerfMonitor\PerfVirtualMachineDetail.aspx" />
+    <Content Include="PerfMonitor\PrefApplication.aspx" />
+    <Content Include="PerfMonitor\PrefApplicationDeatil.aspx" />
+    <Content Include="PerfMonitor\PrefSystemFailure.aspx" />
+    <Content Include="PerfMonitor\PrefSystemFailureDetail.aspx" />
     <Content Include="Ref\DBUtility.dll" />
     <Content Include="Scripts\fullScreen.js" />
     <Content Include="Scripts\jquery.cookie.js" />
+    <Content Include="Scripts\MonitorList.js" />
     <Content Include="Scripts\My97DatePicker\calendar.js" />
     <Content Include="Scripts\My97DatePicker\lang\en.js" />
     <Content Include="Scripts\My97DatePicker\lang\zh-cn.js" />
@@ -308,8 +323,18 @@
     <Content Include="Scripts\My97DatePicker\WdatePicker.js" />
     <Content Include="Scripts\Silverlight.js" />
     <Content Include="Scripts\TaskSyxzcEdit.js" />
+    <Content Include="StateMonitor\StateApplication.aspx" />
+    <Content Include="StateMonitor\StateApplicationDetail.aspx" />
+    <Content Include="StateMonitor\StateCompRoomEnvi.aspx" />
+    <Content Include="StateMonitor\StateCompRoomEnviDetail.aspx" />
+    <Content Include="StateMonitor\StateHost.aspx" />
+    <Content Include="StateMonitor\StateHostDetail.aspx" />
     <Content Include="StateMonitor\StateList.aspx" />
+    <Content Include="StateMonitor\StateListDetail.aspx" />
     <Content Include="StateMonitor\StateMonitorIndex.aspx" />
+    <Content Include="StateMonitor\StateNet.aspx" />
+    <Content Include="StateMonitor\StateVirtualMachine.aspx" />
+    <Content Include="StateMonitor\StateVirtualMachineDetail.aspx" />
     <Content Include="Styles\jquery.device-supply.css" />
     <Content Include="Styles\page.css" />
     <Content Include="Ref\AjaxControlToolkit.dll" />
@@ -329,7 +354,6 @@
     <Content Include="Scripts\jquery-1.4.4.min.js" />
     <Content Include="Scripts\jquery.bgiframe.min.js" />
     <Content Include="Scripts\jquery.contextmenu.js" />
-    <Content Include="Scripts\jquery.device-supply.js" />
     <Content Include="Scripts\jquery.popup.js" />
     <Content Include="Scripts\jquery.tab.js" />
     <Content Include="Scripts\jquery.validator.js" />
@@ -479,19 +503,75 @@
     <Compile Include="Map.aspx.designer.cs">
       <DependentUpon>Map.aspx</DependentUpon>
     </Compile>
-    <Compile Include="PerfMonitor\Net.aspx.cs">
-      <DependentUpon>Net.aspx</DependentUpon>
+    <Compile Include="PerfMonitor\PerfDB.aspx.cs">
+      <DependentUpon>PerfDB.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="PerfMonitor\Net.aspx.designer.cs">
-      <DependentUpon>Net.aspx</DependentUpon>
+    <Compile Include="PerfMonitor\PerfDB.aspx.designer.cs">
+      <DependentUpon>PerfDB.aspx</DependentUpon>
     </Compile>
-    <Compile Include="PerfMonitor\NetDetail.aspx.cs">
-      <DependentUpon>NetDetail.aspx</DependentUpon>
+    <Compile Include="PerfMonitor\PerfDBDetail.aspx.cs">
+      <DependentUpon>PerfDBDetail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="PerfMonitor\NetDetail.aspx.designer.cs">
-      <DependentUpon>NetDetail.aspx</DependentUpon>
+    <Compile Include="PerfMonitor\PerfDBDetail.aspx.designer.cs">
+      <DependentUpon>PerfDBDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfDomain.aspx.cs">
+      <DependentUpon>PerfDomain.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfDomain.aspx.designer.cs">
+      <DependentUpon>PerfDomain.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfDomainDetail.aspx.cs">
+      <DependentUpon>PerfDomainDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfDomainDetail.aspx.designer.cs">
+      <DependentUpon>PerfDomainDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfHost.aspx.cs">
+      <DependentUpon>PerfHost.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfHost.aspx.designer.cs">
+      <DependentUpon>PerfHost.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfHostDetail.aspx.cs">
+      <DependentUpon>PerfHostDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfHostDetail.aspx.designer.cs">
+      <DependentUpon>PerfHostDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfMiddleware.aspx.cs">
+      <DependentUpon>PerfMiddleware.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfMiddleware.aspx.designer.cs">
+      <DependentUpon>PerfMiddleware.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfMiddlewareDetail.aspx.cs">
+      <DependentUpon>PerfMiddlewareDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfMiddlewareDetail.aspx.designer.cs">
+      <DependentUpon>PerfMiddlewareDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfNet.aspx.cs">
+      <DependentUpon>PerfNet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfNet.aspx.designer.cs">
+      <DependentUpon>PerfNet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfNetDetail.aspx.cs">
+      <DependentUpon>PerfNetDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfNetDetail.aspx.designer.cs">
+      <DependentUpon>PerfNetDetail.aspx</DependentUpon>
     </Compile>
     <Compile Include="PerfMonitor\PerfMonitorIndex.aspx.cs">
       <DependentUpon>PerfMonitorIndex.aspx</DependentUpon>
@@ -499,6 +579,48 @@
     </Compile>
     <Compile Include="PerfMonitor\PerfMonitorIndex.aspx.designer.cs">
       <DependentUpon>PerfMonitorIndex.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfVirtualMachine.aspx.cs">
+      <DependentUpon>PerfVirtualMachine.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfVirtualMachine.aspx.designer.cs">
+      <DependentUpon>PerfVirtualMachine.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfVirtualMachineDetail.aspx.cs">
+      <DependentUpon>PerfVirtualMachineDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfVirtualMachineDetail.aspx.designer.cs">
+      <DependentUpon>PerfVirtualMachineDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PerfMonitor\PrefApplication.aspx.cs">
+      <DependentUpon>PrefApplication.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PerfMonitor\PrefApplication.aspx.designer.cs">
+      <DependentUpon>PrefApplication.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PerfMonitor\PrefApplicationDeatil.aspx.cs">
+      <DependentUpon>PrefApplicationDeatil.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PerfMonitor\PrefApplicationDeatil.aspx.designer.cs">
+      <DependentUpon>PrefApplicationDeatil.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PerfMonitor\PrefSystemFailure.aspx.cs">
+      <DependentUpon>PrefSystemFailure.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PerfMonitor\PrefSystemFailure.aspx.designer.cs">
+      <DependentUpon>PrefSystemFailure.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PerfMonitor\PrefSystemFailureDetail.aspx.cs">
+      <DependentUpon>PrefSystemFailureDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PerfMonitor\PrefSystemFailureDetail.aspx.designer.cs">
+      <DependentUpon>PrefSystemFailureDetail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Role\RoleEdit.aspx.cs">
@@ -536,6 +658,48 @@
     <Compile Include="Role\UserAuthList.aspx.designer.cs">
       <DependentUpon>UserAuthList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="StateMonitor\StateApplication.aspx.cs">
+      <DependentUpon>StateApplication.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StateMonitor\StateApplication.aspx.designer.cs">
+      <DependentUpon>StateApplication.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StateMonitor\StateApplicationDetail.aspx.cs">
+      <DependentUpon>StateApplicationDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StateMonitor\StateApplicationDetail.aspx.designer.cs">
+      <DependentUpon>StateApplicationDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StateMonitor\StateCompRoomEnvi.aspx.cs">
+      <DependentUpon>StateCompRoomEnvi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StateMonitor\StateCompRoomEnvi.aspx.designer.cs">
+      <DependentUpon>StateCompRoomEnvi.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StateMonitor\StateCompRoomEnviDetail.aspx.cs">
+      <DependentUpon>StateCompRoomEnviDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StateMonitor\StateCompRoomEnviDetail.aspx.designer.cs">
+      <DependentUpon>StateCompRoomEnviDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StateMonitor\StateHost.aspx.cs">
+      <DependentUpon>StateHost.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StateMonitor\StateHost.aspx.designer.cs">
+      <DependentUpon>StateHost.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StateMonitor\StateHostDetail.aspx.cs">
+      <DependentUpon>StateHostDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StateMonitor\StateHostDetail.aspx.designer.cs">
+      <DependentUpon>StateHostDetail.aspx</DependentUpon>
+    </Compile>
     <Compile Include="StateMonitor\StateList.aspx.cs">
       <DependentUpon>StateList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -543,12 +707,40 @@
     <Compile Include="StateMonitor\StateList.aspx.designer.cs">
       <DependentUpon>StateList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="StateMonitor\StateListDetail.aspx.cs">
+      <DependentUpon>StateListDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StateMonitor\StateListDetail.aspx.designer.cs">
+      <DependentUpon>StateListDetail.aspx</DependentUpon>
+    </Compile>
     <Compile Include="StateMonitor\StateMonitorIndex.aspx.cs">
       <DependentUpon>StateMonitorIndex.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="StateMonitor\StateMonitorIndex.aspx.designer.cs">
       <DependentUpon>StateMonitorIndex.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StateMonitor\StateNet.aspx.cs">
+      <DependentUpon>StateNet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StateMonitor\StateNet.aspx.designer.cs">
+      <DependentUpon>StateNet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StateMonitor\StateVirtualMachine.aspx.cs">
+      <DependentUpon>StateVirtualMachine.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StateMonitor\StateVirtualMachine.aspx.designer.cs">
+      <DependentUpon>StateVirtualMachine.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StateMonitor\StateVirtualMachineDetail.aspx.cs">
+      <DependentUpon>StateVirtualMachineDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StateMonitor\StateVirtualMachineDetail.aspx.designer.cs">
+      <DependentUpon>StateVirtualMachineDetail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Sysadmin\DepartmentLoadDep.aspx.cs">
       <DependentUpon>DepartmentLoadDep.aspx</DependentUpon>

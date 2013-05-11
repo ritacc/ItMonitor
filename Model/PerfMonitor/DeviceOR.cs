@@ -19,7 +19,6 @@ namespace GDK.Entity.PerfMonitor
             set { _DeviceID = value; }
         }
 
-
         /// <summary>
         /// 设备名称
         /// </summary>
@@ -30,8 +29,6 @@ namespace GDK.Entity.PerfMonitor
             get { return _DeviceName; }
             set { _DeviceName = value; }
         }
-
-
 
         /// <summary>
         ///通信参数
@@ -44,10 +41,6 @@ namespace GDK.Entity.PerfMonitor
             set { _CommunicateType = value; }
         }
  
-
-
-
-
         /// <summary>
         /// 通信Id
         /// </summary>
@@ -58,9 +51,6 @@ namespace GDK.Entity.PerfMonitor
             get { return _CommunicateID; }
             set { _CommunicateID = value; }
         }
-
-      
-
 
         ///<summary>
         ///设备地址
@@ -283,23 +273,36 @@ namespace GDK.Entity.PerfMonitor
 		/// Roles构造函数
 		/// </summary>
         public DeviceOR(DataRow row)
-		{
-			// 设备id
-            _DeviceID =Convert.ToInt32( row["DeviceID"]);
-			// 设备名称
+        {
+            // 设备id
+            _DeviceID = Convert.ToInt32(row["DeviceID"]);
+            // 设备名称
             _DeviceName = row["DeviceName"].ToString().Trim();
             // 通信参数
-            _CommunicateType = Convert.ToInt32(row["CommunicateType"]);
-            _CommunicateID = Convert.ToInt32(row["CommunicateID"]);
+
+            if (row["CommunicateType"] != DBNull.Value)
+                _CommunicateType = Convert.ToInt32(row["CommunicateType"]);
+
+            if (row["CommunicateID"] != DBNull.Value)
+                _CommunicateID = Convert.ToInt32(row["CommunicateID"]);
+
             _SubAddr = row["SubAddr"].ToString().Trim();
-            _DeviceTypeID = Convert.ToInt32(row["DeviceTypeID"]);
-            _StationID = Convert.ToInt32(row["StationID"]);
+
+            if (row["DeviceTypeID"] != DBNull.Value)
+                _DeviceTypeID = Convert.ToInt32(row["DeviceTypeID"]);
+
+            if (row["StationID"] != DBNull.Value)
+                _StationID = Convert.ToInt32(row["StationID"]);
             _StationName = row["StationName"].ToString().Trim();
             _IP = row["IP"].ToString().Trim();
             _UserId = row["UserId"].ToString().Trim();
             _Password = row["Password"].ToString().Trim();
-            _Enable = Convert.ToInt32(row["Enable"]);
-            _EnableCheck = Convert.ToInt32(row["EnableCheck"]);
+            if (row["Enable"] != DBNull.Value)
+                _Enable = Convert.ToInt32(row["Enable"]);
+
+            if (row["EnableCheck"] != DBNull.Value)
+                _EnableCheck = Convert.ToInt32(row["EnableCheck"]);
+
             _NetMask = row["NetMask"].ToString().Trim();
             _Interval = row["Interval"].ToString().Trim();
             _Port = row["Port"].ToString().Trim();
@@ -307,8 +310,10 @@ namespace GDK.Entity.PerfMonitor
             _AuthType = row["AuthType"].ToString().Trim();
             _Version = row["Version"].ToString().Trim();
             _SSL = row["SSL"].ToString().Trim();
-            _NeedAuth = Convert.ToInt32(row["NeedAuth"]);
-		}
+
+            if (row["NeedAuth"] != DBNull.Value)
+                _NeedAuth = Convert.ToInt32(row["NeedAuth"]);
+        }
     }
 
 

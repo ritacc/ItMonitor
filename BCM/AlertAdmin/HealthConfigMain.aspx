@@ -7,6 +7,10 @@
     <title></title>
     <link href="../Styles/gridview.css" rel="Stylesheet" />
     <link href="../Styles/PopuWindow.css" rel="Stylesheet" />
+    <link href="../styles/permission .css" rel="Stylesheet" />
+    <link href="../styles/right.css" rel="Stylesheet" />
+
+
     <script type="text/javascript" src="../Scripts/jquery-1.4.4.min.js"></script>
     <script type="text/javascript" src="../Scripts/jquery.bgiframe.min.js"></script>
     <script type="text/javascript" src="../Scripts/Common.js"></script>
@@ -27,7 +31,7 @@
 
         $(document).ready(function () {
             $(".headerBtnAdd").click(function () {
-                var strVar = 'HealthConfigEdit.aspx?opType=add&deviceID=' + request("DeviceID");
+                var strVar = 'HealthConfigEdit.aspx?opType=add&DeviceID=' + request("DeviceID");
                 $.popup({ title: "添加健康度配置", url: strVar, borderStyle: { height: 300, width: 400 }, ok: function (obj) {
 
                     $.popup.Refrsh();
@@ -52,7 +56,7 @@
             editArr.each(function (i, o) {
                 var obj = $(o);
                 obj.click(function () {
-                    return confirm("删除此角色，可能导致某些用户无法登录，你确定要删除吗？");
+                    return confirm("你确定要删除此数据吗？");
                 });
             });
 
@@ -82,6 +86,8 @@
         </tr>
     </table>
     <div class="divgrid">
+      <div class="iframe_top">设备：<asp:Label ID="lblName" runat="server" ></asp:Label>
+        </div>
         <div class="overflow_grid">
             <asp:GridView ID="gvHealthConfig" AutoGenerateColumns="false" runat="server">
                 <Columns>
@@ -93,40 +99,36 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="编辑" HeaderStyle-Width="4%">
                         <ItemTemplate>
-                            <a guid="<%# Eval("Guid") %>" class="gvEdit">
+                            <a guid="<%# Eval("ID") %>" class="gvEdit">
                                 <img src="../images/Common/edit.gif" style="border: 0px;" alt="权限设置" /></a>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="删除" HeaderStyle-Width="4%">
                         <ItemTemplate>
                             <asp:ImageButton ID="ibtn_delete" CssClass="deleteTS" CommandName="delete" OnCommand="GView_LinkButton_Click"
-                                CommandArgument='<%#Eval("GUID") %>' ImageUrl="~/images/Common/delete.gif" runat="server" />
+                                CommandArgument='<%#Eval("ID") %>' ImageUrl="~/images/Common/delete.gif" runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:BoundField DataField="SDID" HeaderText="SDID" />
-                    <asp:BoundField DataField="PDID" HeaderText="PDID" />
-                    <asp:BoundField DataField="ChannelNO" HeaderText="ChannelNO" />
-                    <asp:BoundField DataField="EffectLevel" HeaderText="EffectLevel" />
+                    <asp:BoundField DataField="DeviceName" HeaderText="设备" />
+                    <asp:BoundField DataField="ChannelName" HeaderText="通道" />
+                    <asp:BoundField DataField="EffectLevel" HeaderText="影响度" />
                 </Columns>
                 <EmptyDataTemplate>
                     <table class="gridview_skin" cellspacing="0" cellpadding="0" rules="all" border="0"
                         id="ContentPlaceHolder1_gvDataList" style="border-collapse: collapse;">
                         <tr class="gridview_skin_header">
                             <th>
-                                SDID
+                                设备
                             </th>
                             <th>
-                                PDID
+                                通道
                             </th>
                             <th>
-                                ChannelNO
-                            </th>
-                            <th>
-                                EffectLevel
+                                影响度
                             </th>
                         </tr>
                         <tr>
-                            <td colspan="4">
+                            <td colspan="3"  align="center">
                                 没有数据
                             </td>
                         </tr>

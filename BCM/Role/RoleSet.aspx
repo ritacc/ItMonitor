@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main/SiteMain.Master" AutoEventWireup="true" CodeBehind="RoleSet.aspx.cs" Inherits="GDK.BCM.Role.RoseSet" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link href="../styles/permission .css" rel="Stylesheet" />
+<link href="../styles/permission .css" rel="Stylesheet" />
 <link href="../styles/right.css" rel="Stylesheet" />
 <style type="text/css">
 #tbChild

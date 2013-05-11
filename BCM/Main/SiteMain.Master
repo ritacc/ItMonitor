@@ -11,12 +11,13 @@
     <link href="../Styles/menu.css" rel="Stylesheet" />
     <link href="../Styles/right.css" rel="Stylesheet" />
     <link href="../Styles/PopuWindow.css" rel="Stylesheet" />
-    <script type="text/javascript" src="../Scripts/Date.js"></script>
-    <script type="text/javascript" src="../Scripts/jquery-1.4.4.min.js"></script>    
+    
+    <script type="text/javascript" src="../Scripts/jquery-1.4.4.min.js"></script>
     <script type="text/javascript" src="../Scripts/jquery.bgiframe.min.js"></script>
-    <script type="text/javascript" src="../Scripts/jquery.popup.js"></script>
-    <script type="text/javascript" src="../Scripts/jquery.validator.js"></script>
     <script type="text/javascript" src="../Scripts/Common.js"></script>
+    <script type="text/javascript" src="../Scripts/Date.js"></script>
+    <script type="text/javascript" src="../Scripts/jquery.popup.js"></script>
+    <script type="text/javascript" src="../Scripts/jquery.validator.js"></script>    
     <script type="text/javascript" src="../Scripts/menu.js"></script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>

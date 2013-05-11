@@ -50,11 +50,11 @@ namespace GDK.Entity.AlertAdmin
 			set { _Pdid = value; }
 		}
 
-		private int _Channelno;
+		private int? _Channelno;
 		/// <summary>
 		/// 
 		/// </summary>
-		public int Channelno
+		public int? Channelno
 		{
 			get { return _Channelno; }
 			set { _Channelno = value; }
@@ -86,12 +86,15 @@ namespace GDK.Entity.AlertAdmin
             _ID = row["id"].ToString();
 			// 
 			_Deviceid = Convert.ToInt32(row["DeviceID"]);
+			//
+            if (row["SDID"] != DBNull.Value)
+                _Sdid = Convert.ToInt32(row["SDID"]);
 			// 
-			_Sdid = Convert.ToInt32(row["SDID"]);
-			// 
+            if (row["PDID"] != DBNull.Value)
 			_Pdid = Convert.ToInt32(row["PDID"]);
 			// 
-			_Channelno = Convert.ToInt32(row["ChannelNO"]);
+            if (row["ChannelNO"] != DBNull.Value)
+                _Channelno = Convert.ToInt32(row["ChannelNO"]);
 			// 
 			_Effectlevel = Convert.ToInt32(row["EffectLevel"]);
 		}

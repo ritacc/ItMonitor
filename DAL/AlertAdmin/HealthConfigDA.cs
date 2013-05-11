@@ -37,7 +37,10 @@ namespace GDK.DAL.AlertAdmin
         }
         public DataTable selectDataByDeviceID(string strID)
         {
-            string sql = "select * from t_HealthConfig where DeviceID="+ strID;
+            string sql = @"select hea.*,d.DeviceName,c.ChannelName from t_HealthConfig hea
+left join t_Device d on hea.SDID=d.DeviceID
+left join t_Channel c on hea.ChannelNo=c.ChannelNo and c.DeviceID=d.DeviceID
+where hea.DeviceID=" + strID;
            
             DataTable dt = null;
             try
@@ -54,7 +57,7 @@ namespace GDK.DAL.AlertAdmin
 
         public HealthConfigOR selectARowDate(string m_id)
         {
-            string sql = string.Format("select * from t_HealthConfig where  Deviceid='{0}'", m_id);
+            string sql = string.Format("select * from t_HealthConfig where  id='{0}'", m_id);
             DataTable dt = null;
             try
             {
@@ -82,18 +85,31 @@ namespace GDK.DAL.AlertAdmin
         /// </summary>
         public virtual bool Insert(HealthConfigOR healthConfig)
         {
-            string sql = @"insert into t_HealthConfig (ID,DeviceID, SDID, PDID, ChannelNO, EffectLevel) 
-values (@ID,@DeviceID, @SDID, @PDID, @ChannelNO, @EffectLevel)";
+            string sql = @"insert into t_HealthConfig (ID,DeviceID, SDID,EffectLevel) 
+values (@ID,@DeviceID, @SDID, @EffectLevel)";
+           
             SqlParameter[] parameters = new SqlParameter[]
 			{
                 new SqlParameter("@ID", SqlDbType.VarChar, 36, ParameterDirection.Input, false, 0, 0, "ID", DataRowVersion.Default, healthConfig.ID),
 				new SqlParameter("@DeviceID", SqlDbType.Int, 4, ParameterDirection.Input, false, 0, 0, "DeviceID", DataRowVersion.Default, healthConfig.Deviceid),
 				new SqlParameter("@SDID", SqlDbType.Int, 4, ParameterDirection.Input, false, 0, 0, "SDID", DataRowVersion.Default, healthConfig.Sdid),
-				new SqlParameter("@PDID", SqlDbType.Int, 4, ParameterDirection.Input, false, 0, 0, "PDID", DataRowVersion.Default, healthConfig.Pdid),
-				new SqlParameter("@ChannelNO", SqlDbType.Int, 4, ParameterDirection.Input, false, 0, 0, "ChannelNO", DataRowVersion.Default, healthConfig.Channelno),
+				//new SqlParameter("@PDID", SqlDbType.Int, 4, ParameterDirection.Input, false, 0, 0, "PDID", DataRowVersion.Default, healthConfig.Pdid),
+				
 				new SqlParameter("@EffectLevel", SqlDbType.Int, 4, ParameterDirection.Input, false, 0, 0, "EffectLevel", DataRowVersion.Default, healthConfig.Effectlevel)
 			};
-            return db.ExecuteNoQuery(sql, parameters) > -1;
+            SqlParameter pChannel = new SqlParameter("@ChannelNO", SqlDbType.Int, 4, ParameterDirection.Input, false, 0, 0, "ChannelNO", DataRowVersion.Default, healthConfig.Channelno);
+            SqlParameter[] paraNew;
+            if (healthConfig.Channelno.HasValue)
+            {
+                sql = @"insert into t_HealthConfig (ID,DeviceID, SDID,ChannelNO, EffectLevel) 
+values (@ID,@DeviceID, @SDID, @EffectLevel)";
+                paraNew = InsertPara(parameters, pChannel);
+            }
+            else
+            {
+                paraNew = parameters;
+            }
+            return db.ExecuteNoQuery(sql, paraNew) > -1;
         }
         #endregion
 
@@ -103,17 +119,28 @@ values (@ID,@DeviceID, @SDID, @PDID, @ChannelNO, @EffectLevel)";
         /// </summary>
         public virtual bool Update(HealthConfigOR healthConfig)
         {
-            string sql = "update t_HealthConfig set  SDID = @SDID,  PDID = @PDID,  ChannelNO = @ChannelNO,  EffectLevel = @EffectLevel where  ID = @ID";
+            string sql = @"update t_HealthConfig set  SDID = @SDID,  ChannelNO = NULL,  EffectLevel = @EffectLevel where  ID = @ID";
             SqlParameter[] parameters = new SqlParameter[]
 			{
                  new SqlParameter("@ID", SqlDbType.VarChar, 36, ParameterDirection.Input, false, 0, 0, "ID", DataRowVersion.Default, healthConfig.ID),
-				new SqlParameter("@DeviceID", SqlDbType.Int, 4, ParameterDirection.Input, false, 0, 0, "DeviceID", DataRowVersion.Default, healthConfig.Deviceid),
 				new SqlParameter("@SDID", SqlDbType.Int, 4, ParameterDirection.Input, false, 0, 0, "SDID", DataRowVersion.Default, healthConfig.Sdid),
-				new SqlParameter("@PDID", SqlDbType.Int, 4, ParameterDirection.Input, false, 0, 0, "PDID", DataRowVersion.Default, healthConfig.Pdid),
-				new SqlParameter("@ChannelNO", SqlDbType.Int, 4, ParameterDirection.Input, false, 0, 0, "ChannelNO", DataRowVersion.Default, healthConfig.Channelno),
+				//new SqlParameter("@ChannelNO", SqlDbType.Int, 4, ParameterDirection.Input, false, 0, 0, "ChannelNO", DataRowVersion.Default, healthConfig.Channelno),
 				new SqlParameter("@EffectLevel", SqlDbType.Int, 4, ParameterDirection.Input, false, 0, 0, "EffectLevel", DataRowVersion.Default, healthConfig.Effectlevel)
 			};
-            return db.ExecuteNoQuery(sql, parameters) > -1;
+
+            
+            SqlParameter pChannel = new SqlParameter("@ChannelNO", SqlDbType.Int, 4, ParameterDirection.Input, false, 0, 0, "ChannelNO", DataRowVersion.Default, healthConfig.Channelno);
+            SqlParameter[] paraNew;
+            if (healthConfig.Channelno.HasValue)
+            {
+                sql = @"update t_HealthConfig set  SDID = @SDID,  ChannelNO = @ChannelNO,  EffectLevel = @EffectLevel where  ID = @ID";
+                paraNew = InsertPara(parameters, pChannel);
+            }
+            else
+            {
+                paraNew = parameters;
+            }
+            return db.ExecuteNoQuery(sql, paraNew) > -1;
         }
         #endregion
 

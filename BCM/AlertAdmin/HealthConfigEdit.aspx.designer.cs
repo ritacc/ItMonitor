@@ -40,31 +40,31 @@ namespace GDK.BCM.AlertAdmin {
         protected global::System.Web.UI.HtmlControls.HtmlTable tbContentMain;
         
         /// <summary>
-        /// txtDeviceid 控件。
+        /// dpdStationID 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDeviceid;
+        protected global::System.Web.UI.WebControls.DropDownList dpdStationID;
         
         /// <summary>
-        /// txtSdid 控件。
+        /// dpdDeviceid 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSdid;
+        protected global::System.Web.UI.WebControls.DropDownList dpdDeviceid;
         
         /// <summary>
-        /// txtChannelno 控件。
+        /// dpdchannelno 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtChannelno;
+        protected global::System.Web.UI.WebControls.DropDownList dpdchannelno;
         
         /// <summary>
         /// txtEffectlevel 控件。

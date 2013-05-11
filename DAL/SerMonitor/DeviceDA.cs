@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using GDK.Entity.SerMonitor;
+using GDK.Entity.PerfMonitor;
 
 namespace GDK.DAL.SerMonitor
 {
@@ -39,6 +40,8 @@ namespace GDK.DAL.SerMonitor
         /// <returns></returns>
         public DataTable SelectChannelByDeviceID(string strID)
         {
+            if (string.IsNullOrEmpty(strID))
+                return null;
             string sql = string.Format("select * from t_Channel where DeviceID={0} order by ChannelName", strID);
             DataTable dt = null;
             try
@@ -291,6 +294,27 @@ inner join  t_DeviceType dt on d.DeviceTypeID=dt.DeviceTypeID and d.stationid={0
         {
             string sql = string.Format("select distinct OperateUserID,display_Name from t_AlarmLog a,T_SYS_USERS u  where a.OperateUserID=u.guid");
             return db.ExecuteQuery(sql);
+        }
+
+        public DeviceOR SelectDeviceORByID(string m_id)
+        {
+            string sql = string.Format("select * from t_Device where  Deviceid='{0}'", m_id);
+            DataTable dt = null;
+            try
+            {
+                dt = db.ExecuteQueryDataSet(sql).Tables[0];
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            if (dt == null)
+                return null;
+            if (dt.Rows.Count == 0)
+                return null;
+            DataRow dr = dt.Rows[0];
+            DeviceOR m_obj = new DeviceOR(dr);
+            return m_obj;
         }
     }
 }
