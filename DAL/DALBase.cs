@@ -29,6 +29,7 @@ namespace GDK.DAL
                 
         //        throw ex;
         //    }
+
         //}
 
         protected SqlParameter[] InsertPara(SqlParameter[] ParaArr, SqlParameter mobj)
