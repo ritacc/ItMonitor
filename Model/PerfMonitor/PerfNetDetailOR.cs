@@ -25,7 +25,23 @@ namespace GDK.Entity.PerfMonitor
        public string Firm { get; set; }
 
        /// <summary>
-       /// 接口列表     3#^#1705#^#1706#^#1707
+       /// 3 流量计算器 
+       /// </summary>
+       public string FlowCalculator { get; set; }
+
+       /// <summary>
+       /// 4 依赖性 
+       /// </summary>
+       public string Dependence { get; set; }
+
+       /// <summary>
+       /// 5 轮询协议 
+       /// </summary>
+       public string PollingProtocol { get; set; }
+
+
+       /// <summary>
+       /// 10 接口列表     3#^#1705#^#1706#^#1707
        /// </summary>
        public string Ports { get; set; }
 
@@ -48,6 +64,21 @@ namespace GDK.Entity.PerfMonitor
                    case "2":
                        Firm = dr["MonitorValue"].ToString();
                        break;
+
+                   case "3":
+                       FlowCalculator = dr["MonitorValue"].ToString();
+                       break;
+
+                   case "4":
+                       Dependence = dr["MonitorValue"].ToString();
+                       break;
+
+                   case "5":
+                       PollingProtocol = dr["MonitorValue"].ToString();
+                       break;
+
+                   
+
                    case "10":
                        Ports = dr["MonitorValue"].ToString();
                        break;

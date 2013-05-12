@@ -260,6 +260,10 @@ namespace GDK.Entity.PerfMonitor
             set { _Password = value; }
         }
 
+        /// <summary>
+        /// 可用性
+        /// </summary>
+        public Double AvailableRate { get; set; }
 
         /// <summary>
 		/// Roles构造函数
@@ -313,6 +317,16 @@ namespace GDK.Entity.PerfMonitor
 
             if (row["NeedAuth"] != DBNull.Value)
                 _NeedAuth = Convert.ToInt32(row["NeedAuth"]);
+
+            //可用性
+            if (row["AvailableRate"].ToString() != "")
+            {
+                AvailableRate = Convert.ToDouble(row["AvailableRate"].ToString());
+            }
+            else
+            {
+                AvailableRate = 0f;
+            }
         }
     }
 

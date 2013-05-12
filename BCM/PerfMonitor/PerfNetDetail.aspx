@@ -23,7 +23,52 @@
                 </td>
             </tr>
         </table>
-
+        <div>
+        可用性：
+        <br />
+                <asp:Chart ID="chtPerf" Width="350" Height="250" BackColor="#f0fbff" runat="server"
+                        ImageLocation="~/TempImages/ChartPic_#SEQ(300,3)">
+                        <Legends>
+                            <asp:Legend TitleFont="Microsoft Sans Serif, 8pt, style=Bold" BackColor="Transparent"
+                                IsEquallySpacedItems="True" Font="Trebuchet MS, 8pt, style=Bold" IsTextAutoFit="True "
+                                Name="Default">
+                                <Position Height="10" Width="95" X="2" Y="92" />
+                            </asp:Legend>
+                        </Legends>
+                        <Series>
+                            <asp:Series Name="Series1" ChartType="Pie" Font="Trebuchet MS, 8.25pt, style=Bold"
+                                CustomProperties="DoughnutRadius=25,  PieDrawingStyle=Concave, CollectedLabel=Other, MinimumRelativePieSize=20"
+                                MarkerStyle="Circle" BorderColor="64, 64, 64, 64" Color="180, 65, 140, 240" YValueType="Double"
+                                Label="#PERCENT{P1}" BorderWidth="2">
+                            </asp:Series>
+                        </Series>
+                        <ChartAreas>
+                            <asp:ChartArea Name="Area1" BorderColor="64, 64, 64, 64" BackSecondaryColor="Transparent"
+                                BackColor="Transparent" ShadowColor="Transparent" BackGradientStyle="TopBottom">
+                                <AxisY2>
+                                    <MajorGrid Enabled="False" />
+                                    <MajorTickMark Enabled="False" />
+                                </AxisY2>
+                                <AxisX2>
+                                    <MajorGrid Enabled="False" />
+                                    <MajorTickMark Enabled="False" />
+                                </AxisX2>
+                                <Area3DStyle PointGapDepth="900" Rotation="162" IsRightAngleAxes="False" WallWidth="25"
+                                    IsClustered="False" />
+                                <AxisY LineColor="64, 64, 64, 64">
+                                    <LabelStyle Font="Trebuchet MS, 8.25pt, style=Bold" />
+                                    <MajorGrid LineColor="64, 64, 64, 64" Enabled="False" />
+                                    <MajorTickMark Enabled="False" />
+                                </AxisY>
+                                <AxisX LineColor="64, 64, 64, 64">
+                                    <LabelStyle Font="Trebuchet MS, 8.25pt, style=Bold" />
+                                    <MajorGrid LineColor="64, 64, 64, 64" Enabled="False" />
+                                    <MajorTickMark Enabled="False" />
+                                </AxisX>
+                            </asp:ChartArea>
+                        </ChartAreas>
+                    </asp:Chart>
+        </div>
         <div>
          <asp:GridView ID="gvPortList" AutoGenerateColumns="False" runat="server" class="gridview_skin">
                 <Columns>
