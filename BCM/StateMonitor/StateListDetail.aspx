@@ -8,9 +8,25 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
-    
-    </div>
+   <div>
+        <table>
+            <tr>
+                <td>
+                    类型:
+                </td>
+                <td>
+                    <asp:Label ID="lblType" runat="server"></asp:Label>
+                </td>
+                
+            </tr>
+            <tr>
+            <td>分类</td>
+                <td>
+                    <asp:Label ID="lblClass" runat="server"></asp:Label>
+                </td>
+            </tr>
+        </table>
+        </div>
     </form>
 </body>
 </html>

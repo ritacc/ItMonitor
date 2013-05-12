@@ -316,5 +316,30 @@ inner join  t_DeviceType dt on d.DeviceTypeID=dt.DeviceTypeID and d.stationid={0
             DeviceOR m_obj = new DeviceOR(dr);
             return m_obj;
         }
+
+        public DeviceOREx SelectDeviceORExByID(string m_id)
+        {
+            string sql = string.Format(@"select dt.TypeName,sty.name ClassNmae,dev.*
+ from t_Device  dev
+left join t_DeviceType dt on dev.DeviceTypeID = dt.DeviceTypeID
+left join t_ServersType sty on sty.typeid= dt.typeid and sty.ServerID= dt.ServerID  
+where dev.Deviceid='{0}'", m_id);
+            DataTable dt = null;
+            try
+            {
+                dt = db.ExecuteQueryDataSet(sql).Tables[0];
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            if (dt == null)
+                return null;
+            if (dt.Rows.Count == 0)
+                return null;
+            DataRow dr = dt.Rows[0];
+            DeviceOREx m_obj = new DeviceOREx(dr);
+            return m_obj;
+        }
     }
 }

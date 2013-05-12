@@ -71,11 +71,12 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="名称">
                         <ItemTemplate>
-                            <a href="StateListDetail.aspx">
+                            <a href="StateListDetail.aspx?id=<%#Eval("DeviceID") %>">
                                 <%# Eval("DeviceName")%></a>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:BoundField HeaderText="类型" DataField="TypeName" />
+                    <asp:BoundField HeaderText="分类" DataField="ClassNmae" />
                     <asp:TemplateField HeaderText="状态">
                         <ItemTemplate>
                             <img src='../images/Common/stata<%# Eval("DeviceStatus") %>.gif' alt="设备状态" />

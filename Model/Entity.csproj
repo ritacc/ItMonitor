@@ -54,6 +54,7 @@
     <Compile Include="AlertAdmin\HealthConfigOR.cs" />
     <Compile Include="JSClass.cs" />
     <Compile Include="PerfMonitor\DeviceOR.cs" />
+    <Compile Include="PerfMonitor\DeviceOREx.cs" />
     <Compile Include="PerfMonitor\PerfNetDetailOR.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SerMonitor\DeviceObj.cs" />
