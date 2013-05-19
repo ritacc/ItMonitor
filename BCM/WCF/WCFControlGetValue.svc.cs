@@ -16,7 +16,13 @@ namespace GDK.BCM.WCF
 
         public float? GetValue(string DviceID, string ChanncelNo)
         {
-            return new Random().Next(0, 100);
+            int deviceid = Convert.ToInt32(DviceID);
+            if (deviceid > 1000)
+                return deviceid / 100;
+            if (deviceid > 100)
+                return deviceid / 100;
+            return deviceid;
+            //return new Random().Next(0, 100);
         }
 
     }

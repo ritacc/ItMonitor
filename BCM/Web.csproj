@@ -299,6 +299,7 @@
     <Content Include="PerfMonitor\PerfNet.aspx" />
     <Content Include="PerfMonitor\PerfNetDetail.aspx" />
     <Content Include="PerfMonitor\PerfMonitorIndex.aspx" />
+    <Content Include="PerfMonitor\PerfNetPortDetail.aspx" />
     <Content Include="PerfMonitor\PerfVirtualMachine.aspx" />
     <Content Include="PerfMonitor\PerfVirtualMachineDetail.aspx" />
     <Content Include="PerfMonitor\PrefApplication.aspx" />
@@ -336,6 +337,7 @@
     <Content Include="StateMonitor\StateVirtualMachine.aspx" />
     <Content Include="StateMonitor\StateVirtualMachineDetail.aspx" />
     <Content Include="Styles\jquery.device-supply.css" />
+    <Content Include="Styles\MonitorDetail.css" />
     <Content Include="Styles\page.css" />
     <Content Include="Ref\AjaxControlToolkit.dll" />
     <Content Include="Ref\DES.dll" />
@@ -579,6 +581,13 @@
     </Compile>
     <Compile Include="PerfMonitor\PerfMonitorIndex.aspx.designer.cs">
       <DependentUpon>PerfMonitorIndex.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfNetPortDetail.aspx.cs">
+      <DependentUpon>PerfNetPortDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfNetPortDetail.aspx.designer.cs">
+      <DependentUpon>PerfNetPortDetail.aspx</DependentUpon>
     </Compile>
     <Compile Include="PerfMonitor\PerfVirtualMachine.aspx.cs">
       <DependentUpon>PerfVirtualMachine.aspx</DependentUpon>

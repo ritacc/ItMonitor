@@ -97,6 +97,6 @@
         <li id="gzms" divname="PrefApplication.aspx"><a>应用系统</a></li>
     </ul>
     <div  id="divFrm" style="vertical-align: top; border: 1px solid #CCCCCC;">
-        <iframe id="frmMain" frameborder="0" style="overflow:hidden;overflow-x:hidden;" height="100%" width="100%" src="PerfNet.aspx"></iframe>
+        <iframe id="frmMain" frameborder="0" style="overflow:auto;overflow-x:hidden;" height="100%" width="100%" src="PerfNet.aspx"></iframe>
     </div>
 </asp:Content>

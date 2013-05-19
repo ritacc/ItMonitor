@@ -13,6 +13,8 @@ namespace GDK.Entity.PerfMonitor
        {
            TypeName = dr["TypeName"].ToString();
            ClassName = dr["ClassNmae"].ToString();
+           Desc = dr["descInfo"].ToString();
+           Perf = dr["performance"].ToString();
        }
        /// <summary>
        /// 类型名称
@@ -23,5 +25,15 @@ namespace GDK.Entity.PerfMonitor
        /// 分类
        /// </summary>
        public string ClassName { get; set; }
+
+       /// <summary>
+       /// 描述
+       /// </summary>
+       public string Desc { get; set; }
+
+       /// <summary>
+       /// 性能
+       /// </summary>
+       public string Perf { get; set; }
     }
 }
