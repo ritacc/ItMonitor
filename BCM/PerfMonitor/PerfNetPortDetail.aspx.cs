@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using GDK.Entity.PerfMonitor;
 using GDK.DAL.PerfMonitor;
 using GDK.DAL.SerMonitor;
+using System.Data;
 
 namespace GDK.BCM.PerfMonitor
 {
@@ -30,6 +31,7 @@ namespace GDK.BCM.PerfMonitor
         private void InitData()
         {
             string mDeviceID = Request.QueryString["id"];
+            int iDeviceID = Convert.ToInt32(Request.QueryString["id"]);
             PerNetPortDetailOR _Obj = new PerfNetDA().SelectNetPortDetail(mDeviceID);
             DeviceOREx _objDevEx = new DeviceDA().SelectDeviceORExByID(mDeviceID);
             lblType.Text = _objDevEx.TypeName;
@@ -48,6 +50,26 @@ namespace GDK.BCM.PerfMonitor
             lblSendBroadband.Text = _Obj.SendBroadband;
             lblCurrentlyReceivingTraffic.Text = _Obj.CurrentDownloadSpeed;
             lblCurrentSendTraffic.Text = _Obj.CurrentUploadSpeed;
+
+            //绑定，曲线
+            HistoryValueDA mDA=new HistoryValueDA();
+            #region 今天接收、发送
+            DateTime StartTime= Convert.ToDateTime( string.Format("{0} 00:00:00",DateTime.Now.ToString("yyyy-MM-dd")));
+            DateTime EndTime= Convert.ToDateTime(string.Format("{0} 23:59:59",DateTime.Now.ToString("yyyy-MM-dd")));
+                        
+            DataTable dt = mDA.GetDeviceChanncelValue(iDeviceID, 32, StartTime, EndTime);//接收
+            if (dt != null)
+            {
+                chLine.Series["Series1"].Points.DataBindXY(dt.Rows, "Time", dt.Rows, "MonitorValue");//接收
+            }
+
+            dt = mDA.GetDeviceChanncelValue(iDeviceID, 31, StartTime, EndTime);//发送
+            if (dt != null)
+            {
+                chLine.Series["Series2"].Points.DataBindXY(dt.Rows, "Time", dt.Rows, "MonitorValue");
+            }
+            #endregion
+
         }
 
     }
