@@ -228,10 +228,10 @@
                 </Legends>
                 <Series>
                     <asp:Series Name="Series1" LegendText="接收" ChartType="Line" IsValueShownAsLabel="True"
-                        LabelFormat="{0}分" BorderColor="180, 26, 59, 105">
+                        LabelFormat="{0}" BorderColor="180, 26, 59, 105">
                     </asp:Series>
                     <asp:Series Name="Series2" LegendText="发送" ChartType="Line" IsValueShownAsLabel="True"
-                        LabelFormat="{0}分" BorderColor="180, 26, 59, 105">
+                        LabelFormat="{0}" BorderColor="180, 26, 59, 105">
                     </asp:Series>
                 </Series>
                 <ChartAreas>
