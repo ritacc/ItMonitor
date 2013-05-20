@@ -15,8 +15,8 @@
 <body>
     <form id="form1" runat="server">    
     <div class="div_box">
-    <div class="div_box_title">今天的使用率 响应时间 丢包率</div>
-    <table cellpadding="0" cellspacing="0">
+    <div class="div_box_title">接收明细 流量明细 使用率图 今天的可用性</div>
+    <table cellpadding="0" cellspacing="0" width="100%">
         <tr>
             <td>
                     <div class="div_box Padding_5">
@@ -127,11 +127,85 @@
                         </table>
                       </div>
                 </td>
-                <td>
+                <td valign="top" width="500">
                     
-                    <div class="div_box Padding_5">
-                    <div class="div_box_title">接口明细</div>
+                    <div class="div_box Padding_5" style=" text-align:center;">
+                    <div class="div_box_title">使用率图</div>
+                       <object data="data:application/x-silverlight-2," type="application/x-silverlight-2"
+                            width="200px" height="200px">
+                            <param name="source" value="../ClientBin/ITMonitorControl.xap" />
+                            <param name="onError" value="onSilverlightError" />
+                            <param name="background" value="white" />
+                            <!--MeterMember MeterAll MeterHalf MeterTemperature-->
+                            <param name="initParams" value="Target=MeterMember,DeviceID=<%= deviceID %>,ChanncelNo=9" />
+                            <param name="minRuntimeVersion" value="4.0.50826.0" />
+                            <param name="autoUpgrade" value="true" />
+                            <a href="../SLFile/Silverlight.zip" style="text-decoration: none">
+                                <img src="../SLFile/SLMedallion_CHS.png" alt="获取 Microsoft Silverlight" style="border-style: none" />
+                            </a>
+                        </object>
+                        <iframe id="Iframe1" style="visibility: hidden; height: 0px; width: 0px; border: 0px"></iframe>
+                        
+                       <object data="data:application/x-silverlight-2," type="application/x-silverlight-2"
+                            width="200px" height="200px">
+                            <param name="source" value="../ClientBin/ITMonitorControl.xap" />
+                            <param name="onError" value="onSilverlightError" />
+                            <param name="background" value="white" />
+                            <!--MeterMember MeterAll MeterHalf MeterTemperature-->
+                            <param name="initParams" value="Target=MeterMember,DeviceID=<%= deviceID %>,ChanncelNo=9" />
+                            <param name="minRuntimeVersion" value="4.0.50826.0" />
+                            <param name="autoUpgrade" value="true" />
+                            <a href="../SLFile/Silverlight.zip" style="text-decoration: none">
+                                <img src="../SLFile/SLMedallion_CHS.png" alt="获取 Microsoft Silverlight" style="border-style: none" />
+                            </a>
+                        </object>
+                        <iframe id="Iframe2" style="visibility: hidden; height: 0px; width: 0px; border: 0px"></iframe>
+                    </div>
 
+                    <div class="div_box Padding_5" style=" text-align:center;">
+                    <div class="div_box_title">今天的可用性</div>
+                         <asp:Chart ID="chtPerf" Width="300" Height="200" runat="server"
+                            ImageLocation="~/TempImages/ChartPic_#SEQ(300,3)">
+                            <Legends>
+                                <asp:Legend TitleFont="Microsoft Sans Serif, 8pt, style=Bold" BackColor="Transparent"
+                                    IsEquallySpacedItems="True" Font="Trebuchet MS, 8pt, style=Bold" IsTextAutoFit="True "
+                                    Name="Default">
+                                    <Position Height="10" Width="95" X="2" Y="92" />
+                                </asp:Legend>
+                            </Legends>
+                            <Series>
+                                <asp:Series Name="Series1" ChartType="Pie" Font="Trebuchet MS, 8.25pt, style=Bold"
+                                    CustomProperties="DoughnutRadius=25,  PieDrawingStyle=Concave, CollectedLabel=Other, MinimumRelativePieSize=20"
+                                    MarkerStyle="Circle" BorderColor="64, 64, 64, 64" Color="180, 65, 140, 240" YValueType="Double"
+                                    Label="#PERCENT{P1}" BorderWidth="2">
+                                </asp:Series>
+                            </Series>
+                            <ChartAreas>
+                                <asp:ChartArea Name="Area1" BorderColor="64, 64, 64, 64" BackSecondaryColor="Transparent"
+                                    BackColor="Transparent" ShadowColor="Transparent" BackGradientStyle="TopBottom">
+                                    <AxisY2>
+                                        <MajorGrid Enabled="False" />
+                                        <MajorTickMark Enabled="False" />
+                                    </AxisY2>
+                                    <AxisX2>
+                                        <MajorGrid Enabled="False" />
+                                        <MajorTickMark Enabled="False" />
+                                    </AxisX2>
+                                    <Area3DStyle PointGapDepth="900" Rotation="162" IsRightAngleAxes="False" WallWidth="25"
+                                        IsClustered="False" />
+                                    <AxisY LineColor="64, 64, 64, 64">
+                                        <LabelStyle Font="Trebuchet MS, 8.25pt, style=Bold" />
+                                        <MajorGrid LineColor="64, 64, 64, 64" Enabled="False" />
+                                        <MajorTickMark Enabled="False" />
+                                    </AxisY>
+                                    <AxisX LineColor="64, 64, 64, 64">
+                                        <LabelStyle Font="Trebuchet MS, 8.25pt, style=Bold" />
+                                        <MajorGrid LineColor="64, 64, 64, 64" Enabled="False" />
+                                        <MajorTickMark Enabled="False" />
+                                    </AxisX>
+                                </asp:ChartArea>
+                            </ChartAreas>
+                        </asp:Chart>
                     </div>
                 </td>
             </tr>

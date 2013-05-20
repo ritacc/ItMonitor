@@ -7,11 +7,14 @@ using System.Web.UI.WebControls;
 using GDK.Entity.PerfMonitor;
 using GDK.DAL.PerfMonitor;
 using GDK.DAL.SerMonitor;
+using System.Web.UI.DataVisualization.Charting;
+using System.Drawing;
 
 namespace GDK.BCM.PerfMonitor
 {
     public partial class PerfNetPortDetail : PageBase
     {
+        public int deviceID = 0;
         protected override void OnLoad(EventArgs e)
         {
             base.IsAuthenticate = false;
@@ -22,6 +25,7 @@ namespace GDK.BCM.PerfMonitor
         public string perf = "0";
         protected void Page_Load(object sender, EventArgs e)
         {
+            deviceID = Convert.ToInt32(Request.QueryString["id"]);
             if (!IsPostBack)
             {
                 InitData();
@@ -31,7 +35,7 @@ namespace GDK.BCM.PerfMonitor
         {
             string mDeviceID = Request.QueryString["id"];
             PerNetPortDetailOR _Obj = new PerfNetDA().SelectNetPortDetail(mDeviceID);
-            DeviceOREx _objDevEx = new DeviceDA().SelectDeviceORExByID(mDeviceID);
+            DeviceOREx _objDevEx = new DeviceDA().SelectDeviceORExByID(mDeviceID);  
             lblType.Text = _objDevEx.TypeName;
             lblDescription.Text = _objDevEx.Desc;
             perf = _objDevEx.Perf;
@@ -48,6 +52,24 @@ namespace GDK.BCM.PerfMonitor
             lblSendBroadband.Text = _Obj.SendBroadband;
             lblCurrentlyReceivingTraffic.Text = _Obj.CurrentDownloadSpeed;
             lblCurrentSendTraffic.Text = _Obj.CurrentUploadSpeed;
+
+
+            #region 绑定 可用性
+            DataPoint dp = new DataPoint();
+            dp.LegendText = string.Format("{0}({1}%)", "可用", _objDevEx.AvailableRate);
+            double[] d = { Convert.ToDouble(_objDevEx.AvailableRate) };
+            dp.Color = Color.Green;
+            dp.YValues = d;
+            chtPerf.Series["Series1"].Points.Add(dp);
+
+            dp = new DataPoint();
+            dp.LegendText = string.Format("{0}({1}%)", "不可用", 100 - _objDevEx.AvailableRate);
+            double[] dno = { Convert.ToDouble(100 - _objDevEx.AvailableRate) };
+            dp.Color = Color.Red;
+            dp.YValues = dno;
+            chtPerf.Series["Series1"].Points.Add(dp);
+            #endregion
+
         }
 
     }

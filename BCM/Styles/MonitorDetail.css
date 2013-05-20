@@ -1,5 +1,5 @@
 ﻿
-.div_box{ border:1px solid #78c5ec; margin:10px 0px; }
+.div_box{ border:1px solid #78c5ec; margin:10px 0px;  }
 .div_box_title{ background: #65bce5; padding:5px; border-bottom:1px solid #78c5ec; font-weight:bold;  }
 .div_char{ border:1px solid #cccccc; float:left; width:32%; height:230px; margin:5px; text-align:center; }
 .div_title{ background-image:url(../images/gridview/grid_th.gif); padding:5px; border-bottom:1px solid #78c5ec; }
