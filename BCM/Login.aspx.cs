@@ -14,13 +14,6 @@ namespace GDK.BCM
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (!IsPostBack)
-            //{
-            //    Request.Cookies.Clear();
-            //    Session.Clear();
-            //    IHBDsUser user = HBIdentity.CurrentUser;
-            //    Response.Redirect("~/Main/Master/Default.aspx");
-            //}
         }
 
         protected void ibtnLogin_Click(object sender, ImageClickEventArgs e)

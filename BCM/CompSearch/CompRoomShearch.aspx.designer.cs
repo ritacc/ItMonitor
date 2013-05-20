@@ -7,37 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GDK.BCM.AlertAdmin {
+namespace GDK.BCM.CompSearch {
     
     
-    public partial class HealthConfigEdit {
+    public partial class CompRoomShearch {
         
         /// <summary>
-        /// Head1 control.
+        /// aBtnAdd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
-        
-        /// <summary>
-        /// form1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
-        /// <summary>
-        /// tbContentMain control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTable tbContentMain;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor aBtnAdd;
         
         /// <summary>
         /// dpdStationID control.
@@ -49,6 +31,15 @@ namespace GDK.BCM.AlertAdmin {
         protected global::System.Web.UI.WebControls.DropDownList dpdStationID;
         
         /// <summary>
+        /// dpdDevice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList dpdDevice;
+        
+        /// <summary>
         /// dpdDeviceid control.
         /// </summary>
         /// <remarks>
@@ -58,30 +49,57 @@ namespace GDK.BCM.AlertAdmin {
         protected global::System.Web.UI.WebControls.DropDownList dpdDeviceid;
         
         /// <summary>
+        /// dpdDtaill control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList dpdDtaill;
+        
+        /// <summary>
         /// dpdchannelno control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList dpdchannelno;
+        protected global::System.Web.UI.WebControls.ListBox dpdchannelno;
         
         /// <summary>
-        /// txtEffectlevel control.
+        /// btnAddAItem control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEffectlevel;
+        protected global::System.Web.UI.WebControls.Button btnAddAItem;
         
         /// <summary>
-        /// lbtSave control.
+        /// btnAddAll control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtSave;
+        protected global::System.Web.UI.WebControls.Button btnAddAll;
+        
+        /// <summary>
+        /// btnMoveAItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnMoveAItem;
+        
+        /// <summary>
+        /// btnMoveAll control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnMoveAll;
     }
 }

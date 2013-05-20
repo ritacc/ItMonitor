@@ -103,6 +103,8 @@
     <Content Include="AlertAdmin\HealthConfigList.aspx" />
     <Content Include="AlertAdmin\HealthConfigMain.aspx" />
     <Content Include="ClientBin\ITMonitorControl.xap" />
+    <Content Include="CompSearch\CompRoomShearch.aspx" />
+    <Content Include="CompSearch\HostShearch.aspx" />
     <Content Include="DropdownDeviceList.aspx" />
     <Content Include="images\ajax-loader.gif" />
     <Content Include="images\br_bg.gif" />
@@ -443,6 +445,20 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="App_Code\Logger.cs" />
+    <Compile Include="CompSearch\CompRoomShearch.aspx.cs">
+      <DependentUpon>CompRoomShearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CompSearch\CompRoomShearch.aspx.designer.cs">
+      <DependentUpon>CompRoomShearch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CompSearch\HostShearch.aspx.cs">
+      <DependentUpon>HostShearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CompSearch\HostShearch.aspx.designer.cs">
+      <DependentUpon>HostShearch.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DropdownDeviceList.aspx.cs">
       <DependentUpon>DropdownDeviceList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

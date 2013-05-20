@@ -20,7 +20,7 @@
 		</siteMapNode>
 		
 		<siteMapNode url="CompSearch/1.aspx?id=defin" title="综合查询"  description="综合查询">
-			<siteMapNode url="CompSearch/1.aspx" title="机房报表" description="机房报表" />
+			<siteMapNode url="CompSearch/CompRoomShearch.aspx" title="机房报表" description="机房报表" />
 			<siteMapNode url="CompSearch/2.aspx" title="主机性能报表" description="主机性能报表" />
 			<siteMapNode url="CompSearch/3.aspx" title="数据库报表" description="数据库报表" />
 			<siteMapNode url="CompSearch/4.aspx" title="中间件报表" description="中间件报表" />
