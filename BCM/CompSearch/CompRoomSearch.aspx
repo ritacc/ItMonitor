@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main/SiteMain.Master" AutoEventWireup="true" CodeBehind="CompRoomShearch.aspx.cs" Inherits="GDK.BCM.CompSearch.CompRoomShearch" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main/SiteMain.Master" AutoEventWireup="true" CodeBehind="CompRoomSearch.aspx.cs" Inherits="GDK.BCM.CompSearch.CompRoomShearch" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -32,7 +32,7 @@
 				</td>
 				<td>设备类型</td>
 				<td class="tdLeft">
-					<asp:DropDownList ID="dpdDevice" runat="server" AutoPostBack="true"
+					<asp:DropDownList ID="dpdDeviceType" runat="server" AutoPostBack="true"
 						OnSelectedIndexChanged="dpdStationID_SelectedIndexChanged"></asp:DropDownList></td>
 				<td class="tdRight">
 					设备名称：
@@ -47,9 +47,9 @@
 				</td>
 				<td>
 					<asp:DropDownList ID="dpdDtaill" runat="server">
-						<asp:ListItem Text="----当天----" Enabled="false"></asp:ListItem>
+						<asp:ListItem Text="----当天----"></asp:ListItem>
 						<asp:ListItem Text="当天(精确到小时)" Value="Now"></asp:ListItem>
-						<asp:ListItem Text="----历史----" Enabled="false"></asp:ListItem>
+						<asp:ListItem Text="----历史----"></asp:ListItem>
 						<asp:ListItem Text="一小时" Value="Now"></asp:ListItem>
 						<asp:ListItem Text="一天" Value="Day"></asp:ListItem>
 						<asp:ListItem Text="一月" Value="Month"></asp:ListItem>

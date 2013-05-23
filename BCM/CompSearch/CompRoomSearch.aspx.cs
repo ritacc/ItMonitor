@@ -27,22 +27,22 @@ namespace GDK.BCM.CompSearch
 			dpdStationID.DataValueField = "StationID";
 			dpdStationID.DataBind();
 
-			dpdStationID.DataSource = dpdStationID.DataSource = new DeviceDA().GetAllDeviceType();
-			dpdStationID.DataTextField = "DeviceTypeID";
-			dpdStationID.DataValueField = "DeviceTypeName";
-			dpdStationID.DataBind();
+            dpdDeviceType.DataSource = dpdStationID.DataSource = new DeviceDA().GetAllDeviceType("");
+            dpdDeviceType.DataValueField = "DeviceTypeID";
+            dpdDeviceType.DataTextField = "TypeName";
+            dpdDeviceType.DataBind();
 
 			dpdStationID_SelectedIndexChanged(null, null);
 		}
 
 		protected void dpdStationID_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			if (dpdStationID.SelectedItem == null || dpdDevice.SelectedItem== null)
+            if (dpdStationID.SelectedItem == null || dpdDeviceType.SelectedItem == null)
 				return;
-			if (dpdStationID.SelectedValue == "" || dpdDevice.SelectedValue == "")
+            if (dpdStationID.SelectedValue == "" || dpdDeviceType.SelectedValue == "")
 				return;
 
-			BindDeviceid(dpdStationID.SelectedItem.Value);
+			BindDeviceid(dpdStationID.SelectedItem.Value,dpdDeviceType.SelectedItem.Value);
 			dpdDeviceid_SelectedIndexChanged(null, null);
 		}
 		protected void dpdDeviceid_SelectedIndexChanged(object sender, EventArgs e)
@@ -51,14 +51,14 @@ namespace GDK.BCM.CompSearch
 				return;
 			BindChannel(dpdDeviceid.SelectedItem.Value);
 		}
-		private void BindDeviceid(string strID)
+		private void BindDeviceid(string strID,string strTypeid)
 		{
-			dpdDeviceid.DataSource = new DeviceDA().SelectDeviceByStationID(strID);
+            dpdDeviceid.DataSource = new DeviceDA().GetAllGenerdDevice(strID, strTypeid);
 			dpdDeviceid.DataTextField = "deviceName";
 			dpdDeviceid.DataValueField = "DeviceID";
 			dpdDeviceid.DataBind();
 
-			dpdDeviceid.Items.Insert(0, new ListItem("", ""));
+            dpdDeviceid.Items.Insert(0, new ListItem("===="));
 		}
 
 		private void BindChannel(string strID)
@@ -67,7 +67,7 @@ namespace GDK.BCM.CompSearch
 			dpdchannelno.DataTextField = "ChannelName";
 			dpdchannelno.DataValueField = "ChannelNo";
 			dpdchannelno.DataBind();
-			dpdchannelno.Items.Insert(0, new ListItem("", ""));
+            dpdchannelno.Items.Insert(0, new ListItem("===="));
 		}
 
 		#endregion

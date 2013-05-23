@@ -19,12 +19,12 @@
 			<siteMapNode url="Role/Dfin.aspx" title="自定义监控画面" description="自定义监控画面" />
 		</siteMapNode>
 		
-		<siteMapNode url="CompSearch/1.aspx?id=defin" title="综合查询"  description="综合查询">
+		<siteMapNode url="CompSearch/CompRoomShearch.aspx?id=defin" title="综合查询"  description="综合查询">
 			<siteMapNode url="CompSearch/CompRoomShearch.aspx" title="机房报表" description="机房报表" />
-			<siteMapNode url="CompSearch/2.aspx" title="主机性能报表" description="主机性能报表" />
-			<siteMapNode url="CompSearch/3.aspx" title="数据库报表" description="数据库报表" />
-			<siteMapNode url="CompSearch/4.aspx" title="中间件报表" description="中间件报表" />
-			<siteMapNode url="CompSearch/5.aspx" title="应用系统报表" description="应用系统报表" />
+			<siteMapNode url="CompSearch/HostShearch.aspx" title="主机性能报表" description="主机性能报表" />
+			<siteMapNode url="CompSearch/DBSearch.aspx?type=4" title="数据库报表" description="数据库报表" />
+			<siteMapNode url="CompSearch/DBSearch.aspx?type=10" title="中间件报表" description="中间件报表" />
+			<siteMapNode url="CompSearch/DBSearch.aspx?type=5" title="应用系统报表" description="应用系统报表" />
 		</siteMapNode>
 		
 		<siteMapNode url="CompReport/ReportGenerate.aspx?id=sysadmin" title="综合报告"  description="综合报告">
