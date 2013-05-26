@@ -16,13 +16,14 @@ from t_Device d
 inner join t_DeviceType dt on d.DeviceTypeID= dt.DeviceTypeID 
 left join  t_TmpValue xl on xl.DeviceID= d.DeviceID and xl.ChannelNO=11101 
 left join  t_TmpValue ms on ms.DeviceID= d.DeviceID and ms.ChannelNO=11102
-where dt.typeid=8 ";
+where dt.typeid=9 ";
             if (!string.IsNullOrEmpty(where))
             {
                 sql = string.Format(" {0} and  {1}", sql, where);
             }
             DataTable dt = null;
-            int returnC = 0; try
+            int returnC = 0; 
+            try
             {
                 dt = db.ExecuteQuery(sql, pageCrrent, pageSize, out returnC);
             }

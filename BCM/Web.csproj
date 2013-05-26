@@ -289,7 +289,10 @@
     <Content Include="Main\OutoffTime.aspx" />
     <Content Include="Map.aspx" />
     <Content Include="PerfMonitor\PerfDB.aspx" />
-    <Content Include="PerfMonitor\PerfDBDetail.aspx" />
+    <Content Include="PerfMonitor\PerfDBConversation.aspx" />
+    <Content Include="PerfMonitor\PerfDBIndex.aspx" />
+    <Content Include="PerfMonitor\PerfDBOverview.aspx" />
+    <Content Include="PerfMonitor\PerfDBSGA.aspx" />
     <Content Include="PerfMonitor\PerfDomain.aspx" />
     <Content Include="PerfMonitor\PerfDomainDetail.aspx" />
     <Content Include="PerfMonitor\PerfHost.aspx" />
@@ -297,6 +300,8 @@
     <Content Include="PerfMonitor\PerfMiddleware.aspx" />
     <Content Include="PerfMonitor\PerfMiddlewareDetail.aspx" />
     <Content Include="PerfMonitor\PerfNet.aspx" />
+    <Content Include="PerfMonitor\PerfNetAlarmDetail.aspx" />
+    <Content Include="PerfMonitor\PerfNetAlarmSubDetail.aspx" />
     <Content Include="PerfMonitor\PerfNetDetail.aspx" />
     <Content Include="PerfMonitor\PerfMonitorIndex.aspx" />
     <Content Include="PerfMonitor\PerfNetPortDetail.aspx" />
@@ -512,12 +517,33 @@
     <Compile Include="PerfMonitor\PerfDB.aspx.designer.cs">
       <DependentUpon>PerfDB.aspx</DependentUpon>
     </Compile>
-    <Compile Include="PerfMonitor\PerfDBDetail.aspx.cs">
-      <DependentUpon>PerfDBDetail.aspx</DependentUpon>
+    <Compile Include="PerfMonitor\PerfDBConversation.aspx.cs">
+      <DependentUpon>PerfDBConversation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="PerfMonitor\PerfDBDetail.aspx.designer.cs">
-      <DependentUpon>PerfDBDetail.aspx</DependentUpon>
+    <Compile Include="PerfMonitor\PerfDBConversation.aspx.designer.cs">
+      <DependentUpon>PerfDBConversation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfDBIndex.aspx.cs">
+      <DependentUpon>PerfDBIndex.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfDBIndex.aspx.designer.cs">
+      <DependentUpon>PerfDBIndex.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfDBOverview.aspx.cs">
+      <DependentUpon>PerfDBOverview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfDBOverview.aspx.designer.cs">
+      <DependentUpon>PerfDBOverview.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfDBSGA.aspx.cs">
+      <DependentUpon>PerfDBSGA.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfDBSGA.aspx.designer.cs">
+      <DependentUpon>PerfDBSGA.aspx</DependentUpon>
     </Compile>
     <Compile Include="PerfMonitor\PerfDomain.aspx.cs">
       <DependentUpon>PerfDomain.aspx</DependentUpon>
@@ -567,6 +593,20 @@
     </Compile>
     <Compile Include="PerfMonitor\PerfNet.aspx.designer.cs">
       <DependentUpon>PerfNet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfNetAlarmDetail.aspx.cs">
+      <DependentUpon>PerfNetAlarmDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfNetAlarmDetail.aspx.designer.cs">
+      <DependentUpon>PerfNetAlarmDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfNetAlarmSubDetail.aspx.cs">
+      <DependentUpon>PerfNetAlarmSubDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfNetAlarmSubDetail.aspx.designer.cs">
+      <DependentUpon>PerfNetAlarmSubDetail.aspx</DependentUpon>
     </Compile>
     <Compile Include="PerfMonitor\PerfNetDetail.aspx.cs">
       <DependentUpon>PerfNetDetail.aspx</DependentUpon>

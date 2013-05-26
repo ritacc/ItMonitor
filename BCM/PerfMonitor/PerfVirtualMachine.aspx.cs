@@ -16,6 +16,8 @@ namespace GDK.BCM.PerfMonitor
             base.OnLoad(e);
 
         }
+
+        public string perf = "0";
         protected void Page_Load(object sender, EventArgs e)
         {
             this.pg.OnPageChanged += new EventHandler(PageChanged);
@@ -34,11 +36,7 @@ namespace GDK.BCM.PerfMonitor
             string mWhere = string.Empty;
             if (!string.IsNullOrEmpty(txtValue.Text))
             {
-                string filds = "d.IP";
-                if (rdbName.Checked)
-                {
-                    filds = "d.DeviceName";
-                }
+                string filds = "dt.TypeName";
                 mWhere = string.Format(" {0} like '%{1}%'", filds, txtValue.Text);
             }
             try

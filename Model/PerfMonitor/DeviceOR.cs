@@ -211,8 +211,7 @@ namespace GDK.Entity.PerfMonitor
             get { return _SSL; }
             set { _SSL = value; }
         }
-
-
+        
         ///<summary>
         ///默认值为0.只有Apache等会用到
         ///</summary>
@@ -222,6 +221,61 @@ namespace GDK.Entity.PerfMonitor
         {
             get { return _NeedAuth; }
             set { _NeedAuth = value; }
+        }
+        
+        ///<summary>
+        ///父节点
+        ///</summary>
+        private int _ParentDevID;
+
+        public int ParentDevID
+        {
+            get { return _ParentDevID; }
+            set { _ParentDevID = value; }
+        }
+
+        ///<summary>
+        ///最后轮询时间
+        ///</summary>
+        private DateTime _LastPollingTime;
+
+        public DateTime LastPollingTime
+        {
+            get { return _LastPollingTime; }
+            set { _LastPollingTime = value; }
+        }
+
+        ///<summary>
+        ///下次轮询时间
+        ///</summary>
+        private DateTime _NextPollingTime;
+
+        public DateTime NextPollingTime
+        {
+            get { return _NextPollingTime; }
+            set { _NextPollingTime = value; }
+        }
+
+        ///<summary>
+        ///性能
+        ///</summary>
+        private string _Performance;
+
+        public string Performance
+        {
+            get { return _Performance; }
+            set { _Performance = value; }
+        }
+
+        ///<summary>
+        ///性能
+        ///</summary>
+        private string _Describe;
+
+        public string Describe
+        {
+            get { return _Describe; }
+            set { _Describe = value; }
         }
 
         ///<summary>
@@ -327,6 +381,16 @@ namespace GDK.Entity.PerfMonitor
             {
                 AvailableRate = 0f;
             }
+            if (row["ParentDevID"] != DBNull.Value)
+                _ParentDevID = Convert.ToInt32(row["ParentDevID"]);
+            if (row["LastPollingTime"] != DBNull.Value)
+                _LastPollingTime = Convert.ToDateTime(row["LastPollingTime"]);
+            if (row["NextPollingTime"] != DBNull.Value)
+                _NextPollingTime = Convert.ToDateTime(row["NextPollingTime"]);
+            if (row["Performance"] != DBNull.Value)
+                _Performance = row["Performance"].ToString().Trim();
+            if (row["Describe"] != DBNull.Value)
+                _Describe = row["Describe"].ToString().Trim();
         }
     }
 
