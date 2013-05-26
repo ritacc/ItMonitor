@@ -1,10 +1,6 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PerfDBIndex.aspx.cs" Inherits="GDK.BCM.PerfMonitor.PerfDBIndex" %>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main/SiteMain.Master" AutoEventWireup="true" CodeBehind="PerfDBIndex.aspx.cs" Inherits="GDK.BCM.PerfMonitor.PerfDBIndex" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+<title></title>
     <link href="../Styles/gridview.css" rel="Stylesheet" />
     <link href="../Styles/Site.css" rel="Stylesheet" />
     <link href="../Styles/right.css" rel="Stylesheet" />
@@ -90,10 +86,9 @@
 
         });
     </script>
-</head>
-<body style="overflow:hidden;">
-    <form id="form1" runat="server">
-    <div style="display: none;">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+      <div style="display: none;">
         <asp:TextBox ID="txtSelectItem" runat="server"></asp:TextBox>
     </div>
     <ul class="Ulcss">
@@ -108,6 +103,5 @@
     <div  id="divFrm" style="vertical-align: top; border: 1px solid #CCCCCC;">
         <iframe id="frmMain" frameborder="0" style="overflow-y:auto;overflow-x:hidden;" height="100%" width="100%" src="PerfDBOverview.aspx?id=<% =deviceID %>"></iframe>
     </div>
-    </form>
-</body>
-</html>
+
+</asp:Content>

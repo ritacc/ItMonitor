@@ -68,7 +68,7 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="名称">
                         <ItemTemplate>
-                            <a href="PerfDBIndex.aspx?id=<%#Eval("DeviceID") %>" target="_blank"><span class="sercers">
+                            <a href="PerfDBIndex.aspx?id=<%#Eval("DeviceID") %>" target="_parent"><span class="sercers">
                                 <%#Eval("DeviceName")%></span></a>
                         </ItemTemplate>
                     </asp:TemplateField>

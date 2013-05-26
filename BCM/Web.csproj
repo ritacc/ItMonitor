@@ -291,6 +291,7 @@
     <Content Include="Main\MissingParameter.aspx" />
     <Content Include="Main\OutoffTime.aspx" />
     <Content Include="Map.aspx" />
+    <Content Include="PerfMonitor\Perf.aspx" />
     <Content Include="PerfMonitor\PerfDB.aspx" />
     <Content Include="PerfMonitor\PerfDBConversation.aspx" />
     <Content Include="PerfMonitor\PerfDBIndex.aspx" />
@@ -533,6 +534,13 @@
     </Compile>
     <Compile Include="Map.aspx.designer.cs">
       <DependentUpon>Map.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PerfMonitor\Perf.aspx.cs">
+      <DependentUpon>Perf.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PerfMonitor\Perf.aspx.designer.cs">
+      <DependentUpon>Perf.aspx</DependentUpon>
     </Compile>
     <Compile Include="PerfMonitor\PerfDB.aspx.cs">
       <DependentUpon>PerfDB.aspx</DependentUpon>
