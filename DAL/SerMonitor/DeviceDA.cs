@@ -87,9 +87,8 @@ StationID, DeviceTypeID, strDeviceID);
         /// <returns></returns>
         public DataTable SelectAllGenerdChannelByDeviceID(string strDeviceID, string StationID, string DeviceTypeID)
         {
-            string sql = string.Format(@"select 
-*,dbo.F_ISExisAlarmPolicy({0},{1},{2},Channelno) as ISHavePolice from t_Channel where DeviceID={2} order by ChannelName",
-StationID, DeviceTypeID, strDeviceID);
+            string sql = string.Format(@"select *,dbo.F_ISExisAlarmPolicy({0},{1},{2},Channelno) as ISHavePolice 
+from t_Channel where DeviceID={2} order by ChannelName",StationID, DeviceTypeID, strDeviceID);
             DataTable dt = null;
             try
             {
@@ -102,6 +101,20 @@ StationID, DeviceTypeID, strDeviceID);
             return dt;
         }
 
+        public DataTable GetAllDeviceType(string typemID)
+        {
+            string sql = "select * from t_DeviceType where TypeID="+ typemID;
+            DataTable dt = null;
+            try
+            {
+                dt = db.ExecuteQueryDataSet(sql).Tables[0];
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return dt;
+        }
 
         public DataTable GetAllDeviceType()
         {

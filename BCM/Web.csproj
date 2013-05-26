@@ -103,6 +103,9 @@
     <Content Include="AlertAdmin\HealthConfigList.aspx" />
     <Content Include="AlertAdmin\HealthConfigMain.aspx" />
     <Content Include="ClientBin\ITMonitorControl.xap" />
+    <Content Include="CompSearch\CompRoomSearch.aspx" />
+    <Content Include="CompSearch\DBSearch.aspx" />
+    <Content Include="CompSearch\HostSearch.aspx" />
     <Content Include="DropdownDeviceList.aspx" />
     <Content Include="images\ajax-loader.gif" />
     <Content Include="images\br_bg.gif" />
@@ -448,6 +451,27 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="App_Code\Logger.cs" />
+    <Compile Include="CompSearch\CompRoomSearch.aspx.cs">
+      <DependentUpon>CompRoomSearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CompSearch\CompRoomSearch.aspx.designer.cs">
+      <DependentUpon>CompRoomSearch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CompSearch\DBSearch.aspx.cs">
+      <DependentUpon>DBSearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CompSearch\DBSearch.aspx.designer.cs">
+      <DependentUpon>DBSearch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CompSearch\HostSearch.aspx.cs">
+      <DependentUpon>HostSearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CompSearch\HostSearch.aspx.designer.cs">
+      <DependentUpon>HostSearch.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DropdownDeviceList.aspx.cs">
       <DependentUpon>DropdownDeviceList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
