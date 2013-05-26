@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using GDK.Entity.CompSearch;
+using GDK.DAL.CompSearch;
+using System.Data;
 
 namespace GDK.BCM.CompSearch
 {
@@ -35,7 +37,13 @@ namespace GDK.BCM.CompSearch
 
         public void SearchData(ReportSeachWhereOR whereOR)
         {
-
+            //ReportSeachDA
+            DataTable dtReport=new DataTable();
+            DataTable dtList=new DataTable();
+            new ReportSeachDA().GetDataReport(whereOR, out dtReport, out dtList);
+            gvList.DataSource = dtList;
+            gvList.DataBind();
+            //编写数据
         }
     }
 }

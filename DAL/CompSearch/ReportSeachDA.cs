@@ -3,20 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
+using GDK.Entity.CompSearch;
 
 namespace GDK.DAL.CompSearch
 {
     public class ReportSeachDA:DALBase
     {
 
-        public DataTable GetDataMonthReport(int stationID, string devName, int nDeviceID, DateTime begin, DateTime end)
+        public void GetDataReport(ReportSeachWhereOR whereOR
+           , out DataTable reReport, out DataTable reList)
         {
+            DateTime begin = whereOR.StartTime;
+            DateTime end = whereOR.EndTime;
+            int stationID = whereOR.StationID;
+            string devName = whereOR.DeviceName;
+            int nDeviceID = whereOR.DeviceID; 
+
             // 以1970年为限，（年份－1970）×12+月份为数值，一直循环到结束时间
             int t1 = (begin.Year - 1970) * 12 + begin.Month - 1;
             int t2 = (end.Year - 1970) * 12 + end.Month - 1;
             int t = 0;
-            bool bFirst = true;
-            DataTable result = null;
+
+            string Datastr = whereOR.GetDataConver();
+            string ChanncelWhere = whereOR.GetChanncelWhere("t1.channelno");
+            
             for (t = t1; t <= t2; t++)
             {
                 int year = t / 12 + 1970;
@@ -43,25 +53,41 @@ namespace GDK.DAL.CompSearch
                 if (s == "" || Convert.ToInt32(s) <= 0)
                     continue;
 
-
                 // 根据表名和时间返回数据
                 string time1 = begin.ToString("yyyy-MM-dd HH:mm:ss");
                 string time2 = end.ToString("yyyy-MM-dd HH:mm:ss");
                 string strdev = Convert.ToString(nDeviceID);
 
-                string strSql = string.Format("select t1.dataid,t1.deviceid as deviceno, t1.channelno as channelno,t1.monitorvalue as monitorvalue,CONVERT(char(10), t1.MonitorTime, 111) as monitordate into temp from {0} t1 where t1.MonitorTime between '{1}' and '{2}';select deviceno,channelno,max(monitorvalue) as 最大值, min(monitorvalue) as 最小值,avg(monitorvalue) as 平均值,monitordate as 日期 into temp2 from temp group by monitordate,channelno,deviceno;select temp2.deviceno as 设备ID,t2.devicename as 设备名,temp2.channelno as 测点ID,t3.channelname as 测点名,最大值,最小值,平均值,日期 from temp2, t_device t2,t_channel t3 where temp2.Deviceno=t2.DeviceID and t3.deviceid=temp2.deviceno and t3.channelno = temp2.channelno order by temp2.deviceno,temp2.channelno,日期;drop table temp2;drop table temp;", tableName2, time1, time2);
+                string strSql = string.Format(@"select t1.dataid,t1.deviceid as deviceno, t1.channelno as channelno,
+convert(float,t1.monitorvalue) as monitorvalue,{0} as monitordate into temp from {1} t1 
+where t1.MonitorTime between '{2}' and '{3}' and ({4})", Datastr,  tableName2, time1, time2,ChanncelWhere);
 
-
-                DataTable dt = db.ExecuteQuery(strSql);
-
-                if (bFirst)
-                    result = dt;
-                else
-                    result.Merge(dt);
-
-                bFirst = false;
+                //ChanncelWhere
+                db.ExecuteNoQuery(strSql);
             }
-            return result;
+
+            //
+            string SqlReport = @"select val.*,tc.ChannelName from (
+select deviceno,ChannelNo,monitordate,
+round( avg(MonitorValue),2) avgValue,
+max(MonitorValue) maxValue,min(MonitorValue) minValue from temp 
+group by deviceno,ChannelNo,monitordate
+) as val
+left join t_Channel tc on tc.DeviceID= val.deviceno and tc.ChannelNo= val.ChannelNo;";
+            DataTable dtReport = db.ExecuteQuery(SqlReport);
+            reReport = dtReport;
+
+            string sqlList = @"select val.*,tc.ChannelName from (
+select deviceno,ChannelNo,
+round( avg(MonitorValue),2) avgValue,
+max(MonitorValue) maxValue,min(MonitorValue) minValue from temp 
+group by deviceno,ChannelNo
+) as val
+left join t_Channel tc on tc.DeviceID= val.deviceno and tc.ChannelNo= val.ChannelNo;
+drop table temp";
+
+            DataTable dtList = db.ExecuteQuery(sqlList);
+            reList = dtList;
         }
 
 

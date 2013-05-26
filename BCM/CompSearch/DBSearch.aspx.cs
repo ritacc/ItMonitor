@@ -33,7 +33,8 @@ namespace GDK.BCM.CompSeartch
             dpdStationID.DataValueField = "StationID";
             dpdStationID.DataBind();
 
-            dpdDeviceType.DataSource = dpdStationID.DataSource = new DeviceDA().GetAllDeviceType("4");
+            dpdDeviceType.DataSource = dpdStationID.DataSource = 
+                new DeviceDA().GetAllDeviceType(Request.QueryString["type"]);
             dpdDeviceType.DataValueField = "DeviceTypeID";
             dpdDeviceType.DataTextField = "TypeName";
             dpdDeviceType.DataBind();
@@ -80,10 +81,17 @@ namespace GDK.BCM.CompSeartch
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
+            if (dpdDeviceid.SelectedItem == null)
+            {
+                base.AlertNormal("请选择设备！");
+                return;
+            }
             ReportSeachWhereOR whereOR = new ReportSeachWhereOR();
             whereOR.StationID = Convert.ToInt32(dpdStationID.SelectedValue);
             whereOR.DeviceType = Convert.ToInt32(dpdDeviceType.SelectedValue);
+
             whereOR.DeviceID = Convert.ToInt32(dpdDeviceid.SelectedValue);
+            whereOR.DeviceName = dpdDeviceid.SelectedItem.Text;
 
             whereOR.StartTime = Convert.ToDateTime(txtStartTime.Text);
             whereOR.EndTime = Convert.ToDateTime(txtEndTime.Text);

@@ -70,7 +70,7 @@
 				<td>
 					<asp:DropDownList ID="dpdDtaill" runat="server">
 						<asp:ListItem Text="当天(精确到小时)" Value="dayNow"></asp:ListItem>
-						<asp:ListItem Text="历史(一小时)" Value="Now"></asp:ListItem>
+						<asp:ListItem Text="历史(一小时)" Value="Hour"></asp:ListItem>
 						<asp:ListItem Text="历史(一天)" Value="Day"></asp:ListItem>
 						<asp:ListItem Text="历史(一月)" Value="Month"></asp:ListItem>
 						<asp:ListItem Text="历史(一年)" Value="year"></asp:ListItem>
