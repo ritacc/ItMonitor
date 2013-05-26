@@ -332,13 +332,11 @@ inner join  t_DeviceType dt on d.DeviceTypeID=dt.DeviceTypeID and d.stationid={0
 
         public DeviceOREx SelectDeviceORExByID(string m_id)
         {
-            string sql = string.Format(@"select dt.TypeName,sty.name ClassNmae,ms.MonitorValue descInfo,dev.*,
-case(xl.MonitorValue) when '故障' then 1 when  '报警' then 2 when '未启动' then 3 else 0 end  performance 
+            string sql = string.Format(@"select dev.Describe descInfo,dt.TypeName,sty.name ClassNmae,dev.*,
+case(dev.Performance) when '故障' then 1 when  '报警' then 2 when '未启动' then 3 else 0 end  performance 
  from t_Device  dev
 left join t_DeviceType dt on dev.DeviceTypeID = dt.DeviceTypeID
 left join t_ServersType sty on sty.typeid= dt.typeid and sty.ServerID= dt.ServerID 
-left join  t_TmpValue xl on xl.DeviceID= dev.DeviceID and xl.ChannelNO=11101 
-left join  t_TmpValue ms on ms.DeviceID= dev.DeviceID and ms.ChannelNO=11102  
 where dev.Deviceid='{0}'", m_id);
             DataTable dt = null;
             try
