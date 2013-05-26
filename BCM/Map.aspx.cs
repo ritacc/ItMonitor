@@ -95,6 +95,10 @@ namespace GDK.BCM
                 int num = 0;
                 foreach (XmlNode xnChild in xn.ChildNodes)
                 {
+                    if (xnChild.Attributes["roles"] != null && xnChild.Attributes["roles"].Value == "view")
+                    {
+                        continue;
+                    }
                     InsertNode(xnChild, xn.Attributes["url"].Value, num++, iLevel + 1);
                 }
             }

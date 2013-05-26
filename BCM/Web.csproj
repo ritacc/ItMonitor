@@ -105,6 +105,7 @@
     <Content Include="ClientBin\ITMonitorControl.xap" />
     <Content Include="CompSearch\CompRoomSearch.aspx" />
     <Content Include="CompSearch\DBSearch.aspx" />
+    <Content Include="CompSearch\DBSearchDetail.aspx" />
     <Content Include="CompSearch\HostSearch.aspx" />
     <Content Include="DropdownDeviceList.aspx" />
     <Content Include="images\ajax-loader.gif" />
@@ -459,6 +460,13 @@
     </Compile>
     <Compile Include="CompSearch\DBSearch.aspx.designer.cs">
       <DependentUpon>DBSearch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CompSearch\DBSearchDetail.aspx.cs">
+      <DependentUpon>DBSearchDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CompSearch\DBSearchDetail.aspx.designer.cs">
+      <DependentUpon>DBSearchDetail.aspx</DependentUpon>
     </Compile>
     <Compile Include="CompSearch\HostSearch.aspx.cs">
       <DependentUpon>HostSearch.aspx</DependentUpon>

@@ -42,7 +42,7 @@ namespace GDK.DAL.SerMonitor
         {
             if (string.IsNullOrEmpty(strID))
                 return null;
-            string sql = string.Format("select * from t_Channel where DeviceID={0} order by ChannelName", strID);
+            string sql = string.Format("select * from t_Channel where DeviceID={0} order by ChannelNo", strID);
             DataTable dt = null;
             try
             {

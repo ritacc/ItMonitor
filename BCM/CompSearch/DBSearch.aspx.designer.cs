@@ -112,13 +112,13 @@ namespace GDK.BCM.CompSeartch {
         protected global::System.Web.UI.WebControls.Button btnMoveAll;
         
         /// <summary>
-        /// ListBox1 控件。
+        /// listSelectChannelNo 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox ListBox1;
+        protected global::System.Web.UI.WebControls.ListBox listSelectChannelNo;
         
         /// <summary>
         /// btnSearch 控件。
