@@ -26,6 +26,7 @@ namespace GDK.BCM.PerfMonitor
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.pg.OnPageChanged += new EventHandler(PageChanged);
             deviceID = Convert.ToInt32(Request.QueryString["id"]);
             if (!IsPostBack)
             {
@@ -33,9 +34,25 @@ namespace GDK.BCM.PerfMonitor
             }
         }
 
+        #region  绑定列表 - 最少可用表空间
+        private void PageChanged(object sender, EventArgs e)
+        {
+            BindGraid();
+        }
+        private void BindGraid()
+        {
+            int PageCount = 0;
+            DataTable dt = new PerfDBDA().selectMinBytesList(pg.PageIndex, pg.PageSize, out PageCount, Request.QueryString["id"]);
+            gvMinBytes.DataSource = dt;
+            gvMinBytes.DataBind();
+        }
+        #endregion
+
         private void InitData()
         {
+            BindGraid();
             string mDeviceID = Request.QueryString["id"];
+            int iDeviceID = Convert.ToInt32(Request.QueryString["id"]);
             DeviceOR _objDev = new DeviceDA().SelectDeviceORByID(mDeviceID);
             PerfDBOR _Obj = new PerfDBDA().SelectDeviceDetail(mDeviceID);
             DeviceOREx _objDevEx = new DeviceDA().SelectDeviceORExByID(mDeviceID);
@@ -56,7 +73,11 @@ namespace GDK.BCM.PerfMonitor
             lblValue.Text = _Obj.ConnectionTime;
             lblUserNO.Text = _Obj.UserNO;
 
-
+            lblServerSize.Text = _Obj.ServerSize;
+            lblAverageExecutionTime.Text = _Obj.AverageExecutionTime;
+            lblReadingTimes.Text = _Obj.ReadingTimes;
+            lblWritingTimes.Text = _Obj.WritingTimes;
+            lblBlockSize.Text = _Obj.BlockSize;
 
 
 
@@ -77,6 +98,32 @@ namespace GDK.BCM.PerfMonitor
             chtPerf.Series["Series1"].Points.Add(dp);
             #endregion
 
+
+
+            //绑定，曲线
+            HistoryValueDA mDA = new HistoryValueDA();
+            #region 今天接收、发送
+            DateTime StartTime = DateTime.Now.AddHours(-1);
+            DateTime EndTime = DateTime.Now;
+
+
+            // 连接时间-最后一小时
+            DataTable dte = mDA.GetDeviceChanncelValue(iDeviceID, 41101, StartTime, EndTime);//流入错误数
+            if (dte != null)
+            {
+                chLine.Series["Series1"].Points.DataBindXY(dte.Rows, "Time", dte.Rows, "MonitorValue");
+            }
+
+            // 用户活动性-最后一小时
+            DataTable dt = mDA.GetDeviceChanncelValue(iDeviceID, 41201, StartTime, EndTime);//流入错误数
+            if (dt != null)
+            {
+                chUserActivity.Series["Series1"].Points.DataBindXY(dt.Rows, "Time", dt.Rows, "MonitorValue");
+            }
+            
+
+
+            #endregion
         }
     }
 }

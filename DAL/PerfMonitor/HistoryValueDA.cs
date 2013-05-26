@@ -55,8 +55,8 @@ namespace GDK.DAL.PerfMonitor
           string tableName = GetTableName(DeviceID);
           if (string.IsNullOrEmpty(tableName))
               return null;
-          string sql = string.Format("select CONVERT(varchar(5) , MonitorTime, 108 ) Time,MonitorValue from [{0}] where ChannelNo={1} and DeviceID={2}"
-              , tableName,ChannelNo,DeviceID);
+          string sql = string.Format(@"select CONVERT(varchar(5) , MonitorTime, 108 ) Time,MonitorValue from [{0}] where ChannelNo={1} and DeviceID={2}
+and MonitorTime> '{3}' and MonitorTime< '{4}' ", tableName, ChannelNo, DeviceID, StartTime.ToString("yyyy-MM-dd HH:mm:ss"), EndTime.ToString("yyyy-MM-dd HH:mm:ss"));
          DataTable dt= db.ExecuteQuery(sql);
          return dt;
       }

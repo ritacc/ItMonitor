@@ -170,7 +170,30 @@ namespace GDK.Entity.PerfMonitor
         /// </summary>
         public string AvailableMemory { get; set; }
 
+        /// <summary>
+        /// 数据库尺寸
+        /// </summary>
+        public string ServerSize { get; set; }
 
+        /// <summary>
+        /// 平均执行时间
+        /// </summary>
+        public string AverageExecutionTime { get; set; }
+
+        /// <summary>
+        /// 读次数
+        /// </summary>
+        public string ReadingTimes { get; set; }
+
+        /// <summary>
+        /// 写次数
+        /// </summary>
+        public string WritingTimes { get; set; }
+ 
+        /// <summary>
+        /// 块大小
+        /// </summary>
+        public string BlockSize { get; set; }
 
         /// <summary>
         /// 接口列表     3#^#1705#^#1706#^#1707
@@ -251,6 +274,26 @@ namespace GDK.Entity.PerfMonitor
 
                     case "41402":
                         OpenStyle = dr["MonitorValue"].ToString();
+                        break;
+
+                    case "41501":
+                        ServerSize = dr["MonitorValue"].ToString();
+                        break;
+
+                    case "41502":
+                        AverageExecutionTime = dr["MonitorValue"].ToString();
+                        break;
+
+                    case "41503":
+                        ReadingTimes = dr["MonitorValue"].ToString();
+                        break;
+
+                    case "41504":
+                        WritingTimes = dr["MonitorValue"].ToString();
+                        break;
+
+                    case "41505":
+                        BlockSize = dr["MonitorValue"].ToString();
                         break;
 
                     case "42403":

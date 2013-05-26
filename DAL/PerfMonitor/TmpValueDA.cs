@@ -23,6 +23,21 @@ namespace GDK.DAL.PerfMonitor
             }            
             return dt;
         }
+        public object SelectValue(string mDeviceID, string ChanncelNo)
+        {
+            string sql = string.Format("select MonitorValue from t_TmpValue where DeviceID={0} and ChannelNo={1}", mDeviceID, ChanncelNo);
+            object val = new object();
+            try
+            {
+                val = db.ExecuteScalar(sql);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return val;
+        }
+
 
     }
 }
