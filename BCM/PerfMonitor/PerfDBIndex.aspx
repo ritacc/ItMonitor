@@ -92,7 +92,7 @@
         <asp:TextBox ID="txtSelectItem" runat="server"></asp:TextBox>
     </div>
     <ul class="Ulcss">
-        <li id="net" divname="PerfDBOverview.aspx?id=<% =deviceID %>>" style="background-image: url(../images/selected80.gif);"><a>概览</a></li>
+        <li id="net" divname="PerfDBOverview.aspx?id=<% =deviceID %>" style="background-image: url(../images/selected80.gif);"><a>概览</a></li>
         <li id="sy" divname="PerfDBTableSpace.aspx?id=<% =deviceID %>"><a>表空间</a></li>
         <li id="tx" divname="PerfDBConversation.aspx?id=<% =deviceID %>"><a>会话</a></li>
         <li id="xn" divname="PerfDBBack.aspx?id=<% =deviceID %>"><a>回退</a></li>
