@@ -6,11 +6,17 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using GDK.DAL.SerMonitor;
 using GDK.DAL.Sys;
+using GDK.Entity.CompSearch;
 
 namespace GDK.BCM.CompSeartch
 {
-    public partial class DBSearch : System.Web.UI.Page
+    public partial class DBSearch : PageBase
     {
+        protected override void OnLoad(EventArgs e)
+        {
+            base.IsAuthenticate = false;
+            base.OnLoad(e);
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -71,5 +77,114 @@ namespace GDK.BCM.CompSeartch
         }
 
         #endregion
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            ReportSeachWhereOR whereOR = new ReportSeachWhereOR();
+            whereOR.StationID = Convert.ToInt32(dpdStationID.SelectedValue);
+            whereOR.DeviceType = Convert.ToInt32(dpdDeviceType.SelectedValue);
+            whereOR.DeviceID = Convert.ToInt32(dpdDeviceid.SelectedValue);
+
+            whereOR.StartTime = Convert.ToDateTime(txtStartTime.Text);
+            whereOR.EndTime = Convert.ToDateTime(txtEndTime.Text);
+
+            whereOR.ReportType = dpdDtaill.SelectedValue;
+            whereOR.ReportTypeName = dpdDtaill.SelectedItem.Text;
+
+            whereOR.ReportName = GetReportType(Request.QueryString["type"]);
+
+            List<SearchChanncelOR> listChanncels = new List<SearchChanncelOR>();
+            foreach (ListItem li in listSelectChannelNo.Items)
+            {
+                listChanncels.Add(new SearchChanncelOR()
+                {
+                    ChanncelNo = Convert.ToInt32(li.Value),
+                    ChanncelName = li.Text
+                });
+            }
+
+            if (listChanncels.Count == 0)
+            {
+                base.AlertNormal("必须选择通道！");
+                //return;
+            }
+            whereOR.ListChanncel = listChanncels;
+
+            Session["SearchWhere"] = whereOR;
+            Response.Redirect("DBSearchDetail.aspx");
+        }
+
+        #region 获取报表类型
+        private string GetReportType(string type)
+        {
+            string strType = string.Empty;
+            switch (type)
+            {
+                case "1":
+                    strType = "主机性能报表";
+                    break;
+                case "4":
+                    strType = "数据库报表";
+                    break;
+                case "10":
+                    strType = "中间件报表";
+                    break;
+                case "2":
+                    strType = "应用系统报表";
+                    break;
+                //case "":
+                //    strType = "机房报表";
+                //    break;
+            }
+            return strType;
+        }
+        #endregion
+
+        #region 对象处理
+        protected void btnAddAItem_Click(object sender, EventArgs e)
+        {
+            if (lbChannelnoList.SelectedItem == null)
+                return;
+
+            listSelectChannelNo.Items.Add(lbChannelnoList.SelectedItem);
+            lbChannelnoList.Items.Remove(lbChannelnoList.SelectedItem);
+            listSelectChannelNo.SelectedIndex = -1;
+            lbChannelnoList.SelectedIndex = -1;
+
+        }
+
+        protected void btnAddAll_Click(object sender, EventArgs e)
+        {
+            foreach (ListItem li in lbChannelnoList.Items)
+            {
+                listSelectChannelNo.Items.Add(li);
+            }
+            lbChannelnoList.Items.Clear();
+            listSelectChannelNo.SelectedIndex = -1;
+            lbChannelnoList.SelectedIndex = -1;
+        }
+
+        protected void btnMoveAItem_Click(object sender, EventArgs e)
+        {
+            if (listSelectChannelNo.SelectedItem == null)
+                return;
+            lbChannelnoList.Items.Add(listSelectChannelNo.SelectedItem);
+            listSelectChannelNo.Items.Remove(listSelectChannelNo.SelectedItem);
+            listSelectChannelNo.SelectedIndex = -1;
+            lbChannelnoList.SelectedIndex = -1;
+        }
+
+        protected void btnMoveAll_Click(object sender, EventArgs e)
+        {
+            foreach (ListItem li in listSelectChannelNo.Items)
+            {
+                lbChannelnoList.Items.Add(li);
+            }
+            listSelectChannelNo.Items.Clear();
+            listSelectChannelNo.SelectedIndex = -1;
+            lbChannelnoList.SelectedIndex = -1;
+        }
+        #endregion
+
     }
 }

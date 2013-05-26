@@ -72,6 +72,7 @@
   <ItemGroup>
     <Compile Include="AlertAdmin\HealthConfigDA.cs" />
     <Compile Include="common\Utils.cs" />
+    <Compile Include="CompSearch\ReportSeachDA.cs" />
     <Compile Include="DALBase.cs" />
     <Compile Include="ModelConvertHelper.cs" />
     <Compile Include="PerfMonitor\HistoryValueDA.cs" />

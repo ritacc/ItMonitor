@@ -25,6 +25,7 @@
 			<siteMapNode url="CompSearch/DBSearch.aspx?type=4" title="数据库报表" description="数据库报表" />
 			<siteMapNode url="CompSearch/DBSearch.aspx?type=10" title="中间件报表" description="中间件报表" />
 			<siteMapNode url="CompSearch/DBSearch.aspx?type=5" title="应用系统报表" description="应用系统报表" />
+			<siteMapNode url="CompSearch/DBSearchDetail.aspx" title="报表浏览" description="报表浏览" roles="view" />
 		</siteMapNode>
 		
 		<siteMapNode url="CompReport/ReportGenerate.aspx?id=sysadmin" title="综合报告"  description="综合报告">
