@@ -42,12 +42,8 @@
                     </td>
                     <td>
                     </td>
-                    <td style="width: 88px; text-align: left;">
-                        请选择查询条件:
-                    </td>
-                    <td style="width: 130px; text-align: right;">
-                        <asp:RadioButton GroupName="shearch" Checked="true" Text="对象名称" ID="rdbName" runat="server" />
-                        <asp:RadioButton GroupName="shearch" Text="IP地址" ID="rdbIP" runat="server" />
+                    <td style="width: 88px; text-align: right;">
+                        按主机名查询
                     </td>
                     <td style="width: 250px;">
                         <asp:TextBox ID="txtValue" Width="250px" runat="server"></asp:TextBox>
@@ -65,20 +61,18 @@
                             <%# Container.DataItemIndex+1 %>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="名称">
+                    <asp:TemplateField HeaderText="主机名称">
                         <ItemTemplate>
                             <a href="PerfNetDetail.aspx?id=<%#Eval("DeviceID") %>"><span class="sercers">
                                 <%#Eval("DeviceName")%></span></a>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:BoundField HeaderText="类型" DataField="TypeName" />
-                    <asp:BoundField HeaderText="分类" DataField="ServName" />
-                    <asp:TemplateField HeaderText="性能">
+                    <asp:TemplateField HeaderText="状态">
                         <ItemTemplate>
-                            <img src='../images/Common/stata<%# Eval("performance") %>.gif' alt="设备状态" />
+                           <img src='../images/Common/stata<%# Eval("performance") %>.gif' alt="设备状态" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:BoundField HeaderText="IP" DataField="IP" />
+                    <asp:BoundField HeaderText="状态" DataField="TypeName" />
                     <asp:BoundField HeaderText="描述" DataField="descInfo" />
                 </Columns>
             </asp:GridView>

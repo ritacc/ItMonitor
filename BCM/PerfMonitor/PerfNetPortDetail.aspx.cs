@@ -10,9 +10,6 @@ using GDK.DAL.SerMonitor;
 using System.Data;
 using System.Web.UI.DataVisualization.Charting;
 using System.Drawing;
-using System.Web.UI.DataVisualization.Charting;
-using System.Drawing;
-using System.Data;
 
 
 namespace GDK.BCM.PerfMonitor
@@ -82,7 +79,9 @@ namespace GDK.BCM.PerfMonitor
             #region 今天接收、发送
             DateTime StartTime= Convert.ToDateTime( string.Format("{0} 00:00:00",DateTime.Now.ToString("yyyy-MM-dd")));
             DateTime EndTime= Convert.ToDateTime(string.Format("{0} 23:59:59",DateTime.Now.ToString("yyyy-MM-dd")));
-                        
+             
+           
+            // 流量-今天
             DataTable dt = mDA.GetDeviceChanncelValue(iDeviceID, 32, StartTime, EndTime);//接收
             if (dt != null)
             {
@@ -93,6 +92,44 @@ namespace GDK.BCM.PerfMonitor
             if (dt != null)
             {
                 chLine.Series["Series2"].Points.DataBindXY(dt.Rows, "Time", dt.Rows, "MonitorValue");
+            }
+
+
+            // 错误数和丢包数-今天
+            DataTable dte = mDA.GetDeviceChanncelValue(iDeviceID, 21, StartTime, EndTime);//流入错误数
+            if (dte != null)
+            {
+                chtErrorSum.Series["Series1"].Points.DataBindXY(dte.Rows, "Time", dte.Rows, "MonitorValue");
+            }
+
+            dte = mDA.GetDeviceChanncelValue(iDeviceID, 22, StartTime, EndTime);//流出错误数
+            if (dte != null)
+            {
+                chtErrorSum.Series["Series2"].Points.DataBindXY(dte.Rows, "Time", dte.Rows, "MonitorValue");
+            }
+            dte = mDA.GetDeviceChanncelValue(iDeviceID, 23, StartTime, EndTime);//流入丢包数
+            if (dte != null)
+            {
+                chtErrorSum.Series["Series3"].Points.DataBindXY(dte.Rows, "Time", dte.Rows, "MonitorValue");
+            }
+
+            dte = mDA.GetDeviceChanncelValue(iDeviceID, 24, StartTime, EndTime);//流出丢包数
+            if (dte != null)
+            {
+                chtErrorSum.Series["Series4"].Points.DataBindXY(dte.Rows, "Time", dte.Rows, "MonitorValue");
+            }
+
+            // 发送字数总量-今天
+            DataTable dts = mDA.GetDeviceChanncelValue(iDeviceID, 11, StartTime, EndTime);//流入错误数
+            if (dts != null)
+            {
+                chtSendSum.Series["Series1"].Points.DataBindXY(dts.Rows, "Time", dts.Rows, "MonitorValue");
+            }
+
+            dts = mDA.GetDeviceChanncelValue(iDeviceID, 12, StartTime, EndTime);//流出错误数
+            if (dts != null)
+            {
+                chtSendSum.Series["Series2"].Points.DataBindXY(dts.Rows, "Time", dts.Rows, "MonitorValue");
             }
 
             #endregion

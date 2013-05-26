@@ -27,7 +27,7 @@
                                 <th>属性值</th>
                             </tr>
                             <tr class="AlternatingRowStyle">
-                                <td><img src='../images/Common/stata<%= perf %>.gif' alt="设备状态" /></td>
+                                <td><a href="PerfNetAlarmDetail.aspx?id=<%= deviceID %>"><img src='../images/Common/stata<%= perf %>.gif' alt="性能" /></a></td>
                                 <td><asp:Label ID="lbl" runat="server"></asp:Label></td>
                             </tr>
                             <tr class="AlternatingRowStyle">
@@ -228,10 +228,10 @@
                 </Legends>
                 <Series>
                     <asp:Series Name="Series1" LegendText="接收" ChartType="Line" IsValueShownAsLabel="True"
-                        LabelFormat="{0}" BorderColor="180, 26, 59, 105">
+                        LabelFormat="{0}" BorderColor="180, 26, 59, 105" BorderWidth="2">
                     </asp:Series>
                     <asp:Series Name="Series2" LegendText="发送" ChartType="Line" IsValueShownAsLabel="True"
-                        LabelFormat="{0}" BorderColor="180, 26, 59, 105">
+                        LabelFormat="{0}" BorderColor="180, 26, 59, 105" BorderWidth="2">
                     </asp:Series>
                 </Series>
                 <ChartAreas>
@@ -256,7 +256,7 @@
     <div class="div_box">
     <div class="div_box_title">错误数和丢包数—今天</div>
         <div class="char_middle overflow_grid_select_NoPage Padding_5" style="height: 496px;">
-        <asp:Chart ID="chtServerBuytime" runat="server" Width="890" Height="496" BackColor="#f0fbff">
+        <asp:Chart ID="chtErrorSum" runat="server" Width="890" Height="496" BackColor="#f0fbff">
             <Titles>
                 <asp:Title ShadowColor="32, 0, 0, 0" Font="Trebuchet MS, 14.25pt, style=Bold" ShadowOffset="3"
                     Text="错误数和丢包数—今天" Name="Title1" ForeColor="26, 59, 105">
@@ -269,45 +269,45 @@
                 </asp:Legend>
             </Legends>
             <Series>
-                <asp:Series Name="Series1" LegendText="流入错误数" IsValueShownAsLabel="True" LabelFormat="{0}分"
-                    BorderColor="180, 26, 59, 105">
+                <asp:Series Name="Series1" LegendText="流入错误数" ChartType="Line" IsValueShownAsLabel="True"
+                        LabelFormat="{0}" BorderColor="180, 26, 59, 105" BorderWidth="2">
                 </asp:Series>
-                <asp:Series Name="Series2" LegendText="流出错误数" IsValueShownAsLabel="True" LabelFormat="{0}分"
-                    BorderColor="180, 26, 59, 105">
+                <asp:Series Name="Series2" LegendText="流出错误数" ChartType="Line" IsValueShownAsLabel="True"
+                        LabelFormat="{0}" BorderColor="180, 26, 59, 105" BorderWidth="2">
                 </asp:Series>
-                <asp:Series Name="Series3" LegendText="流入丢包数" IsValueShownAsLabel="True" LabelFormat="{0}分"
-                    BorderColor="180, 26, 59, 105">
+                <asp:Series Name="Series3" LegendText="流入丢包数" ChartType="Line" IsValueShownAsLabel="True"
+                        LabelFormat="{0}" BorderColor="180, 26, 59, 105" BorderWidth="2">
                 </asp:Series>
-                <asp:Series Name="Series4" LegendText="流出丢包数" IsValueShownAsLabel="True" LabelFormat="{0}分"
-                    BorderColor="180, 26, 59, 105">
+                <asp:Series Name="Series4" LegendText="流出丢包数" ChartType="Line" IsValueShownAsLabel="True"
+                        LabelFormat="{0}" BorderColor="180, 26, 59, 105" BorderWidth="2">
                 </asp:Series>
             </Series>
             <ChartAreas>
-                <asp:ChartArea Name="ChartArea1" BorderColor="64, 64, 64, 64" BorderDashStyle="Solid"
-                    BackSecondaryColor="White" BackColor="Gainsboro" ShadowColor="64, 0, 0, 0" BackGradientStyle="TopBottom">
-                    <Area3DStyle Rotation="10" Perspective="10" Inclination="15" IsRightAngleAxes="False"
-                        WallWidth="0" IsClustered="False" />
-                    <AxisY LineColor="64, 64, 64, 64" LabelAutoFitMaxFontSize="8">
-                        <LabelStyle Font="Trebuchet MS, 8.25pt, style=Bold" Format="0" />
-                        <MajorGrid LineColor="64, 64, 64, 64" />
-                    </AxisY>
-                    <AxisX LineColor="64, 64, 64, 64" Interval="2" LabelAutoFitMaxFontSize="8">
-                        <LabelStyle Font="Trebuchet MS, 8.25pt, style=Bold" IsEndLabelVisible="False" />
-                        <MajorGrid LineColor="64, 64, 64, 64" />
-                    </AxisX>
-                </asp:ChartArea>
-            </ChartAreas>
+                    <asp:ChartArea Name="ChartArea1" BorderColor="64, 64, 64, 64" BorderDashStyle="Solid"
+                        BackSecondaryColor="White" BackColor="Gainsboro" ShadowColor="64, 0, 0, 0" BackGradientStyle="TopBottom">
+                        <Area3DStyle Rotation="10" Perspective="10" Inclination="15" IsRightAngleAxes="False"
+                            WallWidth="0" IsClustered="False" />
+                        <AxisY LineColor="64, 64, 64, 64" LabelAutoFitMaxFontSize="8">
+                            <LabelStyle Font="Trebuchet MS, 8.25pt, style=Bold" Format="0" />
+                            <MajorGrid LineColor="64, 64, 64, 64" />
+                        </AxisY>
+                        <AxisX LineColor="64, 64, 64, 64" Interval="2" LabelAutoFitMaxFontSize="8">
+                            <LabelStyle Font="Trebuchet MS, 8.25pt, style=Bold" IsEndLabelVisible="False" />
+                            <MajorGrid LineColor="64, 64, 64, 64" />
+                        </AxisX>
+                    </asp:ChartArea>
+                </ChartAreas>
         </asp:Chart>
         </div>
     </div>
 
     <div class="div_box">
-    <div class="div_box_title">发送字数总和—今天</div>
+    <div class="div_box_title">发送字数总量—今天</div>
         <div class="char_middle overflow_grid_select_NoPage Padding_5" style="height: 496px;">
-        <asp:Chart ID="Chart1" runat="server" Width="890" Height="496" BackColor="#f0fbff">
+        <asp:Chart ID="chtSendSum" runat="server" Width="890" Height="496" BackColor="#f0fbff">
             <Titles>
                 <asp:Title ShadowColor="32, 0, 0, 0" Font="Trebuchet MS, 14.25pt, style=Bold" ShadowOffset="3"
-                    Text="发送字数总和（字节）—今天" Name="Title1" ForeColor="26, 59, 105">
+                    Text="发送字数总量（字节）—今天" Name="Title1" ForeColor="26, 59, 105">
                 </asp:Title>
             </Titles>
             <Legends>
@@ -318,10 +318,10 @@
             </Legends>
             <Series>
                 <asp:Series Name="Series1" LegendText="InBytes" IsValueShownAsLabel="True" LabelFormat="{0}分"
-                    BorderColor="180, 26, 59, 105">
+                    BorderColor="180, 26, 59, 105"  BorderWidth="2">
                 </asp:Series>
                 <asp:Series Name="Series2" LegendText="OutByte" IsValueShownAsLabel="True" LabelFormat="{0}分"
-                    BorderColor="180, 26, 59, 105">
+                    BorderColor="180, 26, 59, 105"  BorderWidth="2">
                 </asp:Series>
             </Series>
             <ChartAreas>

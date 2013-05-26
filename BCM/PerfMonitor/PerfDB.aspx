@@ -34,11 +34,12 @@
             </div>
             <table class="searchtable" cellspacing="0">
                 <tr>
-                    <td style="width: 222px; text-align: left;">
-                        状态图标说明:<img src="../images/Common/stata0.gif" alt="设备状态" />
-                        不可用
-                        <img src="../images/Common/stata1.gif" alt="设备状态" />
-                        可用
+                    <td style="width: 450px; text-align: left;">
+                        状态图标说明:
+                        <img src='../images/Common/stata4.gif' alt="状态不可用" />状态不可用
+                        <img src='../images/Common/stata0.gif' alt="严重警告" />严重警告
+                        <img src='../images/Common/stata2.gif' alt="一般警告" />一般警告
+                        <img src='../images/Common/stata1.gif' alt="正常" />正常
                     </td>
                     <td>
                     </td>
@@ -67,7 +68,7 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="名称">
                         <ItemTemplate>
-                            <a href="PerfDBDetail.aspx?id=<%#Eval("DeviceID") %>"><span class="sercers">
+                            <a href="PerfDBIndex.aspx?id=<%#Eval("DeviceID") %>" target="_blank"><span class="sercers">
                                 <%#Eval("DeviceName")%></span></a>
                         </ItemTemplate>
                     </asp:TemplateField>
