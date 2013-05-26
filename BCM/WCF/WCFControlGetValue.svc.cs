@@ -19,7 +19,10 @@ namespace GDK.BCM.WCF
         {
             float f = 0f;
             object val = new TmpValueDA().SelectValue(DviceID, ChanncelNo);
-            float.TryParse(val.ToString(), out f);
+            if (val != null)
+            {
+                float.TryParse(val.ToString(), out f);
+            }
             return f; 
         }
 

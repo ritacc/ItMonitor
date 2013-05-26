@@ -121,6 +121,7 @@
     <Content Include="images\Common\cancel.gif" />
     <Content Include="images\Common\category_add.gif" />
     <Content Include="images\Common\char.gif" />
+    <Content Include="images\Common\char_Line.gif" />
     <Content Include="images\Common\char_pie.gif" />
     <Content Include="images\Common\delete.gif" />
     <Content Include="images\Common\edit.gif" />
@@ -298,7 +299,6 @@
     <Content Include="PerfMonitor\PerfDBIndex.aspx" />
     <Content Include="PerfMonitor\PerfDBOverview.aspx" />
     <Content Include="PerfMonitor\PerfDBSGA.aspx" />
-    <Content Include="PerfMonitor\PerfDBTableSpace.aspx" />
     <Content Include="PerfMonitor\PerfDomain.aspx" />
     <Content Include="PerfMonitor\PerfDomainDetail.aspx" />
     <Content Include="PerfMonitor\PerfHost.aspx" />
@@ -585,13 +585,6 @@
     </Compile>
     <Compile Include="PerfMonitor\PerfDBSGA.aspx.designer.cs">
       <DependentUpon>PerfDBSGA.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="PerfMonitor\PerfDBTableSpace.aspx.cs">
-      <DependentUpon>PerfDBTableSpace.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="PerfMonitor\PerfDBTableSpace.aspx.designer.cs">
-      <DependentUpon>PerfDBTableSpace.aspx</DependentUpon>
     </Compile>
     <Compile Include="PerfMonitor\PerfDomain.aspx.cs">
       <DependentUpon>PerfDomain.aspx</DependentUpon>
