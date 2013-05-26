@@ -8,6 +8,13 @@ $(document).ready(function () {
         overflow_grid.height(height);
     }
 
+    //没有分页
+    var overflow_grid_NoPage = $(".overflow_grid_select_NoPage");
+    var height_NoPage = layout.innerHeight - 246;
+    if (overflow_grid_NoPage.height() < height_NoPage) {
+        overflow_grid_NoPage.height(height_NoPage);
+    }
+
     var overflow = $(".overflow_grid");
     var gridheight = layout.innerHeight - 241;
 
@@ -38,6 +45,12 @@ $(document).ready(function () {
         var height = layout.innerHeight - 275;
         if (overflow_grid.height() < height) {
             overflow_grid.height(height);
+        }
+
+        var overflow_grid_NoPage = $(".overflow_grid_select_NoPage");
+        var height_NoPage = layout.innerHeight - 246;
+        if (overflow_grid_NoPage.height() < height_NoPage) {
+            overflow_grid_NoPage.height(height_NoPage);
         }
 
         var gridheight = layout.innerHeight - 241;

@@ -7,8 +7,8 @@
 {
     width:100%;
     background:url(../images/gridview/gridheader_04.gif) repeat-x; 
-    font-weight:bold;
 }
+
 .gridheader_table img
 {
     vertical-align:middle;

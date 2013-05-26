@@ -148,13 +148,13 @@ namespace GDK.BCM.PerfMonitor {
         protected global::System.Web.UI.WebControls.Label lblValue;
         
         /// <summary>
-        /// Chart1 控件。
+        /// chUserActivity 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.DataVisualization.Charting.Chart Chart1;
+        protected global::System.Web.UI.DataVisualization.Charting.Chart chUserActivity;
         
         /// <summary>
         /// lblUserNO 控件。
@@ -175,13 +175,13 @@ namespace GDK.BCM.PerfMonitor {
         protected global::System.Web.UI.WebControls.GridView gvMinBytes;
         
         /// <summary>
-        /// GridView3 控件。
+        /// pg 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView3;
+        protected global::GDK.BCM.UI.pagenavigate pg;
         
         /// <summary>
         /// lblServCreateTime 控件。
@@ -209,6 +209,51 @@ namespace GDK.BCM.PerfMonitor {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblLogStyle;
+        
+        /// <summary>
+        /// lblServerSize 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblServerSize;
+        
+        /// <summary>
+        /// lblAverageExecutionTime 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAverageExecutionTime;
+        
+        /// <summary>
+        /// lblReadingTimes 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblReadingTimes;
+        
+        /// <summary>
+        /// lblWritingTimes 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblWritingTimes;
+        
+        /// <summary>
+        /// lblBlockSize 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblBlockSize;
         
         /// <summary>
         /// chtSGA 控件。

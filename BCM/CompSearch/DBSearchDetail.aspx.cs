@@ -27,7 +27,10 @@ namespace GDK.BCM.CompSearch
             lblTime.Text = DateTime.Now.ToString("yyyy-MM-dd");
             lblType.Text = whereOR.ReportTypeName.Replace("历史(", "").Replace(")", "");
 
-            lblType.Text = whereOR.ListChanncel[0].ChanncelName;
+            lblProp.Text = whereOR.ListChanncel[0].ChanncelName;
+
+            chtReport.Titles[0].Text = string.Format("{0}:{1}",
+                whereOR.ReportName, whereOR.ListChanncel[0].ChanncelName);
         }
 
         public void SearchData(ReportSeachWhereOR whereOR)

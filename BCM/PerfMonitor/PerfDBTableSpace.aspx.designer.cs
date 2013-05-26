@@ -7,63 +7,72 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace GDK.BCM.CompSearch {
+namespace GDK.BCM.PerfMonitor {
     
     
-    public partial class DBSearchDetail {
+    public partial class PerfDBTableSpace {
         
         /// <summary>
-        /// txtHide 控件。
+        /// form1 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden txtHide;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// lblName 控件。
+        /// gvTableSpaceDetail 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblName;
+        protected global::System.Web.UI.WebControls.GridView gvTableSpaceDetail;
         
         /// <summary>
-        /// lblTime 控件。
+        /// pg 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTime;
+        protected global::GDK.BCM.UI.pagenavigate pg;
         
         /// <summary>
-        /// lblType 控件。
+        /// gvTableSpaceState 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblType;
+        protected global::System.Web.UI.WebControls.GridView gvTableSpaceState;
         
         /// <summary>
-        /// lblProp 控件。
+        /// pgTableSpaceState 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblProp;
+        protected global::GDK.BCM.UI.pagenavigate pgTableSpaceState;
         
         /// <summary>
-        /// chtReport 控件。
+        /// gvTableSpaceData 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.DataVisualization.Charting.Chart chtReport;
+        protected global::System.Web.UI.WebControls.GridView gvTableSpaceData;
+        
+        /// <summary>
+        /// pgTableSpaceData 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::GDK.BCM.UI.pagenavigate pgTableSpaceData;
     }
 }

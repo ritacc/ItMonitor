@@ -62,7 +62,7 @@
         <div class="div_box_title">SGA明细</div>
             <table class="gridview_skin">
                 <tr class="AlternatingRowStyle">
-                    <td>
+                    <td width="40%">
                         缓冲区大小:
                     </td>
                     <td>
@@ -124,7 +124,7 @@
         <div class="div_box_title">SGA状态</div>
             <table class="gridview_skin">
                 <tr class="AlternatingRowStyle">
-                    <td>
+                    <td width="40%">
                         缓冲区击中率:
                     </td>
                     <td>
