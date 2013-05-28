@@ -7,11 +7,18 @@ using System.Web.UI.WebControls;
 using GDK.Entity.CompSearch;
 using GDK.DAL.CompSearch;
 using System.Data;
+using System.Web.UI.DataVisualization.Charting;
 
 namespace GDK.BCM.CompSearch
 {
-    public partial class DBSearchDetail : System.Web.UI.Page
+    public partial class DBSearchDetail : PageBase
     {
+        protected override void OnLoad(EventArgs e)
+        {
+            base.IsAuthenticate = false;
+            base.OnLoad(e);
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -44,6 +51,31 @@ namespace GDK.BCM.CompSearch
             gvList.DataSource = dtList;
             gvList.DataBind();
             //编写数据
+            BindSeries(dtReport, whereOR);
+        }
+
+        public void BindSeries(DataTable dtReport, ReportSeachWhereOR whereOR)
+        {
+            if (dtReport == null)
+                return;
+            if (dtReport.Rows.Count == 0)
+                return;
+
+            foreach (SearchChanncelOR obj in whereOR.ListChanncel)
+            {
+
+                 dtReport.DefaultView.RowFilter = string.Format(" ChannelNo={0}", obj.ChanncelNo);
+                 DataTable dt = dtReport.DefaultView.ToTable();
+                
+                 Series ser = new Series();
+                 ser.Points.DataBindXY(dt.Rows, "monitordate", dt.Rows, "avgValue");
+                 ser.ChartType = SeriesChartType.Line;
+                 //ser.IsValueShownAsLabel = true;
+                 ser.MarkerStyle = MarkerStyle.Circle;
+                 ser.MarkerSize = 3;
+                 ser.LegendText = obj.ChanncelName;
+                 chtReport.Series.Add(ser);
+            }
         }
     }
 }

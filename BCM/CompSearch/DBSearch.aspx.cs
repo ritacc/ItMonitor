@@ -74,7 +74,6 @@ namespace GDK.BCM.CompSeartch
             lbChannelnoList.DataTextField = "ChannelName";
             lbChannelnoList.DataValueField = "ChannelNo";
             lbChannelnoList.DataBind();
-            
         }
 
         #endregion
@@ -113,8 +112,8 @@ namespace GDK.BCM.CompSeartch
 
             if (listChanncels.Count == 0)
             {
-                base.AlertNormal("必须选择通道！");
-                //return;
+                base.AlertNormal("请选择通道！");
+                return;
             }
             whereOR.ListChanncel = listChanncels;
 
@@ -158,7 +157,6 @@ namespace GDK.BCM.CompSeartch
             lbChannelnoList.Items.Remove(lbChannelnoList.SelectedItem);
             listSelectChannelNo.SelectedIndex = -1;
             lbChannelnoList.SelectedIndex = -1;
-
         }
 
         protected void btnAddAll_Click(object sender, EventArgs e)

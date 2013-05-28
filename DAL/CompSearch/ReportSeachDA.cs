@@ -26,7 +26,10 @@ namespace GDK.DAL.CompSearch
 
             string Datastr = whereOR.GetDataConver();
             string ChanncelWhere = whereOR.GetChanncelWhere("t1.channelno");
-            
+
+            string sqlTruncate = " truncate table ReportTemp;";
+            db.ExecuteNoQuery(sqlTruncate);
+
             for (t = t1; t <= t2; t++)
             {
                 int year = t / 12 + 1970;
@@ -58,8 +61,9 @@ namespace GDK.DAL.CompSearch
                 string time2 = end.ToString("yyyy-MM-dd HH:mm:ss");
                 string strdev = Convert.ToString(nDeviceID);
 
-                string strSql = string.Format(@"select t1.dataid,t1.deviceid as deviceno, t1.channelno as channelno,
-convert(float,t1.monitorvalue) as monitorvalue,{0} as monitordate into temp from {1} t1 
+                string strSql = string.Format(@"insert into ReportTemp ([deviceno],[channelno],[monitorvalue],[monitordate])
+select  t1.deviceid as deviceno, t1.channelno as channelno,
+convert(float,t1.monitorvalue) as monitorvalue,{0} as monitordate  from {1} t1 
 where t1.MonitorTime between '{2}' and '{3}' and ({4})", Datastr,  tableName2, time1, time2,ChanncelWhere);
 
                 //ChanncelWhere
@@ -70,17 +74,17 @@ where t1.MonitorTime between '{2}' and '{3}' and ({4})", Datastr,  tableName2, t
             string SqlReport = @"select val.*,tc.ChannelName from (
 select deviceno,ChannelNo,monitordate,
 round( avg(MonitorValue),2) avgValue,
-max(MonitorValue) maxValue,min(MonitorValue) minValue from temp 
+max(MonitorValue) maxValue,min(MonitorValue) minValue from ReportTemp 
 group by deviceno,ChannelNo,monitordate
 ) as val
-left join t_Channel tc on tc.DeviceID= val.deviceno and tc.ChannelNo= val.ChannelNo;";
+left join t_Channel tc on tc.DeviceID= val.deviceno and tc.ChannelNo= val.ChannelNo order by monitordate;";
             DataTable dtReport = db.ExecuteQuery(SqlReport);
             reReport = dtReport;
 
             string sqlList = @"select val.*,tc.ChannelName from (
 select deviceno,ChannelNo,
 round( avg(MonitorValue),2) avgValue,
-max(MonitorValue) maxValue,min(MonitorValue) minValue from temp 
+max(MonitorValue) maxValue,min(MonitorValue) minValue from ReportTemp 
 group by deviceno,ChannelNo
 ) as val
 left join t_Channel tc on tc.DeviceID= val.deviceno and tc.ChannelNo= val.ChannelNo;

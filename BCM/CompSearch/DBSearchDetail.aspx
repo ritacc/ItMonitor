@@ -33,16 +33,7 @@
                 <img src="../images/gridview/gridheader_03.gif" alt="" />
             </td>
             <td>
-                客户等待时间分时段分布图
-            </td>
-            <td width="82">
-                <a divname="divLine" class="divItemChange">
-                    <img src="../images/Common/char_Line.gif" alt="显示曲线图" title="显示曲线图" class="vertical_middle" /></a>
-                <input id="txtHide" class="txtHide" type="hidden" runat="server" />
-            </td>
-            <td width="82">
-                <a divname="divList" class="divItemChange">
-                    <img src="../images/Common/list.gif" alt="显示列表" title="显示列表" class="vertical_middle" /></a>
+                报表浏览
             </td>
             <td width="6">
                 <img src="../images/gridview/gridheader_06.gif" alt="" />
@@ -92,18 +83,7 @@
                         <asp:Legend TitleFont="Microsoft Sans Serif, 8pt, style=Bold" BackColor="Transparent"
                             Font="Trebuchet MS, 8.25pt, style=Bold" IsTextAutoFit="False" Name="Default">
                         </asp:Legend>
-                    </Legends>
-                    <Series>
-                        <asp:Series ChartArea="ChartArea1" LegendText="最小值" Name="srMain" ChartType="Column"
-                            BorderColor="180, 26, 59, 105">
-                        </asp:Series>
-                        <asp:Series ChartArea="ChartArea1" LegendText="最大值" ChartType="Column" Legend="Default"
-                            Name="srMax">
-                        </asp:Series>
-                        <asp:Series ChartArea="ChartArea1" LegendText="平均值" ChartType="Column" Legend="Default"
-                            Name="sravg">
-                        </asp:Series>
-                    </Series>
+                    </Legends> 
                     <ChartAreas>
                         <asp:ChartArea Name="ChartArea1" BorderColor="64, 64, 64, 64" BorderDashStyle="Solid"
                             BackSecondaryColor="White" BackColor="Gainsboro" ShadowColor="64, 0, 0, 0" BackGradientStyle="TopBottom">
@@ -121,6 +101,8 @@
                     </ChartAreas>
                 </asp:Chart>
             </div>
+
+
             <div id="divList">
                 <asp:GridView ID="gvList" AutoGenerateColumns="false" runat="server">
                     <Columns>
@@ -156,7 +138,8 @@
                         </table>
                     </EmptyDataTemplate>
                 </asp:GridView>
-            </div>
+            </div> 
+
         </div>
     </div>
 </asp:Content>
