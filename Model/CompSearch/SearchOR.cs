@@ -64,6 +64,28 @@ namespace GDK.Entity.CompSearch
             return str;
         }
 
+        public string GetShowInfo()
+        {
+            //当天(精确到小时)
+            string str = "当天";
+            switch (ReportType.ToLower())
+            {
+                case "hour"://历史(一小时)
+                    str = "CONVERT(varchar(13) , MonitorTime, 120 )";//2013-05-25 11
+                    break;
+                case "day"://历史(一天)
+                    str = "CONVERT(varchar(10) , MonitorTime, 120 )"; //2013-05-25
+                    break;
+                case "month"://历史(一月)
+                    str = "CONVERT(varchar(7) , MonitorTime, 120 )"; //2013-05
+                    break;
+                case "year"://历史(一年)
+                    str = "CONVERT(varchar(4) , MonitorTime, 120 )"; //2013
+                    break;
+            }
+            return str;
+        }
+
         public string GetChanncelWhere(string filds)
         {
             if (ListChanncel == null)

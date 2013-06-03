@@ -34,7 +34,7 @@ namespace GDK.BCM.CompSearch
             lblName.Text = whereOR.ReportName;
 
             lblTime.Text = DateTime.Now.ToString("yyyy-MM-dd");
-            lblType.Text = whereOR.ReportTypeName.Replace("历史(", "").Replace(")", "");
+            lblType.Text = whereOR.ReportTypeName;//.Replace("历史(", "").Replace(")", "");
 
             lblProp.Text = whereOR.ListChanncel[0].ChanncelName;
 
