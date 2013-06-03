@@ -318,12 +318,12 @@
             <div class="div_char">
                 <div class="div_title">缓冲器</div>
                 <object data="data:application/x-silverlight-2," type="application/x-silverlight-2"
-                    width="50px" height="200px">
+                    width="60px" height="200px">
                     <param name="source" value="../ClientBin/ITMonitorControl.xap" />
                     <param name="onError" value="onSilverlightError" />
                     <param name="background" value="white" />
                     <!--MeterMember MeterAll MeterHalf MeterTemperature-->
-                    <param name="initParams" value="Target=MeterTemperature,DeviceID=<% =deviceID %>,ChanncelNo=41601" />
+                    <param name="initParams" value="Target=MeterTemperature,DeviceID=<% =deviceID %>,ChanncelNo=45101" />
                     <param name="minRuntimeVersion" value="4.0.50826.0" />
                     <param name="autoUpgrade" value="true" />
                     <a href="../SLFile/Silverlight.zip" style="text-decoration: none">
@@ -336,12 +336,12 @@
             <div class="div_char">
                 <div class="div_title">数据字典</div>
                 <object data="data:application/x-silverlight-2," type="application/x-silverlight-2"
-                    width="50px" height="200px">
+                    width="60px" height="200px">
                     <param name="source" value="../ClientBin/ITMonitorControl.xap" />
                     <param name="onError" value="onSilverlightError" />
                     <param name="background" value="white" />
                     <!--MeterMember MeterAll MeterHalf MeterTemperature-->
-                    <param name="initParams" value="Target=MeterTemperature,DeviceID=<% =deviceID %>,ChanncelNo=41602" />
+                    <param name="initParams" value="Target=MeterTemperature,DeviceID=<% =deviceID %>,ChanncelNo=45102" />
                     <param name="minRuntimeVersion" value="4.0.50826.0" />
                     <param name="autoUpgrade" value="true" />
                     <a href="../SLFile/Silverlight.zip" style="text-decoration: none">
@@ -354,12 +354,12 @@
             <div class="div_char">
                 <div class="div_title">库</div>
                 <object data="data:application/x-silverlight-2," type="application/x-silverlight-2"
-                    width="50px" height="200px">
+                    width="60px" height="200px">
                     <param name="source" value="../ClientBin/ITMonitorControl.xap" />
                     <param name="onError" value="onSilverlightError" />
                     <param name="background" value="white" />
                     <!--MeterMember MeterAll MeterHalf MeterTemperature-->
-                    <param name="initParams" value="Target=MeterTemperature,DeviceID=<% =deviceID %>,ChanncelNo=41603" />
+                    <param name="initParams" value="Target=MeterTemperature,DeviceID=<% =deviceID %>,ChanncelNo=45103" />
                     <param name="minRuntimeVersion" value="4.0.50826.0" />
                     <param name="autoUpgrade" value="true" />
                     <a href="../SLFile/Silverlight.zip" style="text-decoration: none">
@@ -371,7 +371,7 @@
       </div>
       <div class="div_box Padding_5" style="clear:both;">
         <div class="div_box_title">共享的SGA</div>
-                <asp:Chart ID="chtSGA" Width="300" Height="200" runat="server"
+                <asp:Chart ID="chtSGA" Width="800" Height="200" runat="server"
                 ImageLocation="~/TempImages/ChartPic_#SEQ(300,3)">
                 <Legends>
                     <asp:Legend TitleFont="Microsoft Sans Serif, 8pt, style=Bold" BackColor="Transparent"

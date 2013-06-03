@@ -268,7 +268,7 @@ namespace GDK.Entity.PerfMonitor
         }
 
         ///<summary>
-        ///性能
+        ///描述
         ///</summary>
         private string _Describe;
 
