@@ -10,25 +10,16 @@
 namespace GDK.BCM.PerfMonitor {
     
     
-    public partial class PerfDBConversation {
+    public partial class PrefDBLock {
         
         /// <summary>
-        /// form1 控件。
+        /// gvLockedNO 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
-        /// <summary>
-        /// gvConversationDetail 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvConversationDetail;
+        protected global::System.Web.UI.WebControls.GridView gvLockedNO;
         
         /// <summary>
         /// pg 控件。
@@ -40,39 +31,39 @@ namespace GDK.BCM.PerfMonitor {
         protected global::GDK.BCM.UI.pagenavigate pg;
         
         /// <summary>
-        /// gvConversationCollect 控件。
+        /// gvLockedWaitingNO 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvConversationCollect;
+        protected global::System.Web.UI.WebControls.GridView gvLockedWaitingNO;
         
         /// <summary>
-        /// pgConversationCollect 控件。
+        /// pgLockedWaitingNO 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::GDK.BCM.UI.pagenavigate pgConversationCollect;
+        protected global::GDK.BCM.UI.pagenavigate pgLockedWaitingNO;
         
         /// <summary>
-        /// gvConversationNO 控件。
+        /// gvLockDetail 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvConversationNO;
+        protected global::System.Web.UI.WebControls.GridView gvLockDetail;
         
         /// <summary>
-        /// pgConversationNO 控件。
+        /// pgLockDetail 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::GDK.BCM.UI.pagenavigate pgConversationNO;
+        protected global::GDK.BCM.UI.pagenavigate pgLockDetail;
     }
 }

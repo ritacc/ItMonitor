@@ -194,6 +194,37 @@ namespace GDK.Entity.PerfMonitor
         /// 块大小
         /// </summary>
         public string BlockSize { get; set; }
+                
+        /// <summary>
+        /// 库存储器大小
+        /// </summary>
+        public Double LibraryMemorySize { get; set; }
+
+        /// <summary>
+        /// 数据字典存储器
+        /// </summary>
+        public Double DataDictionaryMemory { get; set; }
+
+        /// <summary>
+        /// SG区域大小
+        /// </summary>
+        public Double SGSize { get; set; }
+
+        /// <summary>
+        /// 固定的区域大小
+        /// </summary>
+        public Double FixedRegionSize { get; set; }
+
+        /// <summary>
+        /// 缓冲存储器大小
+        /// </summary>
+        public Double BufferMemorySize { get; set; }
+        
+        /// <summary>
+        /// 共享池大小   -- SGA中已存在
+        /// </summary>
+
+        
 
         /// <summary>
         /// 接口列表     3#^#1705#^#1706#^#1707
@@ -296,6 +327,26 @@ namespace GDK.Entity.PerfMonitor
                         BlockSize = dr["MonitorValue"].ToString();
                         break;
 
+                    case "41701":
+                        LibraryMemorySize = Convert.ToDouble(dr["MonitorValue"].ToString());
+                        break;
+                        
+                    case "41702":
+                        DataDictionaryMemory = Convert.ToDouble(dr["MonitorValue"].ToString());
+                        break;
+
+                    case "41703":
+                        SGSize = Convert.ToDouble(dr["MonitorValue"].ToString());
+                        break;
+
+                    case "41704":
+                        FixedRegionSize = Convert.ToDouble(dr["MonitorValue"].ToString());
+                        break;
+
+                    case "41705":
+                        BufferMemorySize = Convert.ToDouble(dr["MonitorValue"].ToString());
+                        break;
+                  
                     case "42403":
                         LogStyle = dr["MonitorValue"].ToString();
                         break;

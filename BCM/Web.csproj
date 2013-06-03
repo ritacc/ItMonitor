@@ -295,10 +295,13 @@
     <Content Include="Map.aspx" />
     <Content Include="PerfMonitor\Perf.aspx" />
     <Content Include="PerfMonitor\PerfDB.aspx" />
+    <Content Include="PerfMonitor\PerfDBBack.aspx" />
     <Content Include="PerfMonitor\PerfDBConversation.aspx" />
     <Content Include="PerfMonitor\PerfDBIndex.aspx" />
     <Content Include="PerfMonitor\PerfDBOverview.aspx" />
+    <Content Include="PerfMonitor\PerfDBSelect.aspx" />
     <Content Include="PerfMonitor\PerfDBSGA.aspx" />
+    <Content Include="PerfMonitor\PerfDBTableSpace.aspx" />
     <Content Include="PerfMonitor\PerfDomain.aspx" />
     <Content Include="PerfMonitor\PerfDomainDetail.aspx" />
     <Content Include="PerfMonitor\PerfHost.aspx" />
@@ -315,6 +318,7 @@
     <Content Include="PerfMonitor\PerfVirtualMachineDetail.aspx" />
     <Content Include="PerfMonitor\PrefApplication.aspx" />
     <Content Include="PerfMonitor\PrefApplicationDeatil.aspx" />
+    <Content Include="PerfMonitor\PrefDBLock.aspx" />
     <Content Include="PerfMonitor\PrefSystemFailure.aspx" />
     <Content Include="PerfMonitor\PrefSystemFailureDetail.aspx" />
     <Content Include="Ref\DBUtility.dll" />
@@ -558,6 +562,13 @@
     <Compile Include="PerfMonitor\PerfDB.aspx.designer.cs">
       <DependentUpon>PerfDB.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PerfMonitor\PerfDBBack.aspx.cs">
+      <DependentUpon>PerfDBBack.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfDBBack.aspx.designer.cs">
+      <DependentUpon>PerfDBBack.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PerfMonitor\PerfDBConversation.aspx.cs">
       <DependentUpon>PerfDBConversation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -579,12 +590,26 @@
     <Compile Include="PerfMonitor\PerfDBOverview.aspx.designer.cs">
       <DependentUpon>PerfDBOverview.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PerfMonitor\PerfDBSelect.aspx.cs">
+      <DependentUpon>PerfDBSelect.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfDBSelect.aspx.designer.cs">
+      <DependentUpon>PerfDBSelect.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PerfMonitor\PerfDBSGA.aspx.cs">
       <DependentUpon>PerfDBSGA.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="PerfMonitor\PerfDBSGA.aspx.designer.cs">
       <DependentUpon>PerfDBSGA.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfDBTableSpace.aspx.cs">
+      <DependentUpon>PerfDBTableSpace.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfDBTableSpace.aspx.designer.cs">
+      <DependentUpon>PerfDBTableSpace.aspx</DependentUpon>
     </Compile>
     <Compile Include="PerfMonitor\PerfDomain.aspx.cs">
       <DependentUpon>PerfDomain.aspx</DependentUpon>
@@ -697,6 +722,13 @@
     </Compile>
     <Compile Include="PerfMonitor\PrefApplicationDeatil.aspx.designer.cs">
       <DependentUpon>PrefApplicationDeatil.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PerfMonitor\PrefDBLock.aspx.cs">
+      <DependentUpon>PrefDBLock.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PerfMonitor\PrefDBLock.aspx.designer.cs">
+      <DependentUpon>PrefDBLock.aspx</DependentUpon>
     </Compile>
     <Compile Include="PerfMonitor\PrefSystemFailure.aspx.cs">
       <DependentUpon>PrefSystemFailure.aspx</DependentUpon>

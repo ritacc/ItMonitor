@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using GDK.DAL.PerfMonitor;
+using GDK.Entity.PerfMonitor;
+using GDK.DAL.SerMonitor;
 
 namespace GDK.BCM.PerfMonitor
 {
@@ -17,7 +19,6 @@ namespace GDK.BCM.PerfMonitor
 
         }
 
-        public string perf = "0";
         protected void Page_Load(object sender, EventArgs e)
         {
             this.pg.OnPageChanged += new EventHandler(PageChanged);

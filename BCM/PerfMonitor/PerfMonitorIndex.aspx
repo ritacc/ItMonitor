@@ -3,6 +3,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
+        body { overflow:hidden; }
         .Ulcss
         {
             list-style-type: none;

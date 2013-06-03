@@ -12,7 +12,6 @@ namespace GDK.BCM.PerfMonitor
     public partial class PerfDBTableSpace : PageBase
     {
         public int deviceID = 0;
-        public string perf = "0";
         protected override void OnLoad(EventArgs e)
         {
             base.IsAuthenticate = false;
