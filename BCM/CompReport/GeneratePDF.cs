@@ -17,6 +17,11 @@ namespace GDK.BCM.CompReport
         public System.Web.UI.DataVisualization.Charting.Chart chLine { get; set; }
 
         /// <summary>
+        /// 业务系统ID
+        /// </summary>
+        public int SystemID { get; set; }
+
+        /// <summary>
         /// 系统名称
         /// </summary>
         public string SystemTitle { get; set; }
@@ -24,6 +29,11 @@ namespace GDK.BCM.CompReport
         /// 副标题
         /// </summary>
         public string SubTitle { get; set; }
+
+        /// <summary>
+        /// 报告描述
+        /// </summary>
+        public string ReportDesc { get; set; }
 
         /// <summary>
         /// 生成文件存储路径

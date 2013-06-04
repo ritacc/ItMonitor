@@ -13,7 +13,7 @@
     </table>
         <div class="iframe_top">
             当前用户：<asp:Label ID="lblName" runat="server" ></asp:Label> &nbsp;&nbsp;&nbsp;&nbsp;
-            所属部门：<asp:Label ID="lblDesc" runat="server"></asp:Label>
+            所属部门：<asp:Label ID="lblDepart" runat="server"></asp:Label>
         </div>
         
     <table class="gridview_skin">
@@ -25,10 +25,13 @@
                 报告类型
             </td>
             <td style=" text-align:left;" colspan="4">
-                <asp:RadioButton  Text="月" runat="server"/>
-                <asp:RadioButton  Text="选定" runat="server"/>
-                <asp:DropDownList ID="dpdYear" runat="server"></asp:DropDownList>年
-                <asp:DropDownList ID="dpdMonth" runat="server"></asp:DropDownList>月
+                <asp:RadioButton  Checked="true" GroupName="reprotType" Text="月" runat="server"/>
+                <asp:RadioButton   GroupName="reprotType" Text="选定" runat="server"/>
+               <span id="divMonth">
+                <asp:DropDownList ID="dpdYear" Width="60px" runat="server"></asp:DropDownList>年
+                <asp:DropDownList ID="dpdMonth" Width="50px" runat="server"></asp:DropDownList>月
+                </span>
+                <span id="divSelect"></span>
             </td>
         </tr>
         <tr class="AlternatingRowStyle">
@@ -53,7 +56,7 @@
                 报告描述
             </td>
             <td colspan="3"  style="text-align:left;">
-                <asp:TextBox TextMode="MultiLine" Width="500px" Height="150px" runat="server"></asp:TextBox>
+                <asp:TextBox ID="reportDesc" TextMode="MultiLine" Width="712px" Height="150px" runat="server"></asp:TextBox>
             </td>
         </tr>
        <tr class="AlternatingRowStyle">

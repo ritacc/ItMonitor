@@ -12,13 +12,14 @@ namespace GDK.BCM.CompReport
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            GeneratePDF PDF = new GeneratePDF();
-            PDF.SystemTitle = "辑私协查系统";
-            PDF.SubTitle = "做了三年啊，我的个天A";
-            PDF.ReportData = "2013年11月";
-            PDF.UserPart = "信息中心主任科室";
-            PDF.chLine = chLine;
+            if (Session["GeneratePDF"] == null)
+            {
+                Response.Redirect("ReportGenerate.aspx");
+            }
+            GeneratePDF PDF = Session["GeneratePDF"] as GeneratePDF;
+           
 
+            PDF.chLine = chLine;
             PDF.SavePath = Server.MapPath("../Upload/PDF/");
 
             string filePath = PDF.Generate();

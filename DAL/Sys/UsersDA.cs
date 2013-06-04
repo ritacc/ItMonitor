@@ -107,6 +107,11 @@ namespace GDK.DAL.Sys
             }
             DataRow dr = dt.Rows[0];
             UsersOR m_User = new UsersOR(dr);
+            OrganizationsOR org = new OrganizationsDA().selectARowDate(m_User.ParentGuid);
+            if (org != null)
+            {
+                m_User.DepartmentName = org.DisplayName;
+            }
             return m_User;
         }
     }
