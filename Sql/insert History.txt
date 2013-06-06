@@ -1,0 +1,27 @@
+
+declare @mDTime datetime
+set @mDTime= '2013-06-01 00:00:00'
+declare @endTime datetime
+set @endTime='2013-06-06 00:00:00'
+
+declare @Number int
+
+declare @AddLen int
+set @AddLen=10
+
+--select * into t_1_测试中心数据库_2013_06 from t_1_测试中心数据库_2013_05
+--truncate table t_1_测试中心数据库_2013_06
+declare @TableName nvarchar(200)= 't_1_测试中心数据库_2013_05'
+declare @DeviceID	int =1049
+declare @ChannelNo	int =401001
+while @mDTime< @endTime
+begin
+	set @Number= rand()* 100
+	
+	set @mDTime= DATEADD(minute,@AddLen,@mDTime)
+	insert into [t_1_测试中心数据库_2013_06] (DeviceID,ChannelNo,MonitorValue,MonitorTime,StationID,Info,ValueType)
+				values(@DeviceID,@ChannelNo,@Number,@mDTime,1,'',1)
+	--print @mDTime
+end
+
+--select * from t_1_测试中心数据库_2013_06
