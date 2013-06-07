@@ -22,6 +22,7 @@ namespace GDK.BCM.PerfMonitor
             {
                 InitData();
             }
+            
         }
 
         private void InitData()

@@ -41,6 +41,12 @@ namespace GDK.Entity.Sys
 			set { _DisplayName = value; }
 		}
 
+        public string DepartmentName
+        {
+            get;
+            set;
+        }
+
 		private string _InnerSort;
 		/// <summary>
 		/// 用户在部门中的排序
@@ -304,7 +310,7 @@ namespace GDK.Entity.Sys
 			_InnerSort = row["INNER_SORT"].ToString().Trim();
 			// 用户在系统中的全地址（不用于排序，仅仅标志所在部门的路径关系）
 			_OriginalSort = row["ORIGINAL_SORT"].ToString().Trim();
-			// 用户在系统中的全程文字表述（例如：全国海关\海关总署\信息中心\应用开发二处\朱佳炜）
+			// 用户在系统中的全程文字表述（例如：全国海关\海关总署\信息中心\应用开发二处\朱长双）
 			_AllPathName = row["ALL_PATH_NAME"].ToString().Trim();
 			// 状态（1、正常使用；2、直接逻辑删除；4、机构级联逻辑删除；8、人员级联逻辑删除；）掩码方式实现
 			_Status = Convert.ToInt32(row["STATUS"]);

@@ -147,6 +147,8 @@ Release:
 		validData : function (args, value) {
 			switch(args.type) {
 				case "string" :
+                    if(value == null)
+                        value="";
 					var n = args.isByte ? value.replace(/[.]/g,'a').replace(/[^x00-xff]/g,"aa").length : value.length;
 					if(n <= args.max && n >= args.min) {
                         if(args.isSave && new RegExp(/\'/g).test(value)) {
