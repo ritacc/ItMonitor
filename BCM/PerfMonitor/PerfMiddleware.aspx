@@ -67,19 +67,18 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="名称">
                         <ItemTemplate>
-                            <a href="PerfNetDetail.aspx?id=<%#Eval("DeviceID") %>"><span class="sercers">
+                            <a href="PerfMiddlewareDetail.aspx?id=<%#Eval("DeviceID") %>"><span class="sercers">
                                 <%#Eval("DeviceName")%></span></a>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:BoundField HeaderText="类型" DataField="TypeName" />
-                    <asp:BoundField HeaderText="分类" DataField="ServName" />
                     <asp:TemplateField HeaderText="性能">
                         <ItemTemplate>
                             <img src='../images/Common/stata<%# Eval("performance") %>.gif' alt="设备状态" />
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:BoundField HeaderText="IP" DataField="IP" />
-                    <asp:BoundField HeaderText="描述" DataField="descInfo" />
+                    <asp:BoundField HeaderText="操作系统" DataField="ServName" />
                 </Columns>
             </asp:GridView>
         </div>

@@ -49,6 +49,7 @@ namespace GDK.BCM.PerfMonitor
             DataTable dt = new PerfDBDA().selectConversationDetailList(pg.PageIndex, pg.PageSize, out PageCount, Request.QueryString["id"]);
             gvConversationDetail.DataSource = dt;
             gvConversationDetail.DataBind();
+            this.pg.RecordCount = PageCount;
         }
         #endregion
 
@@ -60,9 +61,10 @@ namespace GDK.BCM.PerfMonitor
         private void BindGraidCollect()
         {
             int PageCount = 0;
-            DataTable dt = new PerfDBDA().selectConversationCollect(pg.PageIndex, pg.PageSize, out PageCount, Request.QueryString["id"]);
+            DataTable dt = new PerfDBDA().selectConversationCollect(pgConversationCollect.PageIndex, pgConversationCollect.PageSize, out PageCount, Request.QueryString["id"]);
             gvConversationCollect.DataSource = dt;
             gvConversationCollect.DataBind();
+            this.pgConversationCollect.RecordCount = PageCount;
         }
         #endregion
 
@@ -74,9 +76,10 @@ namespace GDK.BCM.PerfMonitor
         private void BindGraidNO()
         {
             int PageCount = 0;
-            DataTable dt = new PerfDBDA().selectConversationNO(pg.PageIndex, pg.PageSize, out PageCount, Request.QueryString["id"]);
+            DataTable dt = new PerfDBDA().selectConversationNO(pgConversationNO.PageIndex, pgConversationNO.PageSize, out PageCount, Request.QueryString["id"]);
             gvConversationNO.DataSource = dt;
             gvConversationNO.DataBind();
+            this.pgConversationNO.RecordCount = PageCount;
         }
         #endregion
     }

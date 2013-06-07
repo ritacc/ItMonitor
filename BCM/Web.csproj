@@ -220,6 +220,7 @@
     <Content Include="images\PopWin\sel1.gif" />
     <Content Include="images\PopWin\web_26.gif" />
     <Content Include="images\PopWin\window_footer.gif" />
+    <Content Include="images\ProgressBarBg.gif" />
     <Content Include="images\right_20.gif" />
     <Content Include="images\right_23.gif" />
     <Content Include="images\selected.gif" />
@@ -318,7 +319,7 @@
     <Content Include="PerfMonitor\PerfVirtualMachineDetail.aspx" />
     <Content Include="PerfMonitor\PrefApplication.aspx" />
     <Content Include="PerfMonitor\PrefApplicationDeatil.aspx" />
-    <Content Include="PerfMonitor\PrefDBLock.aspx" />
+    <Content Include="PerfMonitor\PerfDBLock.aspx" />
     <Content Include="PerfMonitor\PrefSystemFailure.aspx" />
     <Content Include="PerfMonitor\PrefSystemFailureDetail.aspx" />
     <Content Include="Ref\DBUtility.dll" />
@@ -723,12 +724,12 @@
     <Compile Include="PerfMonitor\PrefApplicationDeatil.aspx.designer.cs">
       <DependentUpon>PrefApplicationDeatil.aspx</DependentUpon>
     </Compile>
-    <Compile Include="PerfMonitor\PrefDBLock.aspx.cs">
-      <DependentUpon>PrefDBLock.aspx</DependentUpon>
+    <Compile Include="PerfMonitor\PerfDBLock.aspx.cs">
+      <DependentUpon>PerfDBLock.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="PerfMonitor\PrefDBLock.aspx.designer.cs">
-      <DependentUpon>PrefDBLock.aspx</DependentUpon>
+    <Compile Include="PerfMonitor\PerfDBLock.aspx.designer.cs">
+      <DependentUpon>PerfDBLock.aspx</DependentUpon>
     </Compile>
     <Compile Include="PerfMonitor\PrefSystemFailure.aspx.cs">
       <DependentUpon>PrefSystemFailure.aspx</DependentUpon>

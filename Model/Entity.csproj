@@ -57,6 +57,8 @@
     <Compile Include="PerfMonitor\DeviceOR.cs" />
     <Compile Include="PerfMonitor\DeviceOREx.cs" />
     <Compile Include="PerfMonitor\PerfDBOR.cs" />
+    <Compile Include="PerfMonitor\PerfHostOR.cs" />
+    <Compile Include="PerfMonitor\PerfMiddlewareOR.cs" />
     <Compile Include="PerfMonitor\PerfNetDetailOR.cs" />
     <Compile Include="PerfMonitor\PerfVirtualOR.cs" />
     <Compile Include="PerfMonitor\PerNetPortDetailOR.cs" />

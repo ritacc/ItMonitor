@@ -42,6 +42,7 @@ namespace GDK.BCM.PerfMonitor
             DataTable dt = new PerfDBDA().selectTableSpaceDetailList(pg.PageIndex, pg.PageSize, out PageCount, Request.QueryString["id"]);
             gvTableSpaceDetail.DataSource = dt;
             gvTableSpaceDetail.DataBind();
+            this.pg.RecordCount = PageCount;
         }
         #endregion
 
@@ -53,9 +54,10 @@ namespace GDK.BCM.PerfMonitor
         private void BindGraidState()
         {
             int PageCount = 0;
-            DataTable dt = new PerfDBDA().selectTableSpaceState(pg.PageIndex, pg.PageSize, out PageCount, Request.QueryString["id"]);
+            DataTable dt = new PerfDBDA().selectTableSpaceState(pgTableSpaceState.PageIndex, pgTableSpaceState.PageSize, out PageCount, Request.QueryString["id"]);
             gvTableSpaceState.DataSource = dt;
             gvTableSpaceState.DataBind();
+            this.pgTableSpaceState.RecordCount = PageCount;
         }
         #endregion
 
@@ -67,9 +69,10 @@ namespace GDK.BCM.PerfMonitor
         private void BindGraidData()
         {
             int PageCount = 0;
-            DataTable dt = new PerfDBDA().selectTableSpaceData(pg.PageIndex, pg.PageSize, out PageCount, Request.QueryString["id"]);
+            DataTable dt = new PerfDBDA().selectTableSpaceData(pgTableSpaceData.PageIndex, pgTableSpaceData.PageSize, out PageCount, Request.QueryString["id"]);
             gvTableSpaceData.DataSource = dt;
             gvTableSpaceData.DataBind();
+            this.pgTableSpaceData.RecordCount = PageCount;
         }
         #endregion
 

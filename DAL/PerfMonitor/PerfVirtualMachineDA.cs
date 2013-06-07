@@ -88,5 +88,57 @@ where dt.typeid=9 ";
             return dt;
 
         }
+
+        /// <summary>
+        /// 磁盘、网络使用情况 
+        /// </summary>
+        public DataTable selectDiskUsage(int pageCrrent, int pageSize, out int pageCount, string ParentDevID)
+        {
+            string sql = string.Format(@"select d.deviceid,DiskUsage.MonitorValue DiskUsage,NetworkUtilization.MonitorValue NetworkUtilization
+ from t_Device d 
+left join t_TmpValue DiskUsage on DiskUsage.DeviceID= d.DeviceID and DiskUsage.ChannelNO=91303
+left join t_TmpValue NetworkUtilization on NetworkUtilization.DeviceID= d.DeviceID and NetworkUtilization.ChannelNO=91403
+where d.DeviceTypeID= 913 and ParentDevID ={0} order by LastPollingTime", ParentDevID);
+            DataTable dt = null;
+            int returnC = 0; try
+            {
+                dt = db.ExecuteQuery(sql, pageCrrent, pageSize, out returnC);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            pageCount = returnC;
+            return dt;
+        }
+
+
+        /// <summary>
+        /// 虚拟机操作系统
+        /// </summary>
+        public DataTable selectVirtualSystem(int pageCrrent, int pageSize, out int pageCount, string ParentDevID)
+        {
+            string sql = string.Format(@"select d.deviceid,d.DeviceName,d.Performance,CPUUtilization.MonitorValue CPUUtilization,MemoryUtilization.MonitorValue MemoryUtilization,
+DiskUtilization.MonitorValue DiskUtilization,NetworkUtilization.MonitorValue NetworkUtilization,
+WarningStatus.MonitorValue WarningStatus
+ from t_Device d 
+left join t_TmpValue CPUUtilization on CPUUtilization.DeviceID= d.DeviceID and CPUUtilization.ChannelNO=91103
+left join t_TmpValue MemoryUtilization on MemoryUtilization.DeviceID= d.DeviceID and MemoryUtilization.ChannelNO=91204
+left join t_TmpValue DiskUtilization on DiskUtilization.DeviceID= d.DeviceID and DiskUtilization.ChannelNO=14301
+left join t_TmpValue NetworkUtilization on NetworkUtilization.DeviceID= d.DeviceID and NetworkUtilization.ChannelNO=91403
+left join t_TmpValue WarningStatus on WarningStatus.DeviceID= d.DeviceID and WarningStatus.ChannelNO=12106
+where d.DeviceTypeID= 915 and ParentDevID ={0} order by DeviceName", ParentDevID);
+            DataTable dt = null;
+            int returnC = 0; try
+            {
+                dt = db.ExecuteQuery(sql, pageCrrent, pageSize, out returnC);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            pageCount = returnC;
+            return dt;
+        }
     }
 }

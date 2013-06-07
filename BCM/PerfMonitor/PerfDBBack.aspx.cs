@@ -39,6 +39,7 @@ namespace GDK.BCM.PerfMonitor
             DataTable dt = new PerfDBDA().selectDBBack(pg.PageIndex, pg.PageSize, out PageCount, Request.QueryString["id"]);
             gvDBBack.DataSource = dt;
             gvDBBack.DataBind();
+            this.pg.RecordCount = PageCount;
         }
         #endregion
     }

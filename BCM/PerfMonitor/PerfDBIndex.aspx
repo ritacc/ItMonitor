@@ -98,7 +98,7 @@
         <li id="xn" divname="PerfDBBack.aspx?id=<% =deviceID %>"><a>回退</a></li>
         <li id="others" divname="PerfDBSGA.aspx?id=<% =deviceID %>"><a>SGA</a></li>
         <li id="showSounds" divname="PerfDBSelect.aspx?id=<% =deviceID %>">查询</li>
-        <li id="ljwd" divname="PrefDBLock.aspx?id=<% =deviceID %>"><a>锁</a></li>
+        <li id="ljwd" divname="PerfDBLock.aspx?id=<% =deviceID %>"><a>锁</a></li>
     </ul>
     <div  id="divFrm" style="vertical-align: top; border: 1px solid #CCCCCC;">
         <iframe id="frmMain" frameborder="0" style="overflow-y:auto;overflow-x:hidden;" height="100%" width="100%" src="PerfDBOverview.aspx?id=<% =deviceID %>"></iframe>
