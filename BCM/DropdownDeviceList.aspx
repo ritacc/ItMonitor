@@ -14,16 +14,33 @@
     <form id="form1" runat="server">
     
    
-    <asp:Chart ID="Chart1" runat="server">
-        <series>
-            <asp:Series Name="Series1">
-            </asp:Series>
-        </series>
-        <chartareas>
-            <asp:ChartArea Name="ChartArea1">
-            </asp:ChartArea>
-        </chartareas>
-    </asp:Chart>
+			 <asp:Chart ID="chLine" runat="server" Width="510" Height="270px" BackColor="#FAFAFA">
+                        <%-- BackColor="WhiteSmoke"  BorderWidth="2"
+            BorderColor="26, 59, 105" Palette="BrightPastel" BorderlineDashStyle="Solid" BackSecondaryColor="White" BackGradientStyle="TopBottom"--%>
+                        <Legends>
+                            <asp:Legend TitleFont="Microsoft Sans Serif, 8pt, style=Bold" BackColor="Transparent" 
+							Font="Trebuchet MS, 8.25pt, style=Bold" IsTextAutoFit="False" Enabled="False" Name="Default">
+                            </asp:Legend>
+                        </Legends>
+                        <%--        <BorderSkin SkinStyle="Emboss"></BorderSkin>--%>
+                        <Series>
+                            <asp:Series Name="Series1" IsValueShownAsLabel="True" LabelFormat="{0}" BorderColor="180, 26, 59, 105">
+                            </asp:Series>
+                        </Series>
+                        <ChartAreas>
+                            <asp:ChartArea Name="ChartArea1" BorderColor="64, 64, 64, 64" BorderDashStyle="Solid" BackSecondaryColor="White" BackColor="Gainsboro" ShadowColor="64, 0, 0, 0" BackGradientStyle="TopBottom">
+                                <Area3DStyle Rotation="10" Perspective="10" Inclination="15" IsRightAngleAxes="False" WallWidth="0" IsClustered="False" />
+                                <AxisY LineColor="64, 64, 64, 64" LabelAutoFitMaxFontSize="8">
+                                    <LabelStyle Font="Trebuchet MS, 8.25pt, style=Bold" Format="0" />
+                                    <MajorGrid LineColor="64, 64, 64, 64" />
+                                </AxisY>
+                                <AxisX LineColor="64, 64, 64, 64" LabelAutoFitMaxFontSize="8">
+                                    <LabelStyle Font="Trebuchet MS, 8.25pt, style=Bold" IsEndLabelVisible="False" />
+                                    <MajorGrid LineColor="64, 64, 64, 64" />
+                                </AxisX>
+                            </asp:ChartArea>
+                        </ChartAreas>
+                    </asp:Chart>
     
    
     </form>
