@@ -8,7 +8,7 @@ using GDK.DAL.PerfMonitor;
 
 namespace GDK.BCM.PerfMonitor
 {
-    public partial class PrefSystemFailure : PageBase
+    public partial class PerfSystemFailure : PageBase
     {
         protected override void OnLoad(EventArgs e)
         {

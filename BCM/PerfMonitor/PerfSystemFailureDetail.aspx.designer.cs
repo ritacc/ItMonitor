@@ -8,9 +8,9 @@
 //------------------------------------------------------------------------------
 
 namespace GDK.BCM.PerfMonitor {
-    
-    
-    public partial class PrefSystemFailureDetail {
+
+
+    public partial class PerfSystemFailureDetail{
         
         /// <summary>
         /// form1 控件。

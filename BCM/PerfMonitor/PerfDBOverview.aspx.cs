@@ -45,6 +45,7 @@ namespace GDK.BCM.PerfMonitor
             DataTable dt = new PerfDBDA().selectMinBytesList(pg.PageIndex, pg.PageSize, out PageCount, Request.QueryString["id"]);
             gvMinBytes.DataSource = dt;
             gvMinBytes.DataBind();
+            this.pg.RecordCount = PageCount;
         }
         #endregion
 

@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PerfVirtualMachineDetail.aspx.cs" Inherits="GDK.BCM.PerfMonitor.PerfVirtualMachineDetail" %>
-
+<%@ Register Src="../UI/pagenavigate.ascx" TagName="pagenavigate" TagPrefix="uc1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -175,6 +175,7 @@
         
     <div class="div_box Padding_5">
         <div class="div_box_title">磁盘、网络使用情况图表</div>
+        <div class="char_middle overflow_grid_select_NoPage Padding_5" style="height: 496px;">
         <asp:Chart ID="chLine" runat="server" Width="890" Height="496" BackColor="#f0fbff">
             <Titles>
                 <asp:Title ShadowColor="32, 0, 0, 0" Font="Trebuchet MS, 14.25pt, style=Bold" ShadowOffset="3"
@@ -214,7 +215,61 @@
             </ChartAreas>
         </asp:Chart>
     </div>
+     </div>
 
+    <div class="div_box Padding_5">
+        <div class="div_box_title">磁盘、网络使用情况</div>
+        <asp:GridView ID="gvUtilization" runat="server" AutoGenerateColumns="false" CssClass="gridview_skin">
+            <Columns>
+                <asp:BoundField HeaderText="磁盘使用率" DataField="DiskUsage" />
+                <asp:BoundField HeaderText="网络使用率" DataField="NetworkUtilization" />
+            </Columns>
+            <EmptyDataTemplate>
+                <table cellpadding="0" cellspacing="0" width="100%" class="gridheader_table">
+                    <tr class="gridview_skin_header">
+                        <th>磁盘使用率</th>
+                        <th>网络使用率</th>
+                    </tr>
+                    <tr class="AlternatingRowStyle">
+                        <td colspan="2">没有数据</td>
+                    </tr>
+                </table>                
+                </EmptyDataTemplate>
+            </asp:GridView>              
+        <uc1:pagenavigate ID="pg" runat="server" />   
+    </div>
+    
+    <div class="div_box Padding_5">
+        <div class="div_box_title">虚拟机操作系统</div>
+        <asp:GridView ID="gvVirtualSystem" runat="server" AutoGenerateColumns="false" CssClass="gridview_skin">
+            <Columns>
+                <asp:BoundField HeaderText="名称" DataField="DeviceName" />
+                <asp:BoundField HeaderText="CPU使用率(%)" DataField="CPUUtilization" />
+                <asp:BoundField HeaderText="内存使用率(%)" DataField="MemoryUtilization" />
+                <asp:BoundField HeaderText="磁盘I/O利用率 kbps" DataField="DiskUtilization" />
+                <asp:BoundField HeaderText="网络利用率 kbps" DataField="NetworkUtilization" />
+                <asp:BoundField HeaderText="状态" DataField="Performance" />
+                <asp:BoundField HeaderText="预警状况" DataField="WarningStatus" />
+            </Columns>
+            <EmptyDataTemplate>
+                <table cellpadding="0" cellspacing="0" width="100%" class="gridheader_table">
+                    <tr class="gridview_skin_header">
+                        <th>名称</th>
+                        <th>CPU使用率(%)</th>
+                        <th>内存使用率(%)</th>
+                        <th>磁盘I/O利用率 kbps</th>
+                        <th>网络利用率 kbps</th>
+                        <th>状态</th>
+                        <th>预警状况</th>
+                    </tr>
+                    <tr class="AlternatingRowStyle">
+                        <td colspan="7">没有数据</td>
+                    </tr>
+                </table>                
+            </EmptyDataTemplate>
+        </asp:GridView>              
+        <uc1:pagenavigate ID="pgVirtualSystem" runat="server" />   
+    </div>
     </form>
 </body>
 </html>

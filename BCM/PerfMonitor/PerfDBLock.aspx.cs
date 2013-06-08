@@ -49,6 +49,7 @@ namespace GDK.BCM.PerfMonitor
             DataTable dt = new PerfDBDA().selectLockedNO(pg.PageIndex, pg.PageSize, out PageCount, deviceID);
             gvLockedNO.DataSource = dt;
             gvLockedNO.DataBind();
+            this.pg.RecordCount = PageCount;
         }
         #endregion
 
@@ -60,9 +61,10 @@ namespace GDK.BCM.PerfMonitor
         private void BindGraidWaitingNO()
         {
             int PageCount = 0;
-            DataTable dt = new PerfDBDA().selectLockedWaitingNO(pg.PageIndex, pg.PageSize, out PageCount, deviceID);
+            DataTable dt = new PerfDBDA().selectLockedWaitingNO(pgLockedWaitingNO.PageIndex, pgLockedWaitingNO.PageSize, out PageCount, deviceID);
             gvLockedWaitingNO.DataSource = dt;
             gvLockedWaitingNO.DataBind();
+            this.pgLockedWaitingNO.RecordCount = PageCount;
         }
         #endregion
 
@@ -74,9 +76,10 @@ namespace GDK.BCM.PerfMonitor
         private void BindGraidDetail()
         {
             int PageCount = 0;
-            DataTable dt = new PerfDBDA().selectLockDetail(pg.PageIndex, pg.PageSize, out PageCount, deviceID);
+            DataTable dt = new PerfDBDA().selectLockDetail(pgLockDetail.PageIndex, pgLockDetail.PageSize, out PageCount, deviceID);
             gvLockDetail.DataSource = dt;
             gvLockDetail.DataBind();
+            this.pgLockDetail.RecordCount = PageCount;
         }
         #endregion
 

@@ -27,6 +27,8 @@ namespace GDK.BCM.PerfMonitor
         protected void Page_Load(object sender, EventArgs e)
         {
             deviceID = Convert.ToInt32(Request.QueryString["id"]);
+            this.pg.OnPageChanged += new EventHandler(PageChanged);
+            this.pgVirtualSystem.OnPageChanged += new EventHandler(PageChangedVirtualSystem);
             if (!IsPostBack)
             {
                 InitData();
@@ -35,6 +37,8 @@ namespace GDK.BCM.PerfMonitor
 
         private void InitData()
         {
+            BindGraidDiskUsage();
+            BindGraidVirtualSystem();
             string mDeviceID = Request.QueryString["id"];
             int iDeviceID = Convert.ToInt32(Request.QueryString["id"]);
             DeviceOR _objDev = new DeviceDA().SelectDeviceORByID(mDeviceID);
@@ -62,7 +66,7 @@ namespace GDK.BCM.PerfMonitor
                 lblCPUUtilization.Text = "正常";
             }
 
-
+            
             #region 绑定 可用性
             DataPoint dp = new DataPoint();
             dp.LegendText = string.Format("{0}({1}%)", "可用", _objDev.AvailableRate);
@@ -99,5 +103,35 @@ namespace GDK.BCM.PerfMonitor
             }
             #endregion
         }
+
+        #region  绑定列表 -  磁盘、网络使用情况
+        private void PageChanged(object sender, EventArgs e)
+        {
+            BindGraidDiskUsage();
+        }
+        private void BindGraidDiskUsage()
+        {
+            int PageCount = 0;
+            DataTable dt = new PerfVirtualMachineDA().selectDiskUsage(pg.PageIndex, pg.PageSize, out PageCount, Request.QueryString["id"]);
+            gvUtilization.DataSource = dt;
+            gvUtilization.DataBind();
+            this.pg.RecordCount = PageCount;
+        }
+        #endregion
+
+        #region  绑定列表 -  虚拟机操作系统
+        private void PageChangedVirtualSystem(object sender, EventArgs e)
+        {
+            BindGraidVirtualSystem();
+        }
+        private void BindGraidVirtualSystem()
+        {
+            int PageCount = 0;
+            DataTable dt = new PerfVirtualMachineDA().selectVirtualSystem(pgVirtualSystem.PageIndex, pgVirtualSystem.PageSize, out PageCount, Request.QueryString["id"]);
+            gvVirtualSystem.DataSource = dt;
+            gvVirtualSystem.DataBind();
+            this.pgVirtualSystem.RecordCount = PageCount;
+        }
+        #endregion
     }
 }

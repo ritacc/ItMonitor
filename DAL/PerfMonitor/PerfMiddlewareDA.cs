@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
+using GDK.Entity.PerfMonitor;
 
 namespace GDK.DAL.PerfMonitor
 {
@@ -10,17 +11,230 @@ namespace GDK.DAL.PerfMonitor
     {
         public DataTable selectDeviceList(int pageCrrent, int pageSize, out int pageCount, string where)
         {
-            string sql = @"select d.Describe descInfo, dt.TypeName,d.*,
+            string sql = @"select d.DeviceID,d.DeviceName,dt.TypeName, d.IP,d.servname,
 case(d.Performance) when '故障' then 1 when  '报警' then 2 when '未启动' then 3 else 0 end  performance
 from t_Device d 
 inner join t_DeviceType dt on d.DeviceTypeID= dt.DeviceTypeID 
-left join  t_TmpValue xl on xl.DeviceID= d.DeviceID and xl.ChannelNO=11101 
-left join  t_TmpValue ms on ms.DeviceID= d.DeviceID and ms.ChannelNO=11102
 where dt.typeid=10 ";
             if (!string.IsNullOrEmpty(where))
             {
                 sql = string.Format(" {0} and  {1}", sql, where);
             }
+            DataTable dt = null;
+            int returnC = 0; try
+            {
+                dt = db.ExecuteQuery(sql, pageCrrent, pageSize, out returnC);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            pageCount = returnC;
+            return dt;
+        }
+
+
+        /// <summary>
+        /// 根据网络设备ID，查询详细信息
+        /// </summary>
+        /// <param name="mDeviceID"></param>
+        /// <returns></returns>
+        public PerfMiddlewareOR SelectDeviceDetail(string mDeviceID)
+        {
+            DataTable dt = new TmpValueDA().SelectValues(mDeviceID);
+            if (dt == null)
+                return null;
+            PerfMiddlewareOR obj = new PerfMiddlewareOR(dt);
+            //加载网络接口
+            obj.SubProts = GetNetPorts(obj.Ports);
+            return obj;
+        }
+
+
+        private DataTable GetNetPorts(string strPortinfo)
+        {
+            if (string.IsNullOrEmpty(strPortinfo))
+                return null;
+            string mWhere = "";
+            //3#^#1705#^#1706#^#1707
+            if (strPortinfo.IndexOf("#^#") > 0)
+            {
+                string[] strArr = strPortinfo.Replace("#^#", "$").Split('$');
+                if (strArr.Length < 2)
+                    return null;
+                mWhere = " d.DeviceID=" + strArr[1];
+                for (int i = 2; i < strArr.Length; i++)
+                {
+                    mWhere += " or d.DeviceID=" + strArr[i];
+                }
+            }
+
+            string sql = @"select * from dbo.t_TmpValue 
+where " + mWhere;
+
+            sql = string.Format(" {0} and  {1}", sql, mWhere);
+
+            DataTable dt = null;
+            try
+            {
+                dt = db.ExecuteQuery(sql);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return dt;
+
+        }
+
+        /// <summary>
+        /// Web应用的会话明细
+        /// </summary>
+        public DataTable selectConversationDetail(int pageCrrent, int pageSize, out int pageCount, string ParentDevID)
+        {
+            string sql = string.Format(@"select d.deviceid,ApplicationName.MonitorValue ApplicationName,ActivityNO.MonitorValue ActivityNO,
+MaxNO.MonitorValue MaxNO,TotalNO.MonitorValue TotalNO,ServletNO.MonitorValue ServletNO
+ from t_Device d 
+left join t_TmpValue ApplicationName on ApplicationName.DeviceID= d.DeviceID and ApplicationName.ChannelNO=21101
+left join t_TmpValue ActivityNO on ApplicationName.DeviceID= d.DeviceID and ApplicationName.ChannelNO=21102
+left join t_TmpValue MaxNO on MaxNO.DeviceID= d.DeviceID and MaxNO.ChannelNO=21103
+left join t_TmpValue TotalNO on TotalNO.DeviceID= d.DeviceID and TotalNO.ChannelNO=21104
+left join t_TmpValue ServletNO on ServletNO.DeviceID= d.DeviceID and ServletNO.ChannelNO=21105
+where d.DeviceTypeID= 211 and ParentDevID ={0} order by ApplicationName", ParentDevID);
+            DataTable dt = null;
+            int returnC = 0; try
+            {
+                dt = db.ExecuteQuery(sql, pageCrrent, pageSize, out returnC);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            pageCount = returnC;
+            return dt;
+        }
+
+        /// <summary>
+        /// 进程明细
+        /// </summary>
+        public DataTable selectThreadDetail(int pageCrrent, int pageSize, out int pageCount, string ParentDevID)
+        {
+            string sql = string.Format(@"select d.deviceid,ThreadName.MonitorValue ThreadName,ThreadNO.MonitorValue ThreadNO,
+FreeThreadNO.MonitorValue FreeThreadNO,Throughput.MonitorValue Throughput,UndecidedNO.MonitorValue UndecidedNO
+ from t_Device d 
+left join t_TmpValue ThreadName on ThreadName.DeviceID= d.DeviceID and ThreadName.ChannelNO=22201
+left join t_TmpValue ThreadNO on ThreadNO.DeviceID= d.DeviceID and ThreadNO.ChannelNO=22202
+left join t_TmpValue FreeThreadNO on FreeThreadNO.DeviceID= d.DeviceID and FreeThreadNO.ChannelNO=22203
+left join t_TmpValue Throughput on Throughput.DeviceID= d.DeviceID and Throughput.ChannelNO=22204
+left join t_TmpValue UndecidedNO on UndecidedNO.DeviceID= d.DeviceID and UndecidedNO.ChannelNO=22205
+where d.DeviceTypeID= 222 and ParentDevID ={0} order by ThreadName", ParentDevID);
+            DataTable dt = null;
+            int returnC = 0; try
+            {
+                dt = db.ExecuteQuery(sql, pageCrrent, pageSize, out returnC);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            pageCount = returnC;
+            return dt;
+        }
+
+        /// <summary>
+        /// 数据库连接池明细
+        /// </summary>
+        public DataTable selectPoolingDetails(int pageCrrent, int pageSize, out int pageCount, string ParentDevID)
+        {
+            string sql = string.Format(@"select d.deviceid,ConnectionPoolingName.MonitorValue ConnectionPoolingName,ConnectionPoolingSize.MonitorValue ConnectionPoolingSize,
+ActiveConnection.MonitorValue ActiveConnection,ActiveConnectionNO.MonitorValue ActiveConnectionNO,
+MissedConnection.MonitorValue MissedConnection,ThreadWait.MonitorValue ThreadWait
+ from t_Device d 
+left join t_TmpValue ConnectionPoolingName on ConnectionPoolingName.DeviceID= d.DeviceID and ConnectionPoolingName.ChannelNO=22601
+left join t_TmpValue ConnectionPoolingSize on ConnectionPoolingSize.DeviceID= d.DeviceID and ConnectionPoolingSize.ChannelNO=22602
+left join t_TmpValue ActiveConnection on ActiveConnection.DeviceID= d.DeviceID and ActiveConnection.ChannelNO=22603
+left join t_TmpValue ActiveConnectionNO on ActiveConnectionNO.DeviceID= d.DeviceID and ActiveConnectionNO.ChannelNO=22604
+left join t_TmpValue MissedConnection on MissedConnection.DeviceID= d.DeviceID and MissedConnection.ChannelNO=22605
+left join t_TmpValue ThreadWait on ThreadWait.DeviceID= d.DeviceID and ThreadWait.ChannelNO=22606
+where d.DeviceTypeID= 226 and ParentDevID ={0} order by ConnectionPoolingName", ParentDevID);
+            DataTable dt = null;
+            int returnC = 0; try
+            {
+                dt = db.ExecuteQuery(sql, pageCrrent, pageSize, out returnC);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            pageCount = returnC;
+            return dt;
+        }
+        
+        /// <summary>
+        /// 最近1小时的服务器应答时间
+        /// </summary>
+        public DataTable selectServerResponseTime(int pageCrrent, int pageSize, out int pageCount, string ParentDevID)
+        {
+            string sql = string.Format(@"select d.*,MinMs.MonitorValue MinMs,MaxMs.MonitorValue MaxMs,
+AverageMs.MonitorValue AverageMs,ResponseTime.MonitorValue ResponseTime
+ from t_Device d 
+left join t_TmpValue MinMs on MinMs.DeviceID= d.DeviceID and MinMs.ChannelNO=22301
+left join t_TmpValue MaxMs on MaxMs.DeviceID= d.DeviceID and MaxMs.ChannelNO=22302
+left join t_TmpValue AverageMs on AverageMs.DeviceID= d.DeviceID and AverageMs.ChannelNO=22303
+left join t_TmpValue ResponseTime on ResponseTime.DeviceID= d.DeviceID and ResponseTime.ChannelNO=22304
+where d.DeviceTypeID= 223 and ParentDevID ={0} order by LastPollingTime", ParentDevID);
+            DataTable dt = null;
+            int returnC = 0; try
+            {
+                dt = db.ExecuteQuery(sql, pageCrrent, pageSize, out returnC);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            pageCount = returnC;
+            return dt;
+        }
+
+        /// <summary>
+        /// 线程等待
+        /// </summary>
+        public DataTable selectThreadWait(int pageCrrent, int pageSize, out int pageCount, string ParentDevID)
+        {
+            string sql = string.Format(@"select d.deviceid,ATTRIBUTENAME.MonitorValue ATTRIBUTENAME,ATTRIBUTEVALUE.MonitorValue ATTRIBUTEVALUE,
+CONLLECTIONTIME.MonitorValue CONLLECTIONTIME
+ from t_Device d 
+left join t_TmpValue ATTRIBUTENAME on ATTRIBUTENAME.DeviceID= d.DeviceID and ATTRIBUTENAME.ChannelNO=22401
+left join t_TmpValue ATTRIBUTEVALUE on ATTRIBUTEVALUE.DeviceID= d.DeviceID and ATTRIBUTEVALUE.ChannelNO=22402
+left join t_TmpValue CONLLECTIONTIME on CONLLECTIONTIME.DeviceID= d.DeviceID and CONLLECTIONTIME.ChannelNO=22403
+where d.DeviceTypeID= 224 and ParentDevID ={0} order by LastPollingTime", ParentDevID);
+            DataTable dt = null;
+            int returnC = 0; try
+            {
+                dt = db.ExecuteQuery(sql, pageCrrent, pageSize, out returnC);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            pageCount = returnC;
+            return dt;
+        }
+
+        /// <summary>
+        /// 最近1小时的JVM堆使用情况
+        /// </summary>
+        public DataTable selectJVMHeap(int pageCrrent, int pageSize, out int pageCount, string ParentDevID)
+        {
+            string sql = string.Format(@"select d.deviceid,MinHeap.MonitorValue MinHeap,MaxHeap.MonitorValue MaxHeap,
+AverageHeap.MonitorValue AverageHeap,TotalHeap.MonitorValue TotalHeap,CurrentHeap.MonitorValue CurrentHeap
+ from t_Device d 
+left join t_TmpValue MinHeap on MinHeap.DeviceID= d.DeviceID and MinHeap.ChannelNO=22501
+left join t_TmpValue MaxHeap on MaxHeap.DeviceID= d.DeviceID and MaxHeap.ChannelNO=22502
+left join t_TmpValue AverageHeap on AverageHeap.DeviceID= d.DeviceID and AverageHeap.ChannelNO=22503
+left join t_TmpValue TotalHeap on TotalHeap.DeviceID= d.DeviceID and TotalHeap.ChannelNO=22504
+left join t_TmpValue CurrentHeap on CurrentHeap.DeviceID= d.DeviceID and CurrentHeap.ChannelNO=22505
+where d.DeviceTypeID= 225 and ParentDevID ={0} order by LastPollingTime", ParentDevID);
             DataTable dt = null;
             int returnC = 0; try
             {

@@ -10,7 +10,7 @@
 namespace GDK.BCM.PerfMonitor {
     
     
-    public partial class PrefApplication {
+    public partial class PerfSystemFailure {
         
         /// <summary>
         /// Head1 控件。

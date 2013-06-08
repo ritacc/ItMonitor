@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PrefDBLock.aspx.cs" Inherits="GDK.BCM.PerfMonitor.PrefDBLock" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PerfDBLock.aspx.cs" Inherits="GDK.BCM.PerfMonitor.PrefDBLock" %>
 <%@ Register Src="../UI/pagenavigate.ascx" TagName="pagenavigate" TagPrefix="uc2" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
