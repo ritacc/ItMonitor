@@ -331,8 +331,8 @@
     <Content Include="PerfMonitor\PrefApplication.aspx" />
     <Content Include="PerfMonitor\PrefApplicationDeatil.aspx" />
     <Content Include="PerfMonitor\PerfDBLock.aspx" />
-    <Content Include="PerfMonitor\PrefSystemFailure.aspx" />
-    <Content Include="PerfMonitor\PrefSystemFailureDetail.aspx" />
+    <Content Include="PerfMonitor\PerfSystemFailure.aspx" />
+    <Content Include="PerfMonitor\PerfSystemFailureDetail.aspx" />
     <Content Include="Ref\DBUtility.dll" />
     <Content Include="Ref\ICSharpCode.SharpZipLib.dll" />
     <Content Include="Ref\itextsharp.dll" />
@@ -766,19 +766,19 @@
     <Compile Include="PerfMonitor\PerfDBLock.aspx.designer.cs">
       <DependentUpon>PerfDBLock.aspx</DependentUpon>
     </Compile>
-    <Compile Include="PerfMonitor\PrefSystemFailure.aspx.cs">
-      <DependentUpon>PrefSystemFailure.aspx</DependentUpon>
+    <Compile Include="PerfMonitor\PerfSystemFailure.aspx.cs">
+      <DependentUpon>PerfSystemFailure.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="PerfMonitor\PrefSystemFailure.aspx.designer.cs">
-      <DependentUpon>PrefSystemFailure.aspx</DependentUpon>
+    <Compile Include="PerfMonitor\PerfSystemFailure.aspx.designer.cs">
+      <DependentUpon>PerfSystemFailure.aspx</DependentUpon>
     </Compile>
-    <Compile Include="PerfMonitor\PrefSystemFailureDetail.aspx.cs">
-      <DependentUpon>PrefSystemFailureDetail.aspx</DependentUpon>
+    <Compile Include="PerfMonitor\PerfSystemFailureDetail.aspx.cs">
+      <DependentUpon>PerfSystemFailureDetail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="PerfMonitor\PrefSystemFailureDetail.aspx.designer.cs">
-      <DependentUpon>PrefSystemFailureDetail.aspx</DependentUpon>
+    <Compile Include="PerfMonitor\PerfSystemFailureDetail.aspx.designer.cs">
+      <DependentUpon>PerfSystemFailureDetail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Role\RoleEdit.aspx.cs">

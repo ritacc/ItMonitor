@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace GDK.BCM.PerfMonitor
 {
-    public partial class PrefSystemFailureDetail : System.Web.UI.Page
+    public partial class PerfApplicationDeatil : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

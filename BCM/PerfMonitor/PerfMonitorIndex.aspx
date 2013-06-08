@@ -94,7 +94,7 @@
         <li id="xn" divname="PerfDB.aspx"><a>数据库</a></li>
         <li id="others" divname="PerfDomain.aspx"><a>DOMAIN</a></li>
         <li id="showSounds" divname="PerfMiddleware.aspx">中间件性能</li>
-        <li id="ljwd" divname="PrefSystemFailure.aspx"><a>系统故障</a></li>
+        <li id="ljwd" divname="PerfSystemFailure.aspx"><a>系统故障</a></li>
         <li id="gzms" divname="PrefApplication.aspx"><a>应用系统</a></li>
     </ul>
     <div  id="divFrm" style="vertical-align: top; border: 1px solid #CCCCCC;">

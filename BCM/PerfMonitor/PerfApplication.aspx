@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PrefApplication.aspx.cs" Inherits="GDK.BCM.PerfMonitor.PrefApplication" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PerfApplication.aspx.cs" Inherits="GDK.BCM.PerfMonitor.PerfApplication" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 

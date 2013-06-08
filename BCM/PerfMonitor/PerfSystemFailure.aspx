@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PrefSystemFailure.aspx.cs" Inherits="GDK.BCM.PerfMonitor.PrefSystemFailure" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PerfSystemFailure.aspx.cs" Inherits="GDK.BCM.PerfMonitor.PerfSystemFailure" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -67,7 +67,7 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="名称">
                         <ItemTemplate>
-                            <a href="PerfNetDetail.aspx?id=<%#Eval("DeviceID") %>"><span class="sercers">
+                            <a href="PerfSystemFailureDetail.aspx?id=<%#Eval("DeviceID") %>"><span class="sercers">
                                 <%#Eval("DeviceName")%></span></a>
                         </ItemTemplate>
                     </asp:TemplateField>
