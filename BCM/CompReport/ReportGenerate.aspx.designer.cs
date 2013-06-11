@@ -31,6 +31,24 @@ namespace GDK.BCM.CompReport {
         protected global::System.Web.UI.WebControls.Label lblDepart;
         
         /// <summary>
+        /// rdiM 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rdiM;
+        
+        /// <summary>
+        /// rdiS 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rdiS;
+        
+        /// <summary>
         /// dpdYear 控件。
         /// </summary>
         /// <remarks>
@@ -47,6 +65,24 @@ namespace GDK.BCM.CompReport {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList dpdMonth;
+        
+        /// <summary>
+        /// txtStartTime 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtStartTime;
+        
+        /// <summary>
+        /// txtEndTime 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtEndTime;
         
         /// <summary>
         /// dpdSystem 控件。

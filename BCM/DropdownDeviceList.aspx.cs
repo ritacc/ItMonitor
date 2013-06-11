@@ -23,6 +23,7 @@ namespace GDK.BCM
 			DataTable dt = mda.GetDeviceChanncelValuesList(60001, 211, 21103, DateTime.Now.AddHours(-1), DateTime.Now);
 
 			chLine.Series["Series1"].Points.DataBindXY(dt.Rows, "DeviceName", dt.Rows, "maxVal");//接收
+            chLine.Series["Series1"]["DrawingStyle"] = "Cylinder";
 		}
 
 		

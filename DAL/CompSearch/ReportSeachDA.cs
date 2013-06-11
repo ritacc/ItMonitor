@@ -9,9 +9,7 @@ namespace GDK.DAL.CompSearch
 {
     public class ReportSeachDA:DALBase
     {
-
-        public void GetDataReport(ReportSeachWhereOR whereOR
-           , out DataTable reReport, out DataTable reList)
+        public void SearchReportDataToTemp(ReportSeachWhereOR whereOR)
         {
             DateTime begin = whereOR.StartTime;
             DateTime end = whereOR.EndTime;
@@ -19,16 +17,16 @@ namespace GDK.DAL.CompSearch
             string devName = whereOR.DeviceName;
             int nDeviceID = whereOR.DeviceID; 
 
-            // 以1970年为限，（年份－1970）×12+月份为数值，一直循环到结束时间
-            int t1 = (begin.Year - 1970) * 12 + begin.Month - 1;
-            int t2 = (end.Year - 1970) * 12 + end.Month - 1;
-            int t = 0;
-
             string Datastr = whereOR.GetDataConver();
             string ChanncelWhere = whereOR.GetChanncelWhere("t1.channelno");
 
             string sqlTruncate = " truncate table ReportTemp;";
             db.ExecuteNoQuery(sqlTruncate);
+
+            // 以1970年为限，（年份－1970）×12+月份为数值，一直循环到结束时间
+            int t1 = (begin.Year - 1970) * 12 + begin.Month - 1;
+            int t2 = (end.Year - 1970) * 12 + end.Month - 1;
+            int t = 0;
 
             for (t = t1; t <= t2; t++)
             {
@@ -61,16 +59,19 @@ namespace GDK.DAL.CompSearch
                 string time2 = end.ToString("yyyy-MM-dd HH:mm:ss");
                 string strdev = Convert.ToString(nDeviceID);
 
-                string strSql = string.Format(@"insert into ReportTemp ([deviceno],[channelno],[monitorvalue],[monitordate])
+                string strSql = string.Format(@"insert into ReportTemp ([deviceno],[channelno],[monitorvalue],[monitordate],MonitorTime)
 select  t1.deviceid as deviceno, t1.channelno as channelno,
-convert(float,t1.monitorvalue) as monitorvalue,{0} as monitordate  from {1} t1 
-where t1.MonitorTime between '{2}' and '{3}' and ({4})", Datastr,  tableName2, time1, time2,ChanncelWhere);
+convert(float,t1.monitorvalue) as monitorvalue,{0} as monitordate,MonitorTime from {1} t1 
+where t1.MonitorTime between '{2}' and '{3}' and ({4})", Datastr, tableName2, time1, time2, ChanncelWhere);
 
                 //ChanncelWhere
                 db.ExecuteNoQuery(strSql);
             }
+        }
 
-            //
+        public void GetDataReport(ReportSeachWhereOR whereOR
+           , out DataTable reReport, out DataTable reList)
+        {
             string SqlReport = @"select val.*,tc.ChannelName from (
 select deviceno,ChannelNo,monitordate,
 round( avg(MonitorValue),2) avgValue,
@@ -88,12 +89,16 @@ max(MonitorValue) maxValue,min(MonitorValue) minValue from ReportTemp
 group by deviceno,ChannelNo
 ) as val
 left join t_Channel tc on tc.DeviceID= val.deviceno and tc.ChannelNo= val.ChannelNo;
-drop table temp";
+";
 
             DataTable dtList = db.ExecuteQuery(sqlList);
             reList = dtList;
         }
 
 
-    }
+    
+
+
+
+}
 }

@@ -14,17 +14,13 @@
     <form id="form1" runat="server">
     
    
-			 <asp:Chart ID="chLine" runat="server" Width="510" Height="270px" BackColor="#FAFAFA">
-                        <%-- BackColor="WhiteSmoke"  BorderWidth="2"
-            BorderColor="26, 59, 105" Palette="BrightPastel" BorderlineDashStyle="Solid" BackSecondaryColor="White" BackGradientStyle="TopBottom"--%>
+			<asp:Chart ID="chLine" runat="server" Width="510" Height="270px" BackColor="#FAFAFA">
                         <Legends>
-                            <asp:Legend TitleFont="Microsoft Sans Serif, 8pt, style=Bold" BackColor="Transparent" 
-							Font="Trebuchet MS, 8.25pt, style=Bold" IsTextAutoFit="False" Enabled="False" Name="Default">
+                            <asp:Legend TitleFont="Microsoft Sans Serif, 8pt, style=Bold" BackColor="Transparent" Font="Trebuchet MS, 8.25pt, style=Bold" IsTextAutoFit="False" Enabled="False" Name="Default">
                             </asp:Legend>
                         </Legends>
-                        <%--        <BorderSkin SkinStyle="Emboss"></BorderSkin>--%>
                         <Series>
-                            <asp:Series Name="Series1" IsValueShownAsLabel="True" LabelFormat="{0}" BorderColor="180, 26, 59, 105">
+                            <asp:Series Name="Series1"   IsValueShownAsLabel="True" LabelFormat="{0}台" BorderColor="180, 26, 59, 105">
                             </asp:Series>
                         </Series>
                         <ChartAreas>

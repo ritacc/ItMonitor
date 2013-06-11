@@ -10,16 +10,7 @@
 namespace GDK.BCM.StateMonitor {
     
     
-    public partial class StateApplication {
-        
-        /// <summary>
-        /// Head1 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
+    public partial class StateApplicationLoad {
         
         /// <summary>
         /// form1 控件。
@@ -31,12 +22,12 @@ namespace GDK.BCM.StateMonitor {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// rpApp 控件。
+        /// rptMenu2 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rpApp;
+        protected global::System.Web.UI.WebControls.Repeater rptMenu2;
     }
 }

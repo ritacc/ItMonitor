@@ -15,12 +15,6 @@ namespace GDK.BCM.Sysadmin
             {
                 rptMenu2.DataSource = objOrg;
                 rptMenu2.DataBind();
-                //TreeNode tn = new TreeNode();
-                //tn.Value = objOrg.GUID;
-                //tn.Text = objOrg.DISPLAY_NAME;
-                //tn.NavigateUrl = "javascript:LoadDepartments('" + objOrg.GUID+"');";
-                //LoadChildNode(tn, objOrg.GUID);
-                //tvDepartMentList.Nodes.Add(tn);
             }
         }
     }

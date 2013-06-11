@@ -353,6 +353,7 @@
     <Content Include="Scripts\TaskSyxzcEdit.js" />
     <Content Include="StateMonitor\StateApplication.aspx" />
     <Content Include="StateMonitor\StateApplicationDetail.aspx" />
+    <Content Include="StateMonitor\StateApplicationLoad.aspx" />
     <Content Include="StateMonitor\StateCompRoomEnvi.aspx" />
     <Content Include="StateMonitor\StateCompRoomEnviDetail.aspx" />
     <Content Include="StateMonitor\StateHost.aspx" />
@@ -813,6 +814,13 @@
     </Compile>
     <Compile Include="StateMonitor\StateApplicationDetail.aspx.designer.cs">
       <DependentUpon>StateApplicationDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StateMonitor\StateApplicationLoad.aspx.cs">
+      <DependentUpon>StateApplicationLoad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StateMonitor\StateApplicationLoad.aspx.designer.cs">
+      <DependentUpon>StateApplicationLoad.aspx</DependentUpon>
     </Compile>
     <Compile Include="StateMonitor\StateCompRoomEnvi.aspx.cs">
       <DependentUpon>StateCompRoomEnvi.aspx</DependentUpon>

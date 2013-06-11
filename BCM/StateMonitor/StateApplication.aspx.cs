@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using GDK.DAL.StateMonitor;
+using System.Data;
+using GDK.DAL.Sys;
 
 namespace GDK.BCM.StateMonitor
 {
@@ -18,7 +20,7 @@ namespace GDK.BCM.StateMonitor
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.pg.OnPageChanged += new EventHandler(PageChanged);
+            
             if (!IsPostBack)
                 BindGraid();
         }
@@ -29,28 +31,14 @@ namespace GDK.BCM.StateMonitor
 
         private void BindGraid()
         {
-            string mWhere = string.Empty;
-            if (!string.IsNullOrEmpty(txtValue.Text))
+            if (!Page.IsPostBack)
             {
-                string filds = "dev.IP";
-                if (rdbName.Checked)
+                DataTable dt = new StateApplicationDA().GetTopBuss();
+                if (null != dt)
                 {
-                    filds = "dev.DeviceName";
+                    rpApp.DataSource = dt;
+                    rpApp.DataBind();
                 }
-                mWhere = string.Format(" {0} like '%{1}%'", filds, txtValue.Text);
-            }
-            try
-            {
-                int PageCount = 0;
-                this.gvDataList.DataSource = new StateApplicationDA()
-                    .selectDeviceList(pg.PageIndex, pg.PageSize, out PageCount, mWhere);
-
-                this.gvDataList.DataBind();
-                this.pg.RecordCount = PageCount;
-            }
-            catch (Exception ex)
-            {
-                AlertNormal(ex.Message);
             }
         }
         /// <summary>

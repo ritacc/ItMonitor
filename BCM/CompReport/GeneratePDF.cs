@@ -6,11 +6,15 @@ using iTextSharp.text;
 using System.IO;
 using iTextSharp.text.pdf;
 using System.Text;
+using GDK.DAL.CompSearch;
+using System.Data;
+using System.Web.UI.DataVisualization.Charting;
 
 namespace GDK.BCM.CompReport
 {
     public class GeneratePDF
     {
+        #region 属性
         /// <summary>
         /// 用于生成，曲线图
         /// </summary>
@@ -41,11 +45,28 @@ namespace GDK.BCM.CompReport
         public string SavePath { get; set; }
 
         public const string Company = "广东省国家税务局信息中心";
+        #endregion
 
+        #region 时间
         /// <summary>
         /// 报表统计年/月(2012年6月)
         /// </summary>
         public string ReportData { get; set; }
+
+        /// <summary>
+        /// 时间类型：M S,M选定时间,S:选定时间
+        /// </summary>
+        public string TimeType { get; set; }
+
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+        #endregion
+
+        /// <summary>
+        /// 本文档表序号
+        /// </summary>
+        private int TabeleIndex = 0;
+
         public string UserPart { get; set; }
         BaseFont bfSun = null;
         /// <summary>
@@ -60,6 +81,7 @@ namespace GDK.BCM.CompReport
             bfSun = BaseFont.createFont(fontPath + "SIMSUN.TTC,1", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
         }
 
+        private iTextSharp.text.Document document=null;
         public string Generate()
         {
             InitFont();
@@ -71,16 +93,16 @@ namespace GDK.BCM.CompReport
 
             string FilePath = currentPath + Guid.NewGuid().ToString() + ".pdf";
 
-            iTextSharp.text.Document document = new iTextSharp.text.Document();
+            document = new iTextSharp.text.Document();
             PdfWriter.getInstance(document, new FileStream(FilePath, FileMode.Create));
 
             document.Open();
-            InitFirstPage(document);
-            ContentFirstpart(document);//第一部分
-            ContentSecondPart(document);//第二部分
-            ContentThreed(document);//第三部分
+            InitFirstPage();
+            ContentFirstpart();//第一部分
+            ContentSecondPart();//第二部分
+            ContentThreed();//第三部分
             document.Close();
-
+            
             return FilePath;
         }
 
@@ -90,8 +112,9 @@ namespace GDK.BCM.CompReport
         /// 内容第一部分
         /// </summary>
         /// <param name="document"></param>
-        public void ContentFirstpart(iTextSharp.text.Document document)
+        public void ContentFirstpart()
         {
+            document.newPage();
             string strContent = "第一部分、本月检查概述";
             Paragraph pg = new Paragraph(strContent, GetFont(FontEnum.TitleCenter));
             pg.setAlignment("Center");
@@ -112,7 +135,7 @@ namespace GDK.BCM.CompReport
             sb.Append("现将本次检查结果进行通报。\n");
             pg = new Paragraph(sb.ToString(), GetFont(FontEnum.Content));
             document.Add(pg);
-
+         
 
 
             pg = new Paragraph("\n\n二、检查内容说明\n", GetFont(FontEnum.TitleLeft1));
@@ -167,7 +190,7 @@ namespace GDK.BCM.CompReport
 
         }
 
-        public void ContentSecondPart(iTextSharp.text.Document document)
+        public void ContentSecondPart()
         {
             string strContent = "\n\n\n\n第二部分、系统运行状况整体分析\n";
             Paragraph pg = new Paragraph(strContent, GetFont(FontEnum.TitleCenter));
@@ -194,12 +217,28 @@ namespace GDK.BCM.CompReport
             pg = new Paragraph(sb.ToString(), GetFont(FontEnum.Content));
             document.Add(pg);
 
+            //主要CPU
             pg = new Paragraph("\n1. 主机CPU利用率汇总统计", GetFont(FontEnum.Content));
             document.Add(pg);
-            AddImg(document);//生成，统计图
-            
-            
+            chLine.Titles[0].Text = "主机CPU利用率均值曲线序列图";
+            DataTable dtList = UseReprot(document, 25201);
+            WriteTable(dtList, "当月CPU压力状态");//
+            TableDesc("主机CPU");
 
+            pg = new Paragraph("\n2. 主机内存利用率汇总统计", GetFont(FontEnum.Content));
+            document.Add(pg);
+            chLine.Titles[0].Text = "主机内存利用率均值曲线序列图";
+            dtList = UseReprot(document, 25202);
+            WriteTable(dtList, "当月内存压力状态");//
+            TableDesc("主机内存");
+
+            pg = new Paragraph("\n3. 主机磁盘利用率汇总统计", GetFont(FontEnum.Content));
+            document.Add(pg);
+            chLine.Titles[0].Text = "主机磁盘利用率均值曲线序列图";
+            dtList = UseReprot(document, 25203);
+            WriteTable(dtList, "当月磁盘压力状态");//
+            TableDesc("主机磁盘");
+            
 
             pg = new Paragraph("\n\n二、数据库使用情况统计分析", GetFont(FontEnum.TitleLeft1));
             document.Add(pg);
@@ -225,13 +264,51 @@ namespace GDK.BCM.CompReport
             document.Add(pg);
         }
 
-        public void ContentThreed(iTextSharp.text.Document document)
+        public void ContentThreed()
         {
             string strContent = "\n\n\n\n\n第三部分、业务运行状况整体分析";
             Paragraph pg = new Paragraph(strContent, GetFont(FontEnum.TitleCenter));
             pg.setAlignment("Center");
             document.Add(pg);
         }
+        #region 第一部分 表格描述
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mTYpe"></param>
+        public void TableDesc(string mTYpe)
+        {
+            Font font = new Font(bfSun, 11);
+            font.setStyle("bold");
+            TabeleIndex++;
+            string minfo = string.Format("表{0}.{1}利用率汇总表", TabeleIndex, mTYpe);
+            Paragraph pg = pg = new Paragraph(minfo, font);
+            pg.setAlignment("Center");
+            document.Add(pg);
+            pg = new Paragraph("说明：", font);
+            document.Add(pg);
+
+            string DescContent = string.Format(@"1) 本表是按照{0}利用率均值降序排列
+2) 表中的数据含意如下：
+    均值：本月工作日中，{0}利用率的所有采点的均值。
+    峰值：本月工作日中，{0}利用率的所有采点的最高值。
+    峰值>80%的次数，按照每5分钟一次的采样率，本月{0}峰值达80%及以上的出现次数。
+    {0}压力状态，按照规定评级标准，对{0}压力情况的评估，详细评级标准如下：
+        极低：均值<20%,且峰值<100%
+        正常：均值<60%，且峰值≤100%,且峰值大于等于80%的次数≤200
+        高压：均值<60%，且峰值=100%,且峰值大于等于80%的次数>200
+        警戒：60%≤均值<80%.
+        报警：均值≥80%
+3) “-”表示，未提交有效数据。", mTYpe);
+            font = new Font(bfSun, 9);
+            font.setStyle("normal");
+            pg = new Paragraph(DescContent, font);
+            document.Add(pg);          
+        }
+
+
+        #endregion
+
         #region 字体处理
         Font GetFont(FontEnum mtype)
         {
@@ -250,6 +327,14 @@ namespace GDK.BCM.CompReport
                     mFont = new Font(bfSun, 14);
                     mFont.setStyle("normal");
                     break;
+                case FontEnum.Title12Bold:
+                    mFont = new Font(bfSun, 12);
+                    mFont.setStyle("bold");
+                    break;
+                case FontEnum.TableHeader:
+                    mFont = new Font(bfSun, 14);
+                    mFont.setStyle("bold");
+                    break;
                 default:
                     mFont = new Font(bfSun, 12);
                     mFont.setStyle("normal");
@@ -264,7 +349,9 @@ namespace GDK.BCM.CompReport
             TitleCenter,
             TitleLeft1,
             TitleLeft2,
-            Content
+            Title12Bold,
+            Content,
+            TableHeader
         }
         #endregion
 
@@ -286,7 +373,7 @@ namespace GDK.BCM.CompReport
         /// 第一页信息
         /// </summary>
         /// <param name="document"></param>
-        public void InitFirstPage(iTextSharp.text.Document document)
+        public void InitFirstPage()
         {
             document.Add(new Paragraph("\n\n\n\n"));
             //Title
@@ -313,14 +400,97 @@ namespace GDK.BCM.CompReport
 
             font = new Font(bfSun, 14);
             font.setStyle("bold");
-            string mTime = string.Format("{0}年{1}月", DateTime.Now.Year, DateTime.Now.Month);
-            pg = new Paragraph(mTime, font);
+            //string mTime = string.Format("{0}年{1}月", DateTime.Now.Year, DateTime.Now.Month);
+            pg = new Paragraph(ReportData, font);
             pg.setAlignment("Center");
             document.Add(pg);
-
-            document.Add(new Paragraph("\n\n\n\n\n\n\n\n\n\n"));
-
+            
         }
 
+
+        #region 数据库处理
+
+        /// <summary>
+        /// 使用率报表,并返回，table数据列表
+        /// </summary>
+        public DataTable UseReprot(iTextSharp.text.Document document, int ChanncelID)
+        {
+            PdfDA mda = new PdfDA();
+            mda.InitData(SystemID, ChanncelID, StartTime, EndTime);
+            DataTable dt = mda.GetUseLine();
+
+            Series ser = new Series();
+            ser.ChartType = SeriesChartType.Line;
+            ser.MarkerStyle = MarkerStyle.Circle;
+            ser.MarkerSize = 3;
+            ser.IsValueShownAsLabel = true;
+            ser.LabelFormat="{0}%";
+
+            ser.Points.DataBindXY(dt.Rows, "monitordate", dt.Rows, "val");
+            chLine.Series.Add(ser);
+            
+            AddImg(document);//生成，统计图
+
+            return mda.GetUseTableInfo();
+        }
+
+        /// <summary>
+        /// 写入表格数据
+        /// </summary>
+        /// <param name="dt"></param>
+        public void WriteTable(DataTable dt,string mTypeStatusInfo)
+        {
+            
+            PdfPTable pdfTB = new PdfPTable(6);
+            pdfTB.WidthPercentage = 99;
+            pdfTB.setWidths(new float[] { 200f, 200f, 100f, 100f, 120f, 120f });
+            //业务系统名称  IP	均值(%)		峰值(%) 峰值>80%出现次数(次) 当月CPU压力状态
+            Color bgColor = new Color(System.Drawing.Color.Beige); ;
+
+            Font ft = GetFont(FontEnum.TableHeader);
+            PdfPCell headr = new PdfPCell(new Phrase("业务系统名称", ft));
+            headr.BackgroundColor = bgColor;
+            pdfTB.addCell(headr);
+
+            headr = new PdfPCell(new Phrase("IP", ft));
+            headr.BackgroundColor = bgColor;
+            pdfTB.addCell(headr);
+
+            headr = new PdfPCell(new Phrase("均值(%)", ft));
+            headr.BackgroundColor = bgColor;
+            pdfTB.addCell(headr);
+
+            headr = new PdfPCell(new Phrase("峰值(%)", ft));
+            headr.BackgroundColor = bgColor;
+            pdfTB.addCell(headr);
+
+            headr = new PdfPCell(new Phrase("峰值>80%出现次数(次)", ft));
+            headr.BackgroundColor = bgColor;
+            pdfTB.addCell(headr);
+
+            headr = new PdfPCell(new Phrase(mTypeStatusInfo, ft));
+            headr.BackgroundColor = bgColor;
+            pdfTB.addCell(headr);
+
+            if (dt != null)
+            {
+
+                Font ftContent = GetFont(FontEnum.Content);
+                foreach (DataRow dr in dt.Rows)
+                {
+
+                    pdfTB.addCell(new Phrase(dr["DeviceName"].ToString(), ftContent));
+                    pdfTB.addCell(new Phrase(dr["ip"].ToString(), ftContent));
+                    pdfTB.addCell(new Phrase(dr["avgval"].ToString(), ftContent));
+                    pdfTB.addCell(new Phrase(dr["maxval"].ToString(), ftContent));
+                    pdfTB.addCell(new Phrase(dr["maxNum"].ToString(), ftContent));
+                    pdfTB.addCell(new Phrase(dr["Status"].ToString(), ftContent));
+                }
+            }
+            string strContent = string.Format("统计期：{0}", ReportData);
+            document.Add(new Phrase(strContent, GetFont(FontEnum.Title12Bold)));
+            document.Add(pdfTB);
+        }
+        #endregion
     }
 }
