@@ -20,17 +20,7 @@ namespace GDK.BCM.StateMonitor
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-            if (!IsPostBack)
-                BindGraid();
-        }
-        protected void PageChanged(object sender, EventArgs e)
-        {
-            BindGraid();
-        }
 
-        private void BindGraid()
-        {
             if (!Page.IsPostBack)
             {
                 DataTable dt = new StateApplicationDA().GetTopBuss();
@@ -40,13 +30,6 @@ namespace GDK.BCM.StateMonitor
                     rpApp.DataBind();
                 }
             }
-        }
-        /// <summary>
-        /// 查询
-        /// </summary>
-        protected void btnSearch_Click(object sender, EventArgs e)
-        {
-            BindGraid();
         }
     }
 }

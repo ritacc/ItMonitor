@@ -306,6 +306,9 @@
     <Content Include="Main\OutoffTime.aspx" />
     <Content Include="Map.aspx" />
     <Content Include="PerfMonitor\Perf.aspx" />
+    <Content Include="PerfMonitor\PerfApplication.aspx" />
+    <Content Include="PerfMonitor\PerfApplicationDeatil.aspx" />
+    <Content Include="PerfMonitor\PerfApplicationLoad.aspx" />
     <Content Include="PerfMonitor\PerfDB.aspx" />
     <Content Include="PerfMonitor\PerfDBBack.aspx" />
     <Content Include="PerfMonitor\PerfDBConversation.aspx" />
@@ -589,6 +592,27 @@
     </Compile>
     <Compile Include="PerfMonitor\Perf.aspx.designer.cs">
       <DependentUpon>Perf.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfApplication.aspx.cs">
+      <DependentUpon>PerfApplication.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfApplication.aspx.designer.cs">
+      <DependentUpon>PerfApplication.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfApplicationDeatil.aspx.cs">
+      <DependentUpon>PerfApplicationDeatil.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfApplicationDeatil.aspx.designer.cs">
+      <DependentUpon>PerfApplicationDeatil.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfApplicationLoad.aspx.cs">
+      <DependentUpon>PerfApplicationLoad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfApplicationLoad.aspx.designer.cs">
+      <DependentUpon>PerfApplicationLoad.aspx</DependentUpon>
     </Compile>
     <Compile Include="PerfMonitor\PerfDB.aspx.cs">
       <DependentUpon>PerfDB.aspx</DependentUpon>
