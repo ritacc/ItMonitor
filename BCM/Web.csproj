@@ -92,6 +92,9 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.DomainServices.EntityFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="System.ServiceModel.DomainServices.Hosting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.ServiceModel.DomainServices.Server, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms" />
@@ -111,6 +114,7 @@
     <Content Include="AlertAdmin\HealthConfigList.aspx" />
     <Content Include="AlertAdmin\HealthConfigMain.aspx" />
     <Content Include="ClientBin\ITMonitorControl.xap" />
+    <Content Include="ClientBin\NetStatus.xap" />
     <Content Include="CompReport\Generate.aspx" />
     <Content Include="CompReport\ReportConfig.aspx" />
     <Content Include="CompReport\ReportGenerate.aspx" />
@@ -586,6 +590,12 @@
     <Compile Include="Map.aspx.designer.cs">
       <DependentUpon>Map.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Moldes\Monitor.Designer.cs" />
+    <Compile Include="Moldes\Monitor1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Monitor.edmx</DependentUpon>
+    </Compile>
     <Compile Include="PerfMonitor\Perf.aspx.cs">
       <DependentUpon>Perf.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -825,6 +835,10 @@
     <Compile Include="Role\UserAuthList.aspx.designer.cs">
       <DependentUpon>UserAuthList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Servers\FileService.cs" />
+    <Compile Include="Servers\MonitorServers.cs" />
+    <Compile Include="Servers\MonitorServers.metadata.cs" />
+    <Compile Include="Servers\MonitorServersC.cs" />
     <Compile Include="StateMonitor\StateApplication.aspx.cs">
       <DependentUpon>StateApplication.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1070,6 +1084,10 @@
     <None Include="images\Suffix\vssver2.scc" />
     <None Include="images\SysAdmin\Thumbs.db" />
     <None Include="images\SysAdmin\vssver2.scc" />
+    <EntityDeploy Include="Moldes\Monitor.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Monitor1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

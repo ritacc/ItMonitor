@@ -1,0 +1,524 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MonitorDemo2Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="MonitorDemo2ModelStoreContainer">
+          <EntitySet Name="t_Control" EntityType="MonitorDemo2Model.Store.t_Control" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="t_ControlProperty" EntityType="MonitorDemo2Model.Store.t_ControlProperty" store:Type="Tables" store:Schema="dbo" store:Name="t_ControlProperty">
+            <DefiningQuery>SELECT 
+      [t_ControlProperty].[ControlID] AS [ControlID], 
+      [t_ControlProperty].[PropertyNo] AS [PropertyNo], 
+      [t_ControlProperty].[PropertyName] AS [PropertyName], 
+      [t_ControlProperty].[DefaultValue] AS [DefaultValue], 
+      [t_ControlProperty].[Caption] AS [Caption]
+      FROM [dbo].[t_ControlProperty] AS [t_ControlProperty]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="t_Element" EntityType="MonitorDemo2Model.Store.t_Element" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="t_ElementProperty" EntityType="MonitorDemo2Model.Store.t_ElementProperty" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="t_MonitorSystemParam" EntityType="MonitorDemo2Model.Store.t_MonitorSystemParam" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="t_Screen" EntityType="MonitorDemo2Model.Store.t_Screen" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="t_Station" EntityType="MonitorDemo2Model.Store.t_Station" store:Type="Tables" store:Schema="dbo" store:Name="t_Station">
+            <DefiningQuery>SELECT 
+      [t_Station].[StationID] AS [StationID], 
+      [t_Station].[StationName] AS [StationName], 
+      [t_Station].[IP] AS [IP], 
+      [t_Station].[Port] AS [Port], 
+      [t_Station].[HistoryPort] AS [HistoryPort]
+      FROM [dbo].[t_Station] AS [t_Station]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_DeviceStatus" EntityType="MonitorDemo2Model.Store.v_DeviceStatus" store:Type="Views" store:Schema="dbo" store:Name="v_DeviceStatus">
+            <DefiningQuery>SELECT 
+      [v_DeviceStatus].[ScreenID] AS [ScreenID], 
+      [v_DeviceStatus].[ElementID] AS [ElementID], 
+      [v_DeviceStatus].[ElementName] AS [ElementName], 
+      [v_DeviceStatus].[ControlID] AS [ControlID], 
+      [v_DeviceStatus].[DeviceID] AS [DeviceID], 
+      [v_DeviceStatus].[DeviceName] AS [DeviceName], 
+      [v_DeviceStatus].[DevStatus] AS [DevStatus]
+      FROM [dbo].[v_DeviceStatus] AS [v_DeviceStatus]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_NetDevice" EntityType="MonitorDemo2Model.Store.v_NetDevice" store:Type="Views" store:Schema="dbo" store:Name="v_NetDevice">
+            <DefiningQuery>SELECT 
+      [v_NetDevice].[DeviceID] AS [DeviceID], 
+      [v_NetDevice].[DeviceName] AS [DeviceName], 
+      [v_NetDevice].[StationID] AS [StationID], 
+      [v_NetDevice].[StationName] AS [StationName], 
+      [v_NetDevice].[Enable] AS [Enable], 
+      [v_NetDevice].[IP] AS [IP]
+      FROM [dbo].[v_NetDevice] AS [v_NetDevice]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+        <EntityType Name="t_Control">
+          <Key>
+            <PropertyRef Name="ControlID" />
+          </Key>
+          <Property Name="ControlID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ControlName" Type="varchar" MaxLength="50" />
+          <Property Name="ControlType" Type="int" />
+          <Property Name="ImageURL" Type="varchar" MaxLength="50" />
+          <Property Name="ControlTypeName" Type="varchar" MaxLength="50" />
+          <Property Name="ControlCaption" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“Test0518.dbo.t_ControlProperty”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+        <EntityType Name="t_ControlProperty">
+          <Key>
+            <PropertyRef Name="ControlID" />
+            <PropertyRef Name="PropertyNo" />
+          </Key>
+          <Property Name="ControlID" Type="int" Nullable="false" />
+          <Property Name="PropertyNo" Type="int" Nullable="false" />
+          <Property Name="PropertyName" Type="varchar" MaxLength="50" />
+          <Property Name="DefaultValue" Type="varchar" MaxLength="128" />
+          <Property Name="Caption" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="t_Element">
+          <Key>
+            <PropertyRef Name="ElementID" />
+          </Key>
+          <Property Name="ElementID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ElementName" Type="varchar" MaxLength="50" />
+          <Property Name="ControlID" Type="int" />
+          <Property Name="ScreenX" Type="int" />
+          <Property Name="ScreenY" Type="int" />
+          <Property Name="TxtInfo" Type="varchar" MaxLength="200" />
+          <Property Name="Width" Type="int" />
+          <Property Name="Height" Type="int" />
+          <Property Name="ImageURL" Type="varchar" MaxLength="200" />
+          <Property Name="ForeColor" Type="varchar" MaxLength="200" />
+          <Property Name="Font" Type="varchar" MaxLength="200" />
+          <Property Name="ChildScreenID" Type="varchar" MaxLength="1000" />
+          <Property Name="DeviceID" Type="int" />
+          <Property Name="ChannelNo" Type="int" />
+          <Property Name="ScreenID" Type="int" />
+          <Property Name="BackColor" Type="varchar" MaxLength="50" />
+          <Property Name="Transparent" Type="int" />
+          <Property Name="oldX" Type="int" />
+          <Property Name="oldY" Type="int" />
+          <Property Name="Method" Type="int" />
+          <Property Name="MinFloat" Type="float" />
+          <Property Name="MaxFloat" Type="float" />
+          <Property Name="SerialNum" Type="int" />
+          <Property Name="TotalLength" Type="float" />
+          <Property Name="LevelNo" Type="int" />
+          <Property Name="ComputeStr" Type="varchar" MaxLength="100" />
+          <Property Name="ElementType" Type="nvarchar" MaxLength="50" />
+          <Property Name="ParentID" Type="int" />
+        </EntityType>
+        <EntityType Name="t_ElementProperty">
+          <Key>
+            <PropertyRef Name="ElementID" />
+            <PropertyRef Name="PropertyNo" />
+          </Key>
+          <Property Name="ElementID" Type="int" Nullable="false" />
+          <Property Name="PropertyNo" Type="int" Nullable="false" />
+          <Property Name="PropertyValue" Type="varchar" MaxLength="4096" />
+          <Property Name="Caption" Type="varchar" MaxLength="50" />
+          <Property Name="PropertyName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="t_MonitorSystemParam">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="MonitorRefreshTime" Type="int" />
+          <Property Name="StartScreenID" Type="int" Nullable="false" />
+          <Property Name="AlarmLogTime" Type="int" />
+          <Property Name="ServerIP" Type="nvarchar" MaxLength="50" />
+          <Property Name="ServerPort" Type="int" />
+          <Property Name="Door_Sysid" Type="varchar" MaxLength="50" />
+          <Property Name="Door_Com" Type="int" />
+          <Property Name="HaveDoor" Type="int" />
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="t_Screen">
+          <Key>
+            <PropertyRef Name="ScreenID" />
+          </Key>
+          <Property Name="ScreenID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ScreenName" Type="varchar" MaxLength="64" />
+          <Property Name="ImageURL" Type="varchar" MaxLength="256" />
+          <Property Name="ParentScreenID" Type="int" />
+          <Property Name="StationID" Type="int" />
+          <Property Name="Flag" Type="int" />
+          <Property Name="Width" Type="int" />
+          <Property Name="Height" Type="int" />
+          <Property Name="BackColor" Type="nchar" MaxLength="20" />
+          <Property Name="AutoSize" Type="bit" />
+        </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“Test0518.dbo.t_Station”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+        <EntityType Name="t_Station">
+          <Key>
+            <PropertyRef Name="StationID" />
+          </Key>
+          <Property Name="StationID" Type="int" Nullable="false" />
+          <Property Name="StationName" Type="nvarchar" MaxLength="50" />
+          <Property Name="IP" Type="nvarchar" MaxLength="50" />
+          <Property Name="Port" Type="int" />
+          <Property Name="HistoryPort" Type="int" />
+        </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“Test0518.dbo.v_DeviceStatus”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+        <EntityType Name="v_DeviceStatus">
+          <Key>
+            <PropertyRef Name="ElementID" />
+            <PropertyRef Name="DeviceID" />
+          </Key>
+          <Property Name="ScreenID" Type="int" />
+          <Property Name="ElementID" Type="int" Nullable="false" />
+          <Property Name="ElementName" Type="varchar" MaxLength="50" />
+          <Property Name="ControlID" Type="int" />
+          <Property Name="DeviceID" Type="int" Nullable="false" />
+          <Property Name="DeviceName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DevStatus" Type="nvarchar(max)" />
+        </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“Test0518.dbo.v_NetDevice”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+        <EntityType Name="v_NetDevice">
+          <Key>
+            <PropertyRef Name="DeviceID" />
+          </Key>
+          <Property Name="DeviceID" Type="int" Nullable="false" />
+          <Property Name="DeviceName" Type="nvarchar" MaxLength="50" />
+          <Property Name="StationID" Type="int" />
+          <Property Name="StationName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Enable" Type="int" />
+          <Property Name="IP" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Function Name="P_GetElementPropertiesByScreenID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ScreenID" Type="int" Mode="In" />
+        </Function>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MonitorDemo2Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="MS" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="t_Control" EntityType="MonitorDemo2Model.t_Control" />
+          <EntitySet Name="t_ControlProperty" EntityType="MonitorDemo2Model.t_ControlProperty" />
+          <EntitySet Name="t_Element" EntityType="MonitorDemo2Model.t_Element" />
+          <EntitySet Name="t_ElementProperty" EntityType="MonitorDemo2Model.t_ElementProperty" />
+          <EntitySet Name="t_MonitorSystemParam" EntityType="MonitorDemo2Model.t_MonitorSystemParam" />
+          <EntitySet Name="t_Screen" EntityType="MonitorDemo2Model.t_Screen" />
+          <FunctionImport Name="P_CopyScreen">
+            <Parameter Name="newScreenID" Mode="In" Type="Int32" />
+            <Parameter Name="oldScreenID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="t_Station" EntityType="MonitorDemo2Model.t_Station" />
+          <EntitySet Name="v_DeviceStatus" EntityType="MonitorDemo2Model.v_DeviceStatus" />
+          <EntitySet Name="v_NetDevice" EntityType="MonitorDemo2Model.v_NetDevice" />
+          <FunctionImport Name="P_GetElementPropertiesByScreenID" EntitySet="t_ElementProperty" ReturnType="Collection(MonitorDemo2Model.t_ElementProperty)">
+            <Parameter Name="ScreenID" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="t_Control">
+          <Key>
+            <PropertyRef Name="ControlID" />
+          </Key>
+          <Property Type="Int32" Name="ControlID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="ControlName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="ControlType" />
+          <Property Type="String" Name="ImageURL" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ControlTypeName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ControlCaption" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="t_ControlProperty">
+          <Key>
+            <PropertyRef Name="ControlID" />
+            <PropertyRef Name="PropertyNo" />
+          </Key>
+          <Property Type="Int32" Name="ControlID" Nullable="false" />
+          <Property Type="Int32" Name="PropertyNo" Nullable="false" />
+          <Property Type="String" Name="PropertyName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="DefaultValue" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Caption" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="t_Element">
+          <Key>
+            <PropertyRef Name="ElementID" />
+          </Key>
+          <Property Type="Int32" Name="ElementID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="ElementName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="ControlID" />
+          <Property Type="Int32" Name="ScreenX" />
+          <Property Type="Int32" Name="ScreenY" />
+          <Property Type="String" Name="TxtInfo" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="Width" />
+          <Property Type="Int32" Name="Height" />
+          <Property Type="String" Name="ImageURL" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ForeColor" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Font" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ChildScreenID" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="DeviceID" />
+          <Property Type="Int32" Name="ChannelNo" />
+          <Property Type="Int32" Name="ScreenID" />
+          <Property Type="String" Name="BackColor" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="Transparent" />
+          <Property Type="Int32" Name="oldX" />
+          <Property Type="Int32" Name="oldY" />
+          <Property Type="Int32" Name="Method" />
+          <Property Type="Double" Name="MinFloat" />
+          <Property Type="Double" Name="MaxFloat" />
+          <Property Type="Int32" Name="SerialNum" />
+          <Property Type="Double" Name="TotalLength" />
+          <Property Type="Int32" Name="LevelNo" />
+          <Property Type="String" Name="ComputeStr" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ElementType" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ParentID" />
+        </EntityType>
+        <EntityType Name="t_ElementProperty">
+          <Key>
+            <PropertyRef Name="ElementID" />
+            <PropertyRef Name="PropertyNo" />
+          </Key>
+          <Property Type="Int32" Name="ElementID" Nullable="false" />
+          <Property Type="Int32" Name="PropertyNo" Nullable="false" />
+          <Property Type="String" Name="PropertyValue" MaxLength="4096" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Caption" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PropertyName" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="t_MonitorSystemParam">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="MonitorRefreshTime" Type="Int32" />
+          <Property Name="StartScreenID" Nullable="false" Type="Int32" />
+          <Property Name="AlarmLogTime" Type="Int32" />
+          <Property Name="ServerIP" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="ServerPort" Type="Int32" />
+          <Property Name="Door_Sysid" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="Door_Com" Type="Int32" />
+          <Property Name="HaveDoor" Type="Int32" />
+          <Property Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+        </EntityType>
+        <EntityType Name="t_Screen">
+          <Key>
+            <PropertyRef Name="ScreenID" />
+          </Key>
+          <Property Type="Int32" Name="ScreenID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="ScreenName" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ImageURL" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="ParentScreenID" />
+          <Property Type="Int32" Name="StationID" />
+          <Property Type="Int32" Name="Flag" />
+          <Property Type="Int32" Name="Width" />
+          <Property Type="Int32" Name="Height" />
+          <Property Type="String" Name="BackColor" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Type="Boolean" Name="AutoSize" />
+        </EntityType>
+        <EntityType Name="t_Station">
+          <Key>
+            <PropertyRef Name="StationID" />
+          </Key>
+          <Property Type="Int32" Name="StationID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="StationName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="IP" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Port" />
+          <Property Type="Int32" Name="HistoryPort" />
+        </EntityType>
+        <EntityType Name="v_DeviceStatus">
+          <Key>
+            <PropertyRef Name="ElementID" />
+            <PropertyRef Name="DeviceID" />
+          </Key>
+          <Property Type="Int32" Name="ScreenID" />
+          <Property Type="Int32" Name="ElementID" Nullable="false" />
+          <Property Type="String" Name="ElementName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="ControlID" />
+          <Property Type="Int32" Name="DeviceID" Nullable="false" />
+          <Property Type="String" Name="DeviceName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DevStatus" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="v_NetDevice">
+          <Key>
+            <PropertyRef Name="DeviceID" />
+          </Key>
+          <Property Type="Int32" Name="DeviceID" Nullable="false" />
+          <Property Type="String" Name="DeviceName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="StationID" />
+          <Property Type="String" Name="StationName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Enable" />
+          <Property Type="String" Name="IP" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MonitorDemo2ModelStoreContainer" CdmEntityContainer="MS">
+          <EntitySetMapping Name="t_Control">
+            <EntityTypeMapping TypeName="MonitorDemo2Model.t_Control">
+              <MappingFragment StoreEntitySet="t_Control">
+                <ScalarProperty Name="ControlCaption" ColumnName="ControlCaption" />
+                <ScalarProperty Name="ControlTypeName" ColumnName="ControlTypeName" />
+                <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
+                <ScalarProperty Name="ControlType" ColumnName="ControlType" />
+                <ScalarProperty Name="ControlName" ColumnName="ControlName" />
+                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_ControlProperty">
+            <EntityTypeMapping TypeName="MonitorDemo2Model.t_ControlProperty">
+              <MappingFragment StoreEntitySet="t_ControlProperty">
+                <ScalarProperty Name="Caption" ColumnName="Caption" />
+                <ScalarProperty Name="DefaultValue" ColumnName="DefaultValue" />
+                <ScalarProperty Name="PropertyName" ColumnName="PropertyName" />
+                <ScalarProperty Name="PropertyNo" ColumnName="PropertyNo" />
+                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_Element">
+            <EntityTypeMapping TypeName="MonitorDemo2Model.t_Element">
+              <MappingFragment StoreEntitySet="t_Element">
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="ElementType" ColumnName="ElementType" />
+                <ScalarProperty Name="ComputeStr" ColumnName="ComputeStr" />
+                <ScalarProperty Name="LevelNo" ColumnName="LevelNo" />
+                <ScalarProperty Name="TotalLength" ColumnName="TotalLength" />
+                <ScalarProperty Name="SerialNum" ColumnName="SerialNum" />
+                <ScalarProperty Name="MaxFloat" ColumnName="MaxFloat" />
+                <ScalarProperty Name="MinFloat" ColumnName="MinFloat" />
+                <ScalarProperty Name="Method" ColumnName="Method" />
+                <ScalarProperty Name="oldY" ColumnName="oldY" />
+                <ScalarProperty Name="oldX" ColumnName="oldX" />
+                <ScalarProperty Name="Transparent" ColumnName="Transparent" />
+                <ScalarProperty Name="BackColor" ColumnName="BackColor" />
+                <ScalarProperty Name="ScreenID" ColumnName="ScreenID" />
+                <ScalarProperty Name="ChannelNo" ColumnName="ChannelNo" />
+                <ScalarProperty Name="DeviceID" ColumnName="DeviceID" />
+                <ScalarProperty Name="ChildScreenID" ColumnName="ChildScreenID" />
+                <ScalarProperty Name="Font" ColumnName="Font" />
+                <ScalarProperty Name="ForeColor" ColumnName="ForeColor" />
+                <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="TxtInfo" ColumnName="TxtInfo" />
+                <ScalarProperty Name="ScreenY" ColumnName="ScreenY" />
+                <ScalarProperty Name="ScreenX" ColumnName="ScreenX" />
+                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
+                <ScalarProperty Name="ElementName" ColumnName="ElementName" />
+                <ScalarProperty Name="ElementID" ColumnName="ElementID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_ElementProperty">
+            <EntityTypeMapping TypeName="MonitorDemo2Model.t_ElementProperty">
+              <MappingFragment StoreEntitySet="t_ElementProperty">
+                <ScalarProperty Name="PropertyName" ColumnName="PropertyName" />
+                <ScalarProperty Name="Caption" ColumnName="Caption" />
+                <ScalarProperty Name="PropertyValue" ColumnName="PropertyValue" />
+                <ScalarProperty Name="PropertyNo" ColumnName="PropertyNo" />
+                <ScalarProperty Name="ElementID" ColumnName="ElementID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_MonitorSystemParam">
+            <EntityTypeMapping TypeName="MonitorDemo2Model.t_MonitorSystemParam">
+              <MappingFragment StoreEntitySet="t_MonitorSystemParam">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="HaveDoor" ColumnName="HaveDoor" />
+                <ScalarProperty Name="Door_Com" ColumnName="Door_Com" />
+                <ScalarProperty Name="Door_Sysid" ColumnName="Door_Sysid" />
+                <ScalarProperty Name="ServerPort" ColumnName="ServerPort" />
+                <ScalarProperty Name="ServerIP" ColumnName="ServerIP" />
+                <ScalarProperty Name="AlarmLogTime" ColumnName="AlarmLogTime" />
+                <ScalarProperty Name="StartScreenID" ColumnName="StartScreenID" />
+                <ScalarProperty Name="MonitorRefreshTime" ColumnName="MonitorRefreshTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_Screen">
+            <EntityTypeMapping TypeName="MonitorDemo2Model.t_Screen">
+              <MappingFragment StoreEntitySet="t_Screen">
+                <ScalarProperty Name="AutoSize" ColumnName="AutoSize" />
+                <ScalarProperty Name="BackColor" ColumnName="BackColor" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="Flag" ColumnName="Flag" />
+                <ScalarProperty Name="StationID" ColumnName="StationID" />
+                <ScalarProperty Name="ParentScreenID" ColumnName="ParentScreenID" />
+                <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
+                <ScalarProperty Name="ScreenName" ColumnName="ScreenName" />
+                <ScalarProperty Name="ScreenID" ColumnName="ScreenID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_Station">
+            <EntityTypeMapping TypeName="MonitorDemo2Model.t_Station">
+              <MappingFragment StoreEntitySet="t_Station">
+                <ScalarProperty Name="HistoryPort" ColumnName="HistoryPort" />
+                <ScalarProperty Name="Port" ColumnName="Port" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="StationName" ColumnName="StationName" />
+                <ScalarProperty Name="StationID" ColumnName="StationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_DeviceStatus">
+            <EntityTypeMapping TypeName="MonitorDemo2Model.v_DeviceStatus">
+              <MappingFragment StoreEntitySet="v_DeviceStatus">
+                <ScalarProperty Name="DevStatus" ColumnName="DevStatus" />
+                <ScalarProperty Name="DeviceName" ColumnName="DeviceName" />
+                <ScalarProperty Name="DeviceID" ColumnName="DeviceID" />
+                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
+                <ScalarProperty Name="ElementName" ColumnName="ElementName" />
+                <ScalarProperty Name="ElementID" ColumnName="ElementID" />
+                <ScalarProperty Name="ScreenID" ColumnName="ScreenID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_NetDevice">
+            <EntityTypeMapping TypeName="MonitorDemo2Model.v_NetDevice">
+              <MappingFragment StoreEntitySet="v_NetDevice">
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="Enable" ColumnName="Enable" />
+                <ScalarProperty Name="StationName" ColumnName="StationName" />
+                <ScalarProperty Name="StationID" ColumnName="StationID" />
+                <ScalarProperty Name="DeviceName" ColumnName="DeviceName" />
+                <ScalarProperty Name="DeviceID" ColumnName="DeviceID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="P_GetElementPropertiesByScreenID" FunctionName="MonitorDemo2Model.Store.P_GetElementPropertiesByScreenID" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Monitor" ZoomLevel="104">
+        <EntityTypeShape EntityType="MonitorDemo2Model.t_Control" Width="1.5" PointX="0.5" PointY="2.625" Height="1.9594531249999996" />
+        <EntityTypeShape EntityType="MonitorDemo2Model.t_ControlProperty" Width="2.125" PointX="2.375" PointY="2.625" Height="1.790833333333353" />
+        <EntityTypeShape EntityType="MonitorDemo2Model.t_Element" Width="1.5" PointX="4.625" PointY="0.625" Height="5.6690885416666656" />
+        <EntityTypeShape EntityType="MonitorDemo2Model.t_ElementProperty" Width="1.75" PointX="2.25" PointY="0.5" Height="1.790833333333353" />
+        <EntityTypeShape EntityType="MonitorDemo2Model.t_MonitorSystemParam" PointX="2.125" PointY="4.875" Width="2.25" Height="2.4653125000000031" />
+        <EntityTypeShape EntityType="MonitorDemo2Model.t_Screen" Width="1.5" PointX="0.5" PointY="4.875" Height="2.6339322916666656" />
+        <EntityTypeShape EntityType="MonitorDemo2Model.t_Station" Width="1.5" PointX="0.5" PointY="0.5" Height="1.7908333333333317" />
+        <EntityTypeShape EntityType="MonitorDemo2Model.v_DeviceStatus" Width="1.5" PointX="6.5" PointY="0.75" Height="2.1280729166666674" />
+        <EntityTypeShape EntityType="MonitorDemo2Model.v_NetDevice" Width="1.5" PointX="6.625" PointY="3.75" Height="1.9594531250000031" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
