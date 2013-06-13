@@ -34,10 +34,10 @@ namespace GDK.BCM.PerfMonitor
             string mWhere = string.Empty;
             if (!string.IsNullOrEmpty(txtValue.Text))
             {
-                string filds = "d.IP";
-                if (rdbName.Checked)
+                string filds = "d.DeviceName";
+                if (rdbinfo.Checked)
                 {
-                    filds = "d.DeviceName";
+                    filds = "alar.Content";
                 }
                 mWhere = string.Format(" {0} like '%{1}%'", filds, txtValue.Text);
             }

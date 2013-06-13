@@ -22,7 +22,7 @@
                     <img src="../images/gridview/gridheader_03.gif" alt="" />
                 </td>
                 <td>
-                    状态列表
+                    系统故障列表
                 </td>
                 <td width="6">
                     <img src="../images/gridview/gridheader_06.gif" alt="" />
@@ -41,10 +41,12 @@
                         <img src="../images/Common/stata2.gif" alt="设备状态" style="vertical-align:middle;" /> 报警  &nbsp;
                         <img src="../images/Common/stata3.gif" alt="设备状态" style="vertical-align:middle;" /> 未启动  &nbsp;
                     </td>
-                    <td align="right">
-                        请选择查询条件：
-                        <asp:RadioButton GroupName="shearch" Checked="true" Text="对象名称" ID="rdbName" runat="server" />
-                        <asp:RadioButton GroupName="shearch" Text="IP地址" ID="rdbIP" runat="server" />
+                    <td style="width: 88px; text-align: left;">
+                        请选择查询条件:
+                    </td>
+                    <td style="width: 130px; text-align: right;">
+                        <asp:RadioButton GroupName="shearch" Checked="true" Text="来源" ID="rdbSource" runat="server" />
+                        <asp:RadioButton GroupName="shearch" Text="报警信息" ID="rdbinfo" runat="server" />
                     </td>
                     <td style="width: 250px;">
                         <asp:TextBox ID="txtValue" Width="250px" runat="server"></asp:TextBox>
@@ -62,21 +64,22 @@
                             <%# Container.DataItemIndex+1 %>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="名称">
+                    <asp:TemplateField HeaderText="来源">
                         <ItemTemplate>
                             <a href="PerfSystemFailureDetail.aspx?id=<%#Eval("DeviceID") %>"><span class="sercers">
                                 <%#Eval("DeviceName")%></span></a>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:BoundField HeaderText="类型" DataField="TypeName" />
-                    <asp:BoundField HeaderText="分类" DataField="ServName" />
                     <asp:TemplateField HeaderText="性能">
                         <ItemTemplate>
-                            <img src='../images/Common/stata<%# Eval("performance") %>.gif' alt="设备状态" />
+                            <img src='../images/Common/stata<%# Eval("perfValue") %>.gif' alt="设备状态" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:BoundField HeaderText="IP" DataField="IP" />
-                    <asp:BoundField HeaderText="描述" DataField="descInfo" />
+                    
+                    <asp:BoundField HeaderText="警报信息" DataField="Content" />
+                    <asp:BoundField HeaderText="发生时间" DataField="HappenTime" />
+                    <asp:BoundField HeaderText="联系人" DataField="DISPLAY_NAME" />
                 </Columns>
             </asp:GridView>
         </div>

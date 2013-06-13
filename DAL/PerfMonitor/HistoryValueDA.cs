@@ -40,7 +40,7 @@ namespace GDK.DAL.PerfMonitor
               }
               tableName2 += new string(c, 1);
           }
-          tableName = targetTable;
+		  tableName = tableName2;
 
           string strSQL = "SELECT count(*) FROM dbo.sysobjects WHERE id = OBJECT_ID(N'" + tableName2 + "') AND OBJECTPROPERTY(id, N'IsUserTable') = 1";
           string s = db.ExecuteScalar(strSQL).ToString();
@@ -50,16 +50,55 @@ namespace GDK.DAL.PerfMonitor
           return true;
       }
 
+	  /// <summary>
+	  /// 查询一个通道 的历史值
+	  /// </summary>
+	  /// <param name="DeviceID"></param>
+	  /// <param name="ChannelNo"></param>
+	  /// <param name="StartTime"></param>
+	  /// <param name="EndTime"></param>
+	  /// <returns></returns>
       public DataTable GetDeviceChanncelValue(int DeviceID, int ChannelNo,DateTime StartTime,DateTime EndTime)
       {
           string tableName = GetTableName(DeviceID);
           if (string.IsNullOrEmpty(tableName))
               return null;
-          string sql = string.Format(@"select CONVERT(varchar(5) , MonitorTime, 108 ) Time,MonitorValue from [{0}] where ChannelNo={1} and DeviceID={2}
+          string sql = string.Format(@"select CONVERT(varchar(5) , MonitorTime, 108 ) Time,MonitorValue from {0} where ChannelNo={1} and DeviceID={2}
 and MonitorTime> '{3}' and MonitorTime< '{4}' ", tableName, ChannelNo, DeviceID, StartTime.ToString("yyyy-MM-dd HH:mm:ss"), EndTime.ToString("yyyy-MM-dd HH:mm:ss"));
          DataTable dt= db.ExecuteQuery(sql);
          return dt;
       }
+
+	
+	  /// <summary>
+	  /// 查询设备列表
+	  /// </summary>
+	  /// <param name="DeviceID"></param>
+	  /// <param name="DeviceTypeID"></param>
+	  /// <param name="ChannelNo"></param>
+	  /// <param name="StartTime"></param>
+	  /// <param name="EndTime"></param>
+	  /// <returns></returns>
+	  public DataTable GetDeviceChanncelValuesList(int DeviceID, int DeviceTypeID, int ChannelNo, DateTime StartTime, DateTime EndTime)
+	  {
+		  string tableName = GetTableName(DeviceID);
+		  if (string.IsNullOrEmpty(tableName))
+			  return null;
+
+		  string sql = string.Format(@"
+select e.*,d1.DeviceName from(
+	select f.DeviceID,max(MonitorValue) maxVal from (
+		select d.DeviceID,convert(int,td.MonitorValue) MonitorValue
+		from {0} td
+		left join t_Device d on d.DeviceID= td.DeviceID and  d.DeviceTypeID={1}
+		where d.ParentDevID= {2}  and ChannelNo={3} and td.MonitorTime  between   '{4}' and  '{5}'
+	) as f group by DeviceID
+) as e
+inner join t_Device d1 on d1.DeviceID= e.DeviceID", tableName, DeviceTypeID, DeviceID, ChannelNo, StartTime.ToString("yyyy-MM-dd HH:mm:ss"), EndTime.ToString("yyyy-MM-dd HH:mm:ss"));
+	  
+	   DataTable dt= db.ExecuteQuery(sql);
+         return dt;
+	  }
 
     }
 }

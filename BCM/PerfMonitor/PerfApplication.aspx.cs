@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using GDK.DAL.PerfMonitor;
+using GDK.DAL.StateMonitor;
+using System.Data;
 
 namespace GDK.BCM.PerfMonitor
 {
@@ -16,48 +18,20 @@ namespace GDK.BCM.PerfMonitor
             base.OnLoad(e);
 
         }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.pg.OnPageChanged += new EventHandler(PageChanged);
-            if (!IsPostBack)
-            {
-                BindGraid();
-            }
-        }
 
-        private void PageChanged(object sender, EventArgs e)
-        {
-            BindGraid();
-        }
-        public void BindGraid()
-        {
-            string mWhere = string.Empty;
-            if (!string.IsNullOrEmpty(txtValue.Text))
+            if (!Page.IsPostBack)
             {
-                string filds = "d.IP";
-                if (rdbName.Checked)
+                DataTable dt = new PrefApplicationDA().GetTopBuss();
+                if (null != dt)
                 {
-                    filds = "d.DeviceName";
-                }
-                mWhere = string.Format(" {0} like '%{1}%'", filds, txtValue.Text);
-            }
-            try
-            {
-                int PageCount = 0;
-                this.gvDataList.DataSource = new PerfApplicationDA().selectDeviceList(pg.PageIndex, pg.PageSize, out PageCount, mWhere);
-
-                this.gvDataList.DataBind();
-                this.pg.RecordCount = PageCount;
-            }
-            catch (Exception ex)
-            {
-                AlertNormal(ex.Message);
-            }
+                    rpApp.DataSource = dt;
+                    rpApp.DataBind();
+                }   
+            }         
         }
 
-        protected void btnSearch_Click(object sender, EventArgs e)
-        {
-            BindGraid();
-        }
     }
 }

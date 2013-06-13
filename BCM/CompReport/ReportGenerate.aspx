@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main/SiteMain.Master" AutoEventWireup="true" CodeBehind="ReportGenerate.aspx.cs" Inherits="GDK.BCM.CompReport.ReportGenerate" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+<script type="text/javascript" src="../Scripts/My97DatePicker/WdatePicker.js"></script>
     
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -25,13 +26,16 @@
                 报告类型
             </td>
             <td style=" text-align:left;" colspan="4">
-                <asp:RadioButton  Checked="true" GroupName="reprotType" Text="月" runat="server"/>
-                <asp:RadioButton   GroupName="reprotType" Text="选定" runat="server"/>
+                <asp:RadioButton  ID="rdiM" Checked="true" GroupName="reprotType" Text="月" runat="server"/>
+                <asp:RadioButton  ID="rdiS"  GroupName="reprotType" Text="选定" runat="server"/>
                <span id="divMonth">
                 <asp:DropDownList ID="dpdYear" Width="60px" runat="server"></asp:DropDownList>年
                 <asp:DropDownList ID="dpdMonth" Width="50px" runat="server"></asp:DropDownList>月
                 </span>
-                <span id="divSelect"></span>
+                <span id="divSelect">
+                    <asp:TextBox ID="txtStartTime"  onfocus="WdatePicker();" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtEndTime"  onfocus="WdatePicker();" runat="server"></asp:TextBox>
+                </span>
             </td>
         </tr>
         <tr class="AlternatingRowStyle">

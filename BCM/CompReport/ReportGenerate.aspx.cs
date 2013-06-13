@@ -25,7 +25,7 @@ namespace GDK.BCM.CompReport
                 }
                 for (int i = 1; i <= 12; i++)
                 {
-                    dpdMonth.Items.Add(new ListItem(i.ToString()));
+                    dpdMonth.Items.Add(new ListItem(i.ToString().PadLeft(2,'0')));
                 }
                 //加载，应用系统
                DataTable dt= new PerfApplicationDA().SelectApplicationSystem();
@@ -47,7 +47,33 @@ namespace GDK.BCM.CompReport
             PDF.SystemID = Convert.ToInt32(dpdSystem.SelectedItem.Value);
             PDF.SystemTitle =dpdSystem.SelectedItem.Text;
             PDF.SubTitle = txtSubTitle.Text;
-            PDF.ReportData = string.Format("{0}年{1}月",dpdYear.Text,dpdMonth.Text);
+
+
+            if (rdiM.Checked)
+            {
+                PDF.ReportData = string.Format("{0}年{1}月", dpdYear.Text, dpdMonth.Text);
+                PDF.StartTime = Convert.ToDateTime(string.Format("{0}-{1}-01 00:00:00"
+                    , dpdYear.SelectedItem.Value, dpdMonth.SelectedItem.Value)).AddMonths(-1);
+
+                string strEnd = string.Format("{0}-{1}-01 00:00:00"
+                    , dpdYear.SelectedItem.Value, dpdMonth.SelectedItem.Value);
+                PDF.EndTime = Convert.ToDateTime(strEnd).AddMonths(1).AddSeconds(-1);
+            }
+            else
+            {
+                if (txtStartTime.Text == "" || txtEndTime.Text == "")
+                {
+                    AlertNormal("请选择时间！");
+                    return;
+                }
+                PDF.StartTime = Convert.ToDateTime(txtStartTime.Text);
+                PDF.EndTime = Convert.ToDateTime(txtEndTime.Text);
+                if (PDF.StartTime > PDF.EndTime)
+                {
+                    AlertNormal("开始时间必须大于结束时间！");
+                    return;
+                }
+            }
             PDF.UserPart = base.CurrentUser.DepartmentName;
             PDF.ReportDesc = reportDesc.Text;
 

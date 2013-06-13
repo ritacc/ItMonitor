@@ -31,22 +31,22 @@ namespace GDK.BCM.PerfMonitor {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// rdbName 控件。
+        /// rdbSource 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdbName;
+        protected global::System.Web.UI.WebControls.RadioButton rdbSource;
         
         /// <summary>
-        /// rdbIP 控件。
+        /// rdbinfo 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdbIP;
+        protected global::System.Web.UI.WebControls.RadioButton rdbinfo;
         
         /// <summary>
         /// txtValue 控件。

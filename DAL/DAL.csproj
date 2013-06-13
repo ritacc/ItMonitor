@@ -72,6 +72,7 @@
   <ItemGroup>
     <Compile Include="AlertAdmin\HealthConfigDA.cs" />
     <Compile Include="common\Utils.cs" />
+    <Compile Include="CompSearch\PdfDA.cs" />
     <Compile Include="CompSearch\ReportSeachDA.cs" />
     <Compile Include="DALBase.cs" />
     <Compile Include="ModelConvertHelper.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="PerfMonitor\PerfMiddlewareDA.cs" />
     <Compile Include="PerfMonitor\PerfNetDA.cs" />
     <Compile Include="PerfMonitor\PerfVirtualMachineDA.cs" />
+    <Compile Include="PerfMonitor\PrefApplicationDA.cs" />
     <Compile Include="PerfMonitor\PrefSystemFailureDA.cs" />
     <Compile Include="PerfMonitor\TmpValueDA.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
