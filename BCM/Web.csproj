@@ -311,6 +311,7 @@
     <Content Include="Main\MissingParameter.aspx" />
     <Content Include="Main\OutoffTime.aspx" />
     <Content Include="Map.aspx" />
+    <Content Include="Monitor\MonitorDefin.aspx" />
     <Content Include="PerfMonitor\Perf.aspx" />
     <Content Include="PerfMonitor\PerfApplication.aspx" />
     <Content Include="PerfMonitor\PerfApplicationDeatil.aspx" />
@@ -596,6 +597,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Monitor.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Monitor\MonitorDefin.aspx.cs">
+      <DependentUpon>MonitorDefin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Monitor\MonitorDefin.aspx.designer.cs">
+      <DependentUpon>MonitorDefin.aspx</DependentUpon>
     </Compile>
     <Compile Include="PerfMonitor\Perf.aspx.cs">
       <DependentUpon>Perf.aspx</DependentUpon>

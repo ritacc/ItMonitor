@@ -15,8 +15,9 @@
 			</siteMapNode>
 		</siteMapNode>
 		
-		<siteMapNode url="Monitor/Dfin.aspx?id=defin" title="自定义监控画面"  description="自定义监控画面">
-			<siteMapNode url="Role/Dfin.aspx" title="自定义监控画面" description="自定义监控画面" />
+		<siteMapNode url="Monitor/MonitorDefin.aspx?main" title="自定义监控画面"  description="自定义监控画面">
+			<siteMapNode url="Monitor/MonitorDefin.aspx?type=admin" title="修改自定义监控画面" description="自定义监控画面" />
+			<siteMapNode url="Monitor/MonitorDefin.aspx?type=view" title="浏览自定义监控画面" description="自定义监控画面" />
 		</siteMapNode>
 		
 		<siteMapNode url="CompSearch/CompRoomShearch.aspx?id=defin" title="综合查询"  description="综合查询">
