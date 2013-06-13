@@ -590,8 +590,7 @@
     <Compile Include="Map.aspx.designer.cs">
       <DependentUpon>Map.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Moldes\Monitor.Designer.cs" />
-    <Compile Include="Moldes\Monitor1.Designer.cs">
+    <Compile Include="Moldes\Monitor.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Monitor.edmx</DependentUpon>
@@ -1086,7 +1085,7 @@
     <None Include="images\SysAdmin\vssver2.scc" />
     <EntityDeploy Include="Moldes\Monitor.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Monitor1.Designer.cs</LastGenOutput>
+      <LastGenOutput>Monitor.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
