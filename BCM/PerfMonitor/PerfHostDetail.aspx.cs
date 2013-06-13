@@ -123,7 +123,7 @@ namespace GDK.BCM.PerfMonitor
             {
                 chLine.Series["Series1"].Points.DataBindXY(dte.Rows, "Time", dte.Rows, "MonitorValue");
             }
-            dte = mDA.GetDeviceChanncelValue(iDeviceID, 14203, StartTime, EndTime);//交换内存使用率
+            dte = mDA.GetDeviceChanncelValue(iDeviceID, 14203, StartTime, EndTime);//物理内存使用率
             if (dte != null)
             {
                 chLine.Series["Series2"].Points.DataBindXY(dte.Rows, "Time", dte.Rows, "MonitorValue");

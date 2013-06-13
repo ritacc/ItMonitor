@@ -29,8 +29,8 @@ namespace GDK.BCM.PerfMonitor
                 {
                     rpApp.DataSource = dt;
                     rpApp.DataBind();
-                }
-            }
+                }   
+            }         
         }
 
     }

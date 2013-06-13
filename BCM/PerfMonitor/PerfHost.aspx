@@ -34,18 +34,15 @@
             </div>
             <table class="searchtable" cellspacing="0">
                 <tr>
-                    <td style="width: 222px; text-align: left;">
-                        状态图标说明:<img src="../images/Common/stata0.gif" alt="设备状态" />
-                        不可用
-                        <img src="../images/Common/stata1.gif" alt="设备状态" />
-                        可用
-                    </td>
                     <td>
+                        状态图标说明：
+                        <img src="../images/Common/stata0.gif" alt="设备状态" style="vertical-align:middle;" /> 正常 &nbsp;
+                        <img src="../images/Common/stata1.gif" alt="设备状态" style="vertical-align:middle;" /> 故障  &nbsp;
+                        <img src="../images/Common/stata2.gif" alt="设备状态" style="vertical-align:middle;" /> 报警  &nbsp;
+                        <img src="../images/Common/stata3.gif" alt="设备状态" style="vertical-align:middle;" /> 未启动  &nbsp;
                     </td>
-                    <td style="width: 88px; text-align: left;">
-                        请选择查询条件:
-                    </td>
-                    <td style="width: 130px; text-align: right;">
+                    <td align="right">
+                        请选择查询条件：
                         <asp:RadioButton GroupName="shearch" Checked="true" Text="对象名称" ID="rdbName" runat="server" />
                         <asp:RadioButton GroupName="shearch" Text="IP地址" ID="rdbIP" runat="server" />
                     </td>
@@ -65,21 +62,20 @@
                             <%# Container.DataItemIndex+1 %>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="名称">
+                    <asp:TemplateField HeaderText="主机名称">
                         <ItemTemplate>
                             <a href="PerfHostDetail.aspx?id=<%#Eval("DeviceID") %>"><span class="sercers">
                                 <%#Eval("DeviceName")%></span></a>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:BoundField HeaderText="类型" DataField="TypeName" />
-                    <asp:BoundField HeaderText="分类" DataField="ServName" />
+                    <asp:BoundField HeaderText="操作系统" DataField="ServName" />
+                    <asp:BoundField HeaderText="IP地址" DataField="IP" />
                     <asp:TemplateField HeaderText="性能">
                         <ItemTemplate>
-                            <img src='../images/Common/stata<%# Eval("performance") %>.gif' alt="设备状态" />
+                            <img src='../images/Common/stata<%# Eval("perf") %>.gif' alt="设备状态" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:BoundField HeaderText="IP" DataField="IP" />
-                    <asp:BoundField HeaderText="描述" DataField="descInfo" />
+                    <asp:BoundField HeaderText="物理位置" DataField="StationName" />
                 </Columns>
             </asp:GridView>
         </div>

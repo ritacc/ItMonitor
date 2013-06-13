@@ -77,6 +77,7 @@
     <Compile Include="DALBase.cs" />
     <Compile Include="ModelConvertHelper.cs" />
     <Compile Include="PerfMonitor\HistoryValueDA.cs" />
+    <Compile Include="PerfMonitor\PerfApplicationDA.cs" />
     <Compile Include="PerfMonitor\PerfDBDA.cs" />
     <Compile Include="PerfMonitor\PerfDomainDA.cs" />
     <Compile Include="PerfMonitor\PerfHostDA.cs" />

@@ -95,6 +95,8 @@
     <Reference Include="System.ServiceModel.DomainServices.EntityFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="System.ServiceModel.DomainServices.Hosting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.ServiceModel.DomainServices.Server, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.ServiceModel.Routing" />
+    <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms" />
@@ -602,20 +604,6 @@
     <Compile Include="PerfMonitor\Perf.aspx.designer.cs">
       <DependentUpon>Perf.aspx</DependentUpon>
     </Compile>
-    <Compile Include="PerfMonitor\PerfApplication.aspx.cs">
-      <DependentUpon>PerfApplication.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="PerfMonitor\PerfApplication.aspx.designer.cs">
-      <DependentUpon>PerfApplication.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="PerfMonitor\PerfApplicationDeatil.aspx.cs">
-      <DependentUpon>PerfApplicationDeatil.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="PerfMonitor\PerfApplicationDeatil.aspx.designer.cs">
-      <DependentUpon>PerfApplicationDeatil.aspx</DependentUpon>
-    </Compile>
     <Compile Include="PerfMonitor\PerfApplicationLoad.aspx.cs">
       <DependentUpon>PerfApplicationLoad.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -776,6 +764,20 @@
     </Compile>
     <Compile Include="PerfMonitor\PerfVirtualMachineDetail.aspx.designer.cs">
       <DependentUpon>PerfVirtualMachineDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfApplication.aspx.cs">
+      <DependentUpon>PerfApplication.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfApplication.aspx.designer.cs">
+      <DependentUpon>PerfApplication.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfApplicationDeatil.aspx.cs">
+      <DependentUpon>PerfApplicationDeatil.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfApplicationDeatil.aspx.designer.cs">
+      <DependentUpon>PerfApplicationDeatil.aspx</DependentUpon>
     </Compile>
     <Compile Include="PerfMonitor\PerfDBLock.aspx.cs">
       <DependentUpon>PerfDBLock.aspx</DependentUpon>
@@ -1087,6 +1089,9 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Monitor.Designer.cs</LastGenOutput>
     </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
