@@ -34,20 +34,16 @@
             </div>
             <table class="searchtable" cellspacing="0">
                 <tr>
-                    <td style="width: 450px; text-align: left;">
-                        状态图标说明:
-                        <img src='../images/Common/stata4.gif' alt="状态不可用" />状态不可用
-                        <img src='../images/Common/stata0.gif' alt="严重警告" />严重警告
-                        <img src='../images/Common/stata2.gif' alt="一般警告" />一般警告
-                        <img src='../images/Common/stata1.gif' alt="正常" />正常
-                    </td>
                     <td>
+                        状态图标说明：
+                        <img src="../images/Common/stata0.gif" alt="设备状态" style="vertical-align:middle;" /> 正常 &nbsp;
+                        <img src="../images/Common/stata1.gif" alt="设备状态" style="vertical-align:middle;" /> 故障  &nbsp;
+                        <img src="../images/Common/stata2.gif" alt="设备状态" style="vertical-align:middle;" /> 报警  &nbsp;
+                        <img src="../images/Common/stata3.gif" alt="设备状态" style="vertical-align:middle;" /> 未启动  &nbsp;
                     </td>
-                    <td style="width: 88px; text-align: left;">
-                        请选择查询条件:
-                    </td>
-                    <td style="width: 130px; text-align: right;">
-                        <asp:RadioButton GroupName="shearch" Checked="true" Text="对象名称" ID="rdbName" runat="server" />
+                    <td align="right">
+                        请选择查询条件：
+                        <asp:RadioButton GroupName="shearch" Checked="true" Text="数据库名称" ID="rdbName" runat="server" />
                         <asp:RadioButton GroupName="shearch" Text="IP地址" ID="rdbIP" runat="server" />
                     </td>
                     <td style="width: 250px;">
@@ -66,21 +62,20 @@
                             <%# Container.DataItemIndex+1 %>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="名称">
+                    <asp:TemplateField HeaderText="数据库名称">
                         <ItemTemplate>
                             <a href="PerfDBIndex.aspx?id=<%#Eval("DeviceID") %>" target="_parent"><span class="sercers">
                                 <%#Eval("DeviceName")%></span></a>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:BoundField HeaderText="类型" DataField="TypeName" />
-                    <asp:BoundField HeaderText="分类" DataField="ServName" />
+                    <asp:BoundField HeaderText="数据库类型" DataField="TypeName" />
                     <asp:TemplateField HeaderText="性能">
                         <ItemTemplate>
-                            <img src='../images/Common/stata<%# Eval("performance") %>.gif' alt="设备状态" />
+                            <img src='../images/Common/stata<%# Eval("perf") %>.gif' alt="设备状态" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:BoundField HeaderText="IP" DataField="IP" />
-                    <asp:BoundField HeaderText="描述" DataField="descInfo" />
+                    <asp:BoundField HeaderText="IP地址" DataField="IP" />
+                    <asp:BoundField HeaderText="操作系统" DataField="ServName" />
                 </Columns>
             </asp:GridView>
         </div>

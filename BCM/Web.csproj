@@ -328,8 +328,8 @@
     <Content Include="PerfMonitor\PerfNetPortDetail.aspx" />
     <Content Include="PerfMonitor\PerfVirtualMachine.aspx" />
     <Content Include="PerfMonitor\PerfVirtualMachineDetail.aspx" />
-    <Content Include="PerfMonitor\PrefApplication.aspx" />
-    <Content Include="PerfMonitor\PrefApplicationDeatil.aspx" />
+    <Content Include="PerfMonitor\PerfApplication.aspx" />
+    <Content Include="PerfMonitor\PerfApplicationDeatil.aspx" />
     <Content Include="PerfMonitor\PerfDBLock.aspx" />
     <Content Include="PerfMonitor\PerfSystemFailure.aspx" />
     <Content Include="PerfMonitor\PerfSystemFailureDetail.aspx" />
@@ -745,19 +745,19 @@
     <Compile Include="PerfMonitor\PerfVirtualMachineDetail.aspx.designer.cs">
       <DependentUpon>PerfVirtualMachineDetail.aspx</DependentUpon>
     </Compile>
-    <Compile Include="PerfMonitor\PrefApplication.aspx.cs">
-      <DependentUpon>PrefApplication.aspx</DependentUpon>
+    <Compile Include="PerfMonitor\PerfApplication.aspx.cs">
+      <DependentUpon>PerfApplication.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="PerfMonitor\PrefApplication.aspx.designer.cs">
-      <DependentUpon>PrefApplication.aspx</DependentUpon>
+    <Compile Include="PerfMonitor\PerfApplication.aspx.designer.cs">
+      <DependentUpon>PerfApplication.aspx</DependentUpon>
     </Compile>
-    <Compile Include="PerfMonitor\PrefApplicationDeatil.aspx.cs">
-      <DependentUpon>PrefApplicationDeatil.aspx</DependentUpon>
+    <Compile Include="PerfMonitor\PerfApplicationDeatil.aspx.cs">
+      <DependentUpon>PerfApplicationDeatil.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="PerfMonitor\PrefApplicationDeatil.aspx.designer.cs">
-      <DependentUpon>PrefApplicationDeatil.aspx</DependentUpon>
+    <Compile Include="PerfMonitor\PerfApplicationDeatil.aspx.designer.cs">
+      <DependentUpon>PerfApplicationDeatil.aspx</DependentUpon>
     </Compile>
     <Compile Include="PerfMonitor\PerfDBLock.aspx.cs">
       <DependentUpon>PerfDBLock.aspx</DependentUpon>

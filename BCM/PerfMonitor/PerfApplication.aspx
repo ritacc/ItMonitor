@@ -34,18 +34,15 @@
             </div>
             <table class="searchtable" cellspacing="0">
                 <tr>
-                    <td style="width: 222px; text-align: left;">
-                        状态图标说明:<img src="../images/Common/stata0.gif" alt="设备状态" />
-                        不可用
-                        <img src="../images/Common/stata1.gif" alt="设备状态" />
-                        可用
-                    </td>
                     <td>
+                        状态图标说明：
+                        <img src="../images/Common/stata0.gif" alt="设备状态" style="vertical-align:middle;" /> 正常 &nbsp;
+                        <img src="../images/Common/stata1.gif" alt="设备状态" style="vertical-align:middle;" /> 故障  &nbsp;
+                        <img src="../images/Common/stata2.gif" alt="设备状态" style="vertical-align:middle;" /> 报警  &nbsp;
+                        <img src="../images/Common/stata3.gif" alt="设备状态" style="vertical-align:middle;" /> 未启动  &nbsp;
                     </td>
-                    <td style="width: 88px; text-align: left;">
-                        请选择查询条件:
-                    </td>
-                    <td style="width: 130px; text-align: right;">
+                    <td align="right">
+                        请选择查询条件：
                         <asp:RadioButton GroupName="shearch" Checked="true" Text="对象名称" ID="rdbName" runat="server" />
                         <asp:RadioButton GroupName="shearch" Text="IP地址" ID="rdbIP" runat="server" />
                     </td>
@@ -67,7 +64,7 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="名称">
                         <ItemTemplate>
-                            <a href="PerfNetDetail.aspx?id=<%#Eval("DeviceID") %>"><span class="sercers">
+                            <a href="PerfApplicationDeatil.aspx?id=<%#Eval("DeviceID") %>"><span class="sercers">
                                 <%#Eval("DeviceName")%></span></a>
                         </ItemTemplate>
                     </asp:TemplateField>

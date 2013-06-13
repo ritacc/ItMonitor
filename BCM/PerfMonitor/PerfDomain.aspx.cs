@@ -34,7 +34,7 @@ namespace GDK.BCM.PerfMonitor
             string mWhere = string.Empty;
             if (!string.IsNullOrEmpty(txtValue.Text))
             {
-                string filds = "d.IP";
+                string filds = "d.Performance";
                 if (rdbName.Checked)
                 {
                     filds = "d.DeviceName";

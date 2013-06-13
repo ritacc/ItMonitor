@@ -44,7 +44,7 @@ namespace GDK.BCM.PerfMonitor
             try
             {
                 int PageCount = 0;
-                this.gvDataList.DataSource = new PrefApplicationDA().selectDeviceList(pg.PageIndex, pg.PageSize, out PageCount, mWhere);
+                this.gvDataList.DataSource = new PerfApplicationDA().selectDeviceList(pg.PageIndex, pg.PageSize, out PageCount, mWhere);
 
                 this.gvDataList.DataBind();
                 this.pg.RecordCount = PageCount;

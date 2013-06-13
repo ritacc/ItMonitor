@@ -76,13 +76,13 @@
     <Compile Include="DALBase.cs" />
     <Compile Include="ModelConvertHelper.cs" />
     <Compile Include="PerfMonitor\HistoryValueDA.cs" />
+    <Compile Include="PerfMonitor\PerfApplicationDA.cs" />
     <Compile Include="PerfMonitor\PerfDBDA.cs" />
     <Compile Include="PerfMonitor\PerfDomainDA.cs" />
     <Compile Include="PerfMonitor\PerfHostDA.cs" />
     <Compile Include="PerfMonitor\PerfMiddlewareDA.cs" />
     <Compile Include="PerfMonitor\PerfNetDA.cs" />
     <Compile Include="PerfMonitor\PerfVirtualMachineDA.cs" />
-    <Compile Include="PerfMonitor\PrefApplicationDA.cs" />
     <Compile Include="PerfMonitor\PrefSystemFailureDA.cs" />
     <Compile Include="PerfMonitor\TmpValueDA.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

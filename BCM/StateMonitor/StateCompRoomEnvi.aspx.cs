@@ -38,8 +38,7 @@ namespace GDK.BCM.StateMonitor
             try
             {
                 int PageCount = 0;
-                this.gvDataList.DataSource = new StateApplicationDA()
-                    .selectDeviceList(pg.PageIndex, pg.PageSize, out PageCount, mWhere);
+                this.gvDataList.DataSource = new StateApplicationDA().selectDeviceList(pg.PageIndex, pg.PageSize, out PageCount, mWhere);
 
                 this.gvDataList.DataBind();
                 this.pg.RecordCount = PageCount;

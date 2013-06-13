@@ -41,13 +41,15 @@
         <div  id="divShowMsg"></div>
             <table class="searchtable" cellspacing="0">
                 <tr>
-                    <td style="width: 222px; text-align: left;">
-                        状态图标说明:<img  src="../images/Common/stata0.gif" alt="设备状态"/> 不可用
-                        <img  src="../images/Common/stata1.gif" alt="设备状态"/>  可用
+                    <td>
+                        状态图标说明：
+                        <img src="../images/Common/stata0.gif" alt="设备状态" style="vertical-align:middle;" /> 正常 &nbsp;
+                        <img src="../images/Common/stata1.gif" alt="设备状态" style="vertical-align:middle;" /> 故障  &nbsp;
+                        <img src="../images/Common/stata2.gif" alt="设备状态" style="vertical-align:middle;" /> 报警  &nbsp;
+                        <img src="../images/Common/stata3.gif" alt="设备状态" style="vertical-align:middle;" /> 未启动  &nbsp;
                     </td>
-                    <td></td>
-                    <td style="width: 118px; text-align: left;">
-                        按名称关键字搜索:
+                    <td align="right">
+                        按名称搜索：
                     </td>
                     <td style=" width:250px;">
                         <asp:TextBox ID="txtValue" Width="250px" runat="server"></asp:TextBox>
@@ -66,37 +68,42 @@
                             <%# Container.DataItemIndex+1 %>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="名称">
+                    <asp:TemplateField HeaderText="设备名称">
                         <ItemTemplate>
-                            <a href="StateApplicationDetail.aspx">
-                                <%# Eval("DeviceName")%></a>
+                            <a href="StateCompRoomEnviDetail.aspx?id=<%#Eval("DeviceID") %>"><span class="sercers">
+                                <%#Eval("DeviceName")%></span></a>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:BoundField HeaderText="类型" DataField="TypeName" />
                     <asp:TemplateField HeaderText="状态">
                         <ItemTemplate>
-                            <img src='../images/Common/stata<%# Eval("DeviceStatus") %>.gif' alt="设备状态" />
+                            <img src='../images/Common/stata<%# Eval("perf") %>.gif' alt="设备状态" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:BoundField HeaderText="报警信息" DataField="StationName" />
-                    <asp:BoundField HeaderText="站点" DataField="StationName" />
-                    <asp:BoundField HeaderText="采集时间" DataField="StationName" />
+                    <asp:BoundField HeaderText="类型名称" DataField="TypeName" />
+                    <asp:BoundField HeaderText="所在机房" DataField="StationName" />
+                    <asp:BoundField HeaderText="采集时间" DataField="LastPollingTime" />
                 </Columns>
                 <EmptyDataTemplate>
                     <table class="empty_gridview" cellspacing="0">
                         <tr>
                             <th>
-                                序号
+                                设备名称
                             </th>
                             <th>
-                                名称
+                                状态
                             </th>
                             <th>
-                                描述
+                                类型名称
+                            </th>
+                            <th>
+                                所在机房
+                            </th>
+                            <th>
+                                采集时间
                             </th>
                         </tr>
                         <tr>
-                            <td colspan="3">
+                            <td colspan="5">
                                 没有数据
                             </td>
                         </tr>

@@ -56,6 +56,7 @@
     <Compile Include="JSClass.cs" />
     <Compile Include="PerfMonitor\DeviceOR.cs" />
     <Compile Include="PerfMonitor\DeviceOREx.cs" />
+    <Compile Include="PerfMonitor\PerfApplicationOR.cs" />
     <Compile Include="PerfMonitor\PerfDBOR.cs" />
     <Compile Include="PerfMonitor\PerfHostOR.cs" />
     <Compile Include="PerfMonitor\PerfMiddlewareOR.cs" />
