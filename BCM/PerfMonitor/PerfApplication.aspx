@@ -200,7 +200,7 @@
                                         <%# Eval("TypeName")%>
                                     </td>
                                     <td class="w120">
-                                       <img  src="../images/Common/stata<%# Eval("perfValue")%>.gif" alt="状态"/> 
+                                       <img  src="../images/Common/stata<%# Eval("perf")%>.gif" alt="状态"/> 
                                         <%# Eval("Performance")%>
                                     </td>
                                     <td class="w120">

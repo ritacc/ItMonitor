@@ -57,8 +57,8 @@ namespace GDK.BCM.PerfMonitor
             DeviceOR _objDev = new DeviceDA().SelectDeviceORByID(mDeviceID);
             PerfDBOR _Obj = new PerfDBDA().SelectDeviceDetail(mDeviceID);
             DeviceOREx _objDevEx = new DeviceDA().SelectDeviceORExByID(mDeviceID);
-            perf = _objDevEx.Perf;
-            lblPerf.Text = _objDevEx.Perf;
+            perf = _objDev.Performance;
+            lblPerf.Text = _objDev.Performance;
 
             lblServName.Text = _Obj.ServName;
             lblHealthStatus.Text = _Obj.HealthStatus;

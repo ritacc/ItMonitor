@@ -24,7 +24,7 @@ namespace GDK.BCM.PerfMonitor
 
             if (!Page.IsPostBack)
             {
-                DataTable dt = new PrefApplicationDA().GetTopBuss();
+                DataTable dt = new PerfApplicationDA().GetTopBuss();
                 if (null != dt)
                 {
                     rpApp.DataSource = dt;

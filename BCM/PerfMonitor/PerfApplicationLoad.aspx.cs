@@ -123,7 +123,7 @@ namespace GDK.BCM.PerfMonitor
         public void HeadTop(List<ApplListOR> list)
         {
             string id = Request.QueryString["GUID"];
-            DataTable objDev = new PrefApplicationDA().GetSysLay(Convert.ToInt32(id));
+            DataTable objDev = new PerfApplicationDA().GetSysLay(Convert.ToInt32(id));
             if (objDev != null)
             {
                 objDev.DefaultView.RowFilter = string.Format(" typeid=2 or typeid=3 or typeid=10 ");
@@ -167,7 +167,7 @@ namespace GDK.BCM.PerfMonitor
         public void HeadSoft(List<ApplListOR> list)
         {
             string id = Request.QueryString["GUID"];
-            DataTable objDev = new PrefApplicationDA().GetSysLay(Convert.ToInt32(id), " (dt.typeid=2 or dt.typeid=3 )");
+            DataTable objDev = new PerfApplicationDA().GetSysLay(Convert.ToInt32(id), " (dt.typeid=2 or dt.typeid=3 )");
             if (objDev != null && objDev.Rows.Count > 0)
             {
                 ApplListOR obj = HeadStatusAndWaring(objDev);
@@ -178,7 +178,7 @@ namespace GDK.BCM.PerfMonitor
                 list.Add(obj);
             }
 
-            objDev = new PrefApplicationDA().GetSysLay(Convert.ToInt32(id), 10);
+            objDev = new PerfApplicationDA().GetSysLay(Convert.ToInt32(id), 10);
             if (objDev != null && objDev.Rows.Count > 0)
             {
                 ApplListOR obj = HeadStatusAndWaring(objDev);
@@ -192,7 +192,7 @@ namespace GDK.BCM.PerfMonitor
         public void HeadHD(List<ApplListOR> list)
         {
             string id = Request.QueryString["GUID"];
-            DataTable objDev = new PrefApplicationDA().GetSysLay(Convert.ToInt32(id), 1);
+            DataTable objDev = new PerfApplicationDA().GetSysLay(Convert.ToInt32(id), 1);
             if (objDev != null)
             {
                 ApplListOR obj = HeadStatusAndWaring(objDev);
@@ -211,16 +211,16 @@ namespace GDK.BCM.PerfMonitor
             switch (mtype)
             {
                 case "server":
-                    dt = new PrefApplicationDA().GetSysLay(Convert.ToInt32(id), 1);
+                    dt = new PerfApplicationDA().GetSysLay(Convert.ToInt32(id), 1);
                     break;
                 case "use":
-                    dt = new PrefApplicationDA().GetSysLay(Convert.ToInt32(id), 10);
+                    dt = new PerfApplicationDA().GetSysLay(Convert.ToInt32(id), 10);
                     break;
                 case "web":
-                    dt = new PrefApplicationDA().GetSysLay(Convert.ToInt32(id), " (dt.typeid=2 or dt.typeid=3 )");
+                    dt = new PerfApplicationDA().GetSysLay(Convert.ToInt32(id), " (dt.typeid=2 or dt.typeid=3 )");
                     break;
                 case "DB":
-                    dt = new PrefApplicationDA().GetSysLay(Convert.ToInt32(id), 4);
+                    dt = new PerfApplicationDA().GetSysLay(Convert.ToInt32(id), 4);
                     break;
             }
             if (dt != null)
@@ -233,7 +233,7 @@ namespace GDK.BCM.PerfMonitor
                     obj.TypeName = dr["TypeName"].ToString();
                     obj.typeID = Convert.ToInt32(dr["typeid"].ToString());
 
-                    obj.Status = Convert.ToInt32(dr["perfValue"].ToString());
+                    obj.Status = Convert.ToInt32(dr["perf"].ToString());
                     obj.StatusShow = dr["Performance"].ToString();
                     obj.Warning = Convert.ToInt32(dr["WarningStatus"].ToString());
                     obj.WarningShow = dr["WarningStatusName"].ToString();
@@ -253,9 +253,9 @@ namespace GDK.BCM.PerfMonitor
 
             foreach (DataRow dr in objDev.Rows)
             {
-                if (dr["perfValue"].ToString() != "1")
+                if (dr["perf"].ToString() != "1")
                 {
-                    obj.Status = Convert.ToInt32(dr["perfValue"].ToString());
+                    obj.Status = Convert.ToInt32(dr["perf"].ToString());
                     obj.StatusShow = dr["Performance"].ToString();
                 }
                 if (dr["WarningStatus"].ToString() != "1")
