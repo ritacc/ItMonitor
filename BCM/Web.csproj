@@ -316,6 +316,7 @@
     <Content Include="PerfMonitor\PerfApplication.aspx" />
     <Content Include="PerfMonitor\PerfApplicationDeatil.aspx" />
     <Content Include="PerfMonitor\PerfApplicationLoad.aspx" />
+    <Content Include="PerfMonitor\PerfApplicationUrl.aspx" />
     <Content Include="PerfMonitor\PerfDB.aspx" />
     <Content Include="PerfMonitor\PerfDBBack.aspx" />
     <Content Include="PerfMonitor\PerfDBConversation.aspx" />
@@ -618,6 +619,13 @@
     </Compile>
     <Compile Include="PerfMonitor\PerfApplicationLoad.aspx.designer.cs">
       <DependentUpon>PerfApplicationLoad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfApplicationUrl.aspx.cs">
+      <DependentUpon>PerfApplicationUrl.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PerfMonitor\PerfApplicationUrl.aspx.designer.cs">
+      <DependentUpon>PerfApplicationUrl.aspx</DependentUpon>
     </Compile>
     <Compile Include="PerfMonitor\PerfDB.aspx.cs">
       <DependentUpon>PerfDB.aspx</DependentUpon>

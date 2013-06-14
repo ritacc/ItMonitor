@@ -58,7 +58,13 @@ namespace GDK.Entity.PerfMonitor
        /// 9 内存使用率 
        /// </summary>
        public string MemoryUsage { get; set; }
+       
+       /// <summary>
+       /// 11 监控
+       /// </summary>
+       public string Monitor { get; set; }
 
+       
        /// <summary>
        /// 10 接口列表     3#^#1705#^#1706#^#1707
        /// </summary>
@@ -120,6 +126,10 @@ namespace GDK.Entity.PerfMonitor
 
                    case "10":
                        Ports = dr["MonitorValue"].ToString();
+                       break;
+
+                   case "12":
+                       Monitor = dr["MonitorValue"].ToString();
                        break;
 
                    case "11102":

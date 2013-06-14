@@ -304,6 +304,31 @@ where d.DeviceTypeID= 259 and ParentDevID ={0} order by Equipment", ParentDevID)
             }
             pageCount = returnC;
             return dt;
-        }        
+        }
+
+        // URL序列
+        public DataTable selectURL(int pageCrrent, int pageSize, out int pageCount, string ParentDevID)
+        {
+            string sql = string.Format(@"select d.deviceid,d.DeviceName,d.Performance,HealthStatus.MonitorValue HealthStatus,
+ResponseTime.MonitorValue ResponseTime,PageSize.MonitorValue PageSize,
+case d.Performance when '故障' then 1 when  '报警' then 2 when '未启动' then 3 else 0 end  perf
+ from t_Device d 
+left join t_TmpValue HealthStatus on HealthStatus.DeviceID= d.DeviceID and HealthStatus.ChannelNO=11102
+left join t_TmpValue ResponseTime on ResponseTime.DeviceID= d.DeviceID and ResponseTime.ChannelNO=26201
+left join t_TmpValue PageSize on PageSize.DeviceID= d.DeviceID and PageSize.ChannelNO=26202
+where d.DeviceTypeID= 262 and ParentDevID ={0} order  by DeviceName", ParentDevID);
+            DataTable dt = null;
+            int returnC = 0; try
+            {
+                dt = db.ExecuteQuery(sql, pageCrrent, pageSize, out returnC);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            pageCount = returnC;
+            return dt;
+        }
+
     }
 }

@@ -10,7 +10,7 @@
 namespace GDK.BCM.PerfMonitor {
     
     
-    public partial class NetDetail {
+    public partial class PerfApplicationUrl {
         
         /// <summary>
         /// form1 控件。
@@ -22,40 +22,22 @@ namespace GDK.BCM.PerfMonitor {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// lblDeviceName 控件。
+        /// lblName 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDeviceName;
+        protected global::System.Web.UI.WebControls.Label lblName;
         
         /// <summary>
-        /// lblIP 控件。
+        /// lblHealthStatus 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblIP;
-        
-        /// <summary>
-        /// lblFirm 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFirm;
-        
-        /// <summary>
-        /// lblClass 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblClass;
+        protected global::System.Web.UI.WebControls.Label lblHealthStatus;
         
         /// <summary>
         /// lblType 控件。
@@ -67,49 +49,31 @@ namespace GDK.BCM.PerfMonitor {
         protected global::System.Web.UI.WebControls.Label lblType;
         
         /// <summary>
-        /// lblFlowCalculator 控件。
+        /// lblInterval 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFlowCalculator;
+        protected global::System.Web.UI.WebControls.Label lblInterval;
         
         /// <summary>
-        /// lblDependence 控件。
+        /// lblLastPollingTime 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDependence;
+        protected global::System.Web.UI.WebControls.Label lblLastPollingTime;
         
         /// <summary>
-        /// lblPollingProtocol 控件。
+        /// lblNextPollingTime 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPollingProtocol;
-        
-        /// <summary>
-        /// lblMonitor 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMonitor;
-        
-        /// <summary>
-        /// lblSystemDescription 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSystemDescription;
+        protected global::System.Web.UI.WebControls.Label lblNextPollingTime;
         
         /// <summary>
         /// chtPerf 控件。
@@ -121,6 +85,24 @@ namespace GDK.BCM.PerfMonitor {
         protected global::System.Web.UI.DataVisualization.Charting.Chart chtPerf;
         
         /// <summary>
+        /// chLine 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.DataVisualization.Charting.Chart chLine;
+        
+        /// <summary>
+        /// lblAverageResponseTime 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAverageResponseTime;
+        
+        /// <summary>
         /// lblResponseTime 控件。
         /// </summary>
         /// <remarks>
@@ -130,21 +112,30 @@ namespace GDK.BCM.PerfMonitor {
         protected global::System.Web.UI.WebControls.Label lblResponseTime;
         
         /// <summary>
-        /// lblPacketLossRate 控件。
+        /// gvURL 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPacketLossRate;
+        protected global::System.Web.UI.WebControls.GridView gvURL;
         
         /// <summary>
-        /// gvPortList 控件。
+        /// pg 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvPortList;
+        protected global::GDK.BCM.UI.pagenavigate pg;
+        
+        /// <summary>
+        /// chtURL 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.DataVisualization.Charting.Chart chtURL;
     }
 }

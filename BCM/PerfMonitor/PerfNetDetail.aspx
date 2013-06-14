@@ -70,7 +70,7 @@
             <tr class="RowStyle">
                 <td>监控:</td>
                 <td>
-                   无此字段
+                   <asp:Label ID="lblMonitor" runat="server"></asp:Label>
                 </td>
             </tr>
             <tr class="AlternatingRowStyle">

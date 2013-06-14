@@ -320,7 +320,7 @@
                 <asp:Series Name="Series1" LegendText="InBytes" IsValueShownAsLabel="True" LabelFormat="{0}分"
                     BorderColor="180, 26, 59, 105"  BorderWidth="2">
                 </asp:Series>
-                <asp:Series Name="Series2" LegendText="OutByte" IsValueShownAsLabel="True" LabelFormat="{0}分"
+                <asp:Series Name="Series2" LegendText="OutBytes" IsValueShownAsLabel="True" LabelFormat="{0}分"
                     BorderColor="180, 26, 59, 105"  BorderWidth="2">
                 </asp:Series>
             </Series>

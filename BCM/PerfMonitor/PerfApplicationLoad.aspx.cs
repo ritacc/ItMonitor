@@ -276,10 +276,10 @@ namespace GDK.BCM.PerfMonitor
                     url = "../PerfMonitor/PerfHostDetail.aspx";
                     break;
                 case 2:
-                    url = "";
+                    url = "../PerfMonitor/PerfApplicationUrl.aspx";
                     break;
                 case 3:
-                    url = "";
+                    url = "../PerfMonitor/PerfApplicationUrl.aspx";
                     break;
                 case 4:
                     url = "../PerfMonitor/PerfDBIndex.aspx";

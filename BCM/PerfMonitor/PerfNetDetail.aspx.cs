@@ -51,6 +51,7 @@ namespace GDK.BCM.PerfMonitor
             lblPollingProtocol.Text = _Obj.PollingProtocol;
             lblSystemDescription.Text = _Obj.SystemDescription;
             lblResponseTime.Text = _Obj.ResponseTime;
+            lblMonitor.Text = _Obj.Monitor;
 
             #region 绑定 可用性
             DataPoint dp = new DataPoint();

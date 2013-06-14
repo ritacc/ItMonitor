@@ -145,9 +145,9 @@ namespace GDK.BCM.PerfMonitor
             #endregion
 
 
-            //绑定，曲线
+            #region 绑定，曲线
             HistoryValueDA mDA = new HistoryValueDA();
-            #region 今天接收、发送
+            
             DateTime StartTime = DateTime.Now.AddHours(-1);
             DateTime EndTime = DateTime.Now;
 
