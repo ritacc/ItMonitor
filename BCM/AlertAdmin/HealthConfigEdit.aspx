@@ -9,6 +9,7 @@
     <link href="../Styles/right.css" rel="Stylesheet" />
     <script type="text/javascript" src="../Scripts/jquery-1.4.4.min.js"></script>
     <script type="text/javascript" src="../Scripts/jquery.bgiframe.min.js"></script>
+    
     <script type="text/javascript" src="../Scripts/jquery.popup.js"></script>
     <script type="text/javascript" src="../Scripts/EditCommon.js"></script>
     <script type="text/javascript" src="../Scripts/jquery.validator.js"></script>

@@ -177,7 +177,21 @@
             </div>
             <div class="div_char">
                 <div class="div_title">背板利用率</div>
-                无此字段
+                <div class="div_title">内存使用率</div>
+                <object data="data:application/x-silverlight-2," type="application/x-silverlight-2"
+                    width="300px" height="200px">
+                    <param name="source" value="../ClientBin/ITMonitorControl.xap" />
+                    <param name="onError" value="onSilverlightError" />
+                    <param name="background" value="white" />
+                    <!--MeterMember MeterAll MeterHalf MeterTemperature-->
+                    <param name="initParams" value="Target=MeterAll,DeviceID=<%= deviceID %>,ChanncelNo=32003" />
+                    <param name="minRuntimeVersion" value="4.0.50826.0" />
+                    <param name="autoUpgrade" value="true" />
+                    <a href="../SLFile/Silverlight.zip" style="text-decoration: none">
+                        <img src="../SLFile/SLMedallion_CHS.png" alt="获取 Microsoft Silverlight" style="border-style: none" />
+                    </a>
+                </object>
+                <iframe id="Iframe2" style="visibility: hidden; height: 0px; width: 0px; border: 0px"></iframe>
             </div>
         </div>
 
@@ -192,7 +206,7 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="性能">
                         <ItemTemplate>
-                            <img src='../images/Common/stata<%# Eval("performance") %>.gif' alt="设备状态" />
+                            <img src='../images/Common/stata<%# Eval("performanceVal") %>.gif' alt="性能" />
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="名称">

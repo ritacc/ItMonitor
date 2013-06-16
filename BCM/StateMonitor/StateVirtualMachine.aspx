@@ -42,8 +42,8 @@
             <table class="searchtable" cellspacing="0">
                 <tr>
                     <td style="width: 222px; text-align: left;">
-                        状态图标说明:<img  src="../images/Common/stata0.gif" alt="设备状态"/> 不可用
-                        <img  src="../images/Common/stata1.gif" alt="设备状态"/>  可用
+                        状态图标说明:<img  src="../images/Common/stata1.gif" alt="设备状态"/>可用
+                        <img  src="../images/Common/stata0.gif" alt="设备状态"/>不可用
                     </td>
                     <td></td>
                     <td style="width: 88px; text-align: left;">
@@ -57,8 +57,7 @@
                         <asp:TextBox ID="txtValue" Width="250px" runat="server"></asp:TextBox>
                     </td>
                     <td style=" width:40px;">
-                        <asp:Button ID="btnSearch" runat="server" OnClick="btnSearch_Click" Text="搜索" CssClass="btn_bg"
-                            OnClientClick="return $.yz.getErrorList()" />
+                        <asp:Button ID="btnSearch" runat="server" OnClick="btnSearch_Click" Text="搜索" CssClass="btn_bg"/>
                     </td>
                 </tr>
             </table>
@@ -72,7 +71,7 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="名称">
                         <ItemTemplate>
-                            <a href="StateVirtualMachineDetail.aspx">
+                            <a href="../PerfMonitor/PerfVirtualMachineDetail.aspx?id=<%#Eval("DeviceID") %>">
                                 <%# Eval("DeviceName")%></a>
                         </ItemTemplate>
                     </asp:TemplateField>
@@ -83,7 +82,6 @@
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:BoundField HeaderText="IP地址" DataField="IP" />
-                    <asp:BoundField HeaderText="报警信息" DataField="StationName" />
                     <asp:BoundField HeaderText="站点" DataField="StationName" />
                     <asp:BoundField HeaderText="采集时间" DataField="StationName" />
                 </Columns>

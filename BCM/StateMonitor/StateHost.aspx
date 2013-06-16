@@ -57,8 +57,7 @@
                         <asp:TextBox ID="txtValue" Width="250px" runat="server"></asp:TextBox>
                     </td>
                     <td style=" width:40px;">
-                        <asp:Button ID="btnSearch" runat="server" OnClick="btnSearch_Click" Text="搜索" CssClass="btn_bg"
-                            OnClientClick="return $.yz.getErrorList()" />
+                        <asp:Button ID="btnSearch" runat="server" OnClick="btnSearch_Click" Text="搜索" CssClass="btn_bg"/>
                     </td>
                 </tr>
             </table>
@@ -72,7 +71,7 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="名称">
                         <ItemTemplate>
-                            <a href="StateHostDetail.aspx">
+                            <a href="../PerfMonitor/PerfHostDetail.aspx?id=<%#Eval("DeviceID") %>">
                                 <%# Eval("DeviceName")%></a>
                         </ItemTemplate>
                     </asp:TemplateField>

@@ -4,8 +4,12 @@
 
 
 		<siteMapNode url="StateMonitor/StateMonitorIndex.aspx?id=sysadmin" title="系统监控" description="系统监控">
-			<siteMapNode url="StateMonitor/StateMonitorIndex.aspx" title="状态监控" description="状态监控"  />
-			<siteMapNode url="PerfMonitor/PerfMonitorIndex.aspx" title="性能监控" description="性能监控"  />
+			<siteMapNode url="StateMonitor/StateMonitorIndex.aspx" title="状态监控" description="状态监控"  >
+				<siteMapNode url="PerfMonitor/PerfDBIndex.aspx?type=status" roles="view" title="数据库状态监控" description="数据库状态监控"/>
+			</siteMapNode>	
+			<siteMapNode url="PerfMonitor/PerfMonitorIndex.aspx" title="性能监控" description="性能监控">
+				<siteMapNode url="PerfMonitor/PerfDBIndex.aspx?type=perf" roles="view" title="数据库性能监控" description="数据库性能监控"/>
+			</siteMapNode>	
 		</siteMapNode>
 
 		<siteMapNode url="AlertAdmin/HealthConfigList.aspx?id=defin" title="告警管理"  description="告警管理">
@@ -21,12 +25,11 @@
 		</siteMapNode>
 		
 		<siteMapNode url="CompSearch/CompRoomShearch.aspx?id=defin" title="综合查询"  description="综合查询">
-			<siteMapNode url="CompSearch/CompRoomShearch.aspx" title="机房报表" description="机房报表" />
-			<siteMapNode url="CompSearch/HostShearch.aspx" title="主机性能报表" description="主机性能报表" />
+			<siteMapNode url="CompSearch/DBSearch.aspx?type=12" title="机房报表" description="机房报表" />
+			<siteMapNode url="CompSearch/DBSearch.aspx?type=1" title="主机性能报表" description="主机性能报表" />
 			<siteMapNode url="CompSearch/DBSearch.aspx?type=4" title="数据库报表" description="数据库报表" />
 			<siteMapNode url="CompSearch/DBSearch.aspx?type=10" title="中间件报表" description="中间件报表" />
-			<siteMapNode url="CompSearch/DBSearch.aspx?type=5" title="应用系统报表" description="应用系统报表" />
-			<siteMapNode url="CompSearch/DBSearchDetail.aspx" title="报表浏览" description="报表浏览" roles="view" />
+			<siteMapNode url="CompSearch/DBSearch.aspx?type=5" title="应用系统报表" description="应用系统报表"/>
 		</siteMapNode>
 		
 		<siteMapNode url="CompReport/ReportGenerate.aspx?id=sysadmin" title="综合报告"  description="综合报告">

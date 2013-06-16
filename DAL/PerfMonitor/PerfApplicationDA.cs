@@ -13,7 +13,7 @@ namespace GDK.DAL.PerfMonitor
         public DataTable GetTopBuss()
         {
             string sql = @"select d.Describe descInfo,dt.typeid, dt.TypeName,d.*,
-case(d.Performance) when '故障' then 1 when  '报警' then 2 when '未启动' then 3 else 0 end  perf,--性能
+case(d.Performance) when '故障' then 0 when  '报警' then 2 when '未启动' then 3 else 1 end  perf,--性能
 case tvalter.MonitorValue when '正常' then '1' else  '0' end WarningStatus,tvalter.MonitorValue WarningStatusName--告警状态
 from t_Bussiness bus
 inner join t_Device d  on bus.id= d.DeviceID
@@ -27,7 +27,7 @@ where bus.ParentId= -1 ";
         public DataTable GetSysLay(int DeviceID)
         {
             string sql = string.Format(@"select d.Describe descInfo,dt.typeid, dt.TypeName,d.*,
-case(d.Performance) when '故障' then 1 when  '报警' then 2 when '未启动' then 3 else 0 end  perf,--性能
+case(d.Performance) when '故障' then 0 when  '报警' then 2 when '未启动' then 3 else 1 end  perf,--性能
 case tvalter.MonitorValue when '正常' then '1' else  '0' end WarningStatus,tvalter.MonitorValue WarningStatusName--告警状态
 from t_Bussiness bus
 inner join t_Device d  on bus.id= d.DeviceID
@@ -41,7 +41,7 @@ where bus.ParentId={0} ", DeviceID);
         public DataTable GetSysLay(int DeviceID, int typeid)
         {
             string sql = string.Format(@"select d.Describe descInfo,dt.typeid, dt.TypeName,d.*,
-case(d.Performance) when '故障' then 1 when  '报警' then 2 when '未启动' then 3 else 0 end  perf,--性能
+case(d.Performance) when '故障' then 0 when  '报警' then 2 when '未启动' then 3 else 1 end  perf,--性能
 case tvalter.MonitorValue when '正常' then '1' else  '0' end WarningStatus,tvalter.MonitorValue WarningStatusName--告警状态
 from t_Bussiness bus
 inner join t_Device d  on bus.id= d.DeviceID
@@ -55,7 +55,7 @@ where bus.ParentId={0} and dt.typeid={1} ", DeviceID, typeid);
         public DataTable GetSysLay(int DeviceID, string strWhere)
         {
             string sql = string.Format(@"select d.Describe descInfo,dt.typeid, dt.TypeName,d.*,
-case(d.Performance) when '故障' then 1 when  '报警' then 2 when '未启动' then 3 else 0 end  perf,--性能
+case(d.Performance) when '故障' then 0 when  '报警' then 2 when '未启动' then 3 else 1 end  perf,--性能
 case tvalter.MonitorValue when '正常' then '1' else  '0' end WarningStatus,tvalter.MonitorValue WarningStatusName--告警状态
 from t_Bussiness bus
 inner join t_Device d  on bus.id= d.DeviceID
@@ -77,7 +77,7 @@ where bus.ParentId={0} and {1} ", DeviceID, strWhere);
         {
 
             string sql = @"select d.Describe descInfo, dt.TypeName,d.*,
-case(d.Performance) when '故障' then 1 when  '报警' then 2 when '未启动' then 3 else 0 end  perf
+case(d.Performance) when '故障' then 0 when  '报警' then 2 when '未启动' then 3 else 1 end  perf
 from t_Device d 
 inner join t_DeviceType dt on d.DeviceTypeID= dt.DeviceTypeID 
 where dt.typeid=2 ";
@@ -98,7 +98,7 @@ where dt.typeid=2 ";
         public DataTable selectDeviceList(int pageCrrent, int pageSize, out int pageCount, string where)
         {
             string sql = @"select d.Describe descInfo, dt.TypeName,d.*,
-case(d.Performance) when '故障' then 1 when  '报警' then 2 when '未启动' then 3 else 0 end  perf
+case(d.Performance) when '故障' then 0 when  '报警' then 2 when '未启动' then 3 else 1 end  perf
 from t_Device d 
 inner join t_DeviceType dt on d.DeviceTypeID= dt.DeviceTypeID 
 where dt.typeid=2 ";

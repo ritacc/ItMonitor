@@ -27,8 +27,9 @@ namespace GDK.BCM.CompReport
                 {
                     dpdMonth.Items.Add(new ListItem(i.ToString().PadLeft(2,'0')));
                 }
+                dpdMonth.SelectedValue = DateTime.Now.Month.ToString().PadLeft(2, '0');
                 //加载，应用系统
-               DataTable dt= new PerfApplicationDA().SelectApplicationSystem();
+               DataTable dt= new PerfApplicationDA().GetTopBuss();
                dpdSystem.DataSource = dt;
                dpdSystem.DataTextField = "DeviceName";
                dpdSystem.DataValueField = "DeviceID";

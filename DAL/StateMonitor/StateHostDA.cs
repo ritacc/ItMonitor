@@ -15,7 +15,7 @@ case tvSta.MonitorValue when '正常' then '1' else  '0' end DeviceStatus--状�
  from t_Device  dev
 left join t_DeviceType dt on dev.DeviceTypeID = dt.DeviceTypeID
 left join  t_TmpValue tvSta on  dev.deviceid=tvSta.deviceid and  tvSta.ChannelNo=11103 
-where dt.typeid=2";
+where dt.typeid=1";
             if (!string.IsNullOrEmpty(where))
             {
                 sql = string.Format(" {0} where {1}", sql, where);

@@ -75,7 +75,7 @@
                                 </asp:Legend>
                             </Legends>
                             <Series>
-                                <asp:Series Name="Series1" ChartType="Pie" Font="Trebuchet MS, 8.25pt, style=Bold"
+                                <asp:Series Name="Series1" ChartType="Pie" Font="Trebuchet MS, 8.25pt, style=Bold"  IsValueShownAsLabel="false"
                                     CustomProperties="DoughnutRadius=25,  PieDrawingStyle=Concave, CollectedLabel=Other, MinimumRelativePieSize=20"
                                     MarkerStyle="Circle" BorderColor="64, 64, 64, 64" Color="180, 65, 140, 240" YValueType="Double"
                                     Label="#PERCENT{P1}" BorderWidth="2">
@@ -116,11 +116,13 @@
      <div class="div_box Padding_5">
         <div class="div_box_title">性能</div>
         <div class="char_middle overflow_grid_select_NoPage Padding_5" style="height: 496px;">
-            <asp:Chart ID="chLine" runat="server" Width="890" Height="496" BackColor="#f0fbff">
+            <asp:Chart ID="chLine" runat="server" Width="950" Height="496" BackColor="#f0fbff">
                 <Titles>
                     <asp:Title ShadowColor="32, 0, 0, 0" Font="Trebuchet MS, 14.25pt, style=Bold" ShadowOffset="3"
                         Text="最近一小时性能（应答时间/S）" Name="Title1" ForeColor="26, 59, 105">
                     </asp:Title>
+                    <asp:Title Docking="Left" Font="Trebuchet MS, 14.25pt, style=Bold" Text="Response Time/ms" TextOrientation="Rotated90">
+                            </asp:Title>
                 </Titles>
                 <Legends>
                     <asp:Legend TitleFont="Microsoft Sans Serif, 8pt, style=Bold" BackColor="Transparent"
@@ -208,7 +210,7 @@
       <div class="div_box Padding_5">
         <div class="div_box_title">特定URL响应时间(应答时间/ms)本视图5分钟自动最新数据</div>
         <div class="char_middle overflow_grid_select_NoPage Padding_5" style="height: 496px;">
-            <asp:Chart ID="chtURL" runat="server" Width="890" Height="496" BackColor="#f0fbff">
+            <asp:Chart ID="chtURL" runat="server" Width="950" Height="496" BackColor="#f0fbff">
                 <Titles>
                     <asp:Title ShadowColor="32, 0, 0, 0" Font="Trebuchet MS, 14.25pt, style=Bold" ShadowOffset="3"
                         Text="特定URL响应时间(应答时间/ms)本视图5分钟自动最新数据" Name="Title1" ForeColor="26, 59, 105">

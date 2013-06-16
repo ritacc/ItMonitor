@@ -73,6 +73,8 @@
     <Content Include="ref\Microsoft.Practices.EnterpriseLibrary.Common.dll" />
     <Content Include="ref\Microsoft.Practices.EnterpriseLibrary.Data.dll" />
     <Content Include="ref\Microsoft.Practices.ObjectBuilder.dll" />
+    <Content Include="ref\Microsoft.Practices.ObjectBuilder2.dll" />
+    <Content Include="ref\Microsoft.Practices.Unity.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

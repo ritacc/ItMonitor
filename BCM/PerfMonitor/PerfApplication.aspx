@@ -2,7 +2,7 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<%@ Register Src="../UI/pagenavigate.ascx" TagName="pagenavigate" TagPrefix="uc2" %>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <title></title>
     <link href="../Styles/gridview.css" rel="Stylesheet" />
@@ -155,7 +155,7 @@
                     <img src="../images/gridview/gridheader_03.gif" alt="" />
                 </td>
                 <td>
-                    应用性能列表
+                    应用系统性能列表
                 </td>
                 <td width="6">
                     <img src="../images/gridview/gridheader_06.gif" alt="" />

@@ -15,7 +15,7 @@
             <table class="gridview_skin" style=" padding:0px; margin:0px; border-top:solid 1px #78c5ec;">
                 <tr  class="AlternatingRowStyle">
                     <td style=" width:50%;">
-                        部门<asp:Label ID="lblDepart" runat="server"></asp:Label>
+                        部门：<asp:Label ID="lblDepart" runat="server"></asp:Label>
                     </td>
                     <td>
                         业务类型：

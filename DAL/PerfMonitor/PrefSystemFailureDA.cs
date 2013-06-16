@@ -11,7 +11,7 @@ namespace GDK.DAL.PerfMonitor
         public DataTable selectDeviceList(int pageCrrent, int pageSize, out int pageCount, string where)
         {
             string sql = @"select d.Describe descInfo,dt.typeid, dt.TypeName,su.DISPLAY_NAME,d.*,
-case(d.Performance) when '故障' then 1 when  '报警' then 2 when '未启动' then 3 else 0 end  perfValue--性能
+case(d.Performance) when '故障' then 0 when  '报警' then 2 when '未启动' then 3 else 1 end  perfValue--性能
 ,alar.Content,alar.HappenTime
 from t_AlarmLog alar
 inner join t_Device d  on alar.DeviceID= d.DeviceID

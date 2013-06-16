@@ -333,7 +333,7 @@ inner join  t_DeviceType dt on d.DeviceTypeID=dt.DeviceTypeID and d.stationid={0
         public DeviceOREx SelectDeviceORExByID(string m_id)
         {
             string sql = string.Format(@"select dev.Describe descInfo,dt.TypeName,sty.name ClassNmae,xl.MonitorValue WarningStatus,ms.MonitorValue HealthStatus,dev.*,
-case(dev.Performance) when '故障' then 1 when  '报警' then 2 when '未启动' then 3 else 0 end  performance 
+case(dev.Performance) when '故障' then 0 when  '报警' then 2 when '未启动' then 3 else 1 end  performance 
  from t_Device  dev
 left join t_DeviceType dt on dev.DeviceTypeID = dt.DeviceTypeID
 left join t_ServersType sty on sty.typeid= dt.typeid and sty.ServerID= dt.ServerID 

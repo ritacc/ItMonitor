@@ -75,9 +75,11 @@ namespace GDK.BCM.PerfMonitor
 
 
             // 最近一小时性能
-            DataTable dte = mDA.GetDeviceChanncelValue(iDeviceID, 26101, StartTime, EndTime);
+            DataTable dte = mDA.GetDeviceChanncelValue(iDeviceID, 24104, StartTime, EndTime);
             if (dte != null)
             {
+                chLine.Series["Series1"].MarkerStyle = MarkerStyle.Circle;
+                chLine.Series["Series1"].MarkerSize = 4;
                 chLine.Series["Series1"].Points.DataBindXY(dte.Rows, "Time", dte.Rows, "MonitorValue");
             }
 
@@ -86,6 +88,8 @@ namespace GDK.BCM.PerfMonitor
             if (dt != null)
             {
                 chtURL.Series["Series1"].Points.DataBindXY(dt.Rows, "Time", dt.Rows, "MonitorValue");
+                chtURL.Series["Series1"].MarkerStyle = MarkerStyle.Circle;
+                chtURL.Series["Series1"].MarkerSize = 4;
             }           
 
             #endregion

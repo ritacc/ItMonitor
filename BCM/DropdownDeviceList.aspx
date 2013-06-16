@@ -20,7 +20,8 @@
                             </asp:Legend>
                         </Legends>
                         <Series>
-                            <asp:Series Name="Series1"   IsValueShownAsLabel="True" LabelFormat="{0}台" BorderColor="180, 26, 59, 105">
+                            <asp:Series Name="Series1" ChartType="Line" LabelFormat="{0}台" 
+                                BorderColor="180, 26, 59, 105">
                             </asp:Series>
                         </Series>
                         <ChartAreas>
@@ -36,6 +37,12 @@
                                 </AxisX>
                             </asp:ChartArea>
                         </ChartAreas>
+                        <Titles>
+                            
+                            <asp:Title Docking="Left" Font="Trebuchet MS, 14.25pt, style=Bold" 
+                                Text="Response Time/ms" TextOrientation="Rotated90">
+                            </asp:Title>
+                        </Titles>
                     </asp:Chart>
     
    

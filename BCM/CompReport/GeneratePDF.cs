@@ -423,7 +423,7 @@ namespace GDK.BCM.CompReport
             ser.ChartType = SeriesChartType.Line;
             ser.MarkerStyle = MarkerStyle.Circle;
             ser.MarkerSize = 3;
-            ser.IsValueShownAsLabel = true;
+            //ser.IsValueShownAsLabel = true;
             ser.LabelFormat="{0}%";
 
             ser.Points.DataBindXY(dt.Rows, "monitordate", dt.Rows, "val");

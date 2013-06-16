@@ -55,8 +55,7 @@
                         <asp:TextBox ID="txtValue" Width="250px" runat="server"></asp:TextBox>
                     </td>
                     <td style=" width:40px;">
-                        <asp:Button ID="btnSearch" runat="server" OnClick="btnSearch_Click" Text="搜索" CssClass="btn_bg"
-                            OnClientClick="return $.yz.getErrorList()" />
+                        <asp:Button ID="btnSearch" runat="server" OnClick="btnSearch_Click" Text="搜索" CssClass="btn_bg"/>
                     </td>
                 </tr>
             </table>
@@ -79,7 +78,9 @@
                             <img src='../images/Common/stata<%# Eval("perf") %>.gif' alt="设备状态" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:BoundField HeaderText="类型名称" DataField="TypeName" />
+
+                    <asp:BoundField HeaderText="设备类型" DataField="TypeName" />
+                    <asp:BoundField  HeaderText="报警信息" DataField="Content" />
                     <asp:BoundField HeaderText="所在机房" DataField="StationName" />
                     <asp:BoundField HeaderText="采集时间" DataField="LastPollingTime" />
                 </Columns>
@@ -95,6 +96,7 @@
                             <th>
                                 类型名称
                             </th>
+                            <th>报警信息</th>
                             <th>
                                 所在机房
                             </th>

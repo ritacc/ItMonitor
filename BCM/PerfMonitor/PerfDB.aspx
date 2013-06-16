@@ -36,8 +36,8 @@
                 <tr>
                     <td>
                         状态图标说明：
-                        <img src="../images/Common/stata0.gif" alt="设备状态" style="vertical-align:middle;" /> 正常 &nbsp;
-                        <img src="../images/Common/stata1.gif" alt="设备状态" style="vertical-align:middle;" /> 故障  &nbsp;
+                        <img src="../images/Common/stata1.gif" alt="设备状态" style="vertical-align:middle;" /> 正常 &nbsp;
+                        <img src="../images/Common/stata0.gif" alt="设备状态" style="vertical-align:middle;" /> 故障  &nbsp;
                         <img src="../images/Common/stata2.gif" alt="设备状态" style="vertical-align:middle;" /> 报警  &nbsp;
                         <img src="../images/Common/stata3.gif" alt="设备状态" style="vertical-align:middle;" /> 未启动  &nbsp;
                     </td>
@@ -64,7 +64,7 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="数据库名称">
                         <ItemTemplate>
-                            <a href="PerfDBIndex.aspx?id=<%#Eval("DeviceID") %>" target="_parent"><span class="sercers">
+                            <a href="PerfDBIndex.aspx?type=perf&id=<%#Eval("DeviceID") %>" target="_parent"><span class="sercers">
                                 <%#Eval("DeviceName")%></span></a>
                         </ItemTemplate>
                     </asp:TemplateField>
