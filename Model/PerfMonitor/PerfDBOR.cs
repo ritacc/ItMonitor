@@ -224,18 +224,6 @@ namespace GDK.Entity.PerfMonitor
         /// 共享池大小   -- SGA中已存在
         /// </summary>
 
-        
-
-        /// <summary>
-        /// 接口列表     3#^#1705#^#1706#^#1707
-        /// </summary>
-        public string Ports { get; set; }
-                
-        /// <summary>
-        /// 网各设备的，接口列表
-        /// </summary>
-        public DataTable SubProts { get; set; }
-
         public PerfDBOR(DataTable dt)
         {
             if (dt == null)

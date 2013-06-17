@@ -47,6 +47,7 @@
         .w75{ width:75px;}
         .w120{ width:120px;}
         .tableContent{ width:100%;border-bottom: 1px dashed #BBBBBB;}
+        .TopTable{ width:100%;border-bottom: 1px solid #EEFFFF;}
         .tableContentTH{ width:100%;border-bottom: 1px dashed #BBBBBB;}
         .tableContent td{ text-align:left; }
         .tableContentTH td{  font-size:12px;  font-weight:bold;}
@@ -185,7 +186,7 @@
                 </table>
                 <asp:Repeater ID="rpApp" runat="server">
                     <ItemTemplate>
-                        <div class="divTitleMu" type='top' dep='1' guid='<%# Eval("DeviceID")%>'>
+                        <div class="divTitleMu  TopTable" type='top' dep='1' guid='<%# Eval("DeviceID")%>'>
                             <table class="tableContent">
                                 <tr>
                                     <td class="w75">
