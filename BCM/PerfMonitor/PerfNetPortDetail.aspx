@@ -27,8 +27,8 @@
                                 <th>属性值</th>
                             </tr>
                             <tr class="AlternatingRowStyle">
-                                <td><a href="PerfNetAlarmDetail.aspx?id=<%= deviceID %>"><img src='../images/Common/stata<%= perf %>.gif' alt="性能" /></a></td>
-                                <td><asp:Label ID="lbl" runat="server"></asp:Label></td>
+                                <td><a href="PerfNetAlarmDetail.aspx?id=<%= deviceID %>"><img src='../images/Common/stata<%= perf %>.gif' alt="性能" title="<%= Performance %>" /></a></td>
+                                <td><asp:Label ID="lblName" runat="server"></asp:Label></td>
                             </tr>
                             <tr class="AlternatingRowStyle">
                                 <td>
@@ -53,7 +53,7 @@
                             <tr class="RowStyle">
                                 <td>电路ID:</td>
                                 <td>
-                                   <asp:Label ID="lblCircuitID" runat="server"></asp:Label>无此字段
+                                   <asp:Label ID="lblCircuitID" runat="server"></asp:Label>
                                 </td>
                             </tr>
                             <tr class="AlternatingRowStyle">
@@ -111,18 +111,18 @@
                             </tr>
                             <tr class="RowStyle">
                                 <td>使用率</td>
-                                <td><asp:Label ID="lblReceiveUtilization" runat="server"></asp:Label> 无此字段</td>
-                                <td><asp:Label ID="lblSendUtilization" runat="server"></asp:Label> 无此字段</td>
+                                <td><asp:Label ID="lblReceiveUtilization" runat="server"></asp:Label> </td>
+                                <td><asp:Label ID="lblSendUtilization" runat="server"></asp:Label> </td>
                             </tr>
                             <tr class="RowStyle">
                                 <td>每秒包数量</td>
-                                <td><asp:Label ID="lblReceivePacketsNumber" runat="server"></asp:Label> 无此字段</td>
-                                <td><asp:Label ID="lblSendPacketsNumber" runat="server"></asp:Label> 无此字段</td>
+                                <td><asp:Label ID="lblReceivePacketsNumber" runat="server"></asp:Label> </td>
+                                <td><asp:Label ID="lblSendPacketsNumber" runat="server"></asp:Label> </td>
                             </tr>
                             <tr class="RowStyle">
                                 <td>数据包平均尺寸</td>
-                                <td><asp:Label ID="lblReceiveAverageSize" runat="server"></asp:Label> 无此字段</td>
-                                <td><asp:Label ID="lblSendAverageSize" runat="server"></asp:Label> 无此字段</td>
+                                <td><asp:Label ID="lblReceiveAverageSize" runat="server"></asp:Label> </td>
+                                <td><asp:Label ID="lblSendAverageSize" runat="server"></asp:Label> </td>
                             </tr>
                         </table>
                       </div>
@@ -137,7 +137,7 @@
                             <param name="onError" value="onSilverlightError" />
                             <param name="background" value="white" />
                             <!--MeterMember MeterAll MeterHalf MeterTemperature-->
-                            <param name="initParams" value="Target=MeterMember,DeviceID=<%= deviceID %>,ChanncelNo=9" />
+                            <param name="initParams" value="Target=MeterMember,DeviceID=<%= deviceID %>,ChanncelNo=35003" />
                             <param name="minRuntimeVersion" value="4.0.50826.0" />
                             <param name="autoUpgrade" value="true" />
                             <a href="../SLFile/Silverlight.zip" style="text-decoration: none">
@@ -152,7 +152,7 @@
                             <param name="onError" value="onSilverlightError" />
                             <param name="background" value="white" />
                             <!--MeterMember MeterAll MeterHalf MeterTemperature-->
-                            <param name="initParams" value="Target=MeterMember,DeviceID=<%= deviceID %>,ChanncelNo=9" />
+                            <param name="initParams" value="Target=MeterMember,DeviceID=<%= deviceID %>,ChanncelNo=35004" />
                             <param name="minRuntimeVersion" value="4.0.50826.0" />
                             <param name="autoUpgrade" value="true" />
                             <a href="../SLFile/Silverlight.zip" style="text-decoration: none">

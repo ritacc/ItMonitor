@@ -16,6 +16,7 @@ namespace GDK.BCM.PerfMonitor
     public partial class NetDetail : PageBase
     {
         public int deviceID = 0;
+        public string perf = "0";
         protected override void OnLoad(EventArgs e)
         {
             base.IsAuthenticate = false;
@@ -36,34 +37,48 @@ namespace GDK.BCM.PerfMonitor
             string mDeviceID= Request.QueryString["id"];
             PerfNetDetailOR _Obj = new PerfNetDA().SelectDeviceDetail(mDeviceID);
             DeviceOR _objDev = new DeviceDA().SelectDeviceORByID(mDeviceID);
-
-
-            DeviceOREx _objDevEx = new DeviceDA().SelectDeviceORExByID(mDeviceID);
+            DeviceOREx _objDevEx = new DeviceDA().SelectDeviceORExByID(mDeviceID);            
+            switch (_objDev.Performance)
+            {
+                case "正常":
+                    perf = "0";
+                    break;
+                case "故障":
+                    perf = "1";
+                    break;
+                case "报警":
+                    perf = "2";
+                    break;
+                case "未启动":
+                    perf = "3";
+                    break;
+            }
             lblClass.Text = _objDevEx.ClassName;
             lblType.Text = _objDevEx.TypeName;
 
             lblDeviceName.Text = _objDev.DeviceName;
 
-            lblIP.Text = _Obj.IP;
+            lblIP.Text = _objDev.IP;
             lblFirm.Text = _Obj.Firm;
             lblFlowCalculator.Text = _Obj.FlowCalculator;
             lblDependence.Text = _Obj.Dependence;
             lblPollingProtocol.Text = _Obj.PollingProtocol;
-            lblSystemDescription.Text = _Obj.SystemDescription;
-            lblResponseTime.Text = _Obj.ResponseTime;
             lblMonitor.Text = _Obj.Monitor;
+            lblSystemDescription.Text = _objDev.Describe;
+            lblResponseTime.Text = _Obj.ResponseTime;
+            lblPacketLossRate.Text = _Obj.LoseRate;
 
-            #region 绑定 可用性
+            #region 绑定 今天的使用率
             DataPoint dp = new DataPoint();
-            dp.LegendText = string.Format("{0}({1}%)", "可用", _objDev.AvailableRate);
-            double[] d = { Convert.ToDouble(_objDev.AvailableRate) };
+            dp.LegendText = string.Format("{0}({1}%)", "今天的使用率", _Obj.NetUtilityRate);
+            double[] d = { Convert.ToDouble(_Obj.NetUtilityRate) };
             dp.Color = Color.Green;
             dp.YValues = d;
             chtPerf.Series["Series1"].Points.Add(dp);
 
             dp = new DataPoint();
-            dp.LegendText = string.Format("{0}({1}%)", "不可用", 100 - _objDev.AvailableRate);
-            double[] dno = { Convert.ToDouble(100 - _objDev.AvailableRate) };
+            dp.LegendText = string.Format("{0}({1}%)", "今天的未使用率", 100 - _Obj.NetUtilityRate);
+            double[] dno = { Convert.ToDouble(100 - _Obj.NetUtilityRate) };
             dp.Color = Color.Red;
             dp.YValues = dno;
             chtPerf.Series["Series1"].Points.Add(dp);

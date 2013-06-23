@@ -13,12 +13,7 @@ namespace GDK.Entity.PerfMonitor
        {
 
        }
-
-       /// <summary>
-       /// IP地址 1
-       /// </summary>
-       public string IP { get; set; }
-
+       
        /// <summary>
        /// 2 厂商 
        /// </summary>
@@ -40,14 +35,24 @@ namespace GDK.Entity.PerfMonitor
        public string PollingProtocol { get; set; }
 
        /// <summary>
-       /// 6 使用率 
+       /// 网络 今天的使用率 
        /// </summary>
-       public string UtilityRate { get; set; }
+       public double NetUtilityRate { get; set; }
+
+       /// <summary>
+       /// 接口 使用率 
+       /// </summary>
+       public string PortUtilityRate { get; set; }
 
        /// <summary>
        /// 7 响应时间 
        /// </summary>
        public string ResponseTime { get; set; }
+
+       /// <summary>
+       /// 今天的丢包率
+       /// </summary>
+       public string LoseRate { get; set; }
 
        /// <summary>
        /// 8 CPU使用率 
@@ -58,6 +63,11 @@ namespace GDK.Entity.PerfMonitor
        /// 9 内存使用率 
        /// </summary>
        public string MemoryUsage { get; set; }
+
+       /// <summary>
+       /// 背板使用率
+       /// </summary>
+       public string Butterfly { get; set; }
        
        /// <summary>
        /// 11 监控
@@ -69,13 +79,7 @@ namespace GDK.Entity.PerfMonitor
        /// 10 接口列表     3#^#1705#^#1706#^#1707
        /// </summary>
        public string Ports { get; set; }
-
-
-       /// <summary>
-       /// 系统描述 
-       /// </summary>
-       public string SystemDescription { get; set; }
-
+       
        /// <summary>
        /// 网各设备的，接口列表
        /// </summary>
@@ -89,51 +93,41 @@ namespace GDK.Entity.PerfMonitor
            {
                switch (dr["ChannelNO"].ToString())
                {
-                   case "1":
-                       IP = dr["MonitorValue"].ToString();
-                       break;
-                   case "2":
+                   case "31001":
                        Firm = dr["MonitorValue"].ToString();
                        break;
 
-                   case "3":
+                   case "31002":
                        FlowCalculator = dr["MonitorValue"].ToString();
                        break;
 
-                   case "4":
+                   case "31003":
                        Dependence = dr["MonitorValue"].ToString();
                        break;
 
-                   case "5":
+                   case "31004":
                        PollingProtocol = dr["MonitorValue"].ToString();
                        break;
 
-                   case "6":
-                       UtilityRate = dr["MonitorValue"].ToString();
-                       break;
-
-                   case "7":
-                       ResponseTime = dr["MonitorValue"].ToString();
-                       break;
-
-                   case "8":
-                       CPU_Usage = dr["MonitorValue"].ToString();
-                       break;
-
-                   case "9":
-                       MemoryUsage = dr["MonitorValue"].ToString();
-                       break;
-
-                   case "10":
-                       Ports = dr["MonitorValue"].ToString();
-                       break;
-
-                   case "12":
+                   case "31005":
                        Monitor = dr["MonitorValue"].ToString();
                        break;
 
-                   case "11102":
-                       SystemDescription = dr["MonitorValue"].ToString();
+                   case "32001":
+                       NetUtilityRate = Convert.ToDouble(dr["MonitorValue"]);
+                       break;
+
+                   case "32002":
+                       ResponseTime = dr["MonitorValue"].ToString();
+                       break;
+
+                   case "32003":
+                       LoseRate = dr["MonitorValue"].ToString();
+                       break;
+
+                       
+                   case "10":
+                       Ports = dr["MonitorValue"].ToString();
                        break;
                }
 

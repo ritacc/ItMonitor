@@ -15,16 +15,6 @@ namespace GDK.Entity.PerfMonitor
        }
 
         /// <summary>
-        /// 1 接口名
-        /// </summary>
-        public string Port { get; set; }
-
-        /// <summary>
-        /// 2 IP地址
-        /// </summary>
-        public string IP { get; set; }
-
-        /// <summary>
         /// 3 上级名
         /// </summary>
         public string SuperiorName { get; set; }
@@ -50,19 +40,49 @@ namespace GDK.Entity.PerfMonitor
         public string SendBroadband { get; set; }
 
         /// <summary>
-        /// 8当前上传速度
+        /// 8当前流量接收
         /// </summary>
-        public string CurrentUploadSpeed { get; set; }
+        public string CurrentlyReceivingTraffic { get; set; }
 
         /// <summary>
-        /// 9当前下载速度
+        /// 9当前流量发送
         /// </summary>
-        public string CurrentDownloadSpeed { get; set; }
+        public string CurrentSendTraffic { get; set; }
 
         /// <summary>
-        /// 9999通讯状态
+        /// 使用率 接收
         /// </summary>
-        public string CommunicationStatus { get; set; }
+        public string UtilizationReceive { get; set; }
+
+        /// <summary>
+        /// 使用率 发送
+        /// </summary>
+        public string UtilizationSend { get; set; }
+
+        /// <summary>
+        /// 每秒包数量 接收
+        /// </summary>
+        public string ReceiveNoS { get; set; }
+
+        /// <summary>
+        /// 每秒包数量 发送
+        /// </summary>
+        public string SendNos { get; set; }
+
+        /// <summary>
+        /// 数据包平均尺寸 接收
+        /// </summary>
+        public string AverageSizeReceive { get; set; }
+
+        /// <summary>
+        /// 数据包平均尺寸 发送
+        /// </summary>
+        public string AverageSizeSend { get; set; }
+        
+        /// <summary>
+        /// 消息
+        /// </summary>
+        public string From { get; set; }
 
         /// <summary>
         /// 电路ID
@@ -77,9 +97,8 @@ namespace GDK.Entity.PerfMonitor
         /// <summary>
         /// 管理状态
         /// </summary>
-        public string ManagementState { get; set; }
-        
-            
+        public string ManagementState { get; set; }        
+                 
         public PerNetPortDetailOR(DataTable dt)
         {
             if (dt == null)
@@ -88,38 +107,50 @@ namespace GDK.Entity.PerfMonitor
             {
                 switch (dr["ChannelNO"].ToString())
                 {
-                    case "1":
-                        Port = dr["MonitorValue"].ToString();
+                    case "34001":
+                        CircuitID = dr["MonitorValue"].ToString();
                         break;
-                    case "2":
-                        IP = dr["MonitorValue"].ToString();
-                        break;
-                    case "3":
+                    case "34002":
                         SuperiorName = dr["MonitorValue"].ToString();
                         break;
-                    case "4":
+                    case "34003":
                         Index = dr["MonitorValue"].ToString();
                         break;
-                    case "5":
-                        PhysicalAddress = dr["MonitorValue"].ToString();
+                    case "34004":
+                        ManagementState = dr["MonitorValue"].ToString();
                         break;
-                    case "6":
+                    case "34005":
+                        OperatingStatus = dr["MonitorValue"].ToString();
+                        break;
+                    case "35001":
                         ReceiveBroadband = dr["MonitorValue"].ToString();
                         break;
-                    case "7":
+                    case "35002":
                         SendBroadband = dr["MonitorValue"].ToString();
                         break;
-                    case "8":
-                        CurrentUploadSpeed = dr["MonitorValue"].ToString();
+                    case "33001":
+                        CurrentlyReceivingTraffic = dr["MonitorValue"].ToString();
                         break;
-                    case "9":
-                        CurrentDownloadSpeed = dr["MonitorValue"].ToString();
+                    case "33002":
+                        CurrentSendTraffic = dr["MonitorValue"].ToString();
                         break;
-                    case "9999":
-                        CommunicationStatus = dr["MonitorValue"].ToString();
+                    case "35003":
+                        UtilizationReceive = dr["MonitorValue"].ToString();
                         break;
-                    case "11103":
-                        ManagementState = dr["MonitorValue"].ToString();
+                    case "35004":
+                        UtilizationSend = dr["MonitorValue"].ToString();
+                        break;
+                    case "35005":
+                        ReceiveNoS = dr["MonitorValue"].ToString();
+                        break;
+                    case "35006":
+                        SendNos = dr["MonitorValue"].ToString();
+                        break;
+                    case "35007":
+                        AverageSizeReceive = dr["MonitorValue"].ToString();
+                        break;
+                    case "35008":
+                        AverageSizeSend = dr["MonitorValue"].ToString();
                         break;
                 }
             }

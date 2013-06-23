@@ -12,9 +12,7 @@ namespace GDK.Entity.PerfMonitor
            : base(dr)
        {
            TypeName = dr["TypeName"].ToString();
-           ClassName = dr["ClassNmae"].ToString();
-           Desc = dr["descInfo"].ToString();
-           Perf = dr["performance"].ToString();
+           ClassName = dr["ClassName"].ToString();
            WarningStatus = dr["WarningStatus"].ToString();
            HealthStatus = dr["HealthStatus"].ToString();
        }
@@ -27,17 +25,7 @@ namespace GDK.Entity.PerfMonitor
        /// 分类
        /// </summary>
        public string ClassName { get; set; }
-
-       /// <summary>
-       /// 描述
-       /// </summary>
-       public string Desc { get; set; }
-
-       /// <summary>
-       /// 性能
-       /// </summary>
-       public string Perf { get; set; }
-
+       
        /// <summary>
        /// 告警状态
        /// </summary>

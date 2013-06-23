@@ -88,7 +88,7 @@ namespace GDK.Entity.PerfMonitor
 
 
         ///<summary>
-        ///机房名称
+        /// 机房名称
         ///</summary>
         private string _StationName;
 

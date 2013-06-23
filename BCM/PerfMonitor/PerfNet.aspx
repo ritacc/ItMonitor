@@ -68,14 +68,14 @@
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:BoundField HeaderText="类型" DataField="TypeName" />
-                    <asp:BoundField HeaderText="分类" DataField="ServName" />
+                    <asp:BoundField HeaderText="分类" DataField="ClassName" />
                     <asp:TemplateField HeaderText="性能">
                         <ItemTemplate>
                             <img src='../images/Common/stata<%# Eval("perf") %>.gif' alt="设备状态" />
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:BoundField HeaderText="IP地址" DataField="IP" />
-                    <asp:BoundField HeaderText="描述" DataField="Describe" />
+                    <asp:BoundField HeaderText="系统描述" DataField="Describe" />
                 </Columns>
             </asp:GridView>
         </div>
