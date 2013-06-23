@@ -67,16 +67,25 @@ end Status
 from (
 	select deviceno,channelno--,monitordate
 	,round( avg(monitorvalue),2) avgval
-	,max(monitorvalue) maxval,sum(num) maxNum
+	,max(monitorvalue) maxval
+	,sum(num) maxNum
+	,avg(case when dateDay>=1 and dateDay<=5 then monitorvalue  end) avgNum15
+	,avg(case when dateDay>=11 and dateDay<=15 then monitorvalue  end) avgNum1115
+	,avg(case when dateDay>=25 and dateDay<=31 then monitorvalue  end) avgNum2531
+	,sum(case when dateDay>=1 and dateDay<=5 and Num=1 then 1 else 0 end) MaxNum15
+	,sum(case when dateDay>=11 and dateDay<=15 and Num=1 then 1 else 0 end) MaxNum1115
+	,sum(case when dateDay>=25 and dateDay<=31 and Num=1 then 1 else 0 end) MaxNum2531
 	 from
 	(
-		select t.*,case when monitorvalue > 80 then 1 else 0 end as Num
+		select t.*
+			,datepart(dd,MonitorTime) dateDay
+			,case when monitorvalue > 80 then 1 else 0 end as Num
 		from ReportTemp t
 	) as f
 	group by deviceno,channelno--,monitordate
 ) as sf
 left join t_Device d on sf.deviceno= d.deviceid
---order by monitordate desc";
+";
            return db.ExecuteQuery(sql);
        }
     }

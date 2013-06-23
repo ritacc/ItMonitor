@@ -8,24 +8,8 @@
 </head>
 <body>
     <form id="form1" runat="server">
-   <div>
-        <table>
-            <tr>
-                <td>
-                    类型:
-                </td>
-                <td>
-                    <asp:Label ID="lblType" runat="server"></asp:Label>
-                </td>
-                
-            </tr>
-            <tr>
-            <td>分类</td>
-                <td>
-                    <asp:Label ID="lblClass" runat="server"></asp:Label>
-                </td>
-            </tr>
-        </table>
+        <div>
+            此类型未定义详细展示
         </div>
     </form>
 </body>

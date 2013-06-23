@@ -28,15 +28,7 @@ namespace GDK.Entity.StateMonitor
         /// </summary>
         public string WEIZHI { get; set; }
         
-        /// <summary>
-        /// 接口列表     3#^#1705#^#1706#^#1707
-        /// </summary>
-        public string Ports { get; set; }
-                
-        /// <summary>
-        /// 网各设备的，接口列表
-        /// </summary>
-        public DataTable SubProts { get; set; }
+        
 
         public StateCompRoomEnviOR(DataTable dt)
         {

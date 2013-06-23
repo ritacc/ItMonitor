@@ -70,6 +70,9 @@ namespace GDK.BCM.CompSeartch
 
         private void BindChannel(string strID)
         {
+            lbChannelnoList.Items.Clear();
+            listSelectChannelNo.Items.Clear();
+
             lbChannelnoList.DataSource = new DeviceDA().SelectChannelByDeviceID(strID);
             lbChannelnoList.DataTextField = "ChannelName";
             lbChannelnoList.DataValueField = "ChannelNo";

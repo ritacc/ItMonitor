@@ -29,11 +29,42 @@ namespace GDK.BCM.StateMonitor
         private void InitData()
         {
             string mDeviceID = Request.QueryString["id"];
-            
-            DeviceOREx _objDev = new DeviceDA().SelectDeviceORExByID(mDeviceID);
-            lblClass.Text = _objDev.ClassName;
-            lblType.Text = _objDev.TypeName;
-            
+            string mTypeid = Request.QueryString["typeid"];
+
+            string url = string.Empty;
+            switch (Convert.ToInt32(mTypeid))
+            {
+                case 1:
+                    url = "../PerfMonitor/PerfHostDetail.aspx";
+                    break;
+                case 2://应用
+                    url = "../PerfMonitor/PerfApplicationUrl.aspx";
+                    break;
+                case 3:
+                    url = "../PerfMonitor/PerfApplicationUrl.aspx";
+                    break;
+                case 4://数据库
+                    url = "../PerfMonitor/PerfDBIndex.aspx";
+                    break;
+                case 8://网络
+                    url = "../PerfMonitor/PerfNetDetail.aspx";
+                    break;
+                case 9://虚拟机
+                    url = "../PerfMonitor/PerfVirtualMachineDetail.aspx";
+                    break;
+                case 10://中间件
+                    url = "../PerfMonitor/PerfMiddlewareDetail.aspx";
+                    break;
+                case 12://机房环境
+                    url = "../StateMonitor/StateCompRoomEnviDetail.aspx";
+                    break;
+            }
+
+            if (string.IsNullOrEmpty(url))
+            {
+                return;
+            }
+            Response.Redirect(string.Format("{0}?id={1}",url,mDeviceID));
 
           
         }

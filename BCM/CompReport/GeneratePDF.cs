@@ -423,7 +423,7 @@ namespace GDK.BCM.CompReport
             ser.ChartType = SeriesChartType.Line;
             ser.MarkerStyle = MarkerStyle.Circle;
             ser.MarkerSize = 3;
-            ser.IsValueShownAsLabel = true;
+            //ser.IsValueShownAsLabel = true;
             ser.LabelFormat="{0}%";
 
             ser.Points.DataBindXY(dt.Rows, "monitordate", dt.Rows, "val");
@@ -441,14 +441,15 @@ namespace GDK.BCM.CompReport
         public void WriteTable(DataTable dt,string mTypeStatusInfo)
         {
             
-            PdfPTable pdfTB = new PdfPTable(6);
+            PdfPTable pdfTB = new PdfPTable(11);
             pdfTB.WidthPercentage = 99;
-            pdfTB.setWidths(new float[] { 200f, 200f, 100f, 100f, 120f, 120f });
+            pdfTB.setWidths(new float[] { 150f, 150f, 100f, 100f, 100f, 100f, 100f, 100f, 100f, 120f, 120f });
             //业务系统名称  IP	均值(%)		峰值(%) 峰值>80%出现次数(次) 当月CPU压力状态
             Color bgColor = new Color(System.Drawing.Color.Beige); ;
 
             Font ft = GetFont(FontEnum.TableHeader);
             PdfPCell headr = new PdfPCell(new Phrase("业务系统名称", ft));
+            
             headr.BackgroundColor = bgColor;
             pdfTB.addCell(headr);
 
@@ -456,7 +457,19 @@ namespace GDK.BCM.CompReport
             headr.BackgroundColor = bgColor;
             pdfTB.addCell(headr);
 
-            headr = new PdfPCell(new Phrase("均值(%)", ft));
+            headr = new PdfPCell(new Phrase("整月均值(%)", ft));
+            headr.BackgroundColor = bgColor;
+            pdfTB.addCell(headr);
+
+            headr = new PdfPCell(new Phrase("1-5", ft));
+            headr.BackgroundColor = bgColor;
+            pdfTB.addCell(headr);
+
+            headr = new PdfPCell(new Phrase("11-15", ft));
+            headr.BackgroundColor = bgColor;
+            pdfTB.addCell(headr);
+
+            headr = new PdfPCell(new Phrase("25-31", ft));
             headr.BackgroundColor = bgColor;
             pdfTB.addCell(headr);
 
@@ -464,9 +477,21 @@ namespace GDK.BCM.CompReport
             headr.BackgroundColor = bgColor;
             pdfTB.addCell(headr);
 
-            headr = new PdfPCell(new Phrase("峰值>80%出现次数(次)", ft));
+            headr = new PdfPCell(new Phrase("1-5", ft));
             headr.BackgroundColor = bgColor;
             pdfTB.addCell(headr);
+
+            headr = new PdfPCell(new Phrase("11-15", ft));
+            headr.BackgroundColor = bgColor;
+            pdfTB.addCell(headr);
+
+            headr = new PdfPCell(new Phrase("25-31", ft));
+            headr.BackgroundColor = bgColor;
+            pdfTB.addCell(headr);
+
+            //headr = new PdfPCell(new Phrase("峰值>80%出现次数(次)", ft));
+            //headr.BackgroundColor = bgColor;
+            //pdfTB.addCell(headr);
 
             headr = new PdfPCell(new Phrase(mTypeStatusInfo, ft));
             headr.BackgroundColor = bgColor;
@@ -481,9 +506,18 @@ namespace GDK.BCM.CompReport
 
                     pdfTB.addCell(new Phrase(dr["DeviceName"].ToString(), ftContent));
                     pdfTB.addCell(new Phrase(dr["ip"].ToString(), ftContent));
+
                     pdfTB.addCell(new Phrase(dr["avgval"].ToString(), ftContent));
+                    pdfTB.addCell(new Phrase(dr["avgNum15"].ToString(), ftContent));
+                    pdfTB.addCell(new Phrase(dr["avgNum1115"].ToString(), ftContent));
+                    pdfTB.addCell(new Phrase(dr["avgNum2531"].ToString(), ftContent));
+
                     pdfTB.addCell(new Phrase(dr["maxval"].ToString(), ftContent));
-                    pdfTB.addCell(new Phrase(dr["maxNum"].ToString(), ftContent));
+                    pdfTB.addCell(new Phrase(dr["MaxNum15"].ToString(), ftContent));
+                    pdfTB.addCell(new Phrase(dr["MaxNum1115"].ToString(), ftContent));
+                    pdfTB.addCell(new Phrase(dr["MaxNum2531"].ToString(), ftContent));
+
+                   // pdfTB.addCell(new Phrase(dr["maxNum"].ToString(), ftContent));
                     pdfTB.addCell(new Phrase(dr["Status"].ToString(), ftContent));
                 }
             }

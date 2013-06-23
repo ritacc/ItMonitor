@@ -72,6 +72,8 @@ where t1.MonitorTime between '{2}' and '{3}' and ({4})", Datastr, tableName2, ti
         public void GetDataReport(ReportSeachWhereOR whereOR
            , out DataTable reReport, out DataTable reList)
         {
+            SearchReportDataToTemp(whereOR);
+
             string SqlReport = @"select val.*,tc.ChannelName from (
 select deviceno,ChannelNo,monitordate,
 round( avg(MonitorValue),2) avgValue,

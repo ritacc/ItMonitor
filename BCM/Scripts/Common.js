@@ -38,7 +38,6 @@ $.cookie = function (name, value, options) {
     }
 };
 
-
 /************** 获取当前页面大小和文档区域大小 **********/
 $.getLayout = function (win) {
     win = win || window.top;
@@ -83,6 +82,8 @@ $.getLayout = function (win) {
     outerHeight = Math.max(outerHeight, oTopBody.outerHeight(true));
     return { outerWidth: outerWidth, outerHeight: outerHeight, innerWidth: innerWidth, innerHeight: innerHeight, scrollTop: scrollTop, scrollLeft: scrollLeft };
 }
+
+
 
 
 // change color for single click ##################################################################################

@@ -128,10 +128,9 @@
                                 <th>平均值</th>
                                 <th>最大值</th>
                                 <th>最小值</th>
-                                <th></th>
                             </tr>
                             <tr>
-                                <td colspan="3">
+                                <td colspan="4">
                                     没有数据
                                 </td>
                             </tr>

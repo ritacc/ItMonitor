@@ -102,7 +102,7 @@ values (@ID,@DeviceID, @SDID, @EffectLevel)";
             if (healthConfig.Channelno.HasValue)
             {
                 sql = @"insert into t_HealthConfig (ID,DeviceID, SDID,ChannelNO, EffectLevel) 
-values (@ID,@DeviceID, @SDID, @EffectLevel)";
+values (@ID,@DeviceID, @SDID,@ChannelNO, @EffectLevel)";
                 paraNew = InsertPara(parameters, pChannel);
             }
             else

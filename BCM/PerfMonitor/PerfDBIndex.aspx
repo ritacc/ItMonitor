@@ -57,6 +57,10 @@
         var timer = null;
         var lastClickObj = null;
         $(document).ready(function () {
+
+            if (top.location != self.location)
+                top.location = self.location;
+
             //刷新更新加载项
             SetReLoadSelectItem();
 

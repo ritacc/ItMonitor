@@ -22,7 +22,7 @@
                     <img src="../images/gridview/gridheader_03.gif" alt="" />
                 </td>
                 <td>
-                    状态列表
+                    虚拟机列表
                 </td>
                 <td width="6">
                     <img src="../images/gridview/gridheader_06.gif" alt="" />
@@ -35,9 +35,9 @@
             <table class="searchtable" cellspacing="0">
                 <tr>
                     <td>
-                        状态图标说明：
-                        <img src="../images/Common/stata0.gif" alt="设备状态" style="vertical-align:middle;" /> 正常 &nbsp;
-                        <img src="../images/Common/stata1.gif" alt="设备状态" style="vertical-align:middle;" /> 故障  &nbsp;
+                        性能图标说明：
+                        <img src="../images/Common/stata1.gif" alt="设备状态" style="vertical-align:middle;" /> 正常 &nbsp;
+                        <img src="../images/Common/stata0.gif" alt="设备状态" style="vertical-align:middle;" /> 故障  &nbsp;
                         <img src="../images/Common/stata2.gif" alt="设备状态" style="vertical-align:middle;" /> 报警  &nbsp;
                         <img src="../images/Common/stata3.gif" alt="设备状态" style="vertical-align:middle;" /> 未启动  &nbsp;
                     </td>

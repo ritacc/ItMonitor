@@ -12,7 +12,7 @@ namespace GDK.DAL.PerfMonitor
         public DataTable selectDeviceList(int pageCrrent, int pageSize, out int pageCount, string where)
         {
             string sql = @"select dt.TypeName,d.*,
-case(d.Performance) when '故障' then 1 when  '报警' then 2 when '未启动' then 3 else 0 end  perf
+case(d.Performance) when '故障' then 0 when  '报警' then 2 when '未启动' then 3 else 1 end  perf
 from t_Device d 
 inner join t_DeviceType dt on d.DeviceTypeID= dt.DeviceTypeID 
 where dt.typeid=4 ";
@@ -44,47 +44,11 @@ where dt.typeid=4 ";
             if (dt == null)
                 return null;
             PerfDBOR obj = new PerfDBOR(dt);
-            //加载网络接口
-            obj.SubProts = GetNetPorts(obj.Ports);
             return obj;
         }
 
 
-        private DataTable GetNetPorts(string strPortinfo)
-        {
-            if (string.IsNullOrEmpty(strPortinfo))
-                return null;
-            string mWhere = "";
-            //3#^#1705#^#1706#^#1707
-            if (strPortinfo.IndexOf("#^#") > 0)
-            {
-                string[] strArr = strPortinfo.Replace("#^#", "$").Split('$');
-                if (strArr.Length < 2)
-                    return null;
-                mWhere = " d.DeviceID=" + strArr[1];
-                for (int i = 2; i < strArr.Length; i++)
-                {
-                    mWhere += " or d.DeviceID=" + strArr[i];
-                }
-            }
-
-            string sql = @"select * from dbo.t_TmpValue 
-where " + mWhere;
-
-            sql = string.Format(" {0} and  {1}", sql, mWhere);
-
-            DataTable dt = null;
-            try
-            {
-                dt = db.ExecuteQuery(sql);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            return dt;
-
-        }
+        
 
         public DataTable selectMinBytesList(int pageCrrent, int pageSize, out int pageCount, string ParentDevID)
         {

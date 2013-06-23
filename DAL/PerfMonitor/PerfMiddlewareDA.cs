@@ -12,7 +12,7 @@ namespace GDK.DAL.PerfMonitor
         public DataTable selectDeviceList(int pageCrrent, int pageSize, out int pageCount, string where)
         {
             string sql = @"select d.DeviceID,d.DeviceName,dt.TypeName, d.IP,d.servname,
-case(d.Performance) when '故障' then 1 when  '报警' then 2 when '未启动' then 3 else 0 end  performance
+case(d.Performance) when '故障' then 0 when  '报警' then 2 when '未启动' then 3 else 1 end  performanceVal
 from t_Device d 
 inner join t_DeviceType dt on d.DeviceTypeID= dt.DeviceTypeID 
 where dt.typeid=10 ";
@@ -92,11 +92,10 @@ where " + mWhere;
         /// </summary>
         public DataTable selectConversationDetail(int pageCrrent, int pageSize, out int pageCount, string ParentDevID)
         {
-            string sql = string.Format(@"select d.deviceid,ApplicationName.MonitorValue ApplicationName,ActivityNO.MonitorValue ActivityNO,
+            string sql = string.Format(@"select distinct  d.deviceid,d.DeviceName ApplicationName,ActivityNO.MonitorValue ActivityNO,
 MaxNO.MonitorValue MaxNO,TotalNO.MonitorValue TotalNO,ServletNO.MonitorValue ServletNO
  from t_Device d 
-left join t_TmpValue ApplicationName on ApplicationName.DeviceID= d.DeviceID and ApplicationName.ChannelNO=21101
-left join t_TmpValue ActivityNO on ApplicationName.DeviceID= d.DeviceID and ApplicationName.ChannelNO=21102
+left join t_TmpValue ActivityNO on d.DeviceID= d.DeviceID and ActivityNO.ChannelNO=21102
 left join t_TmpValue MaxNO on MaxNO.DeviceID= d.DeviceID and MaxNO.ChannelNO=21103
 left join t_TmpValue TotalNO on TotalNO.DeviceID= d.DeviceID and TotalNO.ChannelNO=21104
 left join t_TmpValue ServletNO on ServletNO.DeviceID= d.DeviceID and ServletNO.ChannelNO=21105

@@ -32,14 +32,13 @@ namespace GDK.BCM.StateMonitor
             string mWhere = string.Empty;
             if (!string.IsNullOrEmpty(txtValue.Text))
             {
-                string filds= "dev.DeviceName";
+                string filds= "d.DeviceName";
                 mWhere = string.Format(" {0} like '%{1}%'", filds, txtValue.Text);
             }
             try
             {
                 int PageCount = 0;
-                this.gvDataList.DataSource = new StateApplicationDA().selectDeviceList(pg.PageIndex, pg.PageSize, out PageCount, mWhere);
-
+                this.gvDataList.DataSource = new StateCompRoomEnviDA().selectDeviceList(pg.PageIndex, pg.PageSize, out PageCount, mWhere);
                 this.gvDataList.DataBind();
                 this.pg.RecordCount = PageCount;
             }

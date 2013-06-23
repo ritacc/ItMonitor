@@ -71,7 +71,7 @@ namespace GDK.BCM.PerfMonitor
             PerfHostOR _ph = new PerfHostDA().SelectHostDetail(mDeviceID);
 
 
-            perf = _objDev.Performance;
+            perf = _objDev.PerformanceVal;
             lblPerf.Text = _objDev.Performance;
             lblPerformance.Text = _objDev.Performance;
             lblDescribe.Text = _objDev.Describe;

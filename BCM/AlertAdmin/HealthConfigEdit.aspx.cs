@@ -140,6 +140,18 @@ namespace GDK.BCM.AlertAdmin
             }
             catch (Exception ex)
             {
+                if (ex.Message.IndexOf("IX_t_HealthConfigIX") > 0)
+                {
+                    if (sg.Channelno.HasValue)
+                    {
+                        base.Alert("此设备、通道已配置！");
+                    }
+                    else
+                    {
+                        base.Alert("此设备已配置！");
+                    }
+                    return;
+                }
                 base.Alert(ex.Message);
             }
         }

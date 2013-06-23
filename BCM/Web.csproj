@@ -163,9 +163,10 @@
     <Content Include="images\Common\search_all.gif" />
     <Content Include="images\Common\selectInfo.gif" />
     <Content Include="images\Common\server_edit.png" />
-    <Content Include="images\Common\stata0.gif" />
     <Content Include="images\Common\stata1.gif" />
+    <Content Include="images\Common\stata0.gif" />
     <Content Include="images\Common\stata2.gif" />
+    <Content Include="images\Common\stata3.gif" />
     <Content Include="images\Common\sub_add.gif" />
     <Content Include="images\contextmenu\menu_bg.gif" />
     <Content Include="images\contextmenu\m_arrow.gif" />

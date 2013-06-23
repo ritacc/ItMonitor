@@ -1,7 +1,26 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main/SiteMain.Master" AutoEventWireup="true" CodeBehind="ReportGenerate.aspx.cs" Inherits="GDK.BCM.CompReport.ReportGenerate" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 <script type="text/javascript" src="../Scripts/My97DatePicker/WdatePicker.js"></script>
-    
+      <script type="text/javascript">
+          var _rdiM;
+          var _rdiS;
+          $(document).ready(function () {
+              _rdiM = $("#<%= rdiM.ClientID %>");
+              _rdiS = $("#<%= rdiS.ClientID %>");
+
+              _rdiM.click(function () { ClickH(); });
+              _rdiS.click(function () { ClickH(); });
+          });
+          function ClickH() {
+              if (_rdiM.attr("checked")) {
+                  $("#divMonth").show();
+                  $("#divSelect").hide();
+              } else {
+                $("#divMonth").hide();
+                $("#divSelect").show();
+              }
+          }
+      </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -28,13 +47,15 @@
             <td style=" text-align:left;" colspan="4">
                 <asp:RadioButton  ID="rdiM" Checked="true" GroupName="reprotType" Text="月" runat="server"/>
                 <asp:RadioButton  ID="rdiS"  GroupName="reprotType" Text="选定" runat="server"/>
-               <span id="divMonth">
+                
+                <span id="divMonth">
                 <asp:DropDownList ID="dpdYear" Width="60px" runat="server"></asp:DropDownList>年
                 <asp:DropDownList ID="dpdMonth" Width="50px" runat="server"></asp:DropDownList>月
                 </span>
-                <span id="divSelect">
-                    <asp:TextBox ID="txtStartTime"  onfocus="WdatePicker();" runat="server"></asp:TextBox>
-                    <asp:TextBox ID="txtEndTime"  onfocus="WdatePicker();" runat="server"></asp:TextBox>
+
+                <span id="divSelect" style="  padding-left:15px; display:none;">
+                  开始日期：  <asp:TextBox ID="txtStartTime" Width="75px"  onfocus="WdatePicker();" runat="server"></asp:TextBox>
+                  结束日期：  <asp:TextBox ID="txtEndTime"  Width="75px" onfocus="WdatePicker();" runat="server"></asp:TextBox>
                 </span>
             </td>
         </tr>

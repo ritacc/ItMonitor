@@ -267,6 +267,21 @@ namespace GDK.Entity.PerfMonitor
             set { _Performance = value; }
         }
 
+        public string PerformanceVal
+        {
+            get {
+                string val = "1";
+                if (_Performance == "故障")
+                    val = "0";
+                else if (_Performance == "报警")
+                    val = "2";
+                else if (_Performance == "未启动")
+                    val = "3";
+                return val;
+
+            }
+        }
+
         ///<summary>
         ///描述
         ///</summary>
