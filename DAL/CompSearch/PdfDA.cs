@@ -69,9 +69,9 @@ from (
 	,round( avg(monitorvalue),2) avgval
 	,max(monitorvalue) maxval
 	,sum(num) maxNum
-	,avg(case when dateDay>=1 and dateDay<=5 then monitorvalue  end) avgNum15
-	,avg(case when dateDay>=11 and dateDay<=15 then monitorvalue  end) avgNum1115
-	,avg(case when dateDay>=25 and dateDay<=31 then monitorvalue  end) avgNum2531
+	,round(avg(case when dateDay>=1 and dateDay<=5 then monitorvalue  end),2) avgNum15
+	,round(avg(case when dateDay>=11 and dateDay<=15 then monitorvalue  end),2) avgNum1115
+	,round(avg(case when dateDay>=25 and dateDay<=31 then monitorvalue  end),2) avgNum2531
 	,sum(case when dateDay>=1 and dateDay<=5 and Num=1 then 1 else 0 end) MaxNum15
 	,sum(case when dateDay>=11 and dateDay<=15 and Num=1 then 1 else 0 end) MaxNum1115
 	,sum(case when dateDay>=25 and dateDay<=31 and Num=1 then 1 else 0 end) MaxNum2531

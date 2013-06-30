@@ -344,7 +344,6 @@
     <Content Include="PerfMonitor\PerfSystemFailure.aspx" />
     <Content Include="PerfMonitor\PerfSystemFailureDetail.aspx" />
     <Content Include="Ref\DBUtility.dll" />
-    <Content Include="Ref\ICSharpCode.SharpZipLib.dll" />
     <Content Include="Ref\itextsharp.dll" />
     <Content Include="Scripts\fullScreen.js" />
     <Content Include="Scripts\jquery.cookie.js" />

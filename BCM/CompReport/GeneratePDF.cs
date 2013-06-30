@@ -44,7 +44,7 @@ namespace GDK.BCM.CompReport
         /// </summary>
         public string SavePath { get; set; }
 
-        public const string Company = "广东省国家税务局信息中心";
+        public const string Company = "广州吉飞科技技术有限公司";
         #endregion
 
         #region 时间
@@ -78,7 +78,7 @@ namespace GDK.BCM.CompReport
             if (!fontPath.EndsWith("\\"))
                 fontPath += "\\";
 
-            bfSun = BaseFont.createFont(fontPath + "SIMSUN.TTC,1", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+            bfSun = BaseFont.CreateFont(fontPath + "SIMSUN.TTC,1", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
         }
 
         private iTextSharp.text.Document document=null;
@@ -94,7 +94,7 @@ namespace GDK.BCM.CompReport
             string FilePath = currentPath + Guid.NewGuid().ToString() + ".pdf";
 
             document = new iTextSharp.text.Document();
-            PdfWriter.getInstance(document, new FileStream(FilePath, FileMode.Create));
+            PdfWriter.GetInstance(document, new FileStream(FilePath, FileMode.Create));
 
             document.Open();
             InitFirstPage();
@@ -114,10 +114,10 @@ namespace GDK.BCM.CompReport
         /// <param name="document"></param>
         public void ContentFirstpart()
         {
-            document.newPage();
+            document.NewPage();
             string strContent = "第一部分、本月检查概述";
             Paragraph pg = new Paragraph(strContent, GetFont(FontEnum.TitleCenter));
-            pg.setAlignment("Center");
+            pg.Alignment = Element.ALIGN_CENTER;
             document.Add(pg);
 
 
@@ -194,7 +194,7 @@ namespace GDK.BCM.CompReport
         {
             string strContent = "\n\n\n\n第二部分、系统运行状况整体分析\n";
             Paragraph pg = new Paragraph(strContent, GetFont(FontEnum.TitleCenter));
-            pg.setAlignment("Center");
+            pg.Alignment = Element.ALIGN_CENTER;
             document.Add(pg);
             StringBuilder sb = new StringBuilder();
             sb.Append("\n    作为各业务系统运行的基础环境，主机、数据库以及中间件的平稳运行是对各业务系统正常提供服务的前提。");
@@ -268,7 +268,7 @@ namespace GDK.BCM.CompReport
         {
             string strContent = "\n\n\n\n\n第三部分、业务运行状况整体分析";
             Paragraph pg = new Paragraph(strContent, GetFont(FontEnum.TitleCenter));
-            pg.setAlignment("Center");
+            pg.Alignment = Element.ALIGN_CENTER;
             document.Add(pg);
         }
         #region 第一部分 表格描述
@@ -279,11 +279,11 @@ namespace GDK.BCM.CompReport
         public void TableDesc(string mTYpe)
         {
             Font font = new Font(bfSun, 11);
-            font.setStyle("bold");
+            font.SetStyle("bold");
             TabeleIndex++;
             string minfo = string.Format("表{0}.{1}利用率汇总表", TabeleIndex, mTYpe);
             Paragraph pg = pg = new Paragraph(minfo, font);
-            pg.setAlignment("Center");
+            pg.Alignment = Element.ALIGN_CENTER;
             document.Add(pg);
             pg = new Paragraph("说明：", font);
             document.Add(pg);
@@ -301,7 +301,7 @@ namespace GDK.BCM.CompReport
         报警：均值≥80%
 3) “-”表示，未提交有效数据。", mTYpe);
             font = new Font(bfSun, 9);
-            font.setStyle("normal");
+            font.SetStyle("normal");
             pg = new Paragraph(DescContent, font);
             document.Add(pg);          
         }
@@ -317,29 +317,28 @@ namespace GDK.BCM.CompReport
             {
                 case FontEnum.TitleCenter:
                     mFont = new Font(bfSun, 18);
-                    mFont.setStyle("normal");
+                    mFont.SetStyle("normal");
                     break;
                 case FontEnum.TitleLeft1:
                     mFont = new Font(bfSun, 16);
-                    mFont.setStyle("bold");
+                    mFont.SetStyle("bold");
                     break;
                 case FontEnum.TitleLeft2:
                     mFont = new Font(bfSun, 14);
-                    mFont.setStyle("normal");
+                    mFont.SetStyle("normal");
                     break;
                 case FontEnum.Title12Bold:
                     mFont = new Font(bfSun, 12);
-                    mFont.setStyle("bold");
+                    mFont.SetStyle("bold");
                     break;
                 case FontEnum.TableHeader:
-                    mFont = new Font(bfSun, 14);
-                    mFont.setStyle("bold");
+                    mFont = new Font(bfSun, 12);
+                    mFont.SetStyle("bold");
                     break;
                 default:
                     mFont = new Font(bfSun, 12);
-                    mFont.setStyle("normal");
+                    mFont.SetStyle("normal");
                     break;
-
             }
             return mFont;
         }
@@ -378,36 +377,33 @@ namespace GDK.BCM.CompReport
             document.Add(new Paragraph("\n\n\n\n"));
             //Title
             Font font = new Font(bfSun, 24);
-            font.setStyle("bold");
+            font.SetStyle("bold");
             Paragraph pg = new Paragraph(SystemTitle, font);
-            pg.setAlignment("Center");
+            pg.Alignment = Element.ALIGN_CENTER;
             document.Add(pg);
 
             //subTitle            
             font = new Font(bfSun, 18);
-            font.setStyle("bold");
+            font.SetStyle("bold");
             pg = new Paragraph(SubTitle, font);
-            pg.setAlignment("Center");
+            pg.Alignment = Element.ALIGN_CENTER;
             document.Add(pg);
 
             //版权、时间
             document.Add(new Paragraph("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"));
             font = new Font(bfSun, 18);
-            font.setStyle("bold");
+            font.SetStyle("bold");
             pg = new Paragraph(Company, font);
-            pg.setAlignment("Center");
+            pg.Alignment = Element.ALIGN_CENTER;
             document.Add(pg);
 
             font = new Font(bfSun, 14);
-            font.setStyle("bold");
+            font.SetStyle("bold");
             //string mTime = string.Format("{0}年{1}月", DateTime.Now.Year, DateTime.Now.Month);
             pg = new Paragraph(ReportData, font);
-            pg.setAlignment("Center");
+            pg.Alignment = Element.ALIGN_CENTER;
             document.Add(pg);
-            
         }
-
-
         #region 数据库处理
 
         /// <summary>
@@ -440,85 +436,104 @@ namespace GDK.BCM.CompReport
         /// <param name="dt"></param>
         public void WriteTable(DataTable dt,string mTypeStatusInfo)
         {
-            
             PdfPTable pdfTB = new PdfPTable(11);
             pdfTB.WidthPercentage = 99;
-            pdfTB.setWidths(new float[] { 150f, 150f, 100f, 100f, 100f, 100f, 100f, 100f, 100f, 120f, 120f });
+            pdfTB.SetWidths(new float[] { 150f, 150f, 100f, 100f, 100f, 100f, 100f, 100f, 100f, 120f, 120f });
             //业务系统名称  IP	均值(%)		峰值(%) 峰值>80%出现次数(次) 当月CPU压力状态
-            Color bgColor = new Color(System.Drawing.Color.Beige); ;
+            BaseColor bgColor = new BaseColor(System.Drawing.Color.Beige); ;
 
             Font ft = GetFont(FontEnum.TableHeader);
             PdfPCell headr = new PdfPCell(new Phrase("业务系统名称", ft));
-            
+            headr.Rowspan = 2;
             headr.BackgroundColor = bgColor;
-            pdfTB.addCell(headr);
+            pdfTB.AddCell(headr);
 
-            headr = new PdfPCell(new Phrase("IP", ft));
+            headr = new PdfPCell(new Phrase("主机IP", ft));
+            headr.Rowspan = 2;
             headr.BackgroundColor = bgColor;
-            pdfTB.addCell(headr);
+            pdfTB.AddCell(headr);
 
-            headr = new PdfPCell(new Phrase("整月均值(%)", ft));
-            headr.BackgroundColor = bgColor;
-            pdfTB.addCell(headr);
 
-            headr = new PdfPCell(new Phrase("1-5", ft));
-            headr.BackgroundColor = bgColor;
-            pdfTB.addCell(headr);
+            headr = new PdfPCell(new Phrase("均值(%)", ft));
+            headr.Colspan = 4;
+            headr.BackgroundColor = bgColor;            
+            pdfTB.AddCell(headr);
 
-            headr = new PdfPCell(new Phrase("11-15", ft));
-            headr.BackgroundColor = bgColor;
-            pdfTB.addCell(headr);
-
-            headr = new PdfPCell(new Phrase("25-31", ft));
-            headr.BackgroundColor = bgColor;
-            pdfTB.addCell(headr);
 
             headr = new PdfPCell(new Phrase("峰值(%)", ft));
             headr.BackgroundColor = bgColor;
-            pdfTB.addCell(headr);
+            headr.Rowspan = 2;
+            pdfTB.AddCell(headr);
 
-            headr = new PdfPCell(new Phrase("1-5", ft));
+            headr = new PdfPCell(new Phrase("峰值>=80%出现次数（次）", ft));
             headr.BackgroundColor = bgColor;
-            pdfTB.addCell(headr);
-
-            headr = new PdfPCell(new Phrase("11-15", ft));
-            headr.BackgroundColor = bgColor;
-            pdfTB.addCell(headr);
-
-            headr = new PdfPCell(new Phrase("25-31", ft));
-            headr.BackgroundColor = bgColor;
-            pdfTB.addCell(headr);
-
-            //headr = new PdfPCell(new Phrase("峰值>80%出现次数(次)", ft));
-            //headr.BackgroundColor = bgColor;
-            //pdfTB.addCell(headr);
+            
+            headr.Colspan = 3;
+            pdfTB.AddCell(headr);
 
             headr = new PdfPCell(new Phrase(mTypeStatusInfo, ft));
             headr.BackgroundColor = bgColor;
-            pdfTB.addCell(headr);
+            headr.Rowspan = 2;
+            pdfTB.AddCell(headr);
+
+
+            headr = new PdfPCell(new Phrase("整月(%)", ft));
+            headr.BackgroundColor = bgColor;
+            pdfTB.AddCell(headr);
+
+            headr = new PdfPCell(new Phrase("1-5", ft));
+            headr.BackgroundColor = bgColor;
+            pdfTB.AddCell(headr);
+
+            headr = new PdfPCell(new Phrase("11-15", ft));
+            headr.BackgroundColor = bgColor;
+            pdfTB.AddCell(headr);
+
+            headr = new PdfPCell(new Phrase("25-31", ft));
+            headr.BackgroundColor = bgColor;
+            pdfTB.AddCell(headr);
+
+            
+
+            headr = new PdfPCell(new Phrase("1-5", ft));
+            headr.BackgroundColor = bgColor;
+            pdfTB.AddCell(headr);
+
+            headr = new PdfPCell(new Phrase("11-15", ft));
+            headr.BackgroundColor = bgColor;
+            pdfTB.AddCell(headr);
+
+            headr = new PdfPCell(new Phrase("25-31", ft));
+            headr.BackgroundColor = bgColor;
+            pdfTB.AddCell(headr);
+
+            //headr = new PdfPCell(new Phrase("峰值>80%出现次数(次)", ft));
+            //headr.BackgroundColor = bgColor;
+            //pdfTB.AddCell(headr);
+
+            
 
             if (dt != null)
             {
-
                 Font ftContent = GetFont(FontEnum.Content);
                 foreach (DataRow dr in dt.Rows)
                 {
 
-                    pdfTB.addCell(new Phrase(dr["DeviceName"].ToString(), ftContent));
-                    pdfTB.addCell(new Phrase(dr["ip"].ToString(), ftContent));
+                    pdfTB.AddCell(new Phrase(dr["DeviceName"].ToString(), ftContent));
+                    pdfTB.AddCell(new Phrase(dr["ip"].ToString(), ftContent));
 
-                    pdfTB.addCell(new Phrase(dr["avgval"].ToString(), ftContent));
-                    pdfTB.addCell(new Phrase(dr["avgNum15"].ToString(), ftContent));
-                    pdfTB.addCell(new Phrase(dr["avgNum1115"].ToString(), ftContent));
-                    pdfTB.addCell(new Phrase(dr["avgNum2531"].ToString(), ftContent));
+                    pdfTB.AddCell(new Phrase(dr["avgval"].ToString(), ftContent));
+                    pdfTB.AddCell(new Phrase(dr["avgNum15"].ToString(), ftContent));
+                    pdfTB.AddCell(new Phrase(dr["avgNum1115"].ToString(), ftContent));
+                    pdfTB.AddCell(new Phrase(dr["avgNum2531"].ToString(), ftContent));
 
-                    pdfTB.addCell(new Phrase(dr["maxval"].ToString(), ftContent));
-                    pdfTB.addCell(new Phrase(dr["MaxNum15"].ToString(), ftContent));
-                    pdfTB.addCell(new Phrase(dr["MaxNum1115"].ToString(), ftContent));
-                    pdfTB.addCell(new Phrase(dr["MaxNum2531"].ToString(), ftContent));
+                    pdfTB.AddCell(new Phrase(dr["maxval"].ToString(), ftContent));
+                    pdfTB.AddCell(new Phrase(dr["MaxNum15"].ToString(), ftContent));
+                    pdfTB.AddCell(new Phrase(dr["MaxNum1115"].ToString(), ftContent));
+                    pdfTB.AddCell(new Phrase(dr["MaxNum2531"].ToString(), ftContent));
 
-                   // pdfTB.addCell(new Phrase(dr["maxNum"].ToString(), ftContent));
-                    pdfTB.addCell(new Phrase(dr["Status"].ToString(), ftContent));
+                   // pdfTB.AddCell(new Phrase(dr["maxNum"].ToString(), ftContent));
+                    pdfTB.AddCell(new Phrase(dr["Status"].ToString(), ftContent));
                 }
             }
             string strContent = string.Format("统计期：{0}", ReportData);
