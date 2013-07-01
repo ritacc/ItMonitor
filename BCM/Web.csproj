@@ -111,6 +111,7 @@
     <Content Include="AlertAdmin\HealthConfigEdit.aspx" />
     <Content Include="AlertAdmin\HealthConfigList.aspx" />
     <Content Include="AlertAdmin\HealthConfigMain.aspx" />
+    <Content Include="Bussiness\BussinessList.aspx" />
     <Content Include="ClientBin\ITMonitorControl.xap" />
     <Content Include="ClientBin\NetStatus.xap" />
     <Content Include="CompReport\Generate.aspx" />
@@ -500,6 +501,13 @@
     <Content Include="CompReport\ReportGenerate.aspx.designer.cs">
       <DependentUpon>ReportGenerate.aspx</DependentUpon>
     </Content>
+    <Compile Include="Bussiness\BussinessList.aspx.cs">
+      <DependentUpon>BussinessList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bussiness\BussinessList.aspx.designer.cs">
+      <DependentUpon>BussinessList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CompSearch\CompRoomSearch.aspx.cs">
       <DependentUpon>CompRoomSearch.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

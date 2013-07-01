@@ -93,6 +93,7 @@
     <Compile Include="StateMonitor\StateHostDA.cs" />
     <Compile Include="StateMonitor\StateListDA.cs" />
     <Compile Include="StateMonitor\StateVirtualMachineDA.cs" />
+    <Compile Include="Sys\BussinessDA.cs" />
     <Compile Include="Sys\DEVICETYPEDA.cs" />
     <Compile Include="Sys\FunctionDA.cs" />
     <Compile Include="Sys\KnowledgeBaseConfigDA.cs" />

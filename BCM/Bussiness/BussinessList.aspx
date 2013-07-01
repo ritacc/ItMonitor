@@ -1,6 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main/SiteMain.Master" AutoEventWireup="true" CodeBehind="DepartmentsList.aspx.cs" Inherits="GDK.BCM.Sysadmin.DepartmentsList" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main/SiteMain.Master" AutoEventWireup="true" CodeBehind="BussinessList.aspx.cs" Inherits="GDK.BCM.Bussiness.BussinessList" %>
 
-<%@ Register Src="../UI/pagenavigate.ascx" TagName="pagenavigate" TagPrefix="uc2" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 <style type="text/css">
         .ex
@@ -30,10 +29,10 @@
             display: inline-block;
             *display:inline;
         }
-       .spanLadDate
+       .spanLadDate 
        {
            padding:4px 6px;
-        }
+       }
         .NoShow
         {
             display: none;
@@ -48,15 +47,14 @@
         var timer = null;
         var lastClickObj = null;
         $(document).ready(function () {
-            var arrTitle = $(".divTitle").each(function (i, o) {
+            BindTitle();
+            autoSize();
+        });
+        
+        function LoadChildURL() {
+            $(".DataItem").each(function (i, o) {
                 var obj = $(o);
-                obj.click(function () {
-                    eventClickHeadle(obj);
-                }); //obj.click
-            });   //each
-
-            $(".spanLadDate").each(function (i, o) {
-                var obj = $(o);
+                obj.unbind("click");
                 obj.click(function () {
                     ChageFromUrl(obj.parent("div:first").attr("guid")); //; eventClickHeadle(obj);
                     obj.addClass("ObjSelectItem");
@@ -64,10 +62,18 @@
                         lastClickObj.removeClass("ObjSelectItem");
                     lastClickObj = obj;
                 }); //obj.click
-            });   //each
+            });    //each
+        }
 
-            autoSize();
-        });
+        function BindTitle() {
+            var arrTitle = $(".divTitle").each(function (i, o) {
+                var obj = $(o);
+                obj.unbind("click");
+                obj.click(function () {
+                    eventClickHeadle(obj);
+                }); //obj.click
+            });   //each
+        }
 
         function autoSize() {
             var tableIframe = $("#tableIframe");
@@ -104,61 +110,15 @@
                     divContentobj.removeClass("NoShow");
                     return;
                 } else {
-
-                    LoadDate(parentDiv.attr("Guid"), parentDiv);
+                    LoadChild(parentDiv);
                 }
             }
         }
 
-        function LoadDate(Guid, parentDiv) {
-            //初使化div
-            var strUrl = "DepartmentLoadDep.aspx?Guid=" + Guid;
-
-            $.ajax({
-                url: strUrl,
-                cache: false,
-                dataType: "html",
-                success: function (data) {
-                    var tempTeml = $(data).find(".divContent").html();
-                    if ($(tempTeml).html().length == 0) {
-                        //这里还需要处理
-                        //parentDiv.removeClass("ex");
-                        return;
-                    }
-                    parentDiv.append(tempTeml);
-                    parentDiv.find(".divTitle").each(function (i, o) {
-                        var tempobj = $(o);
-                        tempobj.unbind();
-                        tempobj.click(function () {
-                            eventClickHeadle(tempobj);
-                        }); //obj.click
-                    });   //each
-
-                    parentDiv.find(".spanLadDate").each(function (i, o) {
-                        var obj = $(o);
-                        obj.unbind();
-                        obj.click(function () {
-                            if (lastClickObj == obj)
-                                return;
-                            ChageFromUrl(obj.parent("div:first").attr("guid")); //; eventClickHeadle(obj);
-                            obj.addClass("ObjSelectItem");
-                            if (lastClickObj)
-                                lastClickObj.removeClass("ObjSelectItem");
-                            lastClickObj = obj;
-                        }); //obj.click
-                    });   //each
-
-
-                }, //success function(i,item)
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    // 通常 textStatus 和 errorThrown 之中
-                    // 只有一个会包含信息
-                    // 调用本次AJAX请求时传递的options参数
-                    alert("加载数据出错！");
-
-                }
-
-            });
+        function LoadChild(parentDiv) {
+            parentDiv.append($("#divSys").html());
+            LoadChildURL();
+            BindTitle();
         }
 
         function ChageFromUrl(strGUID) {
@@ -182,22 +142,31 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
 <div class="right_box">
     <table cellpadding="0" id="tableIframe" cellspacing="1" border="0" width="100%">
         <tr>
             <td  style="vertical-align: top; width: 250px;  border: 1px solid #cccccc;">
                 <div id="tdIframe" style="overflow:auto;">
-                <asp:Repeater ID="rpDepartment" runat="server">
-                    <ItemTemplate>
-                        <div class="divTitleMu divTitleMuDepart" guid="<%# Eval("GUID")%>">
-                            <span class="divTitle">
-                                &nbsp;</span>
-                            <span class="controlWidth1 spanLadDate">
-                                <%# Eval("DISPLAY_NAME")%></span>
+
+                     <div class="divTitleMu divTitleMuDepart" guid="-1">
+                        <span class="divTitle ex">&nbsp;</span>
+                        <span class="spanLadDate DataItem">应用系统</span>
+                        <div class="divContent">
+                            <asp:Repeater ID="rpDepartment" runat="server">
+                                <ItemTemplate>
+                                
+                                    <div class="divTitleMu" guid="<%# Eval("DeviceID")%>">
+                                        <span class="divTitle">
+                                            &nbsp;</span>
+                                        <span class="spanLadDate">
+                                            <%# Eval("DeviceName")%></span>
+                                    </div>
+                                </ItemTemplate>
+                            </asp:Repeater>
                         </div>
-                    </ItemTemplate>
-                </asp:Repeater>
+
+                    </div>
+
                 </div>
             </td>
             <td style="vertical-align: top; border: 1px solid #CCCCCC;">
@@ -206,5 +175,37 @@
             </td>
         </tr>
     </table>
+</div>
+<div id="divSys" style=" display:none;">
+                    <div class="divContent">
+                        <div class="divTitleMu" >
+                            <span class="divTitle">&nbsp;</span>
+                            <span class="spanLadDate">软件层</span>
+                            <div class="divContent">
+                                <div class="divTitleMu">
+                                    <span class="divTitle">&nbsp;</span>
+                                    <span class="spanLadDate DataItem">Web层</span>
+                                </div>
+                                <div class="divTitleMu">
+                                    <span class="divTitle">&nbsp;</span>
+                                    <span class="spanLadDate DataItem">应用层</span>
+                                </div>
+                             </div>
+                        </div>
+                        <div class="divTitleMu">
+                            <span class="divTitle">&nbsp;</span>
+                            <span class="spanLadDate DataItem">数据库层</span>
+                        </div>
+                        <div class="divTitleMu">
+                            <span class="divTitle">&nbsp;</span>
+                            <span class="spanLadDate">硬件层</span>
+                             <div class="divContent">
+                                <div class="divTitleMu">
+                                    <span class="divTitle">&nbsp;</span>
+                                    <span class="spanLadDate DataItem">服务器</span>
+                                </div>
+                             </div>
+                        </div>
+                    </div>
 </div>
 </asp:Content>
