@@ -45,10 +45,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\DES.dll</HintPath>
     </Reference>
-    <Reference Include="ICSharpCode.SharpZipLib, Version=0.5.0.0, Culture=neutral, PublicKeyToken=1b03e6acf1164f73">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Ref\ICSharpCode.SharpZipLib.dll</HintPath>
-    </Reference>
     <Reference Include="itextsharp, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Ref\itextsharp.dll</HintPath>
@@ -482,28 +478,28 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="App_Code\Logger.cs" />
-    <Compile Include="CompReport\Generate.aspx.cs">
+    <Content Include="CompReport\Generate.aspx.cs">
       <DependentUpon>Generate.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CompReport\Generate.aspx.designer.cs">
+    </Content>
+    <Content Include="CompReport\Generate.aspx.designer.cs">
       <DependentUpon>Generate.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CompReport\GeneratePDF.cs" />
-    <Compile Include="CompReport\ReportConfig.aspx.cs">
+    </Content>
+    <Content Include="CompReport\GeneratePDF.cs" />
+    <Content Include="CompReport\ReportConfig.aspx.cs">
       <DependentUpon>ReportConfig.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CompReport\ReportConfig.aspx.designer.cs">
+    </Content>
+    <Content Include="CompReport\ReportConfig.aspx.designer.cs">
       <DependentUpon>ReportConfig.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CompReport\ReportGenerate.aspx.cs">
+    </Content>
+    <Content Include="CompReport\ReportGenerate.aspx.cs">
       <DependentUpon>ReportGenerate.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CompReport\ReportGenerate.aspx.designer.cs">
+    </Content>
+    <Content Include="CompReport\ReportGenerate.aspx.designer.cs">
       <DependentUpon>ReportGenerate.aspx</DependentUpon>
-    </Compile>
+    </Content>
     <Compile Include="CompSearch\CompRoomSearch.aspx.cs">
       <DependentUpon>CompRoomSearch.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
