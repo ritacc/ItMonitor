@@ -29,6 +29,7 @@
             <tr class="RowStyle">
                 <td>当前状态:</td>
                 <td>
+                    <img src='../images/Common/stata<%= perf %>.gif' alt="性能" class="imgPerf" />
                     <asp:Label ID="lblState" runat="server"></asp:Label>
                 </td>
             </tr>
@@ -53,19 +54,21 @@
                         泄漏:
                     </td>
                     <td>
+                        <img src='../images/Common/stata<%= Leak %>.gif' alt="性能" class="imgPerf" />
                         <asp:Label ID="lblLeak" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr class="RowStyle">
                     <td>DUANXIAN:</td>
                     <td>
+                        <img src='../images/Common/stata<%= DUANXIAN %>.gif' alt="性能" class="imgPerf" />
                         <asp:Label ID="lblDUANXIAN" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr class="AlternatingRowStyle">
                     <td>WEIZHI:</td>
                     <td>
-                        <asp:Label ID="lblWEIZHI" runat="server"></asp:Label>
+                        <asp:Label ID="lblWEIZHI" runat="server"></asp:Label>米
                     </td>
                 </tr>
             </table>
