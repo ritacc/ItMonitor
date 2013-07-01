@@ -404,16 +404,14 @@
             </Columns>
             <EmptyDataTemplate>
                 <table cellpadding="0" cellspacing="0" width="100%" class="gridheader_table">
-                    <tr class="gridview_skin_header">
-                        <th>磁盘名称</th>
-                        <th>磁盘使用率</th>
+                    <tr class="gridview_skin_header">                        
                         <th>已用（%）</th>
                         <th>已用（MB）</th>
                         <th>空闲（%）</th>
                         <th>空闲（MB）</th>
                     </tr>
                     <tr class="AlternatingRowStyle">
-                        <td colspan="6">没有数据</td>
+                        <td colspan="4">没有数据</td>
                     </tr>
                 </table>
             </EmptyDataTemplate>
@@ -435,12 +433,12 @@
             <EmptyDataTemplate>
                 <table cellpadding="0" cellspacing="0" width="100%" class="gridheader_table">
                     <tr class="gridview_skin_header">
-                        <th>每分钟的Job数</th>
-                        <th>5分钟的Job数</th>
-                        <th>15分钟的Job数</th>
-                        <th>每分钟的Job数峰值</th>
-                        <th>5分钟的Job数峰值</th>
-                        <th>15分钟的Job数峰值</th>
+                        <th>页面空间</th>
+                        <th>大小</th>
+                        <th>已用（%）</th>
+                        <th>已用（MB）</th>
+                        <th>空闲（%）</th>
+                        <th>空闲（MB）</th>
                     </tr>
                     <tr class="AlternatingRowStyle">
                         <td colspan="6">没有数据</td>

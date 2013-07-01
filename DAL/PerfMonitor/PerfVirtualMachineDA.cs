@@ -119,7 +119,7 @@ where d.DeviceTypeID= 913 and ParentDevID ={0} order by LastPollingTime", Parent
             string sql = string.Format(@"select d.deviceid,d.DeviceName,d.Performance,CPUUtilization.MonitorValue CPUUtilization,MemoryUtilization.MonitorValue MemoryUtilization,
 DiskUtilization.MonitorValue DiskUtilization,NetworkUtilization.MonitorValue NetworkUtilization,
 WarningStatus.MonitorValue WarningStatus
- from t_Device d 
+ from t_DevItemList d 
 left join t_TmpValue CPUUtilization on CPUUtilization.DeviceID= d.DeviceID and CPUUtilization.ChannelNO=91103
 left join t_TmpValue MemoryUtilization on MemoryUtilization.DeviceID= d.DeviceID and MemoryUtilization.ChannelNO=91204
 left join t_TmpValue DiskUtilization on DiskUtilization.DeviceID= d.DeviceID and DiskUtilization.ChannelNO=14301
