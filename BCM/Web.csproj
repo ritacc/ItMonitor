@@ -479,28 +479,28 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="App_Code\Logger.cs" />
-    <Content Include="CompReport\Generate.aspx.cs">
+    <Compile Include="CompReport\Generate.aspx.cs">
       <DependentUpon>Generate.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Content>
-    <Content Include="CompReport\Generate.aspx.designer.cs">
+    </Compile>
+    <Compile Include="CompReport\Generate.aspx.designer.cs">
       <DependentUpon>Generate.aspx</DependentUpon>
-    </Content>
-    <Content Include="CompReport\GeneratePDF.cs" />
-    <Content Include="CompReport\ReportConfig.aspx.cs">
+    </Compile>
+    <Compile Include="CompReport\GeneratePDF.cs" />
+    <Compile Include="CompReport\ReportConfig.aspx.cs">
       <DependentUpon>ReportConfig.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Content>
-    <Content Include="CompReport\ReportConfig.aspx.designer.cs">
+    </Compile>
+    <Compile Include="CompReport\ReportConfig.aspx.designer.cs">
       <DependentUpon>ReportConfig.aspx</DependentUpon>
-    </Content>
-    <Content Include="CompReport\ReportGenerate.aspx.cs">
+    </Compile>
+    <Compile Include="CompReport\ReportGenerate.aspx.cs">
       <DependentUpon>ReportGenerate.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Content>
-    <Content Include="CompReport\ReportGenerate.aspx.designer.cs">
+    </Compile>
+    <Compile Include="CompReport\ReportGenerate.aspx.designer.cs">
       <DependentUpon>ReportGenerate.aspx</DependentUpon>
-    </Content>
+    </Compile>
     <Compile Include="Bussiness\BussinessList.aspx.cs">
       <DependentUpon>BussinessList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

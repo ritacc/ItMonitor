@@ -22,6 +22,9 @@ namespace GDK.Entity.CompSearch
         /// </summary>
         public int DeviceID { get; set; }
 
+		public List<int> ListDevices { get; set; }
+
+
         /// <summary>
         /// 设备名称
         /// </summary>
