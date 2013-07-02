@@ -12,7 +12,7 @@ namespace GDK.DAL.PerfMonitor
         public DataTable selectDeviceList(int pageCrrent, int pageSize, out int pageCount, string where)
         {
             string sql = @"select dt.TypeName,sty.name ClassName,d.*,
-case(d.Performance) when '故障' then 1 when  '报警' then 2 when '未启动' then 3 else 0 end  perf
+case(d.Performance) when '故障' then 0 when  '报警' then 2 when '未启动' then 3 else 0 end  perf
 from t_Device d 
 inner join t_DeviceType dt on d.DeviceTypeID= dt.DeviceTypeID 
 left join t_ServersType sty on sty.typeid= dt.typeid and sty.ServerID= dt.ServerID 
@@ -79,14 +79,13 @@ where dt.typeid=8 and ParentDevID is NULL";
 //left join  t_TmpValue ErrorNO on ErrorNO.DeviceID= d.DeviceID and ErrorNO.ChannelNO=33003
 //where " + mWhere;
 
-            string sql = string.Format(@"select d.Describe descInfo,js.MonitorValue resave, fs.MonitorValue fsm, cws.MonitorValue cwsm,
- dt.TypeName,d.*,
-case(d.Performance) when '故障' then 0 when  '报警' then 2 when '未启动' then 3 else 1 end  performanceVal
-from t_Device d 
-inner join t_DeviceType dt on d.DeviceTypeID= dt.DeviceTypeID 
-left join  t_TmpValue js on js.DeviceID= d.DeviceID and js.ChannelNO=63
-left join  t_TmpValue fs on fs.DeviceID= d.DeviceID and fs.ChannelNO=64
-left join  t_TmpValue cws on cws.DeviceID= d.DeviceID and cws.ChannelNO=11
+            string sql = string.Format(@"select d.Describe descInfo,ReceiveFlow.MonitorValue ReceiveFlow,SendFlow.MonitorValue SendFlow,
+ErrorNO.MonitorValue ErrorNO,d.*,
+case(d.Performance) when '故障' then 0 when  '报警' then 2 when '未启动' then 3 else 1 end  perf
+from t_DevItemList d 
+left join  t_TmpValue ReceiveFlow on ReceiveFlow.DeviceID= d.DeviceID and ReceiveFlow.ChannelNO=33001
+left join  t_TmpValue SendFlow on SendFlow.DeviceID= d.DeviceID and SendFlow.ChannelNO=33002
+left join  t_TmpValue ErrorNO on ErrorNO.DeviceID= d.DeviceID and ErrorNO.ChannelNO=33003
 where ParentDevID={0} order by DeviceName", mDeviceID);           
             DataTable dt = null;
              try
@@ -140,7 +139,7 @@ where ParentDevID={0} order by DeviceName", mDeviceID);
         public DataTable SelectErrorList(int pageCrrent, int pageSize, out int pageCount)
         {
             string sql = @"select d.Describe descInfo,dt.typeid, dt.TypeName,su.DISPLAY_NAME,d.*,
-case(d.Performance) when '故障' then 1 when  '报警' then 2 when '未启动' then 3 else 0 end  perfValue--性能
+case(d.Performance) when '故障' then 0 when  '报警' then 2 when '未启动' then 3 else 0 end  perfValue--性能
 ,alar.Content,alar.HappenTime 
 from t_AlarmLog alar 
 inner join t_Device d  on alar.DeviceID= d.DeviceID 

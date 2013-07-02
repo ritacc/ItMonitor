@@ -17,6 +17,7 @@ namespace GDK.BCM.PerfMonitor
     public partial class PerfNetPortDetail : PageBase
     {
         public int deviceID = 0;
+        public string health = "0";
         protected override void OnLoad(EventArgs e)
         {
             base.IsAuthenticate = false;
@@ -24,7 +25,6 @@ namespace GDK.BCM.PerfMonitor
 
         }
 
-        public string perf = "0";
         public string Performance = null;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -42,19 +42,16 @@ namespace GDK.BCM.PerfMonitor
             PerNetPortDetailOR _Obj = new PerfNetDA().SelectNetPortDetail(mDeviceID);
             DeviceOREx _objDevEx = new DeviceDA().SelectDeviceORExByID(mDeviceID);
             Performance = _objDev.Performance;
-            switch (_objDev.Performance)
+            switch (_objDevEx.HealthStatus)
             {
                 case "正常":
-                    perf = "0";
+                    health = "1";
                     break;
                 case "故障":
-                    perf = "1";
+                    health = "0";
                     break;
                 case "报警":
-                    perf = "2";
-                    break;
-                case "未启动":
-                    perf = "3";
+                    health = "2";
                     break;
             }
             lblPort.Text = _objDev.Port;

@@ -16,7 +16,8 @@ namespace GDK.BCM.PerfMonitor
     public partial class PerfVirtualMachineDetail : PageBase
     {
         public int deviceID = 0;
-        public string perf = "0";
+        public string State = "0";
+        public string Health = "0";
         protected override void OnLoad(EventArgs e)
         {
             base.IsAuthenticate = false;
@@ -27,7 +28,7 @@ namespace GDK.BCM.PerfMonitor
         protected void Page_Load(object sender, EventArgs e)
         {
             deviceID = Convert.ToInt32(Request.QueryString["id"]);
-            this.pg.OnPageChanged += new EventHandler(PageChanged);
+            //this.pg.OnPageChanged += new EventHandler(PageChanged);
             this.pgVirtualSystem.OnPageChanged += new EventHandler(PageChangedVirtualSystem);
             if (!IsPostBack)
             {
@@ -37,35 +38,60 @@ namespace GDK.BCM.PerfMonitor
 
         private void InitData()
         {
-            BindGraidDiskUsage();
+            //BindGraidDiskUsage();
             BindGraidVirtualSystem();
             string mDeviceID = Request.QueryString["id"];
             int iDeviceID = Convert.ToInt32(Request.QueryString["id"]);
             DeviceOR _objDev = new DeviceDA().SelectDeviceORByID(mDeviceID);
-            PerfDBOR _Obj = new PerfDBDA().SelectDeviceDetail(mDeviceID);
+            DeviceOREx _objDevEx = new DeviceDA().SelectDeviceORExByID(mDeviceID);
             PerfVirtualOR _pv = new PerfVirtualMachineDA().SelectVirtualDetail(mDeviceID);
-
-
+            
             lblMonitorName.Text = _objDev.DeviceName;
             lblDescribe.Text = _objDev.Describe;
-            lblHealthStatus.Text = _Obj.HealthStatus;   // 因没有对应的字段及通道号，该字段值取于数据库，可能不对
+            switch (_objDevEx.HealthStatus)
+            {
+                case "正常":
+                    Health = "1";
+                    break;
+                case "故障":
+                    Health = "0";
+                    break;
+                case "报警":
+                    Health = "2";
+                    break;
+            }
+            switch (_objDevEx.State)
+            {
+                case "正常":
+                    State = "1";
+                    break;
+                case "故障":
+                    State = "0";
+                    break;
+                case "未启动":
+                    State = "3";
+                    break;
+            }
             lblLastPollingTime.Text = _objDev.LastPollingTime.ToString();
             lblNextPollingTime.Text = _objDev.NextPollingTime.ToString();
-            lblPerformance.Text = _objDev.Performance;
-            perf = _objDev.Performance;
-            lblPerf.Text = _objDev.Performance;
+            lblPerformance.Text = _objDevEx.State;
+
+            lblPerf.Text = _objDevEx.State;
 
             lblCPUUtilizationRatio.Text = _pv.CPUUtilizationRatio.ToString();
             lblMemoryUtilization.Text = _pv.MemoryUtilization.ToString();
-            if (_pv.CPUUtilizationRatio > 50)
-            {
-                lblCPUUtilization.Text = "异常";
-            }
-            else if (_pv.CPUUtilizationRatio < 50)
-            {
-                lblCPUUtilization.Text = "正常";
-            }
+            lblCPUUtilization.Text = _pv.CPUUsage.ToString();
+            //if (_pv.CPUUtilizationRatio > 50)
+            //{
+            //    lblCPUUtilization.Text = "异常";
+            //}
+            //else if (_pv.CPUUtilizationRatio < 50)
+            //{
+            //    lblCPUUtilization.Text = "正常";
+            //}
 
+            lblDiskUsage.Text = _pv.DiskUsage.ToString();
+            lblNetworkUsage.Text = _pv.NetUsage.ToString();
             
             #region 绑定 可用性
             DataPoint dp = new DataPoint();
@@ -104,20 +130,20 @@ namespace GDK.BCM.PerfMonitor
             #endregion
         }
 
-        #region  绑定列表 -  磁盘、网络使用情况
-        private void PageChanged(object sender, EventArgs e)
-        {
-            BindGraidDiskUsage();
-        }
-        private void BindGraidDiskUsage()
-        {
-            int PageCount = 0;
-            DataTable dt = new PerfVirtualMachineDA().selectDiskUsage(pg.PageIndex, pg.PageSize, out PageCount, Request.QueryString["id"]);
-            gvUtilization.DataSource = dt;
-            gvUtilization.DataBind();
-            this.pg.RecordCount = PageCount;
-        }
-        #endregion
+        //#region  绑定列表 -  磁盘、网络使用情况
+        //private void PageChanged(object sender, EventArgs e)
+        //{
+        //    BindGraidDiskUsage();
+        //}
+        //private void BindGraidDiskUsage()
+        //{
+        //    int PageCount = 0;
+        //    DataTable dt = new PerfVirtualMachineDA().selectDiskUsage(pg.PageIndex, pg.PageSize, out PageCount, Request.QueryString["id"]);
+        //    gvUtilization.DataSource = dt;
+        //    gvUtilization.DataBind();
+        //    this.pg.RecordCount = PageCount;
+        //}
+        //#endregion
 
         #region  绑定列表 -  虚拟机操作系统
         private void PageChangedVirtualSystem(object sender, EventArgs e)

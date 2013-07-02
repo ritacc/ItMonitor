@@ -13,11 +13,12 @@ namespace GDK.DAL.StateMonitor
 
         public DataTable selectDeviceList(int pageCrrent, int pageSize, out int pageCount, string where)
         {
-            string sql = @"select distinct dt.TypeName,d.*,al.Content,
-case(d.Performance) when '故障' then 0 when  '报警' then 2 when '未启动' then 3 else 1 end  perf
+            string sql = @"select distinct dt.TypeName,d.*,al.Content,tm.MonitorValue state,
+case(tm.MonitorValue) when '未启动' then 3 else 1 end  stateNO
 from t_Device d 
 inner join t_DeviceType dt on d.DeviceTypeID= dt.DeviceTypeID 
-left join t_AlarmLog al on al.Deviceid= d.deviceid
+left join t_AlarmLog al on al.Deviceid= d.deviceid 
+left join t_TmpValue tm on tm.DeviceID = d.deviceid and tm.ChannelNO = 11103 
 where dt.typeid=12 ";
             if (!string.IsNullOrEmpty(where))
             {

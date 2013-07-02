@@ -16,7 +16,7 @@ namespace GDK.BCM.PerfMonitor
     public partial class NetDetail : PageBase
     {
         public int deviceID = 0;
-        public string perf = "0";
+        public string State = "0";
         protected override void OnLoad(EventArgs e)
         {
             base.IsAuthenticate = false;
@@ -37,20 +37,14 @@ namespace GDK.BCM.PerfMonitor
             string mDeviceID= Request.QueryString["id"];
             PerfNetDetailOR _Obj = new PerfNetDA().SelectDeviceDetail(mDeviceID);
             DeviceOR _objDev = new DeviceDA().SelectDeviceORByID(mDeviceID);
-            DeviceOREx _objDevEx = new DeviceDA().SelectDeviceORExByID(mDeviceID);            
-            switch (_objDev.Performance)
+            DeviceOREx _objDevEx = new DeviceDA().SelectDeviceORExByID(mDeviceID);
+            switch (_objDevEx.State)
             {
                 case "正常":
-                    perf = "0";
+                    State = "1";
                     break;
                 case "故障":
-                    perf = "1";
-                    break;
-                case "报警":
-                    perf = "2";
-                    break;
-                case "未启动":
-                    perf = "3";
+                    State = "0";
                     break;
             }
             lblClass.Text = _objDevEx.ClassName;

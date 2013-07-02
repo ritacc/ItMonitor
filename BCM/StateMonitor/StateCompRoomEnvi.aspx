@@ -43,10 +43,8 @@
                 <tr>
                     <td>
                         状态图标说明：
-                        <img src="../images/Common/stata0.gif" alt="设备状态" style="vertical-align:middle;" /> 正常 &nbsp;
-                        <img src="../images/Common/stata1.gif" alt="设备状态" style="vertical-align:middle;" /> 故障  &nbsp;
-                        <img src="../images/Common/stata2.gif" alt="设备状态" style="vertical-align:middle;" /> 报警  &nbsp;
-                        <img src="../images/Common/stata3.gif" alt="设备状态" style="vertical-align:middle;" /> 未启动  &nbsp;
+                        <img src="../images/Common/stata1.gif" alt="设备状态" style="vertical-align:middle;" /> 可用 &nbsp;
+                        <img src="../images/Common/stata3.gif" alt="设备状态" style="vertical-align:middle;" /> 不可用 &nbsp;
                     </td>
                     <td align="right">
                         按名称搜索：
@@ -75,7 +73,7 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="状态">
                         <ItemTemplate>
-                            <img src='../images/Common/stata<%# Eval("perf") %>.gif' alt="设备状态" />
+                            <img src='../images/Common/stata<%# Eval("stateNO") %>.gif' alt="设备状态" />
                         </ItemTemplate>
                     </asp:TemplateField>
 
