@@ -111,6 +111,7 @@
     <Content Include="AlertAdmin\HealthConfigEdit.aspx" />
     <Content Include="AlertAdmin\HealthConfigList.aspx" />
     <Content Include="AlertAdmin\HealthConfigMain.aspx" />
+    <Content Include="Bussiness\BussinessEdit.aspx" />
     <Content Include="Bussiness\BussinessList.aspx" />
     <Content Include="ClientBin\ITMonitorControl.xap" />
     <Content Include="ClientBin\NetStatus.xap" />
@@ -479,6 +480,13 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="App_Code\Logger.cs" />
+    <Compile Include="Bussiness\BussinessEdit.aspx.cs">
+      <DependentUpon>BussinessEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bussiness\BussinessEdit.aspx.designer.cs">
+      <DependentUpon>BussinessEdit.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CompReport\Generate.aspx.cs">
       <DependentUpon>Generate.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

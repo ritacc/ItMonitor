@@ -17,7 +17,7 @@
         {
             border-bottom: 1px solid #BBBBBB;
         }
-        .divTitle
+        .divTitleItem
         {
             background-image: url(../images/SysAdmin/device.gif);
             background-repeat: no-repeat;
@@ -56,7 +56,9 @@
                 var obj = $(o);
                 obj.unbind("click");
                 obj.click(function () {
-                    ChageFromUrl(obj.parent("div:first").attr("guid")); //; eventClickHeadle(obj);
+                    var parentDiv=obj.parent("div:first");
+                    ChageFromUrl(parentDiv.attr("guid")
+                    , parentDiv.attr("type")); //; eventClickHeadle(obj);
                     obj.addClass("ObjSelectItem");
                     if (lastClickObj)
                         lastClickObj.removeClass("ObjSelectItem");
@@ -95,6 +97,7 @@
         $(window).resize(autoSize);
 
         function eventClickHeadle(obj) {
+            
             var parentDiv = obj.parent("div:first");
             var divContentobj = obj.siblings(".divContent");
 
@@ -116,13 +119,16 @@
         }
 
         function LoadChild(parentDiv) {
-            parentDiv.append($("#divSys").html());
+            //alert(parentDiv.attr("guid"));
+            var ID = parentDiv.attr("guid");
+
+            parentDiv.append($("#divSys").html().replace(/(#guid)/g, ID));
             LoadChildURL();
             BindTitle();
         }
 
-        function ChageFromUrl(strGUID) {
-            var toUrl = "DepartmentsMain.aspx?GUID=" + strGUID;
+        function ChageFromUrl(strGUID, mtype) {
+            var toUrl = "BussinessEdit.aspx?GUID=" + strGUID + "&type=" + mtype;
             $("#DepartmentsMain").attr("src", toUrl);
         }
 
@@ -148,15 +154,14 @@
             <td  style="vertical-align: top; width: 250px;  border: 1px solid #cccccc;">
                 <div id="tdIframe" style="overflow:auto;">
 
-                     <div class="divTitleMu divTitleMuDepart" guid="-1">
-                        <span class="divTitle ex">&nbsp;</span>
+                     <div class="divTitleMu divTitleMuDepart" type="top" guid="-1">
+                        <span class="divTitleItem divTitle ex">&nbsp;</span>
                         <span class="spanLadDate DataItem">应用系统</span>
                         <div class="divContent">
                             <asp:Repeater ID="rpDepartment" runat="server">
                                 <ItemTemplate>
-                                
                                     <div class="divTitleMu" guid="<%# Eval("DeviceID")%>">
-                                        <span class="divTitle">
+                                        <span class="divTitle divTitleItem">
                                             &nbsp;</span>
                                         <span class="spanLadDate">
                                             <%# Eval("DeviceName")%></span>
@@ -179,29 +184,29 @@
 <div id="divSys" style=" display:none;">
                     <div class="divContent">
                         <div class="divTitleMu" >
-                            <span class="divTitle">&nbsp;</span>
+                            <span class="divTitleItem ex">&nbsp;</span>
                             <span class="spanLadDate">软件层</span>
                             <div class="divContent">
-                                <div class="divTitleMu">
-                                    <span class="divTitle">&nbsp;</span>
+                                <div class="divTitleMu" type="web" guid="#guid">
+                                    <span class="divTitleItem">&nbsp;</span>
                                     <span class="spanLadDate DataItem">Web层</span>
                                 </div>
-                                <div class="divTitleMu">
-                                    <span class="divTitle">&nbsp;</span>
+                                <div class="divTitleMu" type="app" guid="#guid">
+                                    <span class="divTitleItem">&nbsp;</span>
                                     <span class="spanLadDate DataItem">应用层</span>
                                 </div>
                              </div>
                         </div>
-                        <div class="divTitleMu">
-                            <span class="divTitle">&nbsp;</span>
+                        <div class="divTitleMu" type="db" guid="#guid">
+                            <span class="divTitleItem">&nbsp;</span>
                             <span class="spanLadDate DataItem">数据库层</span>
                         </div>
                         <div class="divTitleMu">
-                            <span class="divTitle">&nbsp;</span>
+                            <span class="divTitleItem ex">&nbsp;</span>
                             <span class="spanLadDate">硬件层</span>
                              <div class="divContent">
-                                <div class="divTitleMu">
-                                    <span class="divTitle">&nbsp;</span>
+                                <div class="divTitleMu" type="host"  guid="#guid">
+                                    <span class="divTitleItem">&nbsp;</span>
                                     <span class="spanLadDate DataItem">服务器</span>
                                 </div>
                              </div>
