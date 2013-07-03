@@ -58,7 +58,7 @@
                                     告警状态:
                                 </td>
                                 <td>
-                                    <asp:Label ID="lblWarningStatus" runat="server"></asp:Label>
+                                    <img src='../images/Common/health<%= health %>.gif' alt="状态" class="imgPerf" />
                                 </td>
                             </tr>  
                             <tr class="RowStyle">
@@ -76,7 +76,7 @@
                             <tr class="RowStyle">
                                 <td>当前可用状态:</td>
                                 <td>
-                                    <img src='../images/Common/stata<%= perf %>.gif' />
+                                    <img src='../images/Common/stata<%= state %>.gif' class="imgPerf" />
                                     <asp:Label ID="lblPerformance" runat="server"></asp:Label>
                                 </td>
                             </tr>
@@ -135,7 +135,7 @@
                             </ChartAreas>
                         </asp:Chart>
                         <br /><br />
-                    当前可用状态：<img src='../images/Common/stata<%= perf %>.gif' /> <asp:Label ID="lblPerf" runat="server"></asp:Label>
+                    当前可用状态：<img src='../images/Common/stata<%= state %>.gif' class="imgPerf" /> <asp:Label ID="lblPerf" runat="server"></asp:Label>
                         <br /><br />
                     </div>
                 </td>
@@ -359,7 +359,7 @@
         <div class="div_box_title">进程明细</div>
         <asp:GridView ID="gvProcessDetail" runat="server" AutoGenerateColumns="false" CssClass="gridview_skin">
             <Columns>
-                <asp:BoundField HeaderText="进程" DataField="Process" />
+                <asp:BoundField HeaderText="进程" DataField="DeviceName" />
                 <asp:BoundField HeaderText="健康状况" DataField="HealthStatus" />
                 <asp:BoundField HeaderText="当前可用状态" DataField="CurrentlyState" />
                 <asp:BoundField HeaderText="实例编号" DataField="ExampleNO" />
@@ -389,7 +389,7 @@
         <div class="div_box_title">磁盘使用率</div>
         <asp:GridView ID="gvDiskUtilization" runat="server" AutoGenerateColumns="false" CssClass="gridview_skin">
             <Columns>
-                <asp:BoundField HeaderText="磁盘名称" DataField="DiskName" />
+                <asp:BoundField HeaderText="磁盘名称" DataField="DeviceName" />
                 <asp:TemplateField HeaderText="磁盘使用率">
                     <ItemTemplate>
                         <div style="height:12px; border:1px solid #3da0ce; background:white;">
@@ -423,7 +423,7 @@
         <div class="div_box_title">页面空间</div>
         <asp:GridView ID="gvPageSpace" runat="server" AutoGenerateColumns="false" CssClass="gridview_skin">
             <Columns>
-                <asp:BoundField HeaderText="页面空间" DataField="PageSpace" />
+                <asp:BoundField HeaderText="页面空间" DataField="DeviceName" />
                 <asp:BoundField HeaderText="大小" DataField="PageSpaceSize" />
                 <asp:BoundField HeaderText="已用（%）" DataField="Used" />
                 <asp:BoundField HeaderText="已用（MB）" DataField="UsedMB" />
@@ -453,7 +453,7 @@
         <div class="div_box_title">磁盘IO统计列表</div>
         <asp:GridView ID="gvDiskStatistics" runat="server" AutoGenerateColumns="false" CssClass="gridview_skin">
             <Columns>
-                <asp:BoundField HeaderText="设备" DataField="Equipment" />
+                <asp:BoundField HeaderText="设备" DataField="DeviceName" />
                 <asp:BoundField HeaderText="读/秒" DataField="ReadS" />
                 <asp:BoundField HeaderText="写/秒" DataField="WriteS" />
                 <asp:BoundField HeaderText="传输/秒" DataField="TransportS" />
@@ -479,7 +479,7 @@
         <div class="div_box_title">网络接口</div>
         <asp:GridView ID="gvNetworkPort" runat="server" AutoGenerateColumns="false" CssClass="gridview_skin">
             <Columns>
-                <asp:BoundField HeaderText="名称" DataField="PortName" />
+                <asp:BoundField HeaderText="名称" DataField="DeviceName" />
                 <asp:BoundField HeaderText="健康状态" DataField="HealthStatus" />
                 <asp:BoundField HeaderText="速率（mbps）" DataField="Rate" />
                 <asp:BoundField HeaderText="输入流量（kbps）" DataField="InputFlow" />
@@ -509,7 +509,7 @@
         <div class="div_box_title">服务明细</div>
         <asp:GridView ID="gvServiceDetail" runat="server" AutoGenerateColumns="false" CssClass="gridview_skin">
             <Columns>
-                <asp:BoundField HeaderText="显示名" DataField="DisplayName" />
+                <asp:BoundField HeaderText="显示名" DataField="DeviceName" />
                 <asp:BoundField HeaderText="服务名" DataField="ServiceName" />
                 <asp:BoundField HeaderText="可用性" DataField="Availability" />
             </Columns>
@@ -533,7 +533,7 @@
         <div class="div_box_title">最近从事件日志来的事件</div>
         <asp:GridView ID="gvEvent" runat="server" AutoGenerateColumns="false" CssClass="gridview_skin">
             <Columns>
-                <asp:BoundField HeaderText="规则名" DataField="RuleName" />
+                <asp:BoundField HeaderText="规则名" DataField="DeviceName" />
                 <asp:BoundField HeaderText="日志文件类型" DataField="LogFileType" />
                 <asp:BoundField HeaderText="来源" DataField="Source" />
                 <asp:BoundField HeaderText="事件ID" DataField="EventID" />

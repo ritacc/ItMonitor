@@ -29,7 +29,7 @@
             <tr class="RowStyle">
                 <td>当前状态:</td>
                 <td>
-                    <img src='../images/Common/stata<%= perf %>.gif' alt="性能" class="imgPerf" />
+                    <img src='../images/Common/stata<%= state %>.gif' alt="状态" class="imgPerf" />
                     <asp:Label ID="lblState" runat="server"></asp:Label>
                 </td>
             </tr>

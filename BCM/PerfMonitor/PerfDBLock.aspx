@@ -19,7 +19,7 @@
             <div class="div_box_title">拥有锁的会话数</div>
             <asp:GridView ID="gvLockedNO" runat="server" AutoGenerateColumns="false" CssClass="gridview_skin">
                 <Columns>
-                    <asp:BoundField HeaderText="ID" DataField="ID" />
+                    <asp:BoundField HeaderText="ID" DataField="DeviceName" />
                     <asp:BoundField HeaderText="序列" DataField="Array" />
                     <asp:BoundField HeaderText="机器" DataField="Machine" />
                     <asp:BoundField HeaderText="程序" DataField="Program" />
@@ -46,7 +46,7 @@
             <div class="div_box_title">锁的会话等待数</div>
             <asp:GridView ID="gvLockedWaitingNO" runat="server" AutoGenerateColumns="false" CssClass="gridview_skin">
                 <Columns>
-                    <asp:BoundField HeaderText="等待中的会话ID" DataField="WaitingID" />
+                    <asp:BoundField HeaderText="等待中的会话ID" DataField="DeviceName" />
                     <asp:BoundField HeaderText="挂起的会话ID" DataField="PendingID" />
                     <asp:BoundField HeaderText="锁类型" DataField="LockType" />
                     <asp:BoundField HeaderText="持有方式" DataField="HoldMode" />
@@ -78,7 +78,7 @@
             <div class="div_box_title">锁明细</div>
             <asp:GridView ID="gvLockDetail" runat="server" AutoGenerateColumns="false" CssClass="gridview_skin">
                 <Columns>
-                    <asp:BoundField HeaderText="对话名" DataField="DialogueName" />
+                    <asp:BoundField HeaderText="对话名" DataField="DeviceName" />
                     <asp:BoundField HeaderText="会话ID" DataField="ConversationID" />
                     <asp:BoundField HeaderText="序列" DataField="Program" />
                     <asp:BoundField HeaderText="锁模式" DataField="LockMode" />

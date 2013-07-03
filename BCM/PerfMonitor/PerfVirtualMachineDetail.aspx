@@ -38,7 +38,7 @@
                                     健康状况:
                                 </td>
                                 <td>
-                                    <asp:Label ID="lblHealthStatus" runat="server"></asp:Label>
+                                    <img src='../images/Common/health<%= Health %>.gif' alt="状态" class="imgPerf" />
                                 </td>
                             </tr>  
                             <tr class="RowStyle">
@@ -56,7 +56,7 @@
                             <tr class="RowStyle">
                                 <td>当前可用状态:</td>
                                 <td>
-                                    <img src='../images/Common/stata<%= perf %>.gif' />
+                                    <img src='../images/Common/stata<%= State %>.gif' alt="状态" class="imgPerf" />
                                     <asp:Label ID="lblPerformance" runat="server"></asp:Label>
                                 </td>
                             </tr>
@@ -109,7 +109,7 @@
                             </ChartAreas>
                         </asp:Chart>
                         <br /><br />
-                    当前可用状态：<img src='../images/Common/stata<%= perf %>.gif' /> <asp:Label ID="lblPerf" runat="server"></asp:Label>
+                    当前可用状态：<img src='../images/Common/stata<%= State %>.gif' alt="状态" class="imgPerf" /> <asp:Label ID="lblPerf" runat="server"></asp:Label>
                         <br /><br />
                     </div>
                 </td>
@@ -158,17 +158,17 @@
             </tr>
             <tr class="AlternatingRowStyle">
                 <td>CPU利用率：</td>
-                <td><asp:Label ID="lblCPUUtilizationRatio" runat="server"></asp:Label></td>
+                <td><asp:Label ID="lblCPUUtilizationRatio" runat="server"></asp:Label> %</td>
             </tr>
             <tr class="RowStyle">
                 <td>CPU利用情况:</td>
                 <td>
-                <asp:Label ID="lblCPUUtilization" runat="server"></asp:Label>
+                <asp:Label ID="lblCPUUtilization" runat="server"></asp:Label> MHz
                 </td>
             </tr>
             <tr class="AlternatingRowStyle">
                 <td>内存利用率：</td>
-                <td><asp:Label ID="lblMemoryUtilization" runat="server"></asp:Label></td>
+                <td><asp:Label ID="lblMemoryUtilization" runat="server"></asp:Label> %</td>
             </tr>
         </table>
     </div>
@@ -219,6 +219,20 @@
 
     <div class="div_box Padding_5">
         <div class="div_box_title">磁盘、网络使用情况</div>
+            <table cellpadding="0" cellspacing="0" width="100%" class="gridview_skin">
+                <tr class="gridview_skin_header">
+                    <th>磁盘使用率</th>
+                    <th>网络使用率</th>
+                </tr>
+                <tr class="AlternatingRowStyle">
+                    <td><asp:Label ID="lblDiskUsage" runat="server"></asp:Label> kbps</td>
+                    <td><asp:Label ID="lblNetworkUsage" runat="server"></asp:Label> kbps</td>
+                </tr>
+            </table>                 
+    </div>
+
+<%--    <div class="div_box Padding_5">
+        <div class="div_box_title">磁盘、网络使用情况</div>
         <asp:GridView ID="gvUtilization" runat="server" AutoGenerateColumns="false" CssClass="gridview_skin">
             <Columns>
                 <asp:BoundField HeaderText="磁盘使用率" DataField="DiskUsage" />
@@ -237,7 +251,7 @@
                 </EmptyDataTemplate>
             </asp:GridView>              
         <uc1:pagenavigate ID="pg" runat="server" />   
-    </div>
+    </div>--%>
     
     <div class="div_box Padding_5">
         <div class="div_box_title">虚拟机操作系统</div>
@@ -248,8 +262,16 @@
                 <asp:BoundField HeaderText="内存使用率(%)" DataField="MemoryUtilization" />
                 <asp:BoundField HeaderText="磁盘I/O利用率 kbps" DataField="DiskUtilization" />
                 <asp:BoundField HeaderText="网络利用率 kbps" DataField="NetworkUtilization" />
-                <asp:BoundField HeaderText="状态" DataField="Performance" />
-                <asp:BoundField HeaderText="预警状况" DataField="WarningStatus" />
+                <asp:TemplateField HeaderText="性能">
+                    <ItemTemplate>
+                        <img src="../images/Common/stata<%# Eval("perf") %>.gif" alt="" class="imgPerf" /><%# Eval("Performance")%>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="告警状态">
+                    <ItemTemplate>
+                        <img src="../images/Common/stata<%# Eval("Warning")%>.gif" alt="" class="imgPerf" /><%# Eval("WarningStatus")%>
+                    </ItemTemplate>
+                </asp:TemplateField>
             </Columns>
             <EmptyDataTemplate>
                 <table cellpadding="0" cellspacing="0" width="100%" class="gridheader_table">

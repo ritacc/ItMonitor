@@ -68,7 +68,7 @@
                                 <%#Eval("DeviceName")%></span></a>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:BoundField HeaderText="操作系统" DataField="ServName" />
+                    <asp:BoundField HeaderText="操作系统" DataField="TypeName" />
                     <asp:BoundField HeaderText="IP地址" DataField="IP" />
                     <asp:TemplateField HeaderText="性能">
                         <ItemTemplate>

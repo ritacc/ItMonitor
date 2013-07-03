@@ -40,10 +40,10 @@ namespace GDK.BCM.PerfMonitor
             switch (_objDev.Performance)
             {
                 case "正常":
-                    perf = "0";
+                    perf = "1";
                     break;
                 case "故障":
-                    perf = "1";
+                    perf = "0";
                     break;
                 case "报警":
                     perf = "2";

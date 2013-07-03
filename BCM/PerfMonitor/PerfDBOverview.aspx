@@ -32,7 +32,7 @@
                                     健康状况:
                                 </td>
                                 <td>
-                                    <asp:Label ID="lblHealthStatus" runat="server"></asp:Label>
+                                    <img src='../images/Common/health<%= Health %>.gif' alt="状态" class="imgPerf" />
                                 </td>
                             </tr>
                             <tr class="RowStyle">
@@ -132,7 +132,7 @@
                             </ChartAreas>
                         </asp:Chart>
                         <br /><br />
-                    当前可用状态：<img src='../images/Common/stata<%= perf %>.gif' alt="性能" /> <asp:Label ID="lblPerf" runat="server"></asp:Label>
+                    当前可用状态：<img src='../images/Common/stata<%= State %>.gif' alt="性能" /> <asp:Label ID="lblState" runat="server"></asp:Label>
                         <br /><br />
                     </div>
                 </td>

@@ -22,7 +22,7 @@
             </tr>
             <tr class="AlternatingRowStyle">
                 <td colspan="2">
-                    <img src='../images/Common/stata<%= perf %>.gif' alt="性能" class="imgPerf" />
+                    <img src='../images/Common/stata2<%= State %>.gif' alt="状态" class="imgPerf" />
                     <asp:Label ID="lblDeviceName" runat="server"></asp:Label>
                 </td>
             </tr>

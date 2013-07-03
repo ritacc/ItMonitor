@@ -12,9 +12,10 @@ namespace GDK.DAL.PerfMonitor
         public DataTable selectDeviceList(int pageCrrent, int pageSize, out int pageCount, string where)
         {
             string sql = @"select dt.TypeName,d.*,
-case(d.Performance) when '故障' then 0 when  '报警' then 2 when '未启动' then 3 else 1 end  perf
+case(tm.MonitorValue) when '故障' then 0 when '未启动' then 3 else 1 end  stateNO
 from t_Device d 
 inner join t_DeviceType dt on d.DeviceTypeID= dt.DeviceTypeID 
+left join t_TmpValue tm on tm.DeviceID = d.deviceid and tm.ChannelNO = 11103 
 where dt.typeid=9 ";
             if (!string.IsNullOrEmpty(where))
             {
@@ -90,25 +91,25 @@ where dt.typeid=9 ";
         /// <summary>
         /// 磁盘、网络使用情况 
         /// </summary>
-        public DataTable selectDiskUsage(int pageCrrent, int pageSize, out int pageCount, string ParentDevID)
-        {
-            string sql = string.Format(@"select d.deviceid,DiskUsage.MonitorValue DiskUsage,NetworkUtilization.MonitorValue NetworkUtilization
- from t_Device d 
-left join t_TmpValue DiskUsage on DiskUsage.DeviceID= d.DeviceID and DiskUsage.ChannelNO=91303
-left join t_TmpValue NetworkUtilization on NetworkUtilization.DeviceID= d.DeviceID and NetworkUtilization.ChannelNO=91403
-where d.DeviceTypeID= 913 and ParentDevID ={0} order by LastPollingTime", ParentDevID);
-            DataTable dt = null;
-            int returnC = 0; try
-            {
-                dt = db.ExecuteQuery(sql, pageCrrent, pageSize, out returnC);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            pageCount = returnC;
-            return dt;
-        }
+//        public DataTable selectDiskUsage(int pageCrrent, int pageSize, out int pageCount, string ParentDevID)
+//        {
+//            string sql = string.Format(@"select d.deviceid,DiskUsage.MonitorValue DiskUsage,NetworkUtilization.MonitorValue NetworkUtilization
+// from t_Device d 
+//left join t_TmpValue DiskUsage on DiskUsage.DeviceID= d.DeviceID and DiskUsage.ChannelNO=91303
+//left join t_TmpValue NetworkUtilization on NetworkUtilization.DeviceID= d.DeviceID and NetworkUtilization.ChannelNO=91403
+//where d.DeviceTypeID= 913 and ParentDevID ={0} order by LastPollingTime", ParentDevID);
+//            DataTable dt = null;
+//            int returnC = 0; try
+//            {
+//                dt = db.ExecuteQuery(sql, pageCrrent, pageSize, out returnC);
+//            }
+//            catch (Exception ex)
+//            {
+//                throw ex;
+//            }
+//            pageCount = returnC;
+//            return dt;
+//        }
 
 
         /// <summary>
@@ -118,13 +119,15 @@ where d.DeviceTypeID= 913 and ParentDevID ={0} order by LastPollingTime", Parent
         {
             string sql = string.Format(@"select d.deviceid,d.DeviceName,d.Performance,CPUUtilization.MonitorValue CPUUtilization,MemoryUtilization.MonitorValue MemoryUtilization,
 DiskUtilization.MonitorValue DiskUtilization,NetworkUtilization.MonitorValue NetworkUtilization,
-WarningStatus.MonitorValue WarningStatus
+WarningStatus.MonitorValue WarningStatus,
+case d.Performance when '故障' then 0 when  '报警' then 2 when '未启动' then 3 else 1 end  perf,
+case WarningStatus.MonitorValue when '异常' then 0 when '未启动' then 3 else 1 end Warning
  from t_DevItemList d 
 left join t_TmpValue CPUUtilization on CPUUtilization.DeviceID= d.DeviceID and CPUUtilization.ChannelNO=91103
 left join t_TmpValue MemoryUtilization on MemoryUtilization.DeviceID= d.DeviceID and MemoryUtilization.ChannelNO=91204
 left join t_TmpValue DiskUtilization on DiskUtilization.DeviceID= d.DeviceID and DiskUtilization.ChannelNO=14301
 left join t_TmpValue NetworkUtilization on NetworkUtilization.DeviceID= d.DeviceID and NetworkUtilization.ChannelNO=91403
-left join t_TmpValue WarningStatus on WarningStatus.DeviceID= d.DeviceID and WarningStatus.ChannelNO=12106
+left join t_TmpValue WarningStatus on WarningStatus.DeviceID= d.DeviceID and WarningStatus.ChannelNO=11101
 where d.DeviceTypeID= 915 and ParentDevID ={0} order by DeviceName", ParentDevID);
             DataTable dt = null;
             int returnC = 0; try

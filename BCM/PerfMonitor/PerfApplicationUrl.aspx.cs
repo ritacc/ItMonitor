@@ -16,6 +16,7 @@ namespace GDK.BCM.PerfMonitor
     public partial class PerfApplicationUrl : PageBase
     {
         public int deviceID = 0;
+        public string Health = "0";
         protected override void OnLoad(EventArgs e)
         {
             base.IsAuthenticate = false;
@@ -41,7 +42,18 @@ namespace GDK.BCM.PerfMonitor
             DeviceOREx _objDevEx = new DeviceDA().SelectDeviceORExByID(mDeviceID);
             
             lblName.Text = _objDev.DeviceName;
-            lblHealthStatus.Text = _objDevEx.HealthStatus;
+            switch (_objDevEx.HealthStatus)
+            {
+                case "正常":
+                    Health = "1";
+                    break;
+                case "故障":
+                    Health = "0";
+                    break;
+                case "报警":
+                    Health = "2";
+                    break;
+            }
             lblType.Text = _objDevEx.TypeName;
             lblInterval.Text = _objDev.Interval;
             lblLastPollingTime.Text = _objDev.LastPollingTime.ToString();

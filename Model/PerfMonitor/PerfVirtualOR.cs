@@ -17,13 +17,27 @@ namespace GDK.Entity.PerfMonitor
         /// CPU使用率
         /// </summary>
         public Double CPUUtilizationRatio { get; set; }
+
+        /// <summary>
+        /// CPU使用情况
+        /// </summary>
+        public int CPUUsage { get; set; }
         
         /// <summary>
         /// 内存使用率
         /// </summary>
         public Double MemoryUtilization { get; set; }
 
+        /// <summary>
+        /// 磁盘使用率
+        /// </summary>
+        public Double DiskUsage { get; set; }
 
+        /// <summary>
+        /// 网络使用率
+        /// </summary>
+        public Double NetUsage { get; set; }
+        
         
          /// <summary>
         /// 接口列表     3#^#1705#^#1706#^#1707
@@ -46,9 +60,18 @@ namespace GDK.Entity.PerfMonitor
                     case "91103":
                         CPUUtilizationRatio = Convert.ToDouble(dr["MonitorValue"].ToString());
                         break;
+                    case "91104":
+                        CPUUsage = Convert.ToInt32(dr["MonitorValue"].ToString());
+                        break;
                     case "91204":
                         MemoryUtilization = Convert.ToDouble(dr["MonitorValue"].ToString());
-                        break;                    
+                        break;
+                    case "91303":
+                        DiskUsage = Convert.ToDouble(dr["MonitorValue"].ToString());
+                        break;
+                    case "91403":
+                        NetUsage = Convert.ToDouble(dr["MonitorValue"].ToString());
+                        break;                      
                 }
             }
         }
