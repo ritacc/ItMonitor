@@ -19,11 +19,10 @@
 	 
 	<script language="javascript" type="text/javascript">
 	 $(document).ready(function () {
-		
-		$(".headerBtnAdd").click(function () {
-			var strVar = 'RoleEdit.aspx';
-			$.popup({ title: "添加角色", url: strVar, borderStyle: { height: 300, width: 400 }, ok: function (obj) {
 
+	     $(".headerBtnAdd").click(function () {
+	         var strVar = 'BussinessSelect.aspx?type=' + request("type") + "&id=" + request("GUID");
+			$.popup({ title: "选择", url: strVar, borderStyle: { height: 500, width: 500 }, ok: function (obj) {
 				$.popup.Refrsh();
 			}
 			}); //$.popup
@@ -33,7 +32,7 @@
 	});
     </script>
 
-	</script>
+	
 </head>
 <body>
     <form id="form1" runat="server">
@@ -65,10 +64,10 @@
             </asp:TemplateField>
             <asp:TemplateField HeaderText="删除" HeaderStyle-Width="4%">
                 <ItemTemplate>
-                    <asp:ImageButton ID="ibtn_delete" CssClass="deleteTS" CommandName="delete" OnCommand="GView_LinkButton_Click" CommandArgument='<%#Eval("GUID") %>' ImageUrl="~/images/Common/delete.gif" runat="server" />
+                    <asp:ImageButton ID="ibtn_delete" CssClass="deleteTS" CommandName="delete" OnCommand="GView_LinkButton_Click" CommandArgument='<%#Eval("DeviceID") %>' ImageUrl="~/images/Common/delete.gif" runat="server" />
                 </ItemTemplate>
             </asp:TemplateField>
-			<asp:BoundField HeaderText="类型" DataField="MonitorName" />
+			<asp:BoundField HeaderText="类型" DataField="TypeName" />
             <asp:BoundField HeaderText="名称" DataField="DeviceName" />
             <asp:BoundField HeaderText="描述" DataField="descInfo" />
         </Columns>

@@ -41,6 +41,28 @@ where bus.ParentId= -1 ";
             return dt;
         }
 
+        public DataTable GetSysLay(int DeviceID, int typeid)
+        {
+            string sql = string.Format(@"select d.Describe descInfo,dt.typeid, dt.TypeName,d.*
+from  t_Device d  
+inner join t_DeviceType dt on d.DeviceTypeID= dt.DeviceTypeID 
+where  dt.typeid={0} 
+and DeviceID not in (select Id  from t_Bussiness where ParentId={1})", typeid, DeviceID);
+            DataTable dt = db.ExecuteQuery(sql);
+            return dt;
+        }
+
+        public DataTable GetSysLay(int DeviceID, string strWhere)
+        {
+            string sql = string.Format(@"select d.Describe descInfo,dt.typeid, dt.TypeName,d.*
+from  t_Device d  
+inner join t_DeviceType dt on d.DeviceTypeID= dt.DeviceTypeID 
+where  {0} 
+and DeviceID not in (select Id  from t_Bussiness where ParentId={1}) ",strWhere, DeviceID);
+            DataTable dt = db.ExecuteQuery(sql);
+            return dt;
+        }
+
 
         #region DELETE
         /// <summary>

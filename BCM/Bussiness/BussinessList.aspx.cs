@@ -11,6 +11,8 @@ namespace GDK.BCM.Bussiness
 {
     public partial class BussinessList : System.Web.UI.Page
     {
+        
+
         BussinessDA busDA = new BussinessDA();
         protected void Page_Load(object sender, EventArgs e)
         {

@@ -46,18 +46,19 @@ namespace GDK.BCM.Bussiness
 
         private void BindGraid()
         {
-            int pageCount = 0;
+            //int pageCount = 0;
             DataTable dt = null;
-			string mType = "";
+			//string mType = "";
 			if (Request.QueryString["type"] == "top")
 			{
 				dt = BusDA.GetTopBuss();//(pg.PageIndex, pg.PageSize, out pageCount);
 			}
 			else
 			{
+                string id = Request.QueryString["GUID"];
 				switch (Request.QueryString["type"])
 				{
-					case "server":
+                    case "host":
 						dt = new PerfApplicationDA().GetSysLay(Convert.ToInt32(id), 1);
 						break;
 					case "use":
@@ -66,12 +67,12 @@ namespace GDK.BCM.Bussiness
 					case "web":
 						dt = new PerfApplicationDA().GetSysLay(Convert.ToInt32(id), " (dt.typeid=2 or dt.typeid=3 )");
 						break;
-					case "DB":
+					case "db":
 						dt = new PerfApplicationDA().GetSysLay(Convert.ToInt32(id), 4);
 						break;
 				}
-				string strWhere = string.Empty;
-				BusDA.GetSysLay(Convert.ToInt32(Request.QueryString["GUID"]), strWhere);
+				//string strWhere = string.Empty;
+				//BusDA.GetSysLay(Convert.ToInt32(Request.QueryString["GUID"]), strWhere);
 			}
             this.gvDataList.DataSource = dt;
             gvDataList.DataBind();

@@ -191,7 +191,7 @@
                                     <span class="divTitleItem">&nbsp;</span>
                                     <span class="spanLadDate DataItem">Web层</span>
                                 </div>
-                                <div class="divTitleMu" type="app" guid="#guid">
+                                <div class="divTitleMu" type="use" guid="#guid">
                                     <span class="divTitleItem">&nbsp;</span>
                                     <span class="spanLadDate DataItem">应用层</span>
                                 </div>
