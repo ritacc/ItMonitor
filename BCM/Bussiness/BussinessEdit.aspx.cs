@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using GDK.DAL.Sys;
 using System.Data;
+using GDK.DAL.PerfMonitor;
 
 namespace GDK.BCM.Bussiness
 {
@@ -17,7 +18,7 @@ namespace GDK.BCM.Bussiness
             base.OnLoad(e);
         }
 
-        BussinessDA BusDA = new BussinessDA();
+		PerfApplicationDA BusDA = new PerfApplicationDA();
         protected void Page_Load(object sender, EventArgs e)
         {
             txtDeviceID.Text = Request.QueryString["GUID"];
@@ -47,10 +48,31 @@ namespace GDK.BCM.Bussiness
         {
             int pageCount = 0;
             DataTable dt = null;
-            if (Request.QueryString["type"] == "top")
-            {
-              dt=  BusDA.GetTopBuss(pg.PageIndex,pg.PageSize, out pageCount);
-            }
+			string mType = "";
+			if (Request.QueryString["type"] == "top")
+			{
+				dt = BusDA.GetTopBuss();//(pg.PageIndex, pg.PageSize, out pageCount);
+			}
+			else
+			{
+				switch (Request.QueryString["type"])
+				{
+					case "server":
+						dt = new PerfApplicationDA().GetSysLay(Convert.ToInt32(id), 1);
+						break;
+					case "use":
+						dt = new PerfApplicationDA().GetSysLay(Convert.ToInt32(id), 10);
+						break;
+					case "web":
+						dt = new PerfApplicationDA().GetSysLay(Convert.ToInt32(id), " (dt.typeid=2 or dt.typeid=3 )");
+						break;
+					case "DB":
+						dt = new PerfApplicationDA().GetSysLay(Convert.ToInt32(id), 4);
+						break;
+				}
+				string strWhere = string.Empty;
+				BusDA.GetSysLay(Convert.ToInt32(Request.QueryString["GUID"]), strWhere);
+			}
             this.gvDataList.DataSource = dt;
             gvDataList.DataBind();
         }
@@ -61,7 +83,8 @@ namespace GDK.BCM.Bussiness
             string id = e.CommandArgument.ToString();
             if (e.CommandName == "delete")
             {
-                if (!BusDA.Delete(id))
+
+				if (!new BussinessDA().Delete(id))
                 {
                     base.Alert("删除失败!");
                 }

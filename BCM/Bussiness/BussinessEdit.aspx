@@ -16,6 +16,24 @@
     <script type="text/javascript" src="../Scripts/Common.js"></script>
     <script type="text/javascript" src="../Scripts/jquery.popup.js"></script>
     <script type="text/javascript" src="../Scripts/jquery.validator.js"></script>
+	 
+	<script language="javascript" type="text/javascript">
+	 $(document).ready(function () {
+		
+		$(".headerBtnAdd").click(function () {
+			var strVar = 'RoleEdit.aspx';
+			$.popup({ title: "添加角色", url: strVar, borderStyle: { height: 300, width: 400 }, ok: function (obj) {
+
+				$.popup.Refrsh();
+			}
+			}); //$.popup
+
+		});
+
+	});
+    </script>
+
+	</script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -45,27 +63,14 @@
                         <%# Container.DataItemIndex+1 %>
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="权限设置" HeaderStyle-Width="60">
-                <ItemTemplate>
-                    <a href="RoleSet.aspx?guid=<%# Server.UrlEncode(Eval("GUID").ToString().Trim()) %>">
-                        <img src="../images/Common/roseSetRight.gif" style="border: 0px;" alt="权限设置" />
-                    </a>
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:TemplateField HeaderText="编辑" HeaderStyle-Width="4%">
-                <ItemTemplate>
-                    <a  guid="<%# Eval("Guid") %>" class="gvEdit"><img src="../images/Common/edit.gif" style="border: 0px;" alt="权限设置" /></a>
-                </ItemTemplate>
-            </asp:TemplateField>
             <asp:TemplateField HeaderText="删除" HeaderStyle-Width="4%">
                 <ItemTemplate>
                     <asp:ImageButton ID="ibtn_delete" CssClass="deleteTS" CommandName="delete" OnCommand="GView_LinkButton_Click" CommandArgument='<%#Eval("GUID") %>' ImageUrl="~/images/Common/delete.gif" runat="server" />
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:BoundField HeaderText="名称" DataField="ROLE_NAME">
-                <ItemStyle Width="230" />
-            </asp:BoundField>
-            <asp:BoundField HeaderText="描述" DataField="ROLE_DESC" />
+			<asp:BoundField HeaderText="类型" DataField="MonitorName" />
+            <asp:BoundField HeaderText="名称" DataField="DeviceName" />
+            <asp:BoundField HeaderText="描述" DataField="descInfo" />
         </Columns>
         <EmptyDataTemplate>
             <table class="empty_gridview" cellspacing="0">
