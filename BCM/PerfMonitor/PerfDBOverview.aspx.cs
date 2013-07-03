@@ -16,7 +16,8 @@ namespace GDK.BCM.PerfMonitor
     public partial class PerfDBOverview : PageBase
     {
         public int deviceID = 0;
-        public string perf = "0";
+        public string State = "0";
+        public string Health = "0";
         protected override void OnLoad(EventArgs e)
         {
             base.IsAuthenticate = false;
@@ -56,20 +57,43 @@ namespace GDK.BCM.PerfMonitor
             int iDeviceID = Convert.ToInt32(Request.QueryString["id"]);
             DeviceOR _objDev = new DeviceDA().SelectDeviceORByID(mDeviceID);
             PerfDBOR _Obj = new PerfDBDA().SelectDeviceDetail(mDeviceID);
-            DeviceOREx _objDevEx = new DeviceDA().SelectDeviceORExByID(mDeviceID);
-            perf = _objDev.Performance;
-            lblPerf.Text = _objDev.Performance;
+            DeviceOREx _objDevEx = new DeviceDA().SelectDeviceORExByID(mDeviceID);            
+            switch (_objDevEx.State)
+            {
+                case "正常":
+                    State = "1";
+                    break;
+                case "故障":
+                    State = "0";
+                    break;
+                case "未启动":
+                    State = "3";
+                    break;
+            }
+            switch (_objDevEx.HealthStatus)
+            {
+                case "正常":
+                    Health = "1";
+                    break;
+                case "故障":
+                    Health = "0";
+                    break;
+                case "未启动":
+                    Health = "3";
+                    break;
+            }
 
-            lblServName.Text = _Obj.ServName;
-            lblHealthStatus.Text = _Obj.HealthStatus;
-            lblAuthType.Text = _Obj.ServType;
-            lblVersion.Text = _Obj.Version;
+            lblState.Text = _objDevEx.State;
+
+            lblServName.Text =  _objDev.DeviceName;
+            lblAuthType.Text = _objDev.AuthType;
+            lblVersion.Text = _objDev.Version;
             lblStartUpTime.Text = _Obj.StartUpTime;
-            lblPort.Text = _Obj.Port;
+            lblPort.Text = _objDev.Port;
             lblHostName.Text = _Obj.HostName;
             lblSystem.Text = _Obj.System;
-            lblLastPollingTime.Text = _Obj.LastPollingTime;
-            lblNextPollingTime.Text = _Obj.NextPollingTime;
+            lblLastPollingTime.Text = _objDev.LastPollingTime.ToString();
+            lblNextPollingTime.Text = _objDev.NextPollingTime.ToString();
 
             lblValue.Text = _Obj.ConnectionTime;
             lblUserNO.Text = _Obj.UserNO;

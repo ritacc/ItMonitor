@@ -92,14 +92,14 @@ where " + mWhere;
         /// </summary>
         public DataTable selectConversationDetail(int pageCrrent, int pageSize, out int pageCount, string ParentDevID)
         {
-            string sql = string.Format(@"select distinct  d.deviceid,d.DeviceName ApplicationName,ActivityNO.MonitorValue ActivityNO,
+            string sql = string.Format(@"select distinct  d.deviceid,d.DeviceName,ActivityNO.MonitorValue ActivityNO,
 MaxNO.MonitorValue MaxNO,TotalNO.MonitorValue TotalNO,ServletNO.MonitorValue ServletNO
- from t_Device d 
+ from t_DevItemList d 
 left join t_TmpValue ActivityNO on d.DeviceID= d.DeviceID and ActivityNO.ChannelNO=21102
 left join t_TmpValue MaxNO on MaxNO.DeviceID= d.DeviceID and MaxNO.ChannelNO=21103
 left join t_TmpValue TotalNO on TotalNO.DeviceID= d.DeviceID and TotalNO.ChannelNO=21104
 left join t_TmpValue ServletNO on ServletNO.DeviceID= d.DeviceID and ServletNO.ChannelNO=21105
-where d.DeviceTypeID= 211 and ParentDevID ={0} order by ApplicationName", ParentDevID);
+where d.DeviceTypeID= 211 and ParentDevID ={0} order by DeviceName", ParentDevID);
             DataTable dt = null;
             int returnC = 0; try
             {
@@ -118,15 +118,15 @@ where d.DeviceTypeID= 211 and ParentDevID ={0} order by ApplicationName", Parent
         /// </summary>
         public DataTable selectThreadDetail(int pageCrrent, int pageSize, out int pageCount, string ParentDevID)
         {
-            string sql = string.Format(@"select d.deviceid,ThreadName.MonitorValue ThreadName,ThreadNO.MonitorValue ThreadNO,
+            string sql = string.Format(@"select d.deviceid,d.DeviceName,ThreadName.MonitorValue ThreadName,ThreadNO.MonitorValue ThreadNO,
 FreeThreadNO.MonitorValue FreeThreadNO,Throughput.MonitorValue Throughput,UndecidedNO.MonitorValue UndecidedNO
- from t_Device d 
+ from t_DevItemList d 
 left join t_TmpValue ThreadName on ThreadName.DeviceID= d.DeviceID and ThreadName.ChannelNO=22201
 left join t_TmpValue ThreadNO on ThreadNO.DeviceID= d.DeviceID and ThreadNO.ChannelNO=22202
 left join t_TmpValue FreeThreadNO on FreeThreadNO.DeviceID= d.DeviceID and FreeThreadNO.ChannelNO=22203
 left join t_TmpValue Throughput on Throughput.DeviceID= d.DeviceID and Throughput.ChannelNO=22204
 left join t_TmpValue UndecidedNO on UndecidedNO.DeviceID= d.DeviceID and UndecidedNO.ChannelNO=22205
-where d.DeviceTypeID= 222 and ParentDevID ={0} order by ThreadName", ParentDevID);
+where d.DeviceTypeID= 222 and ParentDevID ={0} order by DeviceName", ParentDevID);
             DataTable dt = null;
             int returnC = 0; try
             {
@@ -145,17 +145,17 @@ where d.DeviceTypeID= 222 and ParentDevID ={0} order by ThreadName", ParentDevID
         /// </summary>
         public DataTable selectPoolingDetails(int pageCrrent, int pageSize, out int pageCount, string ParentDevID)
         {
-            string sql = string.Format(@"select d.deviceid,ConnectionPoolingName.MonitorValue ConnectionPoolingName,ConnectionPoolingSize.MonitorValue ConnectionPoolingSize,
+            string sql = string.Format(@"select d.deviceid,d.DeviceName,ConnectionPoolingName.MonitorValue ConnectionPoolingName,ConnectionPoolingSize.MonitorValue ConnectionPoolingSize,
 ActiveConnection.MonitorValue ActiveConnection,ActiveConnectionNO.MonitorValue ActiveConnectionNO,
 MissedConnection.MonitorValue MissedConnection,ThreadWait.MonitorValue ThreadWait
- from t_Device d 
+ from t_DevItemList d 
 left join t_TmpValue ConnectionPoolingName on ConnectionPoolingName.DeviceID= d.DeviceID and ConnectionPoolingName.ChannelNO=22601
 left join t_TmpValue ConnectionPoolingSize on ConnectionPoolingSize.DeviceID= d.DeviceID and ConnectionPoolingSize.ChannelNO=22602
 left join t_TmpValue ActiveConnection on ActiveConnection.DeviceID= d.DeviceID and ActiveConnection.ChannelNO=22603
 left join t_TmpValue ActiveConnectionNO on ActiveConnectionNO.DeviceID= d.DeviceID and ActiveConnectionNO.ChannelNO=22604
 left join t_TmpValue MissedConnection on MissedConnection.DeviceID= d.DeviceID and MissedConnection.ChannelNO=22605
 left join t_TmpValue ThreadWait on ThreadWait.DeviceID= d.DeviceID and ThreadWait.ChannelNO=22606
-where d.DeviceTypeID= 226 and ParentDevID ={0} order by ConnectionPoolingName", ParentDevID);
+where d.DeviceTypeID= 226 and ParentDevID ={0} order by DeviceName", ParentDevID);
             DataTable dt = null;
             int returnC = 0; try
             {
@@ -176,12 +176,12 @@ where d.DeviceTypeID= 226 and ParentDevID ={0} order by ConnectionPoolingName", 
         {
             string sql = string.Format(@"select d.*,MinMs.MonitorValue MinMs,MaxMs.MonitorValue MaxMs,
 AverageMs.MonitorValue AverageMs,ResponseTime.MonitorValue ResponseTime
- from t_Device d 
+ from t_DevItemList d 
 left join t_TmpValue MinMs on MinMs.DeviceID= d.DeviceID and MinMs.ChannelNO=22301
 left join t_TmpValue MaxMs on MaxMs.DeviceID= d.DeviceID and MaxMs.ChannelNO=22302
 left join t_TmpValue AverageMs on AverageMs.DeviceID= d.DeviceID and AverageMs.ChannelNO=22303
 left join t_TmpValue ResponseTime on ResponseTime.DeviceID= d.DeviceID and ResponseTime.ChannelNO=22304
-where d.DeviceTypeID= 223 and ParentDevID ={0} order by LastPollingTime", ParentDevID);
+where d.DeviceTypeID= 223 and ParentDevID ={0} order by DeviceName", ParentDevID);
             DataTable dt = null;
             int returnC = 0; try
             {
@@ -200,13 +200,13 @@ where d.DeviceTypeID= 223 and ParentDevID ={0} order by LastPollingTime", Parent
         /// </summary>
         public DataTable selectThreadWait(int pageCrrent, int pageSize, out int pageCount, string ParentDevID)
         {
-            string sql = string.Format(@"select d.deviceid,ATTRIBUTENAME.MonitorValue ATTRIBUTENAME,ATTRIBUTEVALUE.MonitorValue ATTRIBUTEVALUE,
+            string sql = string.Format(@"select d.deviceid, d.DeviceName,ATTRIBUTENAME.MonitorValue ATTRIBUTENAME,ATTRIBUTEVALUE.MonitorValue ATTRIBUTEVALUE,
 CONLLECTIONTIME.MonitorValue CONLLECTIONTIME
- from t_Device d 
+ from t_DevItemList d 
 left join t_TmpValue ATTRIBUTENAME on ATTRIBUTENAME.DeviceID= d.DeviceID and ATTRIBUTENAME.ChannelNO=22401
 left join t_TmpValue ATTRIBUTEVALUE on ATTRIBUTEVALUE.DeviceID= d.DeviceID and ATTRIBUTEVALUE.ChannelNO=22402
 left join t_TmpValue CONLLECTIONTIME on CONLLECTIONTIME.DeviceID= d.DeviceID and CONLLECTIONTIME.ChannelNO=22403
-where d.DeviceTypeID= 224 and ParentDevID ={0} order by LastPollingTime", ParentDevID);
+where d.DeviceTypeID= 224 and ParentDevID ={0}", ParentDevID);
             DataTable dt = null;
             int returnC = 0; try
             {
@@ -227,13 +227,13 @@ where d.DeviceTypeID= 224 and ParentDevID ={0} order by LastPollingTime", Parent
         {
             string sql = string.Format(@"select d.deviceid,MinHeap.MonitorValue MinHeap,MaxHeap.MonitorValue MaxHeap,
 AverageHeap.MonitorValue AverageHeap,TotalHeap.MonitorValue TotalHeap,CurrentHeap.MonitorValue CurrentHeap
- from t_Device d 
+ from t_DevItemList d 
 left join t_TmpValue MinHeap on MinHeap.DeviceID= d.DeviceID and MinHeap.ChannelNO=22501
 left join t_TmpValue MaxHeap on MaxHeap.DeviceID= d.DeviceID and MaxHeap.ChannelNO=22502
 left join t_TmpValue AverageHeap on AverageHeap.DeviceID= d.DeviceID and AverageHeap.ChannelNO=22503
 left join t_TmpValue TotalHeap on TotalHeap.DeviceID= d.DeviceID and TotalHeap.ChannelNO=22504
 left join t_TmpValue CurrentHeap on CurrentHeap.DeviceID= d.DeviceID and CurrentHeap.ChannelNO=22505
-where d.DeviceTypeID= 225 and ParentDevID ={0} order by LastPollingTime", ParentDevID);
+where d.DeviceTypeID= 225 and ParentDevID ={0}", ParentDevID);
             DataTable dt = null;
             int returnC = 0; try
             {

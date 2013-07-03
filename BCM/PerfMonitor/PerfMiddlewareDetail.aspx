@@ -130,7 +130,7 @@
                             </ChartAreas>
                         </asp:Chart>
                         <br /><br />
-                    当前可用状态：<img src='../images/Common/stata<%= perf %>.gif' /> <asp:Label ID="lblPerf" runat="server"></asp:Label>
+                    当前可用状态：<img src='../images/Common/stata<%= State %>.gif' /> <asp:Label ID="lblState" runat="server"></asp:Label>
                         <br /><br />
                     </div>
                 </td>
@@ -183,7 +183,7 @@
         <div class="div_box_title">Web应用的会话明细</div>
         <asp:GridView ID="gvConversationDetail" runat="server" AutoGenerateColumns="false" CssClass="gridview_skin">
             <Columns>
-                <asp:BoundField HeaderText="Web应用名" DataField="ApplicationName" />
+                <asp:BoundField HeaderText="Web应用名" DataField="DeviceName" />
                 <asp:BoundField HeaderText="活动会话数" DataField="ActivityNO" />
                 <asp:BoundField HeaderText="最大会话数" DataField="MaxNO" />
                 <asp:BoundField HeaderText="总计会话数" DataField="TotalNO" />
@@ -211,7 +211,7 @@
         <div class="div_box_title">线程明细</div>
         <asp:GridView ID="gvThreadDetail" runat="server" AutoGenerateColumns="false" CssClass="gridview_skin">
             <Columns>
-                <asp:BoundField HeaderText="线程名称" DataField="ThreadName" />
+                <asp:BoundField HeaderText="线程名称" DataField="DeviceName" />
                 <asp:BoundField HeaderText="总线程数" DataField="ThreadNO" />
                 <asp:BoundField HeaderText="空闲线程" DataField="FreeThreadNO" />
                 <asp:BoundField HeaderText="吞吐量" DataField="Throughput" />
@@ -282,7 +282,7 @@
         <div class="div_box_title">数据库连接池明细</div>
         <asp:GridView ID="gvConnectionPoolingDetails" runat="server" AutoGenerateColumns="false" CssClass="gridview_skin">
             <Columns>
-                <asp:BoundField HeaderText="名称" DataField="ConnectionPoolingName" />
+                <asp:BoundField HeaderText="名称" DataField="DeviceName" />
                 <asp:BoundField HeaderText="连接池大小" DataField="ConnectionPoolingSize" />
                 <asp:BoundField HeaderText="活动连接" DataField="ActiveConnection" />
                 <asp:BoundField HeaderText="活动连接数%" DataField="ActiveConnectionNO" />
@@ -339,7 +339,7 @@
         <div class="div_box_title">最近1小时的未决请求数</div>
         <asp:GridView ID="gvUndecided" runat="server" AutoGenerateColumns="false" CssClass="gridview_skin">
             <Columns>
-                <asp:BoundField HeaderText="线程名称" DataField="ThreadName" />
+                <asp:BoundField HeaderText="线程名称" DataField="DeviceName" />
                 <asp:BoundField HeaderText="总线程数" DataField="ThreadNO" />
                 <asp:BoundField HeaderText="空闲线程" DataField="FreeThreadNO" />
                 <asp:BoundField HeaderText="吞吐量" DataField="Throughput" />
@@ -367,7 +367,7 @@
         <div class="div_box_title">线程等待</div>
         <asp:GridView ID="gvThreadWait" runat="server" AutoGenerateColumns="false" CssClass="gridview_skin">
             <Columns>
-                <asp:BoundField HeaderText="ATTRIBUTENAME" DataField="ATTRIBUTENAME" />
+                <asp:BoundField HeaderText="ATTRIBUTENAME" DataField="DeviceName" />
                 <asp:BoundField HeaderText="ATTRIBUTEVALUE" DataField="ATTRIBUTEVALUE" />
                 <asp:BoundField HeaderText="CONLLECTIONTIME" DataField="CONLLECTIONTIME" />
             </Columns>

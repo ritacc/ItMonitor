@@ -16,7 +16,8 @@ namespace GDK.BCM.PerfMonitor
     public partial class PerfHostDetail : PageBase
     {
         public int deviceID = 0;
-        public string perf = "0";
+        public string state = "0";
+        public string health = "0";
         protected override void OnLoad(EventArgs e)
         {
             base.IsAuthenticate = false;
@@ -71,18 +72,42 @@ namespace GDK.BCM.PerfMonitor
             PerfHostOR _ph = new PerfHostDA().SelectHostDetail(mDeviceID);
 
 
-            perf = _objDev.PerformanceVal;
-            lblPerf.Text = _objDev.Performance;
-            lblPerformance.Text = _objDev.Performance;
+            switch (_objDevEx.State)
+            {
+                case "正常":
+                    state = "1";
+                    break;
+                case "故障":
+                    state = "0";
+                    break;
+                case "未启动":
+                    state = "3";
+                    break;
+            }
+            switch (_objDevEx.HealthStatus)
+            {
+                case "正常":
+                    health = "1";
+                    break;
+                case "故障":
+                    health = "0";
+                    break;
+                case " 报警":
+                    health = "2";
+                    break;
+            }
+
+            lblPerf.Text = _objDevEx.State;
+            lblPerformance.Text = _objDevEx.State;
             lblDescribe.Text = _objDev.Describe;
             lblLastPollingTime.Text = _objDev.LastPollingTime.ToString();
             lblNextPollingTime.Text = _objDev.NextPollingTime.ToString();
 
-            lblMonitorName.Text = _ph.MonitorName;
+            lblMonitorName.Text = _objDev.DeviceName;
             lblHostName.Text = _ph.HostName;
             lblOperatingSystem.Text = _ph.System;
-            lblIP.Text = _ph.IP;
-            lblWarningStatus.Text = _ph.WarningStatus;
+            lblIP.Text = _objDev.IP;
+            lblResponseTime.Text = _ph.ResponseTime;
 
             lblSwapMemoryUtilization.Text = _ph.SwapMemoryUtilization;
             lblSwapMemoryUtilizationMB.Text = _ph.SwapMemoryUtilizationMB;

@@ -18,11 +18,7 @@ namespace GDK.Entity.PerfMonitor
         /// 数据库名称
         /// </summary>
         public string ServName { get; set; }
-                
-        /// <summary>
-        /// 健康状况
-        /// </summary>
-        public string HealthStatus { get; set; }
+
 
         /// <summary>
         /// 数据库类型
@@ -55,20 +51,6 @@ namespace GDK.Entity.PerfMonitor
         /// </summary>
         public string System { get; set; }
 
-        /// <summary>
-        /// 最后轮询时间
-        /// </summary>
-        public string LastPollingTime { get; set; }
-
-        /// <summary>
-        /// 下次轮询时间
-        /// </summary>
-        public string NextPollingTime { get; set; }
-
-        /// <summary>
-        /// 当前可用状态
-        /// </summary>
-        public string CurrentlyState{ get; set; }
 
         /// <summary>
         /// 正常运行时间
@@ -232,28 +214,25 @@ namespace GDK.Entity.PerfMonitor
             {
                 switch (dr["ChannelNO"].ToString())
                 {
-                    case "41001":
-                        ServName = dr["MonitorValue"].ToString();
-                        break;
-                    case "41002":
-                        HealthStatus = dr["MonitorValue"].ToString();
-                        break;
+                    //case "41001":
+                    //    ServName = dr["MonitorValue"].ToString();
+                    //    break;
 
-                    case "41003":
-                        ServType = dr["MonitorValue"].ToString();
-                        break;
+                    //case "41003":
+                    //    ServType = dr["MonitorValue"].ToString();
+                    //    break;
 
-                    case "41004":
-                        Version = dr["MonitorValue"].ToString();
-                        break;
+                    //case "41004":
+                    //    Version = dr["MonitorValue"].ToString();
+                    //    break;
 
                     case "41005":
                         StartUpTime = dr["MonitorValue"].ToString();
                         break;
 
-                    case "41006":
-                        Port = dr["MonitorValue"].ToString();
-                        break;
+                    //case "41006":
+                    //    Port = dr["MonitorValue"].ToString();
+                    //    break;
 
                     case "41007":
                         HostName = dr["MonitorValue"].ToString();
@@ -263,18 +242,6 @@ namespace GDK.Entity.PerfMonitor
                         System = dr["MonitorValue"].ToString();
                         break;
 
-                    case "41009":
-                        LastPollingTime = dr["MonitorValue"].ToString();
-                        break;
-
-                    case "41010":
-                        NextPollingTime = dr["MonitorValue"].ToString();
-                        break;
-
-                    case "41011":
-                        CurrentlyState = dr["MonitorValue"].ToString();
-                        break;
-
                     case "41012":
                         Uptime = dr["MonitorValue"].ToString();
                         break;
@@ -282,7 +249,11 @@ namespace GDK.Entity.PerfMonitor
                     case "41013":
                         StopTime = dr["MonitorValue"].ToString();
                         break;
-
+                                                
+                    case "41101":
+                        ConnectionTime = dr["MonitorValue"].ToString();
+                    break;
+                        
                     case "41201":
                         UserNO = dr["MonitorValue"].ToString();
                         break;

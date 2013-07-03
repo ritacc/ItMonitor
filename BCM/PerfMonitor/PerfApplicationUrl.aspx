@@ -32,7 +32,7 @@
                                     健康状况:
                                 </td>
                                 <td>
-                                    <asp:Label ID="lblHealthStatus" runat="server"></asp:Label>
+                                    <img src='../images/Common/health<%= Health %>.gif' alt="状态" class="imgPerf" />
                                 </td>
                             </tr>
                             <tr class="RowStyle">

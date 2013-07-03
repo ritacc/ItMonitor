@@ -16,7 +16,7 @@ namespace GDK.Entity.PerfMonitor
         /// <summary>
         /// 监视器名称
         /// </summary>
-        public string MonitorName { get; set; }
+        //public string MonitorName { get; set; }
 
         /// <summary>
         /// 主机名称
@@ -95,9 +95,9 @@ namespace GDK.Entity.PerfMonitor
             {
                 switch (dr["ChannelNO"].ToString())
                 {
-                    case "12101":
-                        MonitorName = dr["MonitorValue"].ToString();
-                        break;
+                    //case "12101":
+                    //    MonitorName = dr["MonitorValue"].ToString();
+                    //    break;
                     case "12102":
                         HostName = dr["MonitorValue"].ToString();
                         break;

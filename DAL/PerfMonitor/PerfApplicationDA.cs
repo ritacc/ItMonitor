@@ -312,7 +312,7 @@ where d.DeviceTypeID= 259 and ParentDevID ={0} order by Equipment", ParentDevID)
             string sql = string.Format(@"select d.deviceid,d.DeviceName,d.Performance,HealthStatus.MonitorValue HealthStatus,
 ResponseTime.MonitorValue ResponseTime,PageSize.MonitorValue PageSize,
 case d.Performance when '故障' then 0 when  '报警' then 2 when '未启动' then 3 else 0 end  perf
- from t_Device d 
+ from t_DevItemList d 
 left join t_TmpValue HealthStatus on HealthStatus.DeviceID= d.DeviceID and HealthStatus.ChannelNO=11102
 left join t_TmpValue ResponseTime on ResponseTime.DeviceID= d.DeviceID and ResponseTime.ChannelNO=26201
 left join t_TmpValue PageSize on PageSize.DeviceID= d.DeviceID and PageSize.ChannelNO=26202
