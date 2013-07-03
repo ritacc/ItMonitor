@@ -73,6 +73,7 @@
     <Compile Include="AlertAdmin\HealthConfigDA.cs" />
     <Compile Include="common\Utils.cs" />
     <Compile Include="CompSearch\PdfDA.cs" />
+    <Compile Include="CompSearch\PDFReportSearch.cs" />
     <Compile Include="CompSearch\ReportSeachDA.cs" />
     <Compile Include="DALBase.cs" />
     <Compile Include="ModelConvertHelper.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="StateMonitor\StateHostDA.cs" />
     <Compile Include="StateMonitor\StateListDA.cs" />
     <Compile Include="StateMonitor\StateVirtualMachineDA.cs" />
+    <Compile Include="Sys\BussinessDA.cs" />
     <Compile Include="Sys\DEVICETYPEDA.cs" />
     <Compile Include="Sys\FunctionDA.cs" />
     <Compile Include="Sys\KnowledgeBaseConfigDA.cs" />

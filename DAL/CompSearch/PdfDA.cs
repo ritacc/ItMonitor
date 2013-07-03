@@ -19,27 +19,83 @@ namespace GDK.DAL.CompSearch
        {
            ReportSeachWhereOR whereOR = new ReportSeachWhereOR();
            whereOR.StartTime= begin;
-            whereOR.EndTime=end;
+           whereOR.EndTime=end;
 
           DeviceOR devObj=  new DeviceDA().SelectDeviceORByID(DeviceID.ToString());
           if (devObj == null)
           {
               throw new Exception("设备不存！");
           }
-          whereOR.DeviceID = devObj.DeviceID;
-          whereOR.DeviceName = devObj.DeviceName;
-          whereOR.DeviceType = devObj.DeviceTypeID;
+		  List<int> ListDevs = new List<int>();
+		  ListDevs.Add(devObj.DeviceID);
+
+		  whereOR.ListDevices = ListDevs;
+
+          //whereOR.DeviceName = devObj.DeviceName;
+          //whereOR.DeviceType = devObj.DeviceTypeID;
           whereOR.StationID = devObj.StationID;
           whereOR.ReportType = "month";
           whereOR.ListChanncel = new List<SearchChanncelOR>() { 
             new SearchChanncelOR(){ ChanncelNo= ChanncelNO}
           };
 
-          ReportSeachDA DataDA = new ReportSeachDA();
+		  PDFReportSearch DataDA = new PDFReportSearch();
           DataDA.SearchReportDataToTemp(whereOR);
        }
+	   #region 数据库处理
+	   /// <summary>
+	   /// 
+	   /// </summary>
+	   /// <returns></returns>
+	   public void SecondInit(int DeviceID,DateTime begin, DateTime end)
+	   {
+		   ReportSeachWhereOR whereOR = new ReportSeachWhereOR();
+		   whereOR.StartTime = begin;
+		   whereOR.EndTime = end;
 
-       /// <summary>
+		   DeviceOR devObj = new DeviceDA().SelectDeviceORByID(DeviceID.ToString());
+		   if (devObj == null)
+		   {
+			   throw new Exception("设备不存！");
+		   }
+		   List<int> ListDevs = new List<int>();
+		   ListDevs.Add(devObj.DeviceID);
+		   //获取数据库设备
+		   whereOR.ListDevices = GetBussDataBase(DeviceID);
+
+		  // whereOR.DeviceName = devObj.DeviceName;
+
+		  // whereOR.DeviceType = devObj.DeviceTypeID;
+		   whereOR.StationID = devObj.StationID;
+		   whereOR.ReportType = "month";
+		   /*
+		    --表空间	421
+--连接数	42109
+--%可用		42105
+
+--直接数据库
+--击中率
+--41601		--缓冲器
+--41602		--数据字典
+--41603		--库
+--41101		连接时间
+		    * 
+		    * */
+		   whereOR.ListChanncel = new List<SearchChanncelOR>() { 
+            new SearchChanncelOR(){ ChanncelNo= 42109}//--连接数
+			,new SearchChanncelOR(){ ChanncelNo= 42105}//--%可用
+			,new SearchChanncelOR(){ ChanncelNo= 41601}	//缓冲器
+			,new SearchChanncelOR(){ ChanncelNo= 41602}	//数据字典
+			,new SearchChanncelOR(){ ChanncelNo= 41603}	//库
+			,new SearchChanncelOR(){ ChanncelNo= 41101}	//连接时间
+          };
+
+		   PDFReportSearch DataDA = new PDFReportSearch();
+		   DataDA.SearchReportDataToTemp(whereOR);
+	   }
+
+	   #endregion
+	   /// <summary>
        /// 获取使用率曲线数据
        /// </summary>
        public DataTable GetUseLine()
@@ -49,6 +105,25 @@ group by deviceno,channelno,monitordate";
 
            return db.ExecuteQuery(sql);
        }
+
+	   public List<int> GetBussDataBase(int busDeviceID)
+	   {
+		   string sql = string.Format(@"select d.Describe descInfo,dt.typeid, dt.TypeName,d.*
+from t_Bussiness bus
+inner join t_Device d  on bus.id= d.DeviceID
+inner join t_DeviceType dt on d.DeviceTypeID= dt.DeviceTypeID
+where bus.ParentId= {0} and dt.TypeID=4", busDeviceID);
+		   DataTable dt= db.ExecuteQuery(sql);
+		   List<int> deviceids = new List<int>();
+		   if (dt != null && dt.Rows.Count > 0)
+		   {
+			   foreach (DataRow dr in dt.Rows)
+			   {
+				   deviceids.Add(Convert.ToInt32(dr["DeviceID"].ToString()));
+			   }
+		   }
+		   return deviceids;
+	   }
 
        /// <summary>
        /// 

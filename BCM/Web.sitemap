@@ -51,6 +51,8 @@
 				<siteMapNode url="SysAdmin/UserEdit.aspx" title="用户编辑" description="用户编辑"  />
 				<siteMapNode url="SysAdmin/DepartmentsMain.aspx?Delete" title="用户机构删除" description="删除用户和机构" isFunction="true" />
 			</siteMapNode>
+			<siteMapNode url="Bussiness/BussinessList.aspx" title="应用系统配置"  description="应用系统配置">
+			</siteMapNode>
 		</siteMapNode>
 		
 	</siteMapNode>

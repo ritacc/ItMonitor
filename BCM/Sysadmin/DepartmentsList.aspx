@@ -66,9 +66,6 @@
                 }); //obj.click
             });   //each
 
-//$("#spanView").click(function() 
-//$("#inputView").val($("#tdIframe").html()); // alert($("#tdIframe").html());
-//});
             autoSize();
         });
 
