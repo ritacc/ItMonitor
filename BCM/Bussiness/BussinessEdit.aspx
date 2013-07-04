@@ -22,7 +22,7 @@
 
 			$(".headerBtnAdd").click(function () {
 				var strVar = 'BussinessSelect.aspx?type=' + request("type") + "&id=" + request("GUID");
-				$.popup({ title: "选择", url: strVar, borderStyle: { height: 500, width: 500 }, ok: function (obj) {
+				$.popup({ title: "选择<%= AppName %>", url: strVar, borderStyle: { height: 500, width: 600 }, ok: function (obj) {
 					if (request("type") == "top") {
 						refreshParent();
 					}
@@ -33,6 +33,14 @@
 				}); //$.popup
 
 			});
+
+            var editArr = $(".deleteTS");
+            editArr.each(function (i, o) {
+                var obj = $(o);
+                obj.click(function () {
+                    return confirm("你确定要删除吗？");
+                });
+            });
 
 			function refreshParent() {
 				window.parent.selectObjectReLoad();
@@ -45,67 +53,72 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div style=" display:none;">
-    
+    <div style="display: none;">
         <asp:TextBox ID="txtDeviceID" runat="server"></asp:TextBox>
         <br />
         <asp:TextBox ID="txtType" runat="server"></asp:TextBox>
-    
     </div>
-
-     <table class="gridheader_table" cellpadding="0" cellspacing="0">
+    <table class="gridheader_table" cellpadding="0" cellspacing="0">
         <tr>
-        <td width="6"><img src="../images/gridview/gridheader_03.gif" alt="" /></td>
-        <td>应用系统列表</td>
-        <td width="60"><a class="headerBtnAdd" id="aBtnAdd" runat="server"><img src="../images/Common/add_btn.gif" /></a></td>
-        <td width="6"><img src="../images/gridview/gridheader_06.gif" alt="" /></td>
+            <td width="6">
+                <img src="../images/gridview/gridheader_03.gif" alt="" />
+            </td>
+            <td>
+                <%= AppName %>列表
+            </td>
+            <td width="60">
+                <a class="headerBtnAdd" id="aBtnAdd" runat="server">
+                    <img src="../images/Common/add_btn.gif" /></a>
+            </td>
+            <td width="6">
+                <img src="../images/gridview/gridheader_06.gif" alt="" />
+            </td>
         </tr>
     </table>
     <div class="divgrid">
-    <div class="overflow_grid">
-    <asp:GridView ID="gvDataList" AutoGenerateColumns="false" runat="server">
-        <Columns>
-            <asp:TemplateField HeaderText="序号">
-                <ItemStyle BackColor="#bdeaff" Width="25" />
-                <ItemTemplate>
-                        <%# Container.DataItemIndex+1 %>
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:TemplateField HeaderText="删除" HeaderStyle-Width="4%">
-                <ItemTemplate>
-                    <asp:ImageButton ID="ibtn_delete" CssClass="deleteTS" CommandName="delete" OnCommand="GView_LinkButton_Click" CommandArgument='<%#Eval("DeviceID") %>' ImageUrl="~/images/Common/delete.gif" runat="server" />
-                </ItemTemplate>
-            </asp:TemplateField>
-			<asp:BoundField HeaderText="类型" DataField="TypeName" />
-            <asp:BoundField HeaderText="名称" DataField="DeviceName" />
-            <asp:BoundField HeaderText="描述" DataField="descInfo" />
-        </Columns>
-        <EmptyDataTemplate>
-            <table class="empty_gridview" cellspacing="0">
-                <tr>
-                    <th>
-                        序号
-                    </th>
-                    <th>
-                        名称
-                    </th>
-                    <th>
-                        描述
-                    </th>
-                </tr>
-                <tr>
-                    <td colspan="3">
-                        没有数据
-                    </td>
-                </tr>
-            </table>
-        </EmptyDataTemplate>
-    </asp:GridView>
+        <div class="overflow_grid">
+            <asp:GridView ID="gvDataList" AutoGenerateColumns="false" runat="server">
+                <Columns>
+                    <asp:TemplateField HeaderText="序号">
+                        <ItemStyle BackColor="#bdeaff" Width="25" />
+                        <ItemTemplate>
+                            <%# Container.DataItemIndex+1 %>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="删除" HeaderStyle-Width="4%">
+                        <ItemTemplate>
+                            <asp:ImageButton ID="ibtn_delete" CssClass="deleteTS" CommandName="delete" OnCommand="GView_LinkButton_Click"
+                                CommandArgument='<%#Eval("DeviceID") %>' ImageUrl="~/images/Common/delete.gif"
+                                runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:BoundField HeaderText="名称" DataField="DeviceName" />
+                    <asp:BoundField HeaderText="类型" DataField="TypeName" />
+                    <asp:BoundField HeaderText="描述" DataField="descInfo" />
+                </Columns>
+                <EmptyDataTemplate>
+                    <table class="empty_gridview" cellspacing="0">
+                        <tr>
+                            <th>
+                                序号
+                            </th>
+                            <th>
+                                名称
+                            </th>
+                            <th>
+                                描述
+                            </th>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                没有数据
+                            </td>
+                        </tr>
+                    </table>
+                </EmptyDataTemplate>
+            </asp:GridView>
+        </div>
     </div>
-    <uc2:pagenavigate ID="pg" runat="server" />
-    </div>
-
-
     </form>
 </body>
 </html>

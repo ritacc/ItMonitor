@@ -11,6 +11,7 @@ namespace GDK.BCM.Bussiness
 {
 	public partial class BussinessSelect : PageBase
     {
+        public string AppName = string.Empty;
         protected override void OnLoad(EventArgs e)
         {
             base.IsAuthenticate = false;
@@ -23,6 +24,8 @@ namespace GDK.BCM.Bussiness
             {
                 BindGrid();
             }
+            
+            
 		}
 
         public void BindGrid()
@@ -55,17 +58,14 @@ namespace GDK.BCM.Bussiness
 
         protected void lbtSave_Click(object sender, EventArgs e)
         {
-            foreach (GridViewRow gr in gvDataList.Rows)
-            {
-               RadioButton txt= gr.FindControl("") as RadioButton;
-               if (txt != null && txt.Checked)
-               {
-                  //string id= txt.("guid");
-               }
-            }
 			try
 			{
-				int id = 0;
+                if (txtValue.Text == "")
+                {
+                    Alert("请选择数据.");
+                    return;
+                }
+				int id = Convert.ToInt32(txtValue.Text);
 				int parentID = Convert.ToInt32(Request.QueryString["id"]);
 				new BussinessDA().SaveBus(id, parentID);
 				base.Close("tr");

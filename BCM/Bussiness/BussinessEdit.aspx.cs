@@ -12,6 +12,7 @@ namespace GDK.BCM.Bussiness
 {
     public partial class BussinessEdit : PageBase
     {
+        public string AppName = string.Empty;
         protected override void OnLoad(EventArgs e)
         {
             base.IsAuthenticate = false;
@@ -23,32 +24,35 @@ namespace GDK.BCM.Bussiness
         {
             txtDeviceID.Text = Request.QueryString["GUID"];
             txtType.Text = Request.QueryString["type"];
-
-            this.pg.OnPageChanged += new EventHandler(PageChanged);
             if (!IsPostBack)
             {
-                if (null != Session["ListPageIndexRoleList"])
-                {
-                    pg.PageIndex = Convert.ToInt32(Session["ListPageIndexRoleList"]);
-                }
-
-                
                 BindGraid();
+            }
+            string type = Request.QueryString["type"];
+            switch (type)
+            {
+                case "top":
+                    AppName = "应用系统";
+                    break;
+                case "host":
+                    AppName = "服务器";
+                    break;
+                case "use":
+                    AppName = "应用层";
+                    break;
+                case "web":
+                    AppName = "Web层";
+                    break;
+                case "db":
+                    AppName = "数据库层";
+                    break;
             }
 
         }
-        protected void PageChanged(object sender, EventArgs e)
-        {
-            BindGraid();
-        }
-
-       
 
         private void BindGraid()
         {
-            //int pageCount = 0;
             DataTable dt = null;
-			//string mType = "";
 			if (Request.QueryString["type"] == "top")
 			{
 				dt = BusDA.GetTopBuss();//(pg.PageIndex, pg.PageSize, out pageCount);
@@ -71,8 +75,6 @@ namespace GDK.BCM.Bussiness
 						dt = new PerfApplicationDA().GetSysLay(Convert.ToInt32(id), 4);
 						break;
 				}
-				//string strWhere = string.Empty;
-				//BusDA.GetSysLay(Convert.ToInt32(Request.QueryString["GUID"]), strWhere);
 			}
             this.gvDataList.DataSource = dt;
             gvDataList.DataBind();
