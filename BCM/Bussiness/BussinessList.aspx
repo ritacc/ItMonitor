@@ -134,14 +134,7 @@
 
 
         function selectObjectReLoad() {
-            //alert("ok");
-            var varSelectobjArr = $(".ObjSelectItem");
-            if (varSelectobjArr.length == 0)
-                return;
-            varSelectobjArr.next().remove();
-            if (varSelectobjArr.prev("p").hasClass("ex")) {
-                varSelectobjArr.prev("p").removeClass("ex");
-            }
+        	$.popup.Refrsh();
         }
         
     </script>
@@ -156,7 +149,7 @@
 
                      <div class="divTitleMu divTitleMuDepart" type="top" guid="-1">
                         <span class="divTitleItem divTitle ex">&nbsp;</span>
-                        <span class="spanLadDate DataItem">应用系统</span>
+                        <span class="spanLadDate DataItem ObjSelectItem">应用系统</span>
                         <div class="divContent">
                             <asp:Repeater ID="rpDepartment" runat="server">
                                 <ItemTemplate>
@@ -175,7 +168,7 @@
                 </div>
             </td>
             <td style="vertical-align: top; border: 1px solid #CCCCCC;">
-                <iframe id="DepartmentsMain" width="100%"  frameborder="0" style="overflow:hidden;overflow-x:hidden;" >
+                <iframe id="DepartmentsMain" width="100%" src="BussinessEdit.aspx?type=top&GUID=-1"  frameborder="0" style="overflow:hidden;overflow-x:hidden;" >
                 </iframe>
             </td>
         </tr>

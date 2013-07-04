@@ -30,19 +30,22 @@ namespace GDK.BCM.Bussiness
             int id = Convert.ToInt32(Request.QueryString["id"]);
             string type = Request.QueryString["type"];
             DataTable dt = null;
-            switch (Request.QueryString["type"])
+			switch (type)
             {
+				case "top":
+					dt = new BussinessDA().GetSelectTopBuss();
+					break;
                 case "host":
-                    dt = new BussinessDA().GetSysLay(Convert.ToInt32(id), 1);
+					dt = new BussinessDA().GetSelectSysLay(id, 1);
                     break;
                 case "use":
-                    dt = new BussinessDA().GetSysLay(Convert.ToInt32(id), 10);
+					dt = new BussinessDA().GetSelectSysLay(id, 10);
                     break;
                 case "web":
-                    dt = new BussinessDA().GetSysLay(Convert.ToInt32(id), " (dt.typeid=2 or dt.typeid=3 )");
+					dt = new BussinessDA().GetSelectSysLay(id, " (dt.typeid=2 or dt.typeid=3 )");
                     break;
                 case "db":
-                    dt = new BussinessDA().GetSysLay(Convert.ToInt32(id), 4);
+					dt = new BussinessDA().GetSelectSysLay(id, 4);
                     break;
             }
 
@@ -60,6 +63,17 @@ namespace GDK.BCM.Bussiness
                   //string id= txt.("guid");
                }
             }
+			try
+			{
+				int id = 0;
+				int parentID = Convert.ToInt32(Request.QueryString["id"]);
+				new BussinessDA().SaveBus(id, parentID);
+				base.Close("tr");
+			}
+			catch (Exception ex)
+			{
+				base.Alert(ex);
+			}
         }
 	}
 }

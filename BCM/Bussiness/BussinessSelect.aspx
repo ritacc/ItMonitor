@@ -21,15 +21,22 @@
     <script  type="text/javascript" src="../Scripts/My97DatePicker/WdatePicker.js"></script>
 	 <script language="javascript" type="text/javascript">
 	 	$(document).ready(function () {
-				
-		});
+	 		$("#lbtSave").click(function () {
+	 			var selectItem = $(".gvDataList").find("input:checked");
+	 			if (selectItem) {
+	 				$("#txtValue").val(selectItem.val());
+	 				return true;
+	 			}
+	 			return false;
+	 		});
+	 	});
     </script>
 </head>
 <body>
     <form id="form1" runat="server">
      <div id="wdiv" class="wdiv">
      <div style=" display:none;">
-        <asp:TextBox ID="txt" runat="server"></asp:TextBox>
+        <asp:TextBox ID="txtValue" runat="server"></asp:TextBox>
      </div>
          <div>
              <asp:GridView ID="gvDataList" AutoGenerateColumns="false" runat="server">
@@ -37,7 +44,7 @@
                      <asp:TemplateField HeaderText="选择">
                          <ItemStyle BackColor="#bdeaff" Width="25" />
                          <ItemTemplate>
-                            <asp:RadioButton GroupName="ddd" runat="server" />
+                            <asp:RadioButton NAME="ddd" runat="server" />
                             <%--<input type="radio"  group="items" value="<%# Eval("DeviceID") %>" />--%>
                          </ItemTemplate>
                      </asp:TemplateField>
@@ -66,7 +73,7 @@
     </div>
 	 <div class="window_footer_div">
         <div style="padding-top: 5px;">
-            <asp:LinkButton ID="lbtSave" runat="server" OnClientClick="return $.yz.getErrorList();" CssClass="ibtnwindow" OnClick="lbtSave_Click">
+            <asp:LinkButton ID="lbtSave" runat="server"   CssClass="ibtnwindow" OnClick="lbtSave_Click">
                 <img src="../images/icon/save.gif" border="0" alt="保存" />保存
             </asp:LinkButton>&nbsp; <a class="ibtnwindow" href="javascript:;" onclick="$.popup.close();">
                 <img src="../images/icon/delete.gif" border="0" alt="" />关闭 </a>

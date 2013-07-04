@@ -18,18 +18,27 @@
     <script type="text/javascript" src="../Scripts/jquery.validator.js"></script>
 	 
 	<script language="javascript" type="text/javascript">
-	 $(document).ready(function () {
+		$(document).ready(function () {
 
-	     $(".headerBtnAdd").click(function () {
-	         var strVar = 'BussinessSelect.aspx?type=' + request("type") + "&id=" + request("GUID");
-			$.popup({ title: "选择", url: strVar, borderStyle: { height: 500, width: 500 }, ok: function (obj) {
-				$.popup.Refrsh();
+			$(".headerBtnAdd").click(function () {
+				var strVar = 'BussinessSelect.aspx?type=' + request("type") + "&id=" + request("GUID");
+				$.popup({ title: "选择", url: strVar, borderStyle: { height: 500, width: 500 }, ok: function (obj) {
+					if (request("type") == "top") {
+						refreshParent();
+					}
+					else {
+						$.popup.Refrsh();
+					}
+				}
+				}); //$.popup
+
+			});
+
+			function refreshParent() {
+				window.parent.selectObjectReLoad();
 			}
-			}); //$.popup
 
 		});
-
-	});
     </script>
 
 	

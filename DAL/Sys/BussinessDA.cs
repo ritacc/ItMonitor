@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using System.Data.SqlClient;
+using GDK.DAL.SerMonitor;
 
 namespace GDK.DAL.Sys
 {
@@ -41,7 +42,19 @@ where bus.ParentId= -1 ";
             return dt;
         }
 
-        public DataTable GetSysLay(int DeviceID, int typeid)
+		#region Select 
+		public DataTable GetSelectTopBuss()
+		{
+			string sql = @"select d.Describe descInfo,dt.typeid, dt.TypeName,d.*
+from  t_Device d  
+inner join t_DeviceType dt on d.DeviceTypeID= dt.DeviceTypeID 
+where  dt.typeid=2 
+and DeviceID not in (select Id  from t_Bussiness where ParentId=-1)";
+			DataTable dt = db.ExecuteQuery(sql);
+			return dt;
+		}
+
+		public DataTable GetSelectSysLay(int DeviceID, int typeid)
         {
             string sql = string.Format(@"select d.Describe descInfo,dt.typeid, dt.TypeName,d.*
 from  t_Device d  
@@ -52,7 +65,7 @@ and DeviceID not in (select Id  from t_Bussiness where ParentId={1})", typeid, D
             return dt;
         }
 
-        public DataTable GetSysLay(int DeviceID, string strWhere)
+		public DataTable GetSelectSysLay(int DeviceID, string strWhere)
         {
             string sql = string.Format(@"select d.Describe descInfo,dt.typeid, dt.TypeName,d.*
 from  t_Device d  
@@ -63,9 +76,10 @@ and DeviceID not in (select Id  from t_Bussiness where ParentId={1}) ",strWhere,
             return dt;
         }
 
+		#endregion
 
-        #region DELETE
-        /// <summary>
+		#region DELETE
+		/// <summary>
         /// 删除
         /// </summary>
         public virtual bool Delete(string strID)
@@ -76,5 +90,18 @@ and DeviceID not in (select Id  from t_Bussiness where ParentId={1}) ",strWhere,
         }
         #endregion
 
+		/// <summary>
+		/// 保存业务信息
+		/// </summary>
+		/// <param name="ID"></param>
+		/// <param name="ParentID"></param>
+		/// <returns></returns>
+		public bool SaveBus(int ID, int ParentID)
+		{
+			string devceName = new DeviceDA().SelectDeviceORByID(ID.ToString()).DeviceName;
+			string sql = string.Format(@"INSERT INTO t_Bussiness  ([Id],[BussinessName],[ParentId],[Description]) 
+VALUES({0},'{1}',{2},'')", ID, devceName, ParentID);
+			return db.ExecuteNoQuery(sql) > 0;
+		}
     }
 }
