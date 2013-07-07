@@ -13,6 +13,9 @@ namespace GDK.DAL.PerfMonitor
       public string GetTableName(int DeviceID)
       {
           DeviceOR _objOR = new DeviceDA().SelectDeviceORByID(DeviceID.ToString());
+          if (_objOR == null)
+              return string.Empty;
+
           string TableName = string.Empty;
           if (TalbleIsExist(_objOR.StationID, _objOR.DeviceName, out TableName))
           {
@@ -67,6 +70,25 @@ namespace GDK.DAL.PerfMonitor
 and MonitorTime> '{3}' and MonitorTime< '{4}' ", tableName, ChannelNo, DeviceID, StartTime.ToString("yyyy-MM-dd HH:mm:ss"), EndTime.ToString("yyyy-MM-dd HH:mm:ss"));
          DataTable dt= db.ExecuteQuery(sql);
          return dt;
+      }
+
+      /// <summary>
+      /// 查询一个通道 的历史值
+      /// </summary>
+      /// <param name="DeviceID"></param>
+      /// <param name="ChannelNo"></param>
+      /// <param name="StartTime"></param>
+      /// <param name="EndTime"></param>
+      /// <returns></returns>
+      public DataTable GetDeviceChanncelValue(int DeviceID, int ParentID, int ChannelNo, DateTime StartTime, DateTime EndTime)
+      {
+          string tableName = GetTableName(ParentID);
+          if (string.IsNullOrEmpty(tableName))
+              return null;
+          string sql = string.Format(@"select CONVERT(varchar(5) , MonitorTime, 108 ) Time,MonitorValue from {0} where ChannelNo={1} and DeviceID={2}
+and MonitorTime> '{3}' and MonitorTime< '{4}' ", tableName, ChannelNo, DeviceID, StartTime.ToString("yyyy-MM-dd HH:mm:ss"), EndTime.ToString("yyyy-MM-dd HH:mm:ss"));
+          DataTable dt = db.ExecuteQuery(sql);
+          return dt;
       }
 
 	

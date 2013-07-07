@@ -17,6 +17,7 @@ namespace GDK.BCM.PerfMonitor
     public partial class PerfNetPortDetail : PageBase
     {
         public int deviceID = 0;
+        protected int ParentDevID = 0;
         public string health = "0";
         protected override void OnLoad(EventArgs e)
         {
@@ -38,10 +39,19 @@ namespace GDK.BCM.PerfMonitor
         {
             string mDeviceID = Request.QueryString["id"];
             int iDeviceID = Convert.ToInt32(Request.QueryString["id"]);
-            DeviceOR _objDev = new DeviceDA().SelectDeviceORByID(mDeviceID);
+            //DeviceOR _objDev = new DeviceDA().SelectDeviceORByID(mDeviceID);
             PerNetPortDetailOR _Obj = new PerfNetDA().SelectNetPortDetail(mDeviceID);
-            DeviceOREx _objDevEx = new DeviceDA().SelectDeviceORExByID(mDeviceID);
-            Performance = _objDev.Performance;
+            DeviceItemOREx _objDevEx = new DeviceDA().SelectDeviceItemORExByID(mDeviceID);
+            ParentDevID = _objDevEx.ParentDevID;
+
+            lblPort.Text = _objDevEx.Port;
+            lblIpAddresses.Text = _objDevEx.IP;
+            lblDescription.Text = _objDevEx.Describe;
+            lblName.Text = _objDevEx.DeviceName;
+
+            lblType.Text = _objDevEx.TypeName;
+
+            Performance = _objDevEx.Performance;
             switch (_objDevEx.HealthStatus)
             {
                 case "正常":
@@ -54,15 +64,16 @@ namespace GDK.BCM.PerfMonitor
                     health = "2";
                     break;
             }
-            lblPort.Text = _objDev.Port;
-            lblIpAddresses.Text = _objDev.IP;
-            lblDescription.Text = _objDev.Describe;
-            lblName.Text = _objDev.DeviceName;
+             
+
+
+            lblPhysicalAddress.Text = _objDevEx.StationName;//这个有错
+
             lblCircuitID.Text = _Obj.CircuitID;
             lblSuperiorName.Text = _Obj.SuperiorName;
             lblIndex.Text = _Obj.Index;
-            lblPhysicalAddress.Text = _objDev.StationName;
-            lblType.Text = _objDevEx.TypeName;
+            
+            
             lblManagementState.Text = _Obj.ManagementState;
             lblOperatingStatus.Text = _Obj.OperatingStatus;
 
@@ -79,19 +90,22 @@ namespace GDK.BCM.PerfMonitor
 
 
             #region 绑定 可用性
-            DataPoint dp = new DataPoint();
-            dp.LegendText = string.Format("{0}({1}%)", "可用", _objDevEx.AvailableRate);
-            double[] d = { Convert.ToDouble(_objDevEx.AvailableRate) };
-            dp.Color = Color.Green;
-            dp.YValues = d;
-            chtPerf.Series["Series1"].Points.Add(dp);
+            if (_objDevEx != null)
+            {
+                DataPoint dp = new DataPoint();
+                dp.LegendText = string.Format("{0}({1}%)", "可用", _objDevEx.AvailableRate);
+                double[] d = { Convert.ToDouble(_objDevEx.AvailableRate) };
+                dp.Color = Color.Green;
+                dp.YValues = d;
+                chtPerf.Series["Series1"].Points.Add(dp);
 
-            dp = new DataPoint();
-            dp.LegendText = string.Format("{0}({1}%)", "不可用", 100 - _objDevEx.AvailableRate);
-            double[] dno = { Convert.ToDouble(100 - _objDevEx.AvailableRate) };
-            dp.Color = Color.Red;
-            dp.YValues = dno;
-            chtPerf.Series["Series1"].Points.Add(dp);
+                dp = new DataPoint();
+                dp.LegendText = string.Format("{0}({1}%)", "不可用", 100 - _objDevEx.AvailableRate);
+                double[] dno = { Convert.ToDouble(100 - _objDevEx.AvailableRate) };
+                dp.Color = Color.Red;
+                dp.YValues = dno;
+                chtPerf.Series["Series1"].Points.Add(dp);
+            }
             #endregion
 
             //绑定，曲线
@@ -102,13 +116,13 @@ namespace GDK.BCM.PerfMonitor
              
            
             // 流量-今天
-            DataTable dt = mDA.GetDeviceChanncelValue(iDeviceID, 33001, StartTime, EndTime);//接收
+            DataTable dt = mDA.GetDeviceChanncelValue(this.deviceID, ParentDevID, 33001, StartTime, EndTime);//接收
             if (dt != null)
             {
                 chLine.Series["Series1"].Points.DataBindXY(dt.Rows, "Time", dt.Rows, "MonitorValue");//接收
             }
 
-            dt = mDA.GetDeviceChanncelValue(iDeviceID, 33002, StartTime, EndTime);//发送
+            dt = mDA.GetDeviceChanncelValue(this.deviceID, ParentDevID, 33002, StartTime, EndTime);//发送
             if (dt != null)
             {
                 chLine.Series["Series2"].Points.DataBindXY(dt.Rows, "Time", dt.Rows, "MonitorValue");
@@ -116,37 +130,37 @@ namespace GDK.BCM.PerfMonitor
 
 
             // 错误数和丢包数-今天
-            DataTable dte = mDA.GetDeviceChanncelValue(iDeviceID, 37001, StartTime, EndTime);//流入错误数
+            DataTable dte = mDA.GetDeviceChanncelValue(this.deviceID, ParentDevID, 37001, StartTime, EndTime);//流入错误数
             if (dte != null)
             {
                 chtErrorSum.Series["Series1"].Points.DataBindXY(dte.Rows, "Time", dte.Rows, "MonitorValue");
             }
 
-            dte = mDA.GetDeviceChanncelValue(iDeviceID, 37002, StartTime, EndTime);//流出错误数
+            dte = mDA.GetDeviceChanncelValue(this.deviceID, ParentDevID, 37002, StartTime, EndTime);//流出错误数
             if (dte != null)
             {
                 chtErrorSum.Series["Series2"].Points.DataBindXY(dte.Rows, "Time", dte.Rows, "MonitorValue");
             }
-            dte = mDA.GetDeviceChanncelValue(iDeviceID, 37003, StartTime, EndTime);//流入丢包数
+            dte = mDA.GetDeviceChanncelValue(this.deviceID, ParentDevID, 37003, StartTime, EndTime);//流入丢包数
             if (dte != null)
             {
                 chtErrorSum.Series["Series3"].Points.DataBindXY(dte.Rows, "Time", dte.Rows, "MonitorValue");
             }
 
-            dte = mDA.GetDeviceChanncelValue(iDeviceID, 37004, StartTime, EndTime);//流出丢包数
+            dte = mDA.GetDeviceChanncelValue(this.deviceID, ParentDevID, 37004, StartTime, EndTime);//流出丢包数
             if (dte != null)
             {
                 chtErrorSum.Series["Series4"].Points.DataBindXY(dte.Rows, "Time", dte.Rows, "MonitorValue");
             }
 
             // 发送字数总量-今天
-            DataTable dts = mDA.GetDeviceChanncelValue(iDeviceID, 38001, StartTime, EndTime);//InBytes
+            DataTable dts = mDA.GetDeviceChanncelValue(this.deviceID, ParentDevID, 38001, StartTime, EndTime);//InBytes
             if (dts != null)
             {
                 chtSendSum.Series["Series1"].Points.DataBindXY(dts.Rows, "Time", dts.Rows, "MonitorValue");
             }
 
-            dts = mDA.GetDeviceChanncelValue(iDeviceID, 38002, StartTime, EndTime);//OutBytes
+            dts = mDA.GetDeviceChanncelValue(this.deviceID, ParentDevID, 38002, StartTime, EndTime);//OutBytes
             if (dts != null)
             {
                 chtSendSum.Series["Series2"].Points.DataBindXY(dts.Rows, "Time", dts.Rows, "MonitorValue");

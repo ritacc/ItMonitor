@@ -14,9 +14,12 @@
     <form id="form1" runat="server">
     
    
-			<asp:Chart ID="chLine" runat="server" Width="510" Height="270px" BackColor="#FAFAFA">
+			<asp:Chart ID="chLine" runat="server" Width="600px" Height="270px" 
+                BackColor="#FAFAFA">
                         <Legends>
-                            <asp:Legend TitleFont="Microsoft Sans Serif, 8pt, style=Bold" BackColor="Transparent" Font="Trebuchet MS, 8.25pt, style=Bold" IsTextAutoFit="False" Enabled="False" Name="Default">
+                            <asp:Legend TitleFont="Microsoft Sans Serif, 8pt, style=Bold" BackColor="Transparent" 
+                            Font="Trebuchet MS, 8.25pt, style=Bold" IsTextAutoFit="False" Name="Default" 
+                                Title="ddd" Docking="Bottom" Alignment="Center" BackImageAlignment="Center">
                             </asp:Legend>
                         </Legends>
                         <Series>
@@ -39,9 +42,12 @@
                         </ChartAreas>
                         <Titles>
                             
-                            <asp:Title Docking="Left" Font="Trebuchet MS, 14.25pt, style=Bold" 
+                            <asp:Title Docking="Left" Font="Trebuchet MS, 14.25pt, style=Bold"  Name="titY"
                                 Text="Response Time/ms" TextOrientation="Rotated90">
                             </asp:Title>
+                             <asp:Title ShadowColor="32, 0, 0, 0" Font="Trebuchet MS, 14.25pt, style=Bold" ShadowOffset="3"
+                        Text="今天" Name="titTop" ForeColor="26, 59, 105">
+                    </asp:Title>
                         </Titles>
                     </asp:Chart>
     

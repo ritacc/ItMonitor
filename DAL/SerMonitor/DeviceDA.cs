@@ -359,5 +359,35 @@ where dev.Deviceid='{0}'", m_id);
             DeviceOREx m_obj = new DeviceOREx(dr);
             return m_obj;
         }
+
+        public DeviceItemOREx SelectDeviceItemORExByID(string m_id)
+        {
+            string sql = string.Format(@"select dt.TypeName,sty.name ClassName,WarningStatus.MonitorValue WarningStatus,
+State.MonitorValue State,HealthStatus.MonitorValue HealthStatus,dev.*,
+case(dev.Performance) when '故障' then 0 when  '报警' then 2 when '未启动' then 3 else 0 end  perf
+ from t_DevItemList  dev
+left join t_DeviceType dt on dev.DeviceTypeID = dt.DeviceTypeID
+left join t_ServersType sty on sty.typeid= dt.typeid and sty.ServerID= dt.ServerID 
+left join  t_TmpValue WarningStatus on WarningStatus.DeviceID= dev.DeviceID and WarningStatus.ChannelNO=11101 
+left join  t_TmpValue HealthStatus on HealthStatus.DeviceID= dev.DeviceID and HealthStatus.ChannelNO=11102  
+left join  t_TmpValue State on State.DeviceID= dev.DeviceID and State.ChannelNO=11103 
+where dev.Deviceid='{0}'", m_id);
+            DataTable dt = null;
+            try
+            {
+                dt = db.ExecuteQueryDataSet(sql).Tables[0];
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            if (dt == null)
+                return null;
+            if (dt.Rows.Count == 0)
+                return null;
+            DataRow dr = dt.Rows[0];
+            DeviceItemOREx m_obj = new DeviceItemOREx(dr);
+            return m_obj;
+        }
     }
 }

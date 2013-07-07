@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using GDK.Entity.PerfMonitor;
 using GDK.DAL.PerfMonitor;
+using System.Data;
 
 namespace GDK.BCM.PerfMonitor
 {
@@ -43,6 +44,29 @@ namespace GDK.BCM.PerfMonitor
             lblDictionaryHitRate.Text = _Obj.DictionaryHitRate;
             lblDatabaseHitRate.Text = _Obj.DatabaseHitRate;
             lblAvailableMemory.Text = _Obj.AvailableMemory;
+
+            HistoryValueDA mDA = new HistoryValueDA();
+
+            DateTime StartTime = DateTime.Now.AddHours(-2);// Convert.ToDateTime(string.Format("{0} 00:00:00", DateTime.Now.ToString("yyyy-MM-dd")));
+            DateTime EndTime = DateTime.Now;// Convert.ToDateTime(string.Format("{0} 23:59:59", DateTime.Now.ToString("yyyy-MM-dd")));
+
+            int DeviceID = Convert.ToInt32(mDeviceID);
+            DataTable dte = mDA.GetDeviceChanncelValue(DeviceID, 41601, StartTime, EndTime);//缓冲区击中率
+            if (dte != null)
+            {
+                chLine.Series["Series1"].Points.DataBindXY(dte.Rows, "Time", dte.Rows, "MonitorValue");
+            }
+
+            dte = mDA.GetDeviceChanncelValue(DeviceID, 41602, StartTime, EndTime);//数据字典击中率
+            if (dte != null)
+            {
+                chLine.Series["Series2"].Points.DataBindXY(dte.Rows, "Time", dte.Rows, "MonitorValue");
+            }
+            dte = mDA.GetDeviceChanncelValue(DeviceID, 41603, StartTime, EndTime);//库击中率
+            if (dte != null)
+            {
+                chLine.Series["Series3"].Points.DataBindXY(dte.Rows, "Time", dte.Rows, "MonitorValue");
+            }
         }
     }
 }

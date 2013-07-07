@@ -36,7 +36,7 @@
                     <asp:Series Name="Series2" LegendText="数据字典击中率" ChartType="Line" IsValueShownAsLabel="True"
                         LabelFormat="{0}" BorderColor="180, 26, 59, 105" BorderWidth="2">
                     </asp:Series>
-                    <asp:Series Name="Series3" LegendText="缓冲库击中率" ChartType="Line" IsValueShownAsLabel="True"
+                    <asp:Series Name="Series3" LegendText="库击中率" ChartType="Line" IsValueShownAsLabel="True"
                         LabelFormat="{0}" BorderColor="180, 26, 59, 105" BorderWidth="2">
                     </asp:Series>
                 </Series>

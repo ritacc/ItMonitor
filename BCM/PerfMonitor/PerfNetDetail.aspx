@@ -178,8 +178,7 @@
                 </object>
                 <iframe id="Iframe1" style="visibility: hidden; height: 0px; width: 0px; border: 0px"></iframe>
             </div>
-
-        <div class="div_char">
+            <div class="div_char">
             <div class="div_title">背板利用率</div>
                 <object data="data:application/x-silverlight-2," type="application/x-silverlight-2"
                     width="300px" height="200px">
@@ -198,7 +197,8 @@
             </div>
         </div>
 
-        <div style=" clear:both;">
+        <div class="div_box" style=" min-height:150px;">
+            <div class="div_box_title">端口</div>
          <asp:GridView ID="gvPortList" AutoGenerateColumns="False" runat="server" class="gridview_skin">
                 <Columns>
                     <asp:TemplateField HeaderText="序号">

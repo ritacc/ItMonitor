@@ -214,7 +214,7 @@
     <div class="div_box">
     <div class="div_box_title">流量-今天</div>
         <div class="char_middle overflow_grid_select_NoPage Padding_5" style="height: 496px;">
-            <asp:Chart ID="chLine" runat="server" Width="890" Height="496" BackColor="#f0fbff">
+            <asp:Chart ID="chLine" runat="server" Width="1090" Height="496" BackColor="#f0fbff">
                 <Titles>
                     <asp:Title ShadowColor="32, 0, 0, 0" Font="Trebuchet MS, 14.25pt, style=Bold" ShadowOffset="3"
                         Text="流量（每秒比特数）-今天" Name="Title1" ForeColor="26, 59, 105">
@@ -227,10 +227,10 @@
                     </asp:Legend>
                 </Legends>
                 <Series>
-                    <asp:Series Name="Series1" LegendText="接收" ChartType="Line" IsValueShownAsLabel="True"
+                    <asp:Series Name="Series1" LegendText="接收" ChartType="Line" IsValueShownAsLabel="false"
                         LabelFormat="{0}" BorderColor="180, 26, 59, 105" BorderWidth="2">
                     </asp:Series>
-                    <asp:Series Name="Series2" LegendText="发送" ChartType="Line" IsValueShownAsLabel="True"
+                    <asp:Series Name="Series2" LegendText="发送" ChartType="Line" IsValueShownAsLabel="false"
                         LabelFormat="{0}" BorderColor="180, 26, 59, 105" BorderWidth="2">
                     </asp:Series>
                 </Series>
@@ -256,7 +256,7 @@
     <div class="div_box">
     <div class="div_box_title">错误数和丢包数—今天</div>
         <div class="char_middle overflow_grid_select_NoPage Padding_5" style="height: 496px;">
-        <asp:Chart ID="chtErrorSum" runat="server" Width="890" Height="496" BackColor="#f0fbff">
+        <asp:Chart ID="chtErrorSum" runat="server" Width="1090" Height="496" BackColor="#f0fbff">
             <Titles>
                 <asp:Title ShadowColor="32, 0, 0, 0" Font="Trebuchet MS, 14.25pt, style=Bold" ShadowOffset="3"
                     Text="错误数和丢包数—今天" Name="Title1" ForeColor="26, 59, 105">
@@ -269,16 +269,16 @@
                 </asp:Legend>
             </Legends>
             <Series>
-                <asp:Series Name="Series1" LegendText="流入错误数" ChartType="Line" IsValueShownAsLabel="True"
+                <asp:Series Name="Series1" LegendText="流入错误数" ChartType="Line" IsValueShownAsLabel="false"
                         LabelFormat="{0}" BorderColor="180, 26, 59, 105" BorderWidth="2">
                 </asp:Series>
-                <asp:Series Name="Series2" LegendText="流出错误数" ChartType="Line" IsValueShownAsLabel="True"
+                <asp:Series Name="Series2" LegendText="流出错误数" ChartType="Line" IsValueShownAsLabel="false"
                         LabelFormat="{0}" BorderColor="180, 26, 59, 105" BorderWidth="2">
                 </asp:Series>
-                <asp:Series Name="Series3" LegendText="流入丢包数" ChartType="Line" IsValueShownAsLabel="True"
+                <asp:Series Name="Series3" LegendText="流入丢包数" ChartType="Line" IsValueShownAsLabel="false"
                         LabelFormat="{0}" BorderColor="180, 26, 59, 105" BorderWidth="2">
                 </asp:Series>
-                <asp:Series Name="Series4" LegendText="流出丢包数" ChartType="Line" IsValueShownAsLabel="True"
+                <asp:Series Name="Series4" LegendText="流出丢包数" ChartType="Line" IsValueShownAsLabel="false"
                         LabelFormat="{0}" BorderColor="180, 26, 59, 105" BorderWidth="2">
                 </asp:Series>
             </Series>
@@ -304,7 +304,7 @@
     <div class="div_box">
     <div class="div_box_title">发送字数总量—今天</div>
         <div class="char_middle overflow_grid_select_NoPage Padding_5" style="height: 496px;">
-        <asp:Chart ID="chtSendSum" runat="server" Width="890" Height="496" BackColor="#f0fbff">
+        <asp:Chart ID="chtSendSum" runat="server" Width="1090" Height="496" BackColor="#f0fbff">
             <Titles>
                 <asp:Title ShadowColor="32, 0, 0, 0" Font="Trebuchet MS, 14.25pt, style=Bold" ShadowOffset="3"
                     Text="发送字数总量（字节）—今天" Name="Title1" ForeColor="26, 59, 105">
@@ -317,10 +317,10 @@
                 </asp:Legend>
             </Legends>
             <Series>
-                <asp:Series Name="Series1" LegendText="InBytes" IsValueShownAsLabel="True" LabelFormat="{0}分"
+                <asp:Series Name="Series1" LegendText="InBytes" IsValueShownAsLabel="false" LabelFormat="{0}分"
                     BorderColor="180, 26, 59, 105"  BorderWidth="2">
                 </asp:Series>
-                <asp:Series Name="Series2" LegendText="OutBytes" IsValueShownAsLabel="True" LabelFormat="{0}分"
+                <asp:Series Name="Series2" LegendText="OutBytes" IsValueShownAsLabel="false" LabelFormat="{0}分"
                     BorderColor="180, 26, 59, 105"  BorderWidth="2">
                 </asp:Series>
             </Series>
