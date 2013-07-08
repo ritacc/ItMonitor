@@ -223,27 +223,35 @@ where d.DeviceTypeID= 224 and ParentDevID ={0}", ParentDevID);
         /// <summary>
         /// 最近1小时的JVM堆使用情况
         /// </summary>
-        public DataTable selectJVMHeap(int pageCrrent, int pageSize, out int pageCount, string ParentDevID)
+        public DataTable selectJVMHeap( int ParentDevID)
         {
-            string sql = string.Format(@"select d.deviceid,MinHeap.MonitorValue MinHeap,MaxHeap.MonitorValue MaxHeap,
-AverageHeap.MonitorValue AverageHeap,TotalHeap.MonitorValue TotalHeap,CurrentHeap.MonitorValue CurrentHeap
- from t_DevItemList d 
-left join t_TmpValue MinHeap on MinHeap.DeviceID= d.DeviceID and MinHeap.ChannelNO=22501
-left join t_TmpValue MaxHeap on MaxHeap.DeviceID= d.DeviceID and MaxHeap.ChannelNO=22502
-left join t_TmpValue AverageHeap on AverageHeap.DeviceID= d.DeviceID and AverageHeap.ChannelNO=22503
-left join t_TmpValue TotalHeap on TotalHeap.DeviceID= d.DeviceID and TotalHeap.ChannelNO=22504
-left join t_TmpValue CurrentHeap on CurrentHeap.DeviceID= d.DeviceID and CurrentHeap.ChannelNO=22505
-where d.DeviceTypeID= 225 and ParentDevID ={0}", ParentDevID);
+            string strTableName = new HistoryValueDA().GetTableName(ParentDevID);
+            if (strTableName == "")
+                return null;
+
+            string sql = string.Format(@"select f.*,TotalHeap.MonitorValue TotalHeap,CurrentHeap.MonitorValue CurrentHeap 
+from(
+	select max(convert(float,d.monitorvalue)) MaxHeap
+	,min(convert(float,d.monitorvalue)) MinHeap,
+	round(avg(convert(float,d.monitorvalue)) ,2) AverageHeap
+	 from {0}  d
+	where d.ChannelNO=22505
+) as f
+left join t_TmpValue TotalHeap on TotalHeap.DeviceID= {1} and TotalHeap.ChannelNO=22504
+left join t_TmpValue CurrentHeap on CurrentHeap.DeviceID= {1} and CurrentHeap.ChannelNO=22505
+
+",strTableName, ParentDevID);
             DataTable dt = null;
-            int returnC = 0; try
+            //int returnC = 0;
+            try
             {
-                dt = db.ExecuteQuery(sql, pageCrrent, pageSize, out returnC);
+                dt = db.ExecuteQuery(sql);//, pageCrrent, pageSize, out returnC);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            pageCount = returnC;
+            //pageCount = returnC;
             return dt;
         }
     }

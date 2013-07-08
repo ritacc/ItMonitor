@@ -33,7 +33,7 @@ namespace GDK.BCM.PerfMonitor
             this.pgServerResponseTime.OnPageChanged += new EventHandler(PageChangedServerResponseTime);
             //this.pgUndecided.OnPageChanged += new EventHandler(PageChangedUndecided);
             this.pgThreadWait.OnPageChanged += new EventHandler(PageChangedThreadWait);
-            this.pgJVMHeap.OnPageChanged += new EventHandler(PageChangedJVMHeap);
+            //this.pgJVMHeap.OnPageChanged += new EventHandler(PageChangedJVMHeap);
             if (!IsPostBack)
             {
                 InitData();
@@ -104,16 +104,18 @@ namespace GDK.BCM.PerfMonitor
 
 
             // Web应用 -最近1小时最高用户会话（前5位）
-            //DataTable dte = mDA.GetDeviceChanncelValue(iDeviceID, 91303, StartTime, EndTime);//磁盘使用率
-            //if (dte != null)
-            //{
-            //    chLine.Series["Series1"].Points.DataBindXY(dte.Rows, "Time", dte.Rows, "MonitorValue");
-            //}
-            //dte = mDA.GetDeviceChanncelValue(iDeviceID, 91403, StartTime, EndTime);//网络使用率
-            //if (dte != null)
-            //{
-            //    chLine.Series["Series2"].Points.DataBindXY(dte.Rows, "Time", dte.Rows, "MonitorValue");
-            //}
+            DataTable dte = mDA.GetDeviceChanncelValue(iDeviceID, 91303, StartTime, EndTime);//磁盘使用率
+            if (dte != null)
+            {
+                chLine.Series["Series1"].Points.DataBindXY(dte.Rows, "Time", dte.Rows, "MonitorValue");
+            }
+
+            //最近1小时的JVM堆使用情况图表
+            dte = mDA.GetDeviceChanncelValue(iDeviceID, 22505, StartTime, EndTime);//网络使用率
+            if (dte != null)
+            {
+                chJVMHeap.Series["Series1"].Points.DataBindXY(dte.Rows, "Time", dte.Rows, "MonitorValue");
+            }
             #endregion
         }
 
@@ -204,10 +206,10 @@ namespace GDK.BCM.PerfMonitor
         private void BindGraidJVMHeap()
         {
             int PageCount = 0;
-            DataTable dt = new PerfMiddlewareDA().selectJVMHeap(pgJVMHeap.PageIndex, pgJVMHeap.PageSize, out PageCount, Request.QueryString["id"]);
+            DataTable dt = new PerfMiddlewareDA().selectJVMHeap(Convert.ToInt32(Request.QueryString["id"]));//pgJVMHeap.PageIndex, pgJVMHeap.PageSize, out PageCount, Request.QueryString["id"]);
             gvJVMHeap.DataSource = dt;
             gvJVMHeap.DataBind();
-            this.pgJVMHeap.RecordCount = PageCount;
+            //this.pgJVMHeap.RecordCount = PageCount;
         }
         #endregion
     }

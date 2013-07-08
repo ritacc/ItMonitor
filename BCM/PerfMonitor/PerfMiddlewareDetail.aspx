@@ -445,13 +445,12 @@
                         <th>总计 堆大小(kb)</th>
                         <th>当前 堆大小(kb)</th>
                     </tr>
-                    <tr class="AlternatingRowStyle">
+                   <%-- <tr class="AlternatingRowStyle">
                         <td colspan="5">没有数据</td>
-                    </tr>
+                    </tr>--%>
                 </table>                
                 </EmptyDataTemplate>
-            </asp:GridView>              
-        <uc1:pagenavigate ID="pgJVMHeap" runat="server" />   
+            </asp:GridView>
     </div> 
         
     </form>

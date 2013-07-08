@@ -143,6 +143,9 @@
     <Content Include="images\Common\edit.gif" />
     <Content Include="images\Common\find.png" />
     <Content Include="images\Common\green.gif" />
+    <Content Include="images\Common\health0.gif" />
+    <Content Include="images\Common\health1.gif" />
+    <Content Include="images\Common\health2.gif" />
     <Content Include="images\Common\list.gif" />
     <Content Include="images\Common\loading.gif" />
     <Content Include="images\Common\minus.gif" />
@@ -165,6 +168,8 @@
     <Content Include="images\Common\stata1.gif" />
     <Content Include="images\Common\stata0.gif" />
     <Content Include="images\Common\stata2.gif" />
+    <Content Include="images\Common\stata20.gif" />
+    <Content Include="images\Common\stata21.gif" />
     <Content Include="images\Common\stata3.gif" />
     <Content Include="images\Common\state20.gif" />
     <Content Include="images\Common\state21.gif" />
