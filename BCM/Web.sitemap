@@ -17,6 +17,9 @@
 				<siteMapNode url="AlertAdmin/HealthConfigEdit.aspx" title="编辑" description="添加、修改" isFunction="true" />
 				<siteMapNode url="AlertAdmin/HealthConfigList.aspx?Delete" title="删除" description="删除" />
 			</siteMapNode>
+			<siteMapNode url="AlertAdmin/PerfSystemFailure.aspx" title="系统故障" description="系统故障">
+				<siteMapNode url="AlertAdmin/PerfSystemFailureDetail.aspx" title="系统故障详细信息" description="系统故障详细"/>
+			</siteMapNode>
 		</siteMapNode>
 		
 		<siteMapNode url="Monitor/MonitorDefin.aspx?main" title="自定义监控画面"  description="自定义监控画面">

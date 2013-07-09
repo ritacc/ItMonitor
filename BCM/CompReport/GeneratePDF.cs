@@ -293,6 +293,7 @@ namespace GDK.BCM.CompReport
 			MiddlewareJVM();
 
 			pg = new Paragraph("\n3、会话数汇总统计", GetFont(FontEnum.Content));
+            document.Add(pg);
 			MiddlewareServerSession();
         }
         #region 一、主机运行状况统计分析
@@ -796,20 +797,35 @@ namespace GDK.BCM.CompReport
 
         #region 三、中间件运行状况统计分析
         #region 1. 数据库连接池汇总统计
+        List<string> list = new List<string>();
+        private bool isAdd(string str)
+        {
+            foreach (string obj in list)
+            {
+                if (obj == str)
+                {
+                    return true;
+                }
+            }
+            list.Add(str);
+            return false;
+        }
+
         private void DBTableSpaceOnlinNumber()
         {
              PdfDA mda = new PdfDA();
-
             //查询数据
              DataTable DBTableSpace = mda.SelectDBTableSpace(SystemID);
              Paragraph pg = new Paragraph("\r\n", GetFont(FontEnum.TableSM));
              if (DBTableSpace != null && DBTableSpace.Rows.Count > 0)
              {
-                
                  foreach (DataRow dr in DBTableSpace.Rows)
                  {
-                     LoadDBTableSpaceLineNumberImg(Convert.ToInt32(dr["deviceno"].ToString()), dr["tableSpaceName"].ToString());
-                     document.Add(pg);
+                     if (!isAdd(dr["tableSpaceName"].ToString()))
+                     {
+                         LoadDBTableSpaceLineNumberImg(Convert.ToInt32(dr["deviceno"].ToString()), dr["tableSpaceName"].ToString());
+                         document.Add(pg);
+                     }
                  }
              }
              //数据详细，表格
@@ -921,6 +937,7 @@ namespace GDK.BCM.CompReport
             AddImg();//生成，统计图
         }
         #endregion
+
 		#region 2、JVM堆使用汇总统计
 		public void MiddlewareJVM()
 		{
@@ -1041,6 +1058,7 @@ namespace GDK.BCM.CompReport
 			AddImg();//生成，统计图
 		}
 		#endregion
+
 		#region 3、会话数汇总统计
 		 
 		public void MiddlewareServerSession()
@@ -1059,7 +1077,7 @@ namespace GDK.BCM.CompReport
 			}
 
 			//数据详细，表格
-			PdfPTable pdfTB = new PdfPTable(8);
+			PdfPTable pdfTB = new PdfPTable(6);
 			pdfTB.WidthPercentage = 99;
 
 			Font ft = GetFont(FontEnum.TableHeader);
@@ -1097,8 +1115,9 @@ namespace GDK.BCM.CompReport
 				foreach (DataRow dr in dt.Rows)
 				{
 					Font dbftContent = GetFont(FontEnum.Content);
-					pdfTB.AddCell(new Phrase(dr["busName"].ToString(), dbftContent));
-					pdfTB.AddCell(new Phrase(dr["midName"].ToString(), dbftContent));
+                    pdfTB.AddCell(new Phrase(dr["DeviceName"].ToString(), dbftContent));
+                    pdfTB.AddCell(new Phrase(dr["DBName"].ToString(), dbftContent));
+                    pdfTB.AddCell(new Phrase(dr["SessionName"].ToString(), dbftContent));
 
 					pdfTB.AddCell(new Phrase(dr["maxval"].ToString(), dbftContent));
 					pdfTB.AddCell(new Phrase(dr["minval"].ToString(), dbftContent));
@@ -1130,7 +1149,7 @@ namespace GDK.BCM.CompReport
 		private void LoadMiddlewareServerSessionImg(int deviceid, string devicename)
 		{
 			chLine.Series.Clear();
-			chLine.Titles["titY"].Text = "会话数";
+			chLine.Titles["titY"].Text = "字节数";
 			chLine.Titles["titTop"].Text = string.Format("{0} 会话数汇总柱状图", devicename);
 
 			PdfDA mda = new PdfDA();
@@ -1141,7 +1160,7 @@ namespace GDK.BCM.CompReport
 			ser["DrawingStyle"] = "Cylinder";
 			ser.MarkerSize = 3;
 			ser.LabelFormat = "{0}%";
-			ser.LegendText = "最大值";
+			ser.LegendText = "JVM堆最大值";
 			ser.Points.DataBindXY(dt.Rows, "monitordate", dt.Rows, "maxval");
 			chLine.Series.Add(ser);
 
@@ -1149,7 +1168,7 @@ namespace GDK.BCM.CompReport
 			ser.ChartType = SeriesChartType.Column;
 			ser["DrawingStyle"] = "Cylinder";
 			ser.MarkerSize = 3;
-			ser.LegendText = "最小值";
+            ser.LegendText = "JVM堆最小值";
 			ser.Points.DataBindXY(dt.Rows, "monitordate", dt.Rows, "minval");
 			chLine.Series.Add(ser);
 
@@ -1157,12 +1176,13 @@ namespace GDK.BCM.CompReport
 			ser.ChartType = SeriesChartType.Column;
 			ser["DrawingStyle"] = "Cylinder";
 			ser.MarkerSize = 3;
-			ser.LegendText = "总计会话数";
+			ser.LegendText = "均值";
 			ser.Points.DataBindXY(dt.Rows, "monitordate", dt.Rows, "sumval");
 			chLine.Series.Add(ser);
 			AddImg();//生成，统计图
 		}
 		#endregion
+
 		#endregion
 
 		#endregion

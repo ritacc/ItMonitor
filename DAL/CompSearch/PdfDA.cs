@@ -483,7 +483,7 @@ where bus.ParentId= {0} and dt.TypeID=10", busDeviceID);
 	   public DataTable MiddlewareServerSessionDetail(int Year, int Month, int BussID)
 	   {
 		   DateTime Start = new DateTime(Year, Month, 1);
-		   string sql = string.Format(@"select d.DeviceName,db.DeviceName DBName, ditem.DeviceName tableSpaceName,gro.*		
+		   string sql = string.Format(@"select d.DeviceName,db.DeviceName DBName, ditem.DeviceName SessionName,gro.*		
 from (
 	select deviceno,channelno,sum(monitorvalue) sumval
 	,max(monitorvalue) maxval

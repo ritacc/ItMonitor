@@ -71,6 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlertAdmin\HealthConfigDA.cs" />
+    <Compile Include="AlertAdmin\AlertDA.cs" />
     <Compile Include="common\Utils.cs" />
     <Compile Include="CompSearch\PdfDA.cs" />
     <Compile Include="CompSearch\PDFReportSearch.cs" />

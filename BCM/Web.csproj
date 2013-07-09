@@ -111,6 +111,9 @@
     <Content Include="AlertAdmin\HealthConfigEdit.aspx" />
     <Content Include="AlertAdmin\HealthConfigList.aspx" />
     <Content Include="AlertAdmin\HealthConfigMain.aspx" />
+    <Content Include="AlertAdmin\PerfSystemFailure.aspx" />
+    <Content Include="AlertAdmin\PerfSystemFailureDetail.aspx" />
+    <Content Include="AlertAdmin\PerfSystemFailureList.aspx" />
     <Content Include="Bussiness\BussinessEdit.aspx" />
     <Content Include="Bussiness\BussinessList.aspx" />
     <Content Include="Bussiness\BussinessSelect.aspx" />
@@ -482,6 +485,27 @@
     </Compile>
     <Compile Include="AlertAdmin\HealthConfigMain.aspx.designer.cs">
       <DependentUpon>HealthConfigMain.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AlertAdmin\PerfSystemFailure.aspx.cs">
+      <DependentUpon>PerfSystemFailure.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AlertAdmin\PerfSystemFailure.aspx.designer.cs">
+      <DependentUpon>PerfSystemFailure.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AlertAdmin\PerfSystemFailureDetail.aspx.cs">
+      <DependentUpon>PerfSystemFailureDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AlertAdmin\PerfSystemFailureDetail.aspx.designer.cs">
+      <DependentUpon>PerfSystemFailureDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AlertAdmin\PerfSystemFailureList.aspx.cs">
+      <DependentUpon>PerfSystemFailureList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AlertAdmin\PerfSystemFailureList.aspx.designer.cs">
+      <DependentUpon>PerfSystemFailureList.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Code\Common.cs" />
     <Compile Include="App_Code\ControlCommon.cs">
