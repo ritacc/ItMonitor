@@ -102,7 +102,6 @@ namespace GDK.BCM.CompReport
 
             //ContentThreed();//第三部分
             document.Close();
-            
             return FilePath;
         }
 
@@ -276,7 +275,8 @@ namespace GDK.BCM.CompReport
             //三
             pg = new Paragraph("\n\n二、中间件运行状况统计分析", GetFont(FontEnum.TitleLeft1));
             document.Add(pg);
-            
+			DA.SecondMiddlewareInit(this.SystemID, StartTime.AddMonths(-5), EndTime);
+
             pg = new Paragraph("    本部分主要是针对运行各业务系统的中间件(WebLogic)的各项指标进行统计分析，分别从数据库连接池、Java虚拟机内存、应用会话等三个方面来分析评估综合征管系统中间件的总体运行情况。"
                 , GetFont(FontEnum.Content));
             document.Add(pg);
@@ -290,7 +290,10 @@ namespace GDK.BCM.CompReport
             sb.Clear();
             sb.Append("    Java虚拟机内存是Weblogic的核心参数之一，其直接关系到WebLogic的运行情况。当内存消耗均值接近配置的最大内存数时，表明虚拟机内存资源比较紧张；当内存消耗均值较小时，说明内存资源比较空闲。");
             pg = new Paragraph(sb.ToString(), GetFont(FontEnum.Content));
+			MiddlewareJVM();
 
+			pg = new Paragraph("\n3、会话数汇总统计", GetFont(FontEnum.Content));
+			MiddlewareServerSession();
         }
         #region 一、主机运行状况统计分析
         /// <summary>
@@ -790,8 +793,6 @@ namespace GDK.BCM.CompReport
 
         }
         #endregion 
-        
-		 
 
         #region 三、中间件运行状况统计分析
         #region 1. 数据库连接池汇总统计
@@ -920,15 +921,254 @@ namespace GDK.BCM.CompReport
             AddImg();//生成，统计图
         }
         #endregion
+		#region 2、JVM堆使用汇总统计
+		public void MiddlewareJVM()
+		{
+			PdfDA mda = new PdfDA();
+			//查询数据
+			DataTable DBTableSpace = mda.GetBussMiddlewareName(SystemID);
+			Paragraph pg = new Paragraph("\r\n", GetFont(FontEnum.TableSM));
+			if (DBTableSpace != null && DBTableSpace.Rows.Count > 0)
+			{
+				foreach (DataRow dr in DBTableSpace.Rows)
+				{
+					LoadMiddlewareJVMImg(Convert.ToInt32(dr["DeviceID"].ToString()), dr["DeviceName"].ToString());
+					document.Add(pg);
+				}
+			}
+
+			//数据详细，表格
+			PdfPTable pdfTB = new PdfPTable(8);
+			pdfTB.WidthPercentage = 99;
+
+			Font ft = GetFont(FontEnum.TableHeader);
+			PdfPCell headr = GetPdfCell("");
+			headr.Colspan = 2;
+			pdfTB.AddCell(headr);
+
+			headr = GetPdfCell("本月");
+			headr.Colspan = 3;
+			pdfTB.AddCell(headr);
+
+			headr = GetPdfCell("上月");
+			headr.Colspan = 3;
+			pdfTB.AddCell(headr);
+
+			headr = GetPdfCell("业务系统名称");
+			pdfTB.AddCell(headr);
+
+			headr = GetPdfCell("IP地址");
+			pdfTB.AddCell(headr);
+			for (int i = 0; i < 2; i++)
+			{
+				headr = GetPdfCell("JVM堆最大值");
+				pdfTB.AddCell(headr);
+
+				headr = GetPdfCell("最小值");
+				pdfTB.AddCell(headr);
+
+				headr = GetPdfCell("均值");
+				pdfTB.AddCell(headr);
+			}
+
+
+			DataTable dt = mda.MiddlewareJVMDetail(StartTime.Year, StartTime.Month);
+			if (dt != null)
+			{
+				foreach (DataRow dr in dt.Rows)
+				{
+					Font dbftContent = GetFont(FontEnum.Content);
+					pdfTB.AddCell(new Phrase(dr["busName"].ToString(), dbftContent));
+					pdfTB.AddCell(new Phrase(dr["midName"].ToString(), dbftContent));
+
+					pdfTB.AddCell(new Phrase(dr["maxval"].ToString(), dbftContent));
+					pdfTB.AddCell(new Phrase(dr["minval"].ToString(), dbftContent));
+					pdfTB.AddCell(new Phrase(dr["avgval"].ToString(), dbftContent));
+
+					pdfTB.AddCell(new Phrase(dr["symaxval"].ToString(), dbftContent));
+					pdfTB.AddCell(new Phrase(dr["syminval"].ToString(), dbftContent));
+					pdfTB.AddCell(new Phrase(dr["syavgval"].ToString(), dbftContent));
+				}
+			}
+			string strContent = string.Format("统计期：{0}", ReportData);
+			document.Add(new Phrase(strContent, GetFont(FontEnum.Title12Bold)));
+			document.Add(pdfTB);
+
+			TabeleIndex++;
+			string minfo = string.Format("表{0}：中间件JVM使用情况汇总", TabeleIndex);
+			pg = pg = new Paragraph(minfo, GetFont(FontEnum.TableIndex));
+			pg.Alignment = Element.ALIGN_CENTER;
+			document.Add(pg);
+
+			string DescContent = @"注：列出本月均值TOP10的JVM内存情况及与上月相应情况作对比。";
+			pg = new Paragraph(DescContent, GetFont(FontEnum.TableSM));
+			document.Add(pg);
+		}
+
+		private void LoadMiddlewareJVMImg(int deviceid, string devicename)
+		{
+			chLine.Series.Clear();
+			chLine.Titles["titY"].Text = "连接数";
+			chLine.Titles["titTop"].Text = string.Format("{0} 使用率汇总柱状图", devicename);
+
+			PdfDA mda = new PdfDA();
+			DataTable dt = mda.MiddlewareJVMImg(deviceid);
+
+			Series ser = new Series();
+			ser.ChartType = SeriesChartType.Column;
+			ser["DrawingStyle"] = "Cylinder";
+			ser.MarkerSize = 3;
+			ser.LabelFormat = "{0}%";
+			ser.LegendText = "最大值";
+			ser.Points.DataBindXY(dt.Rows, "monitordate", dt.Rows, "maxval");
+			chLine.Series.Add(ser);
+
+			ser = new Series();
+			ser.ChartType = SeriesChartType.Column;
+			ser["DrawingStyle"] = "Cylinder";
+			ser.MarkerSize = 3;
+			ser.LegendText = "最小值";
+			ser.Points.DataBindXY(dt.Rows, "monitordate", dt.Rows, "minval");
+			chLine.Series.Add(ser);
+
+			ser = new Series();
+			ser.ChartType = SeriesChartType.Column;
+			ser["DrawingStyle"] = "Cylinder";
+			ser.MarkerSize = 3;
+			ser.LegendText = "平均值";
+			ser.Points.DataBindXY(dt.Rows, "monitordate", dt.Rows, "avgval");
+			chLine.Series.Add(ser);
+			AddImg();//生成，统计图
+		}
+		#endregion
+		#region 3、会话数汇总统计
+		 
+		public void MiddlewareServerSession()
+		{
+			PdfDA mda = new PdfDA();
+			//查询数据
+			DataTable DBTableSpace = mda.MiddlewareServerSessionImg(SystemID);
+			Paragraph pg = new Paragraph("\r\n", GetFont(FontEnum.TableSM));
+			if (DBTableSpace != null && DBTableSpace.Rows.Count > 0)
+			{
+				foreach (DataRow dr in DBTableSpace.Rows)
+				{
+					LoadMiddlewareServerSessionImg(Convert.ToInt32(dr["DeviceID"].ToString()), dr["DeviceName"].ToString());
+					document.Add(pg);
+				}
+			}
+
+			//数据详细，表格
+			PdfPTable pdfTB = new PdfPTable(8);
+			pdfTB.WidthPercentage = 99;
+
+			Font ft = GetFont(FontEnum.TableHeader);
+			PdfPCell headr = GetPdfCell("");
+			headr = GetPdfCell("业务系统");
+			headr.Rowspan = 2;
+			pdfTB.AddCell(headr);
+
+			headr = GetPdfCell("WEBLOGIC名");
+			headr.Rowspan = 2;
+			pdfTB.AddCell(headr);
+
+			headr = GetPdfCell("WEB应用名");
+			headr.Rowspan = 2;
+			pdfTB.AddCell(headr);
+
+			headr = GetPdfCell("本月");
+			headr.Colspan = 3;
+			pdfTB.AddCell(headr);
+
+			headr = GetPdfCell("活动会话数");
+			pdfTB.AddCell(headr);
+
+			headr = GetPdfCell("最大会话数");
+			pdfTB.AddCell(headr);
+
+			headr = GetPdfCell("总计会话数");
+			pdfTB.AddCell(headr);
 
 
 
-        #endregion
+			DataTable dt = mda.MiddlewareServerSessionDetail(StartTime.Year, StartTime.Month, this.SystemID);
+			if (dt != null)
+			{
+				foreach (DataRow dr in dt.Rows)
+				{
+					Font dbftContent = GetFont(FontEnum.Content);
+					pdfTB.AddCell(new Phrase(dr["busName"].ToString(), dbftContent));
+					pdfTB.AddCell(new Phrase(dr["midName"].ToString(), dbftContent));
 
-        #endregion
+					pdfTB.AddCell(new Phrase(dr["maxval"].ToString(), dbftContent));
+					pdfTB.AddCell(new Phrase(dr["minval"].ToString(), dbftContent));
+					pdfTB.AddCell(new Phrase(dr["sumval"].ToString(), dbftContent));
+				}
+			}
+			string strContent = string.Format("统计期：{0}", ReportData);
+			document.Add(new Phrase(strContent, GetFont(FontEnum.Title12Bold)));
+			document.Add(pdfTB);
 
-        #region 第三部分-内容
-        public void ContentThreed()
+			TabeleIndex++;
+			string minfo = string.Format("表{0}：中间件会话数汇总", TabeleIndex);
+			pg = pg = new Paragraph(minfo, GetFont(FontEnum.TableIndex));
+			pg.Alignment = Element.ALIGN_CENTER;
+			document.Add(pg);
+
+			string DescContent = @" 
+说明：
+  1) 缺省队列最大线程数：指WebLogic缺省队列配置的最大线程数；
+  2) 采集最大值：指全月中执行队列占用的最高值；
+  3) 采集均值：指全月中执行队列占用的平均值；
+  4) --：表示未提交；
+  5) N/A：表示不需要提交或没有该值。
+";
+			pg = new Paragraph(DescContent, GetFont(FontEnum.TableSM));
+			document.Add(pg);
+		}
+
+		private void LoadMiddlewareServerSessionImg(int deviceid, string devicename)
+		{
+			chLine.Series.Clear();
+			chLine.Titles["titY"].Text = "会话数";
+			chLine.Titles["titTop"].Text = string.Format("{0} 会话数汇总柱状图", devicename);
+
+			PdfDA mda = new PdfDA();
+			DataTable dt = mda.MiddlewareJVMImg(deviceid);
+
+			Series ser = new Series();
+			ser.ChartType = SeriesChartType.Column;
+			ser["DrawingStyle"] = "Cylinder";
+			ser.MarkerSize = 3;
+			ser.LabelFormat = "{0}%";
+			ser.LegendText = "最大值";
+			ser.Points.DataBindXY(dt.Rows, "monitordate", dt.Rows, "maxval");
+			chLine.Series.Add(ser);
+
+			ser = new Series();
+			ser.ChartType = SeriesChartType.Column;
+			ser["DrawingStyle"] = "Cylinder";
+			ser.MarkerSize = 3;
+			ser.LegendText = "最小值";
+			ser.Points.DataBindXY(dt.Rows, "monitordate", dt.Rows, "minval");
+			chLine.Series.Add(ser);
+
+			ser = new Series();
+			ser.ChartType = SeriesChartType.Column;
+			ser["DrawingStyle"] = "Cylinder";
+			ser.MarkerSize = 3;
+			ser.LegendText = "总计会话数";
+			ser.Points.DataBindXY(dt.Rows, "monitordate", dt.Rows, "sumval");
+			chLine.Series.Add(ser);
+			AddImg();//生成，统计图
+		}
+		#endregion
+		#endregion
+
+		#endregion
+
+		#region 第三部分-内容
+		public void ContentThreed()
         {
             document.NewPage();
             string strContent = "\n\n\n\n\n第三部分、业务运行状况整体分析";

@@ -238,9 +238,7 @@ from(
 	where d.ChannelNO=22505
 ) as f
 left join t_TmpValue TotalHeap on TotalHeap.DeviceID= {1} and TotalHeap.ChannelNO=22504
-left join t_TmpValue CurrentHeap on CurrentHeap.DeviceID= {1} and CurrentHeap.ChannelNO=22505
-
-",strTableName, ParentDevID);
+left join t_TmpValue CurrentHeap on CurrentHeap.DeviceID= {1} and CurrentHeap.ChannelNO=22505",strTableName, ParentDevID);
             DataTable dt = null;
             //int returnC = 0;
             try

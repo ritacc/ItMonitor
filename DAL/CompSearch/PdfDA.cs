@@ -42,6 +42,7 @@ namespace GDK.DAL.CompSearch
 		  PDFReportSearch DataDA = new PDFReportSearch();
           DataDA.SearchReportDataToTemp(whereOR);
        }
+
 	   #region 数据库处理
 	   /// <summary>
 	   /// 
@@ -94,6 +95,38 @@ namespace GDK.DAL.CompSearch
 		   DataDA.SearchReportDataToTemp(whereOR);
 	   }
 
+	   public void SecondMiddlewareInit(int DeviceID, DateTime begin, DateTime end)
+	   {
+		   ReportSeachWhereOR whereOR = new ReportSeachWhereOR();
+		   whereOR.StartTime = begin;
+		   whereOR.EndTime = end;
+
+		   DeviceOR devObj = new DeviceDA().SelectDeviceORByID(DeviceID.ToString());
+		   if (devObj == null)
+		   {
+			   throw new Exception("设备不存！");
+		   }
+		   List<int> ListDevs = new List<int>();
+		   ListDevs.Add(devObj.DeviceID);
+		   //获取中间件
+		   whereOR.ListDevices = GetBussMiddleware(DeviceID);
+		   whereOR.StationID = devObj.StationID;
+		   whereOR.ReportType = "month";
+		   /*
+			* web	活动会话数	21102
+		    * 数据库连接池 活动连接	22603
+		    * 当前 JVM堆大小(kb)	22505
+		    * */
+		   whereOR.ListChanncel = new List<SearchChanncelOR>() { 
+            new SearchChanncelOR(){ ChanncelNo= 21102}//--活动会话数
+			,new SearchChanncelOR(){ ChanncelNo= 22603}//--活动连接
+			,new SearchChanncelOR(){ ChanncelNo= 22505}	//JVM堆大小
+          };
+
+		   PDFReportSearch DataDA = new PDFReportSearch();
+		   DataDA.SearchReportDataToTemp(whereOR);
+
+	   }
 	   #endregion
 	   /// <summary>
        /// 获取使用率曲线数据
@@ -114,6 +147,25 @@ inner join t_Device d  on bus.id= d.DeviceID
 inner join t_DeviceType dt on d.DeviceTypeID= dt.DeviceTypeID
 where bus.ParentId= {0} and dt.TypeID=4", busDeviceID);
 		   DataTable dt= db.ExecuteQuery(sql);
+		   List<int> deviceids = new List<int>();
+		   if (dt != null && dt.Rows.Count > 0)
+		   {
+			   foreach (DataRow dr in dt.Rows)
+			   {
+				   deviceids.Add(Convert.ToInt32(dr["DeviceID"].ToString()));
+			   }
+		   }
+		   return deviceids;
+	   }
+
+	   public List<int> GetBussMiddleware(int busDeviceID)
+	   {
+		   string sql = string.Format(@"select d.Describe descInfo,dt.typeid, dt.TypeName,d.*
+from t_Bussiness bus
+inner join t_Device d  on bus.id= d.DeviceID
+inner join t_DeviceType dt on d.DeviceTypeID= dt.DeviceTypeID
+where bus.ParentId= {0} and dt.TypeID=10", busDeviceID);
+		   DataTable dt = db.ExecuteQuery(sql);
 		   List<int> deviceids = new List<int>();
 		   if (dt != null && dt.Rows.Count > 0)
 		   {
@@ -283,9 +335,9 @@ order by DBName"
        }
         #endregion
 
-        #region 三、中间件运行状况统计分析
-
-       public DataTable DBTableSpaceLineNumberDetail(int Year,int Month,int BussID)
+       #region 三、中间件运行状况统计分析
+		#region 1. 数据库连接池汇总统计
+	   public DataTable DBTableSpaceLineNumberDetail(int Year,int Month,int BussID)
        {
            DateTime Start = new DateTime(Year, Month, 1);
            string sql = string.Format(@"select d.DeviceName,db.DeviceName DBName, ditem.DeviceName tableSpaceName,gro.*	,
@@ -295,7 +347,7 @@ from (
 	,max(monitorvalue) maxval
 	,min(monitorvalue) minval
 	from ReportTemp	
-	where channelno=42109 and MonitorTime >='{0} 00:00:00' and MonitorTime <='{1} 23:59:59'
+	where channelno=22603 and MonitorTime >='{0} 00:00:00' and MonitorTime <='{1} 23:59:59'
 	group by deviceno,channelno
 ) as gro
 inner join t_DevItemList ditem on ditem.DeviceID= gro.deviceno 
@@ -307,7 +359,7 @@ select deviceno,channelno,round(AVG(monitorvalue),2) avgval
 	,max(monitorvalue) maxval
 	,min(monitorvalue) minval
 	from ReportTemp	
-	where channelno=42109 and MonitorTime >='{3} 00:00:00' and MonitorTime <='{4} 23:59:59'
+	where channelno=22603 and MonitorTime >='{3} 00:00:00' and MonitorTime <='{4} 23:59:59'
 	group by deviceno,channelno
 ) as sy on sy.deviceno= gro.deviceno and sy.channelno= gro.channelno
 order by deviceno,channelno", Start.ToString("yyyy-MM-dd")
@@ -327,14 +379,14 @@ from (
 	,max(monitorvalue) maxval
 	,min(monitorvalue) minval
 	from ReportTemp	
-	where channelno=42109
+	where channelno=22603
 	group by deviceno,channelno,monitordate
 ) as gro
 inner join t_DevItemList ditem on ditem.DeviceID= gro.deviceno and DeviceID={0}
 inner join t_Bussiness bus on ditem.ParentDevID=bus.Id and bus.parentid={1}
 inner join t_Device db on db.DeviceID= bus.Id
 inner join t_Device  d on  d.DeviceID= bus.ParentId 
-order by deviceno,channelno,monitordate",spacedeviceID, BussID);
+order by deviceno,channelno,monitordate", spacedeviceID, BussID);
            return db.ExecuteQuery(sql);
        }
 
@@ -349,7 +401,7 @@ order by deviceno,channelno,monitordate",spacedeviceID, BussID);
 from (
 	select distinct deviceno,channelno
 	from ReportTemp	
-	where channelno=42109	
+	where channelno=22603	
 ) as gro
 inner join t_DevItemList ditem on ditem.DeviceID= gro.deviceno 
 inner join t_Bussiness bus on ditem.ParentDevID=bus.Id and bus.parentid={0}
@@ -357,7 +409,102 @@ inner join t_Device db on db.DeviceID= bus.Id
 inner join t_Device  d on  d.DeviceID= bus.ParentId 
 order by deviceno,channelno", sysid);
            return db.ExecuteQuery(sql);
-       }
-        #endregion
-    }
+	   }
+	   #endregion
+	   
+		#region 2、JVM堆使用汇总统计
+		public DataTable MiddlewareJVMImg(int deviceno)
+	   {
+		   string sql =string.Format( @" select deviceno,monitordate,max(convert(float,d.monitorvalue)) maxval
+	,min(convert(float,d.monitorvalue)) minval,
+	round(avg(convert(float,d.monitorvalue)) ,2) avgval
+	 from ReportTemp  d
+	where d.ChannelNO=22505 and deviceno={0}
+	group by deviceno,monitordate
+	order by deviceno,monitordate",deviceno);
+		   return db.ExecuteQuery(sql);
+	   }
+		public DataTable MiddlewareJVMDetail(int Year, int Month)
+	   {
+		   DateTime Start = new DateTime(Year, Month, 1);
+		   string sql = string.Format(@"select d.DeviceName busName,mid.DeviceName midName,gro.*	
+	,sy.maxval as symaxval,sy.minval as syminval,sy.avgval as syavgval
+from (
+	select deviceno,channelno,round(AVG(monitorvalue),2) avgval
+	,max(monitorvalue) maxval
+	,min(monitorvalue) minval
+	from ReportTemp	
+	where channelno=22505 and MonitorTime >='{0} 00:00:00' and MonitorTime <='{1} 23:59:59'
+	group by deviceno,channelno
+) as gro
+inner join t_Bussiness bus on bus.Id=gro.deviceno  
+inner join t_Device mid on mid.DeviceID= gro.deviceno
+inner join t_Device  d on  d.DeviceID= bus.ParentId 
+
+left join (
+select deviceno,channelno,round(AVG(monitorvalue),2) avgval
+	,max(monitorvalue) maxval
+	,min(monitorvalue) minval
+	from ReportTemp	
+	where channelno=22505 and MonitorTime >='{2} 00:00:00' and MonitorTime <='{3} 23:59:59'
+	group by deviceno,channelno
+) as sy on sy.deviceno= gro.deviceno and sy.channelno= gro.channelno
+order by deviceno,channelno ", Start.ToString("yyyy-MM-dd")
+		   , Start.AddMonths(1).AddDays(-1).ToString("yyyy-MM-dd")
+		   , Start.AddMonths(-1).ToString("yyyy-MM-dd")
+		   , Start.AddDays(-1).ToString("yyyy-MM-dd"));
+
+		   return db.ExecuteQuery(sql);
+	   }
+
+	   public DataTable GetBussMiddlewareName(int busDeviceID)
+	   {
+		   string sql = string.Format(@"select dt.typeid, dt.TypeName,d.DeviceID,d.DeviceName
+from t_Bussiness bus
+inner join t_Device d  on bus.id= d.DeviceID
+inner join t_DeviceType dt on d.DeviceTypeID= dt.DeviceTypeID
+where bus.ParentId= {0} and dt.TypeID=10", busDeviceID);
+		   return db.ExecuteQuery(sql);
+	   }
+		#endregion
+
+	   #region 3、会话数汇总统计
+	   public DataTable MiddlewareServerSessionImg(int deviceno)
+	   {
+		   string sql = string.Format(@" select deviceno,monitordate,max(convert(float,d.monitorvalue)) maxval
+	,min(convert(float,d.monitorvalue)) minval,
+	round(avg(convert(float,d.monitorvalue)) ,2) avgval
+	 from ReportTemp  d
+	where d.ChannelNO=22603 and deviceno={0}
+	group by deviceno,monitordate
+	order by deviceno,monitordate", deviceno);
+		   return db.ExecuteQuery(sql);
+	   }
+	   public DataTable MiddlewareServerSessionDetail(int Year, int Month, int BussID)
+	   {
+		   DateTime Start = new DateTime(Year, Month, 1);
+		   string sql = string.Format(@"select d.DeviceName,db.DeviceName DBName, ditem.DeviceName tableSpaceName,gro.*		
+from (
+	select deviceno,channelno,sum(monitorvalue) sumval
+	,max(monitorvalue) maxval
+	,min(monitorvalue) minval
+	from ReportTemp	
+	where channelno=22603 and MonitorTime >='{0} 00:00:00' and MonitorTime <='{1} 23:59:59'
+	group by deviceno,channelno
+) as gro
+inner join t_DevItemList ditem on ditem.DeviceID= gro.deviceno 
+inner join t_Bussiness bus on ditem.ParentDevID=bus.Id and bus.parentid={2}
+inner join t_Device db on db.DeviceID= bus.Id
+inner join t_Device  d on  d.DeviceID= bus.ParentId 
+order by deviceno,channelno"
+			   , Start.ToString("yyyy-MM-dd")
+		   , Start.AddMonths(1).AddDays(-1).ToString("yyyy-MM-dd")
+		  ,BussID);
+
+		   return db.ExecuteQuery(sql);
+	   }
+	   #endregion
+
+	   #endregion
+	}
 }
