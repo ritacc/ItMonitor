@@ -53,32 +53,6 @@ where dt.typeid=8 and ParentDevID is NULL";
 
         private DataTable GetNetPorts(string mDeviceID)
         {
-
-//            if (string.IsNullOrEmpty(strPortinfo))
-//                return null;
-//            string mWhere = "";
-//            //3#^#1705#^#1706#^#1707
-//            if(strPortinfo.IndexOf("#^#")>0)
-//            {
-//                string[] strArr = strPortinfo.Replace("#^#", "$").Split('$');
-//                if (strArr.Length < 2)
-//                    return null;
-//                mWhere = " d.DeviceID="+ strArr[1];
-//                for (int i = 2; i < strArr.Length; i++)
-//                {
-//                    mWhere += " or d.DeviceID="+ strArr[i];
-//                }
-//            }
-
-//            string sql = @"select d.DeviceID,d.DeviceName,d.Describe,ReceiveFlow.MonitorValue ReceiveFlow,
-//SendFlow.MonitorValue SendFlow,ErrorNO.MonitorValue ErrorNO,
-//case(d.Performance) when '故障' then 1 when  '报警' then 2 when '未启动' then 3 else 0 end  perf 
-//from t_Device d 
-//left join  t_TmpValue ReceiveFlow on ReceiveFlow.DeviceID= d.DeviceID and ReceiveFlow.ChannelNO=33001
-//left join  t_TmpValue SendFlow on SendFlow.DeviceID= d.DeviceID and SendFlow.ChannelNO=33002
-//left join  t_TmpValue ErrorNO on ErrorNO.DeviceID= d.DeviceID and ErrorNO.ChannelNO=33003
-//where " + mWhere;
-
             string sql = string.Format(@"select d.Describe descInfo,ReceiveFlow.MonitorValue ReceiveFlow,SendFlow.MonitorValue SendFlow,
 ErrorNO.MonitorValue ErrorNO,d.*,
 case(d.Performance) when '故障' then 0 when  '报警' then 2 when '未启动' then 3 else 1 end  perf

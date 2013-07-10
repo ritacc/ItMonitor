@@ -20,7 +20,7 @@
         function autoSize() {
             var tableIframe = $("#tableIframe");
             var tdIframe = $("#tdIframe");
-            var DepartmentsMain = $("#DepartmentsMain");
+            var DepartmentsMain = $("#ifList");
             if (!timer) {
                 window.clearTimeout(timer);
             }

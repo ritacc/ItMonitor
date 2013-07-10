@@ -35,7 +35,7 @@ namespace GDK.BCM.PerfMonitor
         {
             BindGraid();
             string mDeviceID = Request.QueryString["id"];
-            DeviceOR _objDev = new DeviceDA().SelectDeviceORByID(mDeviceID);
+            DeviceItemOREx _objDev = new DeviceDA().SelectDeviceItemORExByID(mDeviceID);
             PerfNetAlarmOR _obj = new PerfNetDA().SelectErrorNews(mDeviceID);
             switch (_objDev.Performance)
             {
