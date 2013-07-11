@@ -86,17 +86,29 @@
     <div style="display: none;">
         <asp:TextBox ID="txtSelectItem" runat="server"></asp:TextBox>
     </div>
-    <ul class="Ulcss">
-        <li id="net" divname="PerfNet.aspx" style="background-image: url(../images/selected80.gif);">
-            <a>网络</a></li>
-        <li id="sy" divname="PerfVirtualMachine.aspx"><a>虚拟机</a></li>
-        <li id="tx" divname="PerfHost.aspx"><a>主机</a></li>
-        <li id="xn" divname="PerfDB.aspx"><a>数据库</a></li>
-        <li id="others" divname="PerfDomain.aspx"><a>DOMAIN</a></li>
-        <li id="showSounds" divname="PerfMiddleware.aspx">中间件性能</li>
-        <li id="ljwd" divname="PerfSystemFailure.aspx"><a>系统故障</a></li>
-        <li id="gzms" divname="PerfApplication.aspx"><a>应用系统</a></li>
-    </ul>
+    <div style=" padding:0px; margin:0px;line-height: 29px;">
+        <table style=" width:100%;padding:0px; margin:0px;line-height: 29px;height: 29px;">
+            <tr>
+                <td style="height: 29px;">
+                     <ul class="Ulcss">
+                        <li id="net" divname="PerfNet.aspx" style="background-image: url(../images/selected80.gif);">
+                            <a>网络</a></li>
+                        <li id="sy" divname="PerfVirtualMachine.aspx"><a>虚拟机</a></li>
+                        <li id="tx" divname="PerfHost.aspx"><a>主机</a></li>
+                        <li id="xn" divname="PerfDB.aspx"><a>数据库</a></li>
+                        <li id="others" divname="PerfDomain.aspx"><a>DOMAIN</a></li>
+                        <li id="showSounds" divname="PerfMiddleware.aspx">中间件性能</li>
+                        <li id="ljwd" divname="PerfSystemFailure.aspx"><a>系统故障</a></li>
+                        <li id="gzms" divname="PerfApplication.aspx"><a>应用系统</a></li>
+                    </ul>
+                </td>
+                <td style="width: 30px;">
+                    <image  src="../images/Common/refresh.gif"/>
+                </td>
+            </tr>
+        </table>
+       
+    </div>
     <div  id="divFrm" style="vertical-align: top; border: 1px solid #CCCCCC;">
         <iframe id="frmMain" frameborder="0" style="overflow:auto;overflow-x:hidden;" height="100%" width="100%" src="PerfNet.aspx"></iframe>
     </div>

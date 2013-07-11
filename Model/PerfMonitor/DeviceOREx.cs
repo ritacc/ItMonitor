@@ -41,5 +41,18 @@ namespace GDK.Entity.PerfMonitor
        /// 状态
        /// </summary>
        public string State { get; set; }
+
+       public string StatusVal
+       {
+           get
+           {
+               string val = "1";
+               if (State == "正常")
+                   val = "1";
+               else
+                   val = "0";
+               return val;
+           }
+       }
     }
 }

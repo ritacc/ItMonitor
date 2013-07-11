@@ -14,24 +14,35 @@
     <script type="text/javascript" src="../Scripts/Common.js"></script>
 	<script type="text/javascript" src="../Scripts/jquery.popup.js"></script>
 	<script type="text/javascript">
-		$(document).ready(function () {
-			$.ajax({
-				type: "get",
-				url: "DeviceRef.aspx?id=<%= deviceID %>",
-				success: function (data) {
-					if (data != "") {
-						var obj = $.tryUnescape(data);
-						alert(obj.DeviceID);
-					}
-					else {
-						alert("获取数据失败！");
-					}
-				},
-				complete: function (XMLHttpRequest, textStatus) { },
-				error: function () { alert("获取数据失败！"); }
-			}); //end ajax
+	    $(document).ready(function () {
+	        var index = 0;
+	        function Ref() {
+	            index=index+1;
+	            $.ajax({
+	                type: "get",
+	                url: "DeviceRef.aspx?id=<%= deviceID %>&index" + index,
+	                success: function (data) {
+	                    if (data != "") {
+	                        var obj = $.tryUnescape(data);
+	                        if (obj) {
+	                            var murl = "../images/Common/stata2" + obj.StatusVal + ".gif";
+	                            $("#imgStatus").attr("src", murl);
+	                            //alert(murl);
+	                            //alert(data);
+	                        }
+	                    }
+	                    else {
+	                        alert("获取数据失败！");
+	                    }
+	                },
+	                complete: function (XMLHttpRequest, textStatus) { },
+	                error: function () { alert("获取数据失败！"); },
+	                cache: false
+	            }); //end ajax
+	        }
 
-		});
+	        setInterval(Ref, 10 * 1000);
+	    });
 	</script>
 </head>
 <body>
@@ -43,7 +54,7 @@
             </tr>
             <tr class="AlternatingRowStyle">
                 <td colspan="2">
-                    <img src='../images/Common/stata2<%= State %>.gif' alt="状态" class="imgPerf" />
+                    <img id="imgStatus" src='../images/Common/stata2<%= State %>.gif' alt="状态" class="imgPerf" />
                     <asp:Label ID="lblDeviceName" runat="server"></asp:Label>
                 </td>
             </tr>

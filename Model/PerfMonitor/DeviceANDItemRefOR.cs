@@ -18,40 +18,32 @@ namespace GDK.Entity.PerfMonitor
 		///<summary>
 		///最后轮询时间
 		///</summary>
-		public DateTime LastPollingTime{get;set;}
+        public string LastPollingTime { get; set; }
 
 		///<summary>
 		///下次轮询时间
 		///</summary>
-		public DateTime NextPollingTime{get;set;}
+		public string NextPollingTime{get;set;}
 
+        public string Status { get; set; }
+
+        public string StatusVal { get; set; }
 
 		///<summary>
 		///性能
 		///</summary>
 		public string Performance{get;set;}
-		public string PerformanceVal
-		{
-			get
-			{
-				string val = "1";
-				if (Performance == "故障")
-					val = "0";
-				else if (Performance == "报警")
-					val = "2";
-				else if (Performance == "未启动")
-					val = "3";
-				return val;
-
-			}
-		}
+        public string PerformanceVal { get; set; }
 
 		public DeviceANDItemRefOR(DeviceOREx obj)
 		{
 			DeviceID = obj.DeviceID;
 			Performance = obj.Performance;
-			LastPollingTime = obj.LastPollingTime;
-			NextPollingTime = obj.NextPollingTime;
+            PerformanceVal = obj.PerformanceVal;
+			LastPollingTime = obj.LastPollingTime.ToString("yyyy-MM-dd HH:mm:ss");
+            NextPollingTime = obj.NextPollingTime.ToString("yyyy-MM-dd HH:mm:ss");
+            Status = obj.State;
+            StatusVal = obj.StatusVal;
 		}
 
 		public DeviceANDItemRefOR(DeviceItemOREx obj)
