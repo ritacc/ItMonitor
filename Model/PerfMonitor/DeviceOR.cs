@@ -338,8 +338,7 @@ namespace GDK.Entity.PerfMonitor
 		/// Roles构造函数
 		/// </summary>
 		public DeviceOR()
-		{
-
+		{ 
 		}
 
 		/// <summary>

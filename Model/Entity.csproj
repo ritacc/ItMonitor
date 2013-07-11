@@ -51,6 +51,7 @@
     <Compile Include="AlertAdmin\HealthConfigOR.cs" />
     <Compile Include="CompSearch\SearchOR.cs" />
     <Compile Include="JSClass.cs" />
+    <Compile Include="PerfMonitor\DeviceANDItemRefOR.cs" />
     <Compile Include="PerfMonitor\DeviceItemOREx.cs" />
     <Compile Include="PerfMonitor\DeviceOR.cs" />
     <Compile Include="PerfMonitor\DeviceOREx.cs" />

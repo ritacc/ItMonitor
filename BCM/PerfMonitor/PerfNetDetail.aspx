@@ -12,6 +12,27 @@
     <link href="../Styles/MonitorDetail.css" rel="Stylesheet" />
     <script type="text/javascript" src="../Scripts/jquery-1.4.4.min.js"></script>
     <script type="text/javascript" src="../Scripts/Common.js"></script>
+	<script type="text/javascript" src="../Scripts/jquery.popup.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$.ajax({
+				type: "get",
+				url: "DeviceRef.aspx?id=<%= deviceID %>",
+				success: function (data) {
+					if (data != "") {
+						var obj = $.tryUnescape(data);
+						alert(obj.DeviceID);
+					}
+					else {
+						alert("获取数据失败！");
+					}
+				},
+				complete: function (XMLHttpRequest, textStatus) { },
+				error: function () { alert("获取数据失败！"); }
+			}); //end ajax
+
+		});
+	</script>
 </head>
 <body>
     <form id="form1" runat="server">

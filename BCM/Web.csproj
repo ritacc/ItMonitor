@@ -322,6 +322,7 @@
     <Content Include="Main\OutoffTime.aspx" />
     <Content Include="Map.aspx" />
     <Content Include="Monitor\MonitorDefin.aspx" />
+    <Content Include="PerfMonitor\DeviceRef.aspx" />
     <Content Include="PerfMonitor\Perf.aspx" />
     <Content Include="PerfMonitor\PerfApplication.aspx" />
     <Content Include="PerfMonitor\PerfApplicationDeatil.aspx" />
@@ -656,6 +657,13 @@
     </Compile>
     <Compile Include="Monitor\MonitorDefin.aspx.designer.cs">
       <DependentUpon>MonitorDefin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PerfMonitor\DeviceRef.aspx.cs">
+      <DependentUpon>DeviceRef.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PerfMonitor\DeviceRef.aspx.designer.cs">
+      <DependentUpon>DeviceRef.aspx</DependentUpon>
     </Compile>
     <Compile Include="PerfMonitor\Perf.aspx.cs">
       <DependentUpon>Perf.aspx</DependentUpon>
