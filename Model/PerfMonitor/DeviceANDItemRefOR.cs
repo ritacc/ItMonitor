@@ -19,21 +19,31 @@ namespace GDK.Entity.PerfMonitor
 		///最后轮询时间
 		///</summary>
         public string LastPollingTime { get; set; }
-
 		///<summary>
 		///下次轮询时间
 		///</summary>
 		public string NextPollingTime{get;set;}
 
         public string Status { get; set; }
-
         public string StatusVal { get; set; }
+
+        /// <summary>
+        /// 健康状态
+        /// </summary>
+        public string HealthStatus { get; set; }
+        public string HealthStatusVal { get; set; }
 
 		///<summary>
 		///性能
 		///</summary>
 		public string Performance{get;set;}
         public string PerformanceVal { get; set; }
+
+        /// <summary>
+        /// 告警状态
+        /// </summary>
+        public string WarningStatus { get; set; }
+        public string WarningStatusVal { get; set; }
 
 		public DeviceANDItemRefOR(DeviceOREx obj)
 		{
@@ -44,6 +54,9 @@ namespace GDK.Entity.PerfMonitor
             NextPollingTime = obj.NextPollingTime.ToString("yyyy-MM-dd HH:mm:ss");
             Status = obj.State;
             StatusVal = obj.StatusVal;
+
+            HealthStatus = obj.HealthStatus;
+            HealthStatusVal = obj.HealthStatusVal;
 		}
 
 		public DeviceANDItemRefOR(DeviceItemOREx obj)

@@ -52,6 +52,26 @@
         var timer = null;
         var lastClickObj = null;
         $(document).ready(function () {
+
+            $("#imgRef").click(function () {
+                var murl = window.frmMain.location.href;
+                var index = murl.indexOf('&r');
+                if (index > 0) {
+                    murl = murl.substring(0, index);
+                    if (murl.indexOf("?") > 0)
+                        murl = murl + "&r=" + Math.random();
+                    else
+                        murl = murl + "?r=" + Math.random();
+                }
+                else {
+                    if (murl.indexOf("?") > 0)
+                        murl = murl + "&r=" + Math.random();
+                    else
+                        murl = murl + "?r=" + Math.random();
+                }
+                window.frmMain.location.href = murl;
+            });
+
             //刷新更新加载项
             SetReLoadSelectItem();
 
@@ -98,18 +118,19 @@
                         <li id="xn" divname="PerfDB.aspx"><a>数据库</a></li>
                         <li id="others" divname="PerfDomain.aspx"><a>DOMAIN</a></li>
                         <li id="showSounds" divname="PerfMiddleware.aspx">中间件性能</li>
-                        <li id="ljwd" divname="PerfSystemFailure.aspx"><a>系统故障</a></li>
+                        <%--<li id="ljwd" divname="PerfSystemFailure.aspx"><a>系统故障</a></li>--%>
                         <li id="gzms" divname="PerfApplication.aspx"><a>应用系统</a></li>
                     </ul>
                 </td>
                 <td style="width: 30px;">
-                    <image  src="../images/Common/refresh.gif"/>
+                    <image id="imgRef"  src="../images/Common/refresh.gif"/>
                 </td>
             </tr>
         </table>
        
     </div>
     <div  id="divFrm" style="vertical-align: top; border: 1px solid #CCCCCC;">
-        <iframe id="frmMain" frameborder="0" style="overflow:auto;overflow-x:hidden;" height="100%" width="100%" src="PerfNet.aspx"></iframe>
+        <iframe id="frmMain" frameborder="0" style="overflow:auto;overflow-x:hidden;" height="100%" width="100%" 
+        src="PerfNet.aspx"></iframe>
     </div>
 </asp:Content>

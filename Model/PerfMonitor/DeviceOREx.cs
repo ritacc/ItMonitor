@@ -36,6 +36,25 @@ namespace GDK.Entity.PerfMonitor
        /// 健康状况
        /// </summary>
        public string HealthStatus { get; set; }
+       public string HealthStatusVal {
+           get
+           {
+               string val = string.Empty;
+               if( HealthStatus=="故障")
+               {
+                   val = "0";
+               }
+               else if (HealthStatus == "报警")
+               {
+                   val = "2";
+               }
+               else
+               {
+                   val = "1";
+               }
+               return val;
+           }
+       }
 
        /// <summary>
        /// 状态
@@ -47,10 +66,10 @@ namespace GDK.Entity.PerfMonitor
            get
            {
                string val = "1";
-               if (State == "正常")
-                   val = "1";
-               else
+               if (State == "异常")
                    val = "0";
+               else
+                   val = "1";
                return val;
            }
        }

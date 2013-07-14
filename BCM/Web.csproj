@@ -370,6 +370,7 @@
     <Content Include="Scripts\My97DatePicker\skin\whyGreen\datepicker.css" />
     <Content Include="Scripts\My97DatePicker\skin\whyGreen\img.gif" />
     <Content Include="Scripts\My97DatePicker\WdatePicker.js" />
+    <Content Include="Scripts\RefDetail.js" />
     <Content Include="Scripts\Silverlight.js" />
     <Content Include="Scripts\TaskSyxzcEdit.js" />
     <Content Include="StateMonitor\StateApplication.aspx" />
@@ -442,6 +443,9 @@
     <Content Include="Sysadmin\DepartmentsMain.aspx" />
     <Content Include="Sysadmin\UserEdit.aspx" />
     <Content Include="TempImageFiles\txt.txt" />
+    <Content Include="Upload\PIC\route0.png" />
+    <Content Include="Upload\PIC\route1.png" />
+    <Content Include="Upload\PIC\route2.png" />
     <Content Include="WCF\WCFControlGetValue.svc" />
     <Content Include="修改记录.txt" />
     <Content Include="UI\HTMLMap.ascx" />
@@ -452,7 +456,6 @@
     <Content Include="UI\SelectFileUpFile.aspx" />
     <Content Include="UI\UpFileAdnAdmin.aspx" />
     <Content Include="UI\UpLoadFile.ascx" />
-    <Content Include="Upload\PIC\bg1.jpg" />
     <Content Include="Upload\PIC\jump.jpg" />
     <Content Include="Upload\PIC\Near2.jpg" />
     <Content Include="Web.config">
@@ -911,10 +914,12 @@
     <Compile Include="Role\UserAuthList.aspx.designer.cs">
       <DependentUpon>UserAuthList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Servers\Analysis.cs" />
     <Compile Include="Servers\FileService.cs" />
     <Compile Include="Servers\MonitorServers.cs" />
     <Compile Include="Servers\MonitorServers.metadata.cs" />
     <Compile Include="Servers\MonitorServersC.cs" />
+    <Compile Include="Servers\Paser.cs" />
     <Compile Include="StateMonitor\StateApplication.aspx.cs">
       <DependentUpon>StateApplication.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

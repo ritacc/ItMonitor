@@ -42,18 +42,19 @@ namespace GDK.BCM.PerfMonitor
             DeviceOREx _objDevEx = new DeviceDA().SelectDeviceORExByID(mDeviceID);
             
             lblName.Text = _objDev.DeviceName;
-            switch (_objDevEx.HealthStatus)
-            {
-                case "正常":
-                    Health = "1";
-                    break;
-                case "故障":
-                    Health = "0";
-                    break;
-                case "报警":
-                    Health = "2";
-                    break;
-            }
+            Health = _objDevEx.HealthStatusVal;
+            //switch (_objDevEx.HealthStatus)
+            //{
+            //    case "正常":
+            //        Health = "1";
+            //        break;
+            //    case "故障":
+            //        Health = "0";
+            //        break;
+            //    case "报警":
+            //        Health = "2";
+            //        break;
+            //}
             lblType.Text = _objDevEx.TypeName;
             lblInterval.Text = _objDev.Interval;
             lblLastPollingTime.Text = _objDev.LastPollingTime.ToString();

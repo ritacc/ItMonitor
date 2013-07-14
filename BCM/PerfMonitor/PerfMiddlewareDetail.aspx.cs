@@ -16,7 +16,8 @@ namespace GDK.BCM.PerfMonitor
     public partial class PerfMiddlewareDetail : PageBase
     {
         public int deviceID = 0;
-        public string State = "0";
+        public string State = "1";
+        public string health = "1";
         protected override void OnLoad(EventArgs e)
         {
             base.IsAuthenticate = false;
@@ -57,20 +58,23 @@ namespace GDK.BCM.PerfMonitor
             DeviceOREx _objDevEx = new DeviceDA().SelectDeviceORExByID(mDeviceID);
             PerfMiddlewareOR _pm = new PerfMiddlewareDA().SelectDeviceDetail(mDeviceID);
             lblState.Text = _objDev.Performance;
-            switch (_objDevEx.State)
-            {
-                case "正常":
-                    State = "1";
-                    break;
-                case "故障":
-                    State = "0";
-                    break;
-                case "未启动":
-                    State = "3";
-                    break;
-            }
+            State = _objDevEx.StatusVal;
+            health = _objDevEx.HealthStatusVal;
+
+            //switch (_objDevEx.State)
+            //{
+            //    case "正常":
+            //        State = "1";
+            //        break;
+            //    case "故障":
+            //        State = "0";
+            //        break;
+            //    case "未启动":
+            //        State = "3";
+            //        break;
+            //}
             lblName.Text = _objDev.DeviceName;
-            lblWarningStatus.Text = _objDevEx.WarningStatus;
+            //lblWarningStatus.Text = _objDevEx.WarningStatus;
             lblType.Text = _objDevEx.TypeName;
             lblWeblogic.Text = _objDev.Version;
             lblPort.Text = _objDev.Port;

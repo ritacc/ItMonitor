@@ -25,6 +25,45 @@ namespace MonitorSystem.Web.Servers
         // TODO:
         // 考虑约束查询方法的结果。如果需要其他输入，
         //可向此方法添加参数或创建具有不同名称的其他查询方法。
+        // 为支持分页，需要向“t_Channel”查询添加顺序。
+        public IQueryable<t_Channel> GetT_Channel()
+        {
+            return this.ObjectContext.t_Channel;
+        }
+
+        public void InsertT_Channel(t_Channel t_Channel)
+        {
+            if ((t_Channel.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(t_Channel, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.t_Channel.AddObject(t_Channel);
+            }
+        }
+
+        public void UpdateT_Channel(t_Channel currentt_Channel)
+        {
+            this.ObjectContext.t_Channel.AttachAsModified(currentt_Channel, this.ChangeSet.GetOriginal(currentt_Channel));
+        }
+
+        public void DeleteT_Channel(t_Channel t_Channel)
+        {
+            if ((t_Channel.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(t_Channel, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.t_Channel.Attach(t_Channel);
+                this.ObjectContext.t_Channel.DeleteObject(t_Channel);
+            }
+        }
+
+        // TODO:
+        // 考虑约束查询方法的结果。如果需要其他输入，
+        //可向此方法添加参数或创建具有不同名称的其他查询方法。
         // 为支持分页，需要向“t_Control”查询添加顺序。
         public IQueryable<t_Control> GetT_Control()
         {
@@ -103,6 +142,45 @@ namespace MonitorSystem.Web.Servers
         // TODO:
         // 考虑约束查询方法的结果。如果需要其他输入，
         //可向此方法添加参数或创建具有不同名称的其他查询方法。
+        // 为支持分页，需要向“t_Device”查询添加顺序。
+        public IQueryable<t_Device> GetT_Device()
+        {
+            return this.ObjectContext.t_Device;
+        }
+
+        public void InsertT_Device(t_Device t_Device)
+        {
+            if ((t_Device.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(t_Device, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.t_Device.AddObject(t_Device);
+            }
+        }
+
+        public void UpdateT_Device(t_Device currentt_Device)
+        {
+            this.ObjectContext.t_Device.AttachAsModified(currentt_Device, this.ChangeSet.GetOriginal(currentt_Device));
+        }
+
+        public void DeleteT_Device(t_Device t_Device)
+        {
+            if ((t_Device.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(t_Device, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.t_Device.Attach(t_Device);
+                this.ObjectContext.t_Device.DeleteObject(t_Device);
+            }
+        }
+
+        // TODO:
+        // 考虑约束查询方法的结果。如果需要其他输入，
+        //可向此方法添加参数或创建具有不同名称的其他查询方法。
         // 为支持分页，需要向“t_Element”查询添加顺序。
         public IQueryable<t_Element> GetT_Element()
         {
@@ -142,6 +220,45 @@ namespace MonitorSystem.Web.Servers
         // TODO:
         // 考虑约束查询方法的结果。如果需要其他输入，
         //可向此方法添加参数或创建具有不同名称的其他查询方法。
+        // 为支持分页，需要向“t_Element_RealTimeLine”查询添加顺序。
+        public IQueryable<t_Element_RealTimeLine> GetT_Element_RealTimeLine()
+        {
+            return this.ObjectContext.t_Element_RealTimeLine;
+        }
+
+        public void InsertT_Element_RealTimeLine(t_Element_RealTimeLine t_Element_RealTimeLine)
+        {
+            if ((t_Element_RealTimeLine.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(t_Element_RealTimeLine, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.t_Element_RealTimeLine.AddObject(t_Element_RealTimeLine);
+            }
+        }
+
+        public void UpdateT_Element_RealTimeLine(t_Element_RealTimeLine currentt_Element_RealTimeLine)
+        {
+            this.ObjectContext.t_Element_RealTimeLine.AttachAsModified(currentt_Element_RealTimeLine, this.ChangeSet.GetOriginal(currentt_Element_RealTimeLine));
+        }
+
+        public void DeleteT_Element_RealTimeLine(t_Element_RealTimeLine t_Element_RealTimeLine)
+        {
+            if ((t_Element_RealTimeLine.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(t_Element_RealTimeLine, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.t_Element_RealTimeLine.Attach(t_Element_RealTimeLine);
+                this.ObjectContext.t_Element_RealTimeLine.DeleteObject(t_Element_RealTimeLine);
+            }
+        }
+
+        // TODO:
+        // 考虑约束查询方法的结果。如果需要其他输入，
+        //可向此方法添加参数或创建具有不同名称的其他查询方法。
         // 为支持分页，需要向“t_ElementProperty”查询添加顺序。
         public IQueryable<t_ElementProperty> GetT_ElementProperty()
         {
@@ -175,6 +292,45 @@ namespace MonitorSystem.Web.Servers
             {
                 this.ObjectContext.t_ElementProperty.Attach(t_ElementProperty);
                 this.ObjectContext.t_ElementProperty.DeleteObject(t_ElementProperty);
+            }
+        }
+
+        // TODO:
+        // 考虑约束查询方法的结果。如果需要其他输入，
+        //可向此方法添加参数或创建具有不同名称的其他查询方法。
+        // 为支持分页，需要向“t_GalleryClassification”查询添加顺序。
+        public IQueryable<t_GalleryClassification> GetT_GalleryClassification()
+        {
+            return this.ObjectContext.t_GalleryClassification;
+        }
+
+        public void InsertT_GalleryClassification(t_GalleryClassification t_GalleryClassification)
+        {
+            if ((t_GalleryClassification.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(t_GalleryClassification, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.t_GalleryClassification.AddObject(t_GalleryClassification);
+            }
+        }
+
+        public void UpdateT_GalleryClassification(t_GalleryClassification currentt_GalleryClassification)
+        {
+            this.ObjectContext.t_GalleryClassification.AttachAsModified(currentt_GalleryClassification, this.ChangeSet.GetOriginal(currentt_GalleryClassification));
+        }
+
+        public void DeleteT_GalleryClassification(t_GalleryClassification t_GalleryClassification)
+        {
+            if ((t_GalleryClassification.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(t_GalleryClassification, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.t_GalleryClassification.Attach(t_GalleryClassification);
+                this.ObjectContext.t_GalleryClassification.DeleteObject(t_GalleryClassification);
             }
         }
 
@@ -259,6 +415,45 @@ namespace MonitorSystem.Web.Servers
         // TODO:
         // 考虑约束查询方法的结果。如果需要其他输入，
         //可向此方法添加参数或创建具有不同名称的其他查询方法。
+        // 为支持分页，需要向“t_SelectProperty”查询添加顺序。
+        public IQueryable<t_SelectProperty> GetT_SelectProperty()
+        {
+            return this.ObjectContext.t_SelectProperty;
+        }
+
+        public void InsertT_SelectProperty(t_SelectProperty t_SelectProperty)
+        {
+            if ((t_SelectProperty.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(t_SelectProperty, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.t_SelectProperty.AddObject(t_SelectProperty);
+            }
+        }
+
+        public void UpdateT_SelectProperty(t_SelectProperty currentt_SelectProperty)
+        {
+            this.ObjectContext.t_SelectProperty.AttachAsModified(currentt_SelectProperty, this.ChangeSet.GetOriginal(currentt_SelectProperty));
+        }
+
+        public void DeleteT_SelectProperty(t_SelectProperty t_SelectProperty)
+        {
+            if ((t_SelectProperty.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(t_SelectProperty, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.t_SelectProperty.Attach(t_SelectProperty);
+                this.ObjectContext.t_SelectProperty.DeleteObject(t_SelectProperty);
+            }
+        }
+
+        // TODO:
+        // 考虑约束查询方法的结果。如果需要其他输入，
+        //可向此方法添加参数或创建具有不同名称的其他查询方法。
         // 为支持分页，需要向“t_Station”查询添加顺序。
         public IQueryable<t_Station> GetT_Station()
         {
@@ -298,78 +493,117 @@ namespace MonitorSystem.Web.Servers
         // TODO:
         // 考虑约束查询方法的结果。如果需要其他输入，
         //可向此方法添加参数或创建具有不同名称的其他查询方法。
-        // 为支持分页，需要向“v_DeviceStatus”查询添加顺序。
-        public IQueryable<v_DeviceStatus> GetV_DeviceStatus()
+        // 为支持分页，需要向“t_Sys_MainRealTimeSet”查询添加顺序。
+        public IQueryable<t_Sys_MainRealTimeSet> GetT_Sys_MainRealTimeSet()
         {
-            return this.ObjectContext.v_DeviceStatus;
+            return this.ObjectContext.t_Sys_MainRealTimeSet;
         }
 
-        public void InsertV_DeviceStatus(v_DeviceStatus v_DeviceStatus)
+        public void InsertT_Sys_MainRealTimeSet(t_Sys_MainRealTimeSet t_Sys_MainRealTimeSet)
         {
-            if ((v_DeviceStatus.EntityState != EntityState.Detached))
+            if ((t_Sys_MainRealTimeSet.EntityState != EntityState.Detached))
             {
-                this.ObjectContext.ObjectStateManager.ChangeObjectState(v_DeviceStatus, EntityState.Added);
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(t_Sys_MainRealTimeSet, EntityState.Added);
             }
             else
             {
-                this.ObjectContext.v_DeviceStatus.AddObject(v_DeviceStatus);
+                this.ObjectContext.t_Sys_MainRealTimeSet.AddObject(t_Sys_MainRealTimeSet);
             }
         }
 
-        public void UpdateV_DeviceStatus(v_DeviceStatus currentv_DeviceStatus)
+        public void UpdateT_Sys_MainRealTimeSet(t_Sys_MainRealTimeSet currentt_Sys_MainRealTimeSet)
         {
-            this.ObjectContext.v_DeviceStatus.AttachAsModified(currentv_DeviceStatus, this.ChangeSet.GetOriginal(currentv_DeviceStatus));
+            this.ObjectContext.t_Sys_MainRealTimeSet.AttachAsModified(currentt_Sys_MainRealTimeSet, this.ChangeSet.GetOriginal(currentt_Sys_MainRealTimeSet));
         }
 
-        public void DeleteV_DeviceStatus(v_DeviceStatus v_DeviceStatus)
+        public void DeleteT_Sys_MainRealTimeSet(t_Sys_MainRealTimeSet t_Sys_MainRealTimeSet)
         {
-            if ((v_DeviceStatus.EntityState != EntityState.Detached))
+            if ((t_Sys_MainRealTimeSet.EntityState != EntityState.Detached))
             {
-                this.ObjectContext.ObjectStateManager.ChangeObjectState(v_DeviceStatus, EntityState.Deleted);
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(t_Sys_MainRealTimeSet, EntityState.Deleted);
             }
             else
             {
-                this.ObjectContext.v_DeviceStatus.Attach(v_DeviceStatus);
-                this.ObjectContext.v_DeviceStatus.DeleteObject(v_DeviceStatus);
+                this.ObjectContext.t_Sys_MainRealTimeSet.Attach(t_Sys_MainRealTimeSet);
+                this.ObjectContext.t_Sys_MainRealTimeSet.DeleteObject(t_Sys_MainRealTimeSet);
             }
         }
 
         // TODO:
         // 考虑约束查询方法的结果。如果需要其他输入，
         //可向此方法添加参数或创建具有不同名称的其他查询方法。
-        // 为支持分页，需要向“v_NetDevice”查询添加顺序。
-        public IQueryable<v_NetDevice> GetV_NetDevice()
+        // 为支持分页，需要向“t_TmpValue”查询添加顺序。
+        public IQueryable<t_TmpValue> GetT_TmpValue()
         {
-            return this.ObjectContext.v_NetDevice;
+            return this.ObjectContext.t_TmpValue;
         }
 
-        public void InsertV_NetDevice(v_NetDevice v_NetDevice)
+        public void InsertT_TmpValue(t_TmpValue t_TmpValue)
         {
-            if ((v_NetDevice.EntityState != EntityState.Detached))
+            if ((t_TmpValue.EntityState != EntityState.Detached))
             {
-                this.ObjectContext.ObjectStateManager.ChangeObjectState(v_NetDevice, EntityState.Added);
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(t_TmpValue, EntityState.Added);
             }
             else
             {
-                this.ObjectContext.v_NetDevice.AddObject(v_NetDevice);
+                this.ObjectContext.t_TmpValue.AddObject(t_TmpValue);
             }
         }
 
-        public void UpdateV_NetDevice(v_NetDevice currentv_NetDevice)
+        public void UpdateT_TmpValue(t_TmpValue currentt_TmpValue)
         {
-            this.ObjectContext.v_NetDevice.AttachAsModified(currentv_NetDevice, this.ChangeSet.GetOriginal(currentv_NetDevice));
+            this.ObjectContext.t_TmpValue.AttachAsModified(currentt_TmpValue, this.ChangeSet.GetOriginal(currentt_TmpValue));
         }
 
-        public void DeleteV_NetDevice(v_NetDevice v_NetDevice)
+        public void DeleteT_TmpValue(t_TmpValue t_TmpValue)
         {
-            if ((v_NetDevice.EntityState != EntityState.Detached))
+            if ((t_TmpValue.EntityState != EntityState.Detached))
             {
-                this.ObjectContext.ObjectStateManager.ChangeObjectState(v_NetDevice, EntityState.Deleted);
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(t_TmpValue, EntityState.Deleted);
             }
             else
             {
-                this.ObjectContext.v_NetDevice.Attach(v_NetDevice);
-                this.ObjectContext.v_NetDevice.DeleteObject(v_NetDevice);
+                this.ObjectContext.t_TmpValue.Attach(t_TmpValue);
+                this.ObjectContext.t_TmpValue.DeleteObject(t_TmpValue);
+            }
+        }
+
+        // TODO:
+        // 考虑约束查询方法的结果。如果需要其他输入，
+        //可向此方法添加参数或创建具有不同名称的其他查询方法。
+        // 为支持分页，需要向“V_ScreenMonitorValue”查询添加顺序。
+        public IQueryable<V_ScreenMonitorValue> GetV_ScreenMonitorValue()
+        {
+            return this.ObjectContext.V_ScreenMonitorValue;
+        }
+
+        public void InsertV_ScreenMonitorValue(V_ScreenMonitorValue v_ScreenMonitorValue)
+        {
+            if ((v_ScreenMonitorValue.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(v_ScreenMonitorValue, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.V_ScreenMonitorValue.AddObject(v_ScreenMonitorValue);
+            }
+        }
+
+        public void UpdateV_ScreenMonitorValue(V_ScreenMonitorValue currentV_ScreenMonitorValue)
+        {
+            this.ObjectContext.V_ScreenMonitorValue.AttachAsModified(currentV_ScreenMonitorValue, this.ChangeSet.GetOriginal(currentV_ScreenMonitorValue));
+        }
+
+        public void DeleteV_ScreenMonitorValue(V_ScreenMonitorValue v_ScreenMonitorValue)
+        {
+            if ((v_ScreenMonitorValue.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(v_ScreenMonitorValue, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.V_ScreenMonitorValue.Attach(v_ScreenMonitorValue);
+                this.ObjectContext.V_ScreenMonitorValue.DeleteObject(v_ScreenMonitorValue);
             }
         }
     }

@@ -12,6 +12,14 @@
     <script type="text/javascript" src="../Scripts/jquery-1.4.4.min.js"></script>
     <script type="text/javascript" src="../Scripts/Common.js"></script>
     <script type="text/javascript" src="../Scripts/MonitorList.js"></script>
+    <script type="text/javascript" src="../Scripts/jquery.popup.js"></script>
+    <script type="text/javascript" src="../Scripts/RefDetail.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            SetRef(<%= deviceID %>);
+        });
+	</script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -32,7 +40,7 @@
                                     健康状况:
                                 </td>
                                 <td>
-                                    <img src='../images/Common/health<%= Health %>.gif' alt="状态" class="imgPerf" />
+                                    <img  id="imgHealth" src='../images/Common/health<%= Health %>.gif' alt="状态" class="imgPerf" />
                                 </td>
                             </tr>
                             <tr class="RowStyle">
@@ -132,7 +140,8 @@
                             </ChartAreas>
                         </asp:Chart>
                         <br /><br />
-                    当前可用状态：<img src='../images/Common/stata<%= State %>.gif' alt="性能" /> <asp:Label ID="lblState" runat="server"></asp:Label>
+                        当前可用状态：<img id="imgStatusSub" src='../images/Common/stata<%= State %>.gif' alt="状态" />
+                         <asp:Label ID="lblState" runat="server"></asp:Label>
                         <br /><br />
                     </div>
                 </td>

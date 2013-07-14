@@ -30,7 +30,7 @@
                             <tr class="RowStyle">
                                 <td>告警状态</td>
                                 <td>
-                               <asp:Label ID="lblWarningStatus" runat="server"></asp:Label>
+                                    <img id="imgHealth" src='../images/Common/health<%= health %>.gif' alt="告警状态" class="imgPerf" />
                                 </td>
                             </tr>
                             <tr class="AlternatingRowStyle">
@@ -130,7 +130,8 @@
                             </ChartAreas>
                         </asp:Chart>
                         <br /><br />
-                    当前可用状态：<img src='../images/Common/stata<%= State %>.gif' /> <asp:Label ID="lblState" runat="server"></asp:Label>
+                            当前可用状态：<img id="imgStatusSub" alt="状态" src='../images/Common/stata<%= State %>.gif' /> 
+                            <asp:Label ID="lblState" runat="server"></asp:Label>
                         <br /><br />
                     </div>
                 </td>

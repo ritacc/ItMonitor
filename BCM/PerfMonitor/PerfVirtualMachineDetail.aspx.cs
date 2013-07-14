@@ -48,30 +48,10 @@ namespace GDK.BCM.PerfMonitor
             
             lblMonitorName.Text = _objDev.DeviceName;
             lblDescribe.Text = _objDev.Describe;
-            switch (_objDevEx.HealthStatus)
-            {
-                case "正常":
-                    Health = "1";
-                    break;
-                case "故障":
-                    Health = "0";
-                    break;
-                case "报警":
-                    Health = "2";
-                    break;
-            }
-            switch (_objDevEx.State)
-            {
-                case "正常":
-                    State = "1";
-                    break;
-                case "故障":
-                    State = "0";
-                    break;
-                case "未启动":
-                    State = "3";
-                    break;
-            }
+            Health = _objDevEx.HealthStatusVal;
+            State = _objDevEx.StatusVal;
+            
+
             lblLastPollingTime.Text = _objDev.LastPollingTime.ToString();
             lblNextPollingTime.Text = _objDev.NextPollingTime.ToString();
             lblPerformance.Text = _objDevEx.State;

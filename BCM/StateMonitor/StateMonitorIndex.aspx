@@ -88,7 +88,7 @@
     <ul class="Ulcss">
         <li id="net" divname="StateList.aspx" style="background-image: url(../images/selected80.gif);">
             <a>状态列表</a></li>
-        <li id="sy" divname="StateNet.aspx"><a>网络状态</a></li>
+        <li id="sy" divname="StateNet.aspx?type=main"><a>网络拓扑状态</a></li>
         <li id="tx" divname="StateHost.aspx"><a>主机状态</a></li>
         <li id="xn" divname="StateApplication.aspx"><a>应用状态</a></li>
         <li id="others" divname="StateCompRoomEnvi.aspx"><a>机房环境状态</a></li>

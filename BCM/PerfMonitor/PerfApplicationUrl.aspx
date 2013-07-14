@@ -12,6 +12,14 @@
     <script type="text/javascript" src="../Scripts/jquery-1.4.4.min.js"></script>
     <script type="text/javascript" src="../Scripts/Common.js"></script>
     <script type="text/javascript" src="../Scripts/MonitorList.js"></script>
+       <script type="text/javascript" src="../Scripts/jquery.popup.js"></script>
+    <script type="text/javascript" src="../Scripts/RefDetail.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            SetRef(<%= deviceID %>);
+        });
+	</script>
 </head>
 <body>
     <form id="form1" runat="server">
