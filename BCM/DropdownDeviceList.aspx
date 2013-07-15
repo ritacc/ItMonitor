@@ -12,7 +12,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    
+    <div></div>
    
 			<asp:Chart ID="chLine" runat="server" Width="600px" Height="270px" 
                 BackColor="#FAFAFA">
