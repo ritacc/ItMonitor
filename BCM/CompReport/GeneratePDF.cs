@@ -193,7 +193,9 @@ namespace GDK.BCM.CompReport
 
 		#region 第二部分-内容
 		public void ContentSecondPart()
-        {
+		{
+			PdfDA DA = new PdfDA();
+
             string strContent = "\n\n\n\n第二部分、系统运行状况整体分析\n";
             Paragraph pg = new Paragraph(strContent, GetFont(FontEnum.TitleCenter));
             pg.Alignment = Element.ALIGN_CENTER;
@@ -222,7 +224,8 @@ namespace GDK.BCM.CompReport
             document.Add(pg);
             chLine.Titles["titY"].Text = "均值(%)";
             chLine.Titles["titTop"].Text = "主机CPU利用率均值曲线序列图";
-            DataTable dtList = UseReprot(25201);
+			DA.InitHostInfo(this.SystemID, StartTime.AddMonths(-5), EndTime);//初使化,主机
+			DataTable dtList = UseReprot(25201);
             WriteTable(dtList, "当月CPU压力状态");//
             TableDesc("主机CPU");
 
@@ -251,8 +254,8 @@ namespace GDK.BCM.CompReport
             sb.Append("并与上月作比较，以明确表空间的增减情况，以便及时作相关处理，以及提醒各科室及时处理存储空间问题，并为制定存储空间的扩充方案提供一定参考。");
             pg = new Paragraph(sb.ToString(), GetFont(FontEnum.Content));
             document.Add(pg);
-			PdfDA DA = new PdfDA();
-			DA.SecondInit(this.SystemID,StartTime.AddMonths(-5),EndTime);
+
+			DA.SecondDBInit(this.SystemID, StartTime.AddMonths(-5), EndTime);//数据库初使化
             DBTableSpaceUse();
 
 
@@ -330,13 +333,13 @@ namespace GDK.BCM.CompReport
         /// <summary>
         /// 使用率报表,并返回，table数据列表
         /// </summary>
-        public DataTable UseReprot(int ChanncelID)
+		public DataTable UseReprot(int ChaanceNo)
         {
             chLine.Series.Clear();
 
             PdfDA mda = new PdfDA();
-            mda.InitData(SystemID, ChanncelID, StartTime, EndTime);
-            DataTable dt = mda.GetUseLine();
+           // mda.InitData(SystemID, ChanncelID, StartTime, EndTime);
+			DataTable dt = mda.GetUseLine(ChaanceNo);
 
             Series ser = new Series();
             ser.ChartType = SeriesChartType.Line;
@@ -350,7 +353,7 @@ namespace GDK.BCM.CompReport
 
             AddImg();//生成，统计图
 
-            return mda.GetUseTableInfo();
+			return mda.GetUseTableInfo(StartTime.Year,StartTime.Month,this.SystemID, ChaanceNo);
         }
 
         /// <summary>
@@ -361,75 +364,55 @@ namespace GDK.BCM.CompReport
         {
             PdfPTable pdfTB = new PdfPTable(11);
             pdfTB.WidthPercentage = 99;
-            pdfTB.SetWidths(new float[] { 150f, 150f, 100f, 100f, 100f, 100f, 100f, 100f, 100f, 120f, 120f });
+			pdfTB.SetWidths(new float[] { 150f, 150f, 150f, 100f, 100f, 100f, 100f, 100f, 100f, 100f, 120f, 120f });
             //业务系统名称  IP	均值(%)		峰值(%) 峰值>80%出现次数(次) 当月CPU压力状态
             Font ft = GetFont(FontEnum.TableHeader);
-            PdfPCell headr = GetPdfCell("业务系统名称");
-            
-            headr.Rowspan = 2;
-            
+            PdfPCell headr = GetPdfCell("业务系统名称");            
+            headr.Rowspan = 2;            
             pdfTB.AddCell(headr);
 
-            headr = GetPdfCell("主机IP");
-            
-            headr.Rowspan = 2;
-            
+            headr = GetPdfCell("主机IP");            
+            headr.Rowspan = 2;            
             pdfTB.AddCell(headr);
 
 
-            headr = GetPdfCell("均值(%)");
-            
-            headr.Colspan = 4;
-            
+            headr = GetPdfCell("均值(%)");            
+            headr.Colspan = 4;            
             pdfTB.AddCell(headr);
 
 
             headr = GetPdfCell("峰值(%)");
-            
-            
             headr.Rowspan = 2;
             pdfTB.AddCell(headr);
 
             headr = GetPdfCell("峰值>=80%出现次数（次）");
-            
-
             headr.Colspan = 3;
             pdfTB.AddCell(headr);
 
-            headr = GetPdfCell(mTypeStatusInfo);
-            
+            headr = GetPdfCell(mTypeStatusInfo);            
             headr.Rowspan = 2;
             pdfTB.AddCell(headr);
 
 
-            headr = GetPdfCell("整月(%)");
-            
+            headr = GetPdfCell("整月(%)");            
             pdfTB.AddCell(headr);
 
-            headr = GetPdfCell("1-5");
-            
+            headr = GetPdfCell("1-5");            
             pdfTB.AddCell(headr);
 
-            headr = GetPdfCell("11-15");
-            
+            headr = GetPdfCell("11-15");            
             pdfTB.AddCell(headr);
 
-            headr = GetPdfCell("25-31");
-            
+            headr = GetPdfCell("25-31");            
+            pdfTB.AddCell(headr);
+			
+            headr = GetPdfCell("1-5");            
             pdfTB.AddCell(headr);
 
-
-
-            headr = GetPdfCell("1-5");
-            
+            headr = GetPdfCell("11-15");            
             pdfTB.AddCell(headr);
 
-            headr = GetPdfCell("11-15");
-            
-            pdfTB.AddCell(headr);
-
-            headr = GetPdfCell("25-31");
-            
+            headr = GetPdfCell("25-31");            
             pdfTB.AddCell(headr);
 
             //headr = GetPdfCell("峰值>80%出现次数(次)", ft));
@@ -444,8 +427,8 @@ namespace GDK.BCM.CompReport
                 foreach (DataRow dr in dt.Rows)
                 {
 
-                    pdfTB.AddCell(new Phrase(dr["DeviceName"].ToString(), ftContent));
-                    pdfTB.AddCell(new Phrase(dr["ip"].ToString(), ftContent));
+					pdfTB.AddCell(new Phrase(dr["busNmae"].ToString(), ftContent));
+					pdfTB.AddCell(new Phrase(dr["DeviceName"].ToString(), ftContent));
 
                     pdfTB.AddCell(new Phrase(dr["avgval"].ToString(), ftContent));
                     pdfTB.AddCell(new Phrase(dr["avgNum15"].ToString(), ftContent));

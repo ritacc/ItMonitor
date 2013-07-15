@@ -15,32 +15,33 @@ namespace GDK.DAL.CompSearch
        /// 
        /// </summary>
        /// <returns></returns>
-       public void  InitData(int DeviceID, int ChanncelNO, DateTime begin, DateTime end)
+	   public void InitHostInfo(int DeviceID, DateTime begin, DateTime end)
        {
-           ReportSeachWhereOR whereOR = new ReportSeachWhereOR();
-           whereOR.StartTime= begin;
-           whereOR.EndTime=end;
+		   ReportSeachWhereOR whereOR = new ReportSeachWhereOR();
+		   whereOR.StartTime = begin;
+		   whereOR.EndTime = end;
 
-          DeviceOR devObj=  new DeviceDA().SelectDeviceORByID(DeviceID.ToString());
-          if (devObj == null)
-          {
-              throw new Exception("设备不存！");
-          }
-		  List<int> ListDevs = new List<int>();
-		  ListDevs.Add(devObj.DeviceID);
-
-		  whereOR.ListDevices = ListDevs;
-
-          //whereOR.DeviceName = devObj.DeviceName;
-          //whereOR.DeviceType = devObj.DeviceTypeID;
-          whereOR.StationID = devObj.StationID;
-          whereOR.ReportType = "month";
-          whereOR.ListChanncel = new List<SearchChanncelOR>() { 
-            new SearchChanncelOR(){ ChanncelNo= ChanncelNO}
+		   DeviceOR devObj = new DeviceDA().SelectDeviceORByID(DeviceID.ToString());
+		   if (devObj == null)
+		   {
+			   throw new Exception("设备不存！");
+		   }
+		   List<int> ListDevs = new List<int>();
+		   ListDevs.Add(devObj.DeviceID);
+		   //获取数据库设备
+		   whereOR.ListDevices = GetBussDataHost(DeviceID);
+		   
+		   whereOR.StationID = devObj.StationID;
+		   whereOR.ReportType = "month";
+		 
+		   whereOR.ListChanncel = new List<SearchChanncelOR>() { 
+            new SearchChanncelOR(){ ChanncelNo= 25201}//--主机CPU利用率
+			,new SearchChanncelOR(){ ChanncelNo= 25202}//--内存压力
+			,new SearchChanncelOR(){ ChanncelNo= 25203}	//磁盘
           };
 
-		  PDFReportSearch DataDA = new PDFReportSearch();
-          DataDA.SearchReportDataToTemp(whereOR);
+		   PDFReportSearch DataDA = new PDFReportSearch();
+		   DataDA.SearchReportDataToTemp(whereOR);
        }
 
 	   #region 数据库处理
@@ -48,7 +49,7 @@ namespace GDK.DAL.CompSearch
 	   /// 
 	   /// </summary>
 	   /// <returns></returns>
-	   public void SecondInit(int DeviceID,DateTime begin, DateTime end)
+	   public void SecondDBInit(int DeviceID,DateTime begin, DateTime end)
 	   {
 		   ReportSeachWhereOR whereOR = new ReportSeachWhereOR();
 		   whereOR.StartTime = begin;
@@ -131,10 +132,10 @@ namespace GDK.DAL.CompSearch
 	   /// <summary>
        /// 获取使用率曲线数据
        /// </summary>
-       public DataTable GetUseLine()
+       public DataTable GetUseLine(int ChaanceNo)
        {
-           string sql = @"select deviceno,channelno,monitordate,round( avg(monitorvalue),2) val from ReportTemp
-group by deviceno,channelno,monitordate";
+		   string sql =string.Format( @"select channelno,monitordate,round( avg(monitorvalue),2) val from ReportTemp
+where channelno={0} group by channelno,monitordate ",ChaanceNo);
 
            return db.ExecuteQuery(sql);
        }
@@ -147,6 +148,30 @@ inner join t_Device d  on bus.id= d.DeviceID
 inner join t_DeviceType dt on d.DeviceTypeID= dt.DeviceTypeID
 where bus.ParentId= {0} and dt.TypeID=4", busDeviceID);
 		   DataTable dt= db.ExecuteQuery(sql);
+		   List<int> deviceids = new List<int>();
+		   if (dt != null && dt.Rows.Count > 0)
+		   {
+			   foreach (DataRow dr in dt.Rows)
+			   {
+				   deviceids.Add(Convert.ToInt32(dr["DeviceID"].ToString()));
+			   }
+		   }
+		   return deviceids;
+	   }
+
+	   /// <summary>
+	   /// 获取业务系统主机\虚拟机
+	   /// </summary>
+	   /// <param name="busDeviceID"></param>
+	   /// <returns></returns>
+	   public List<int> GetBussDataHost(int busDeviceID)
+	   {
+		   string sql = string.Format(@"select d.Describe descInfo,dt.typeid, dt.TypeName,d.*
+from t_Bussiness bus
+inner join t_Device d  on bus.id= d.DeviceID
+inner join t_DeviceType dt on d.DeviceTypeID= dt.DeviceTypeID
+where bus.ParentId= {0} and (dt.TypeID=1 or dt.TypeID=9)", busDeviceID);
+		   DataTable dt = db.ExecuteQuery(sql);
 		   List<int> deviceids = new List<int>();
 		   if (dt != null && dt.Rows.Count > 0)
 		   {
@@ -181,10 +206,11 @@ where bus.ParentId= {0} and dt.TypeID=10", busDeviceID);
        /// 
        /// </summary>
        /// <returns></returns>
-       public DataTable GetUseTableInfo()
-       {
-           string sql = @"
-select sf.*,d.DeviceName, d.ip,
+	   public DataTable GetUseTableInfo(int Year,int Month,int BussID,int ChaanceNo)
+	   {
+		   DateTime Start = new DateTime(Year, Month, 1);
+           string sql =string.Format(@"
+select sf.*,dbus.DeviceName busNmae,host.DeviceName, 
 case when avgval< 20 and maxval< 100 then '极低'
 	  when avgval< 60 and maxval<= 100 and maxnum< 200 then '正常'  
 	  when avgval< 60 and maxval<= 100 and maxnum> 200 then '高压' 
@@ -207,12 +233,17 @@ from (
 		select t.*
 			,datepart(dd,MonitorTime) dateDay
 			,case when monitorvalue > 80 then 1 else 0 end as Num
-		from ReportTemp t
+		from ReportTemp t where MonitorTime>'{0} 00:00:00' and MonitorTime<'{1} 00:00:00' and channelno={2}
 	) as f
 	group by deviceno,channelno--,monitordate
 ) as sf
-left join t_Device d on sf.deviceno= d.deviceid
-";
+inner join t_Bussiness bus on sf.deviceno =bus.Id --and bus.parentid={3}
+inner join t_Device host on host.DeviceID= bus.Id
+inner join t_Device  dbus on  dbus.DeviceID= bus.ParentId 
+order by host.DeviceName", Start.ToString("yyyy-MM-dd")
+		   , Start.AddMonths(1).AddDays(-1).ToString("yyyy-MM-dd")
+		   , ChaanceNo
+		   , BussID);
            return db.ExecuteQuery(sql);
        }
 

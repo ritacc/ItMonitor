@@ -60,7 +60,7 @@ and DeviceID not in (select Id  from t_Bussiness where ParentId=-1)";
 from  t_Device d  
 inner join t_DeviceType dt on d.DeviceTypeID= dt.DeviceTypeID 
 where  dt.typeid={0} 
-and DeviceID not in (select Id  from t_Bussiness where ParentId={1})", typeid, DeviceID);
+and DeviceID not in (select Id  from t_Bussiness where ParentId={1})   order by DeviceName desc", typeid, DeviceID);
             DataTable dt = db.ExecuteQuery(sql);
             return dt;
         }
@@ -71,7 +71,7 @@ and DeviceID not in (select Id  from t_Bussiness where ParentId={1})", typeid, D
 from  t_Device d  
 inner join t_DeviceType dt on d.DeviceTypeID= dt.DeviceTypeID 
 where  {0} 
-and DeviceID not in (select Id  from t_Bussiness where ParentId={1}) ",strWhere, DeviceID);
+and DeviceID not in (select Id  from t_Bussiness where ParentId={1})  order by DeviceName desc", strWhere, DeviceID);
             DataTable dt = db.ExecuteQuery(sql);
             return dt;
         }

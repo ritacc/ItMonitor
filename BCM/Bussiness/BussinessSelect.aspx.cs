@@ -39,7 +39,7 @@ namespace GDK.BCM.Bussiness
 					dt = new BussinessDA().GetSelectTopBuss();
 					break;
                 case "host":
-					dt = new BussinessDA().GetSelectSysLay(id, 1);
+					dt = new BussinessDA().GetSelectSysLay(id, "(dt.typeid=1 or dt.typeid=9 )");
                     break;
                 case "use":
 					dt = new BussinessDA().GetSelectSysLay(id, 10);
