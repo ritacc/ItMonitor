@@ -22,9 +22,9 @@
 			</siteMapNode>
 		</siteMapNode>
 		
-		<siteMapNode url="Monitor/MonitorDefin.aspx?main" title="自定义监控画面"  description="自定义监控画面">
-			<siteMapNode url="Monitor/MonitorDefin.aspx?type=admin" title="修改自定义监控画面" description="自定义监控画面" />
-			<siteMapNode url="Monitor/MonitorDefin.aspx?type=view" title="浏览自定义监控画面" description="自定义监控画面" />
+		<siteMapNode url="Monitor/MonitorAdmin.aspx?main" title="自定义监控画面"  description="自定义监控画面">
+			<siteMapNode url="Monitor/MonitorAdmin.aspx" title="修改自定义监控画面" description="修改自定义监控画面" />
+			<siteMapNode url="Monitor/MonitorView.aspx" title="浏览自定义监控画面" description="浏览自定义监控画面" />
 		</siteMapNode>
 		
 		<siteMapNode url="CompSearch/CompRoomShearch.aspx?id=defin" title="综合查询"  description="综合查询">

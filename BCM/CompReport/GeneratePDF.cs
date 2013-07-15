@@ -364,7 +364,7 @@ namespace GDK.BCM.CompReport
         {
             PdfPTable pdfTB = new PdfPTable(11);
             pdfTB.WidthPercentage = 99;
-			pdfTB.SetWidths(new float[] { 150f, 150f, 150f, 100f, 100f, 100f, 100f, 100f, 100f, 100f, 120f, 120f });
+			//pdfTB.SetWidths(new float[] { 150f, 150f, 150f, 100f, 100f, 100f, 100f, 100f, 100f, 100f, 120f, 120f });
             //业务系统名称  IP	均值(%)		峰值(%) 峰值>80%出现次数(次) 当月CPU压力状态
             Font ft = GetFont(FontEnum.TableHeader);
             PdfPCell headr = GetPdfCell("业务系统名称");            

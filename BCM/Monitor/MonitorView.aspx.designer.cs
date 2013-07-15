@@ -7,9 +7,10 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace GDK.BCM.Main {
-    
-    
-    public partial class Default {
+namespace GDK.BCM.Monitor {
+
+
+    public partial class MonitorView
+    {
     }
 }

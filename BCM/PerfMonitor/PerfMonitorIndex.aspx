@@ -34,7 +34,6 @@
         }
     </style>
     <script type="text/javascript" language="javascript">
-
         function SetReLoadSelectItem() {
             var divName = $("#<%= txtSelectItem.ClientID %>").val();
             if (divName) {
