@@ -321,7 +321,8 @@
     <Content Include="Main\MissingParameter.aspx" />
     <Content Include="Main\OutoffTime.aspx" />
     <Content Include="Map.aspx" />
-    <Content Include="Monitor\MonitorDefin.aspx" />
+    <Content Include="Monitor\MonitorAdmin.aspx" />
+    <Content Include="Monitor\MonitorView.aspx" />
     <Content Include="PerfMonitor\DeviceRef.aspx" />
     <Content Include="PerfMonitor\Perf.aspx" />
     <Content Include="PerfMonitor\PerfApplication.aspx" />
@@ -372,6 +373,7 @@
     <Content Include="Scripts\My97DatePicker\WdatePicker.js" />
     <Content Include="Scripts\RefDetail.js" />
     <Content Include="Scripts\Silverlight.js" />
+    <Content Include="Scripts\SL.js" />
     <Content Include="Scripts\TaskSyxzcEdit.js" />
     <Content Include="StateMonitor\StateApplication.aspx" />
     <Content Include="StateMonitor\StateApplicationDetail.aspx" />
@@ -654,12 +656,19 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Monitor.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Monitor\MonitorDefin.aspx.cs">
-      <DependentUpon>MonitorDefin.aspx</DependentUpon>
+    <Compile Include="Monitor\MonitorAdmin.aspx.cs">
+      <DependentUpon>MonitorAdmin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Monitor\MonitorDefin.aspx.designer.cs">
-      <DependentUpon>MonitorDefin.aspx</DependentUpon>
+    <Compile Include="Monitor\MonitorAdmin.aspx.designer.cs">
+      <DependentUpon>MonitorAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Monitor\MonitorView.aspx.cs">
+      <DependentUpon>MonitorView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Monitor\MonitorView.aspx.designer.cs">
+      <DependentUpon>MonitorView.aspx</DependentUpon>
     </Compile>
     <Compile Include="PerfMonitor\DeviceRef.aspx.cs">
       <DependentUpon>DeviceRef.aspx</DependentUpon>

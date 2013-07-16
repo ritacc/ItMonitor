@@ -1,5 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main/SiteMain.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="GDK.BCM.Main.Default" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main/SiteMain.Master" AutoEventWireup="true" CodeBehind="MonitorView.aspx.cs" Inherits="GDK.BCM.Monitor.MonitorView" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script type="text/javascript" src="../Scripts/Silverlight.js"></script>
     <script type="text/javascript" src="../Scripts/fullScreen.js"></script>
@@ -47,17 +46,17 @@
             function autoSize() {
                 //var divFrm = $("#silverlightControlHost");
                 var frmMain = $("#objServerRoom");
-                if (!timer) {
-                    window.clearTimeout(timer);
-                }
-                timer = window.setTimeout(function () {
-                    var layout = $.getLayout();
-                    var height = layout.innerHeight - 180;
-
-                    frmMain.height(height);
-                    //divFrm.height(height);
-                    //alert(height);
-                }, 100);
+                    if (!timer) {
+                        window.clearTimeout(timer);
+                    }
+                     timer = window.setTimeout(function () {
+                        var layout = $.getLayout();
+                        var height = layout.innerHeight - 180;
+                    
+                        frmMain.height(height);
+                        //divFrm.height(height);
+                        //alert(height);
+                    }, 100);
             }
             autoSize();
             $(window).resize(autoSize);
@@ -86,7 +85,7 @@
             <param name="source" value="../ClientBin/NetStatus.xap" />
             <param name="onError" value="onSilverlightError" />
             <param name="background" value="white" />
-            <param name="initParams" value="type=devview" />
+            <param name="initParams" value="type=view" />
             <param name="minRuntimeVersion" value="4.0.50826.0" />
             <param name="autoUpgrade" value="true" />
             <a href="../SLFile/Silverlight.zip" style="text-decoration: none">
@@ -97,3 +96,4 @@
         <%--<iframe id="_sl_historyFrame" style="visibility: hidden; border: 0px"></iframe>--%>
     </div>
 </asp:Content>
+

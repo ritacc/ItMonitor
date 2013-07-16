@@ -63,7 +63,7 @@ namespace GDK.BCM.Bussiness
 				switch (Request.QueryString["type"])
 				{
                     case "host":
-						dt = new PerfApplicationDA().GetSysLay(Convert.ToInt32(id), 1);
+						dt = new PerfApplicationDA().GetSysLay(Convert.ToInt32(id), " (dt.typeid=1 or dt.typeid=9 )");
 						break;
 					case "use":
 						dt = new PerfApplicationDA().GetSysLay(Convert.ToInt32(id), 10);

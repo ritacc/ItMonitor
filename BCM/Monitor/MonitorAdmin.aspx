@@ -1,5 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main/SiteMain.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="GDK.BCM.Main.Default" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main/SiteMain.Master" AutoEventWireup="true" CodeBehind="MonitorAdmin.aspx.cs" Inherits="GDK.BCM.Monitor.MonitorDefin" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script type="text/javascript" src="../Scripts/Silverlight.js"></script>
     <script type="text/javascript" src="../Scripts/fullScreen.js"></script>
@@ -86,7 +85,7 @@
             <param name="source" value="../ClientBin/NetStatus.xap" />
             <param name="onError" value="onSilverlightError" />
             <param name="background" value="white" />
-            <param name="initParams" value="type=devview" />
+            <param name="initParams" value="type=admin" />
             <param name="minRuntimeVersion" value="4.0.50826.0" />
             <param name="autoUpgrade" value="true" />
             <a href="../SLFile/Silverlight.zip" style="text-decoration: none">
@@ -97,3 +96,4 @@
         <%--<iframe id="_sl_historyFrame" style="visibility: hidden; border: 0px"></iframe>--%>
     </div>
 </asp:Content>
+

@@ -44,47 +44,46 @@ where dt.typeid=1 ";
             DataTable dt = new TmpValueDA().SelectValues(mDeviceID);
             if (dt == null)
                 return null;
-            PerfHostOR obj = new PerfHostOR(dt);
-            //加载网络接口
-            obj.SubProts = GetNetPorts(obj.Ports);
+            PerfHostOR obj = new PerfHostOR(dt);          
+          
             return obj;
         }
 
 
-        private DataTable GetNetPorts(string strPortinfo)
-        {
-            if (string.IsNullOrEmpty(strPortinfo))
-                return null;
-            string mWhere = "";
-            //3#^#1705#^#1706#^#1707
-            if (strPortinfo.IndexOf("#^#") > 0)
-            {
-                string[] strArr = strPortinfo.Replace("#^#", "$").Split('$');
-                if (strArr.Length < 2)
-                    return null;
-                mWhere = " d.DeviceID=" + strArr[1];
-                for (int i = 2; i < strArr.Length; i++)
-                {
-                    mWhere += " or d.DeviceID=" + strArr[i];
-                }
-            }
+		//private DataTable GetNetPorts(string strPortinfo)
+		//{
+		//    if (string.IsNullOrEmpty(strPortinfo))
+		//        return null;
+		//    string mWhere = "";
+		//    //3#^#1705#^#1706#^#1707
+		//    if (strPortinfo.IndexOf("#^#") > 0)
+		//    {
+		//        string[] strArr = strPortinfo.Replace("#^#", "$").Split('$');
+		//        if (strArr.Length < 2)
+		//            return null;
+		//        mWhere = " d.DeviceID=" + strArr[1];
+		//        for (int i = 2; i < strArr.Length; i++)
+		//        {
+		//            mWhere += " or d.DeviceID=" + strArr[i];
+		//        }
+		//    }
 
-            string sql = @"select * from dbo.t_TmpValue where " + mWhere;
+		//    string sql = @"select * from dbo.t_TmpValue where " + mWhere;
 
-            sql = string.Format(" {0} and  {1}", sql, mWhere);
+		//    sql = string.Format(" {0} and  {1}", sql, mWhere);
 
-            DataTable dt = null;
-            try
-            {
-                dt = db.ExecuteQuery(sql);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            return dt;
+		//    DataTable dt = null;
+		//    try
+		//    {
+		//        dt = db.ExecuteQuery(sql);
+		//    }
+		//    catch (Exception ex)
+		//    {
+		//        throw ex;
+		//    }
+		//    return dt;
 
-        }
+		//}
 
 
         // 系统负荷 - 最近一小时

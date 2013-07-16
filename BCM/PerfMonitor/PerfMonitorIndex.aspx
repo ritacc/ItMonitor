@@ -34,7 +34,6 @@
         }
     </style>
     <script type="text/javascript" language="javascript">
-
         function SetReLoadSelectItem() {
             var divName = $("#<%= txtSelectItem.ClientID %>").val();
             if (divName) {
@@ -130,7 +129,7 @@
        
     </div>
     <div  id="divFrm" style="vertical-align: top; border: 1px solid #CCCCCC;">
-        <iframe id="frmMain" frameborder="0" style="overflow:auto;overflow-x:hidden;" height="100%" width="100%" 
+        <iframe id="frmMain" name="frmMain" frameborder="0" style="overflow:auto;overflow-x:hidden;" height="100%" width="100%" 
         src="PerfNet.aspx"></iframe>
     </div>
 </asp:Content>
