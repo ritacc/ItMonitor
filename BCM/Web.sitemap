@@ -13,12 +13,32 @@
 		</siteMapNode>
 
 		<siteMapNode url="AlertAdmin/HealthConfigList.aspx?id=defin" title="告警管理"  description="告警管理">
+			<siteMapNode url="AlertAdmin/EventTypeList.aspx" title="事件定义列表"  description="事件定义列表">
+				<siteMapNode url="AlertAdmin/EventTypeEdit.aspx" title="编辑" description="编辑" />
+				<siteMapNode url="AlertAdmin/EventTypeList.aspx?Delete" title="删除" description="删除" />
+			</siteMapNode>
+			<siteMapNode url="AlertAdmin/AlarmLevelSetList.aspx" title="报警等级列表"  description="报警等级列表">
+				<siteMapNode url="AlertAdmin/AlarmLevelSetEdit.aspx" title="编辑" description="编辑" />
+				<siteMapNode url="AlertAdmin/AlarmLevelSetList.aspx?Delete" title="删除" description="删除" />
+			</siteMapNode>
+			
+			<siteMapNode url="AlertAdmin/PerfSystemFailure.aspx" title="系统故障" description="系统故障">
+				<siteMapNode url="AlertAdmin/PerfSystemFailureDetail.aspx" title="系统故障详细信息" description="系统故障详细"/>
+			</siteMapNode>
+			
+			<siteMapNode url="AlertAdmin/AlarmGroupsList.aspx" title="告警组列表"  description="告警组列表">
+				<siteMapNode url="AlertAdmin/AlarmGroupsEdit.aspx" title="编辑" description="编辑" />
+				<siteMapNode url="AlertAdmin/AlarmGroupsList.aspx?Delete" title="删除" description="删除" />
+			</siteMapNode>
+			<siteMapNode url="AlertAdmin/DisarmTimeList.aspx" title="撤防时间列表"  description="撤防时间列表">
+				<siteMapNode url="AlertAdmin/DisarmTimeEdit.aspx" title="编辑" description="编辑" />
+				<siteMapNode url="AlertAdmin/DisarmTimeList.aspx?Delete" title="删除" description="删除" />
+			</siteMapNode>
 			<siteMapNode url="AlertAdmin/HealthConfigList.aspx" title="健康度配置" description="健康度配置">
 				<siteMapNode url="AlertAdmin/HealthConfigEdit.aspx" title="编辑" description="添加、修改" isFunction="true" />
 				<siteMapNode url="AlertAdmin/HealthConfigList.aspx?Delete" title="删除" description="删除" />
 			</siteMapNode>
-			<siteMapNode url="AlertAdmin/PerfSystemFailure.aspx" title="系统故障" description="系统故障">
-				<siteMapNode url="AlertAdmin/PerfSystemFailureDetail.aspx" title="系统故障详细信息" description="系统故障详细"/>
+			<siteMapNode url="AlertAdmin/AlarmPolicyManagementList.aspx" title="报警策略管理"  description="报警策略管理">
 			</siteMapNode>
 		</siteMapNode>
 		

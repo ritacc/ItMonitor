@@ -61,6 +61,25 @@
             if (top.location != self.location)
                 top.location = self.location;
 
+            $("#imgRef").click(function () {
+                var murl = window.frmMain.location.href;
+                var index = murl.indexOf('&r');
+                if (index > 0) {
+                    murl = murl.substring(0, index);
+                    if (murl.indexOf("?") > 0)
+                        murl = murl + "&r=" + Math.random();
+                    else
+                        murl = murl + "?r=" + Math.random();
+                }
+                else {
+                    if (murl.indexOf("?") > 0)
+                        murl = murl + "&r=" + Math.random();
+                    else
+                        murl = murl + "?r=" + Math.random();
+                }
+                window.frmMain.location.href = murl;
+            });
+
             //刷新更新加载项
             SetReLoadSelectItem();
 
@@ -95,17 +114,30 @@
       <div style="display: none;">
         <asp:TextBox ID="txtSelectItem" runat="server"></asp:TextBox>
     </div>
-    <ul class="Ulcss">
-        <li id="net" divname="PerfDBOverview.aspx?id=<% =deviceID %>" style="background-image: url(../images/selected80.gif);"><a>概览</a></li>
-        <li id="sy" divname="PerfDBTableSpace.aspx?id=<% =deviceID %>"><a>表空间</a></li>
-        <li id="tx" divname="PerfDBConversation.aspx?id=<% =deviceID %>"><a>会话</a></li>
-        <li id="xn" divname="PerfDBBack.aspx?id=<% =deviceID %>"><a>回退</a></li>
-        <li id="others" divname="PerfDBSGA.aspx?id=<% =deviceID %>"><a>SGA</a></li>
-        <li id="showSounds" divname="PerfDBSelect.aspx?id=<% =deviceID %>">查询</li>
-        <li id="ljwd" divname="PerfDBLock.aspx?id=<% =deviceID %>"><a>锁</a></li>
-    </ul>
+    <div style="padding: 0px; margin: 0px; line-height: 29px;">
+        <table cellpadding="0" cellspacing="0" style="width: 100%; padding: 0px; margin: 0px;
+            line-height: 29px; height: 29px;">
+            <tr>
+                <td style="height: 29px;">
+                    <ul class="Ulcss">
+                        <li id="net" divname="PerfDBOverview.aspx?id=<% =deviceID %>" style="background-image: url(../images/selected80.gif);">
+                            <a>概览</a></li>
+                        <li id="sy" divname="PerfDBTableSpace.aspx?id=<% =deviceID %>"><a>表空间</a></li>
+                        <li id="tx" divname="PerfDBConversation.aspx?id=<% =deviceID %>"><a>会话</a></li>
+                        <li id="xn" divname="PerfDBBack.aspx?id=<% =deviceID %>"><a>回退</a></li>
+                        <li id="others" divname="PerfDBSGA.aspx?id=<% =deviceID %>"><a>SGA</a></li>
+                        <li id="showSounds" divname="PerfDBSelect.aspx?id=<% =deviceID %>">查询</li>
+                        <li id="ljwd" divname="PerfDBLock.aspx?id=<% =deviceID %>"><a>锁</a></li>
+                    </ul>
+                </td>
+                <td style="width: 30px;">
+                    <image id="imgRef" src="../images/Common/refresh.gif" />
+                </td>
+            </tr>
+        </table>
+    </div>
     <div  id="divFrm" style="vertical-align: top; border: 1px solid #CCCCCC;">
-        <iframe id="frmMain" frameborder="0" style="overflow-y:auto;overflow-x:hidden;" height="100%" width="100%" src="PerfDBOverview.aspx?id=<% =deviceID %>"></iframe>
+        <iframe id="frmMain"  name="frmMain" frameborder="0" style="overflow-y:auto;overflow-x:hidden;" height="100%" width="100%" src="PerfDBOverview.aspx?id=<% =deviceID %>"></iframe>
     </div>
 
 </asp:Content>

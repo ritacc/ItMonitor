@@ -48,7 +48,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlertAdmin\AlarmGroupsOR.cs" />
+    <Compile Include="AlertAdmin\AlarmLevelSetOR.cs" />
+    <Compile Include="AlertAdmin\AlarmPolicyManagementOR.cs" />
+    <Compile Include="AlertAdmin\DisarmTimeOR.cs" />
+    <Compile Include="AlertAdmin\EventTypeOR.cs" />
     <Compile Include="AlertAdmin\HealthConfigOR.cs" />
+    <Compile Include="AlertAdmin\SysParaOR.cs" />
     <Compile Include="CompSearch\SearchOR.cs" />
     <Compile Include="JSClass.cs" />
     <Compile Include="PerfMonitor\DeviceANDItemRefOR.cs" />

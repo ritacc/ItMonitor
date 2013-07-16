@@ -12,7 +12,7 @@ namespace GDK.DAL.SerMonitor
     {
         public DeviceDA()
         {
-            db = MoniBase;
+            //db = MoniBase;
         }
         /// <summary>
         /// 选择站点下的设备
@@ -139,7 +139,7 @@ from t_Channel where DeviceID={2} order by ChannelName",StationID, DeviceTypeID,
         public DataTable GetAllGenerdDevice(string nStationID, string mDeviceTypeID)
         {
             string sql = string.Format(@"select d.*,dt.DeviceTypeID from t_Device d
-inner join  t_DeviceType dt on d.DeviceTypeID=dt.DeviceTypeID and d.stationid={0} and dt.DeviceTypeID={1} "
+inner join  t_DeviceType dt on d.DeviceTypeID=dt.DeviceTypeID and d.stationid={0} and dt.DeviceTypeID={1} order by DeviceName"
                 , nStationID, mDeviceTypeID);
             DataTable dt = null;
             try
@@ -156,7 +156,7 @@ inner join  t_DeviceType dt on d.DeviceTypeID=dt.DeviceTypeID and d.stationid={0
         public DataTable GetAllGenerdDevice(string nStationID)
         {
             string sql = string.Format(@"select d.*,dt.DeviceTypeID from t_Device d
-inner join  t_DeviceType dt on d.DeviceTypeID=dt.DeviceTypeID and d.stationid={0}", nStationID);
+inner join  t_DeviceType dt on d.DeviceTypeID=dt.DeviceTypeID and d.stationid={0} order by DeviceName", nStationID);
             DataTable dt = null;
             try
             {

@@ -11,7 +11,7 @@ namespace GDK.DAL
     public class DALBase
     {
         protected SqlHelper db = new SqlHelper();
-        protected SqlHelper MoniBase = new SqlHelper("MonitorBase");
+        //protected SqlHelper MoniBase = new SqlHelper("MonitorBase");
        // protected DbHelper db1 = new DbHelper("vssdb");
 
         //protected SqlHelper db1 = new SqlHelper("MonitorDemo2");

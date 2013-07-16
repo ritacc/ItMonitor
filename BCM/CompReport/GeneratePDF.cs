@@ -218,7 +218,8 @@ namespace GDK.BCM.CompReport
             sb.Append("    这部分主要针对主机CPU利用率、内存利用率、磁盘利用率进行统计分析。分别以业务系统来分析评估主机的总体运行情况。包括CPU利用率统计分析、内存利用率统计分析、磁盘利用率统计分析等三个部分。");
             pg = new Paragraph(sb.ToString(), GetFont(FontEnum.Content));
             document.Add(pg);
-
+            
+            
             //主要CPU
             pg = new Paragraph("\n1. 主机CPU利用率汇总统计", GetFont(FontEnum.Content));
             document.Add(pg);
@@ -226,6 +227,7 @@ namespace GDK.BCM.CompReport
             chLine.Titles["titTop"].Text = "主机CPU利用率均值曲线序列图";
 			DA.InitHostInfo(this.SystemID, StartTime.AddMonths(-5), EndTime);//初使化,主机
 			DataTable dtList = UseReprot(25201);
+            document.Add(new Paragraph("\r\n\r\n\r\n", GetFont(FontEnum.Content)));
             WriteTable(dtList, "当月CPU压力状态");//
             TableDesc("主机CPU");
 
@@ -233,6 +235,7 @@ namespace GDK.BCM.CompReport
             document.Add(pg);
             chLine.Titles["titTop"].Text = "主机内存利用率均值曲线序列图";            
             dtList = UseReprot(25202);
+            document.Add(new Paragraph("\r\n\r\n\r\n", GetFont(FontEnum.Content)));
             WriteTable(dtList, "当月内存压力状态");//
             TableDesc("主机内存");
 
@@ -240,6 +243,7 @@ namespace GDK.BCM.CompReport
             document.Add(pg);
             chLine.Titles["titTop"].Text = "主机磁盘利用率均值曲线序列图";            
             dtList = UseReprot(25203);
+            document.Add(new Paragraph("\r\n\r\n\r\n", GetFont(FontEnum.Content)));
             WriteTable(dtList, "当月磁盘压力状态");//
             TableDesc("主机磁盘");
             
@@ -483,6 +487,7 @@ namespace GDK.BCM.CompReport
             ser.Points.DataBindXY(dt.Rows, "monitordate", dt.Rows, "monitorvalue");
             
             chLine.Series.Add(ser);
+            document.Add(new Paragraph("\r\n\r\n\r\n", GetFont(FontEnum.Content)));
             AddImg();//生成，统计图
 
             //添加表
@@ -569,7 +574,7 @@ namespace GDK.BCM.CompReport
 
             chLine.Titles["titTop"].Text = "命中率-库汇总柱状图";
             mzl(41603);
-
+            document.Add(new Paragraph("\r\n\r\n\r\n", GetFont(FontEnum.Content)));
             PdfPTable pdfTB = new PdfPTable(10);
             pdfTB.WidthPercentage = 99;
 
@@ -717,7 +722,7 @@ namespace GDK.BCM.CompReport
             ser.Points.DataBindXY(dt.Rows, "monitordate", dt.Rows, "avgval");
             chLine.Series.Add(ser);
             AddImg();//生成，统计图
-
+            document.Add(new Paragraph("\r\n\r\n\r\n", GetFont(FontEnum.Content)));
 
             PdfPTable pdfTB = new PdfPTable(6);
             pdfTB.WidthPercentage = 99;
@@ -811,6 +816,8 @@ namespace GDK.BCM.CompReport
                      }
                  }
              }
+             document.Add(new Paragraph("\r\n\r\n\r\n", GetFont(FontEnum.Content)));
+
              //数据详细，表格
              PdfPTable pdfTB = new PdfPTable(8);
              pdfTB.WidthPercentage = 99;
@@ -936,7 +943,7 @@ namespace GDK.BCM.CompReport
 					document.Add(pg);
 				}
 			}
-
+            document.Add(new Paragraph("\r\n\r\n\r\n", GetFont(FontEnum.Content)));
 			//数据详细，表格
 			PdfPTable pdfTB = new PdfPTable(8);
 			pdfTB.WidthPercentage = 99;
@@ -1058,7 +1065,7 @@ namespace GDK.BCM.CompReport
 					document.Add(pg);
 				}
 			}
-
+            document.Add(new Paragraph("\r\n\r\n\r\n", GetFont(FontEnum.Content)));
 			//数据详细，表格
 			PdfPTable pdfTB = new PdfPTable(6);
 			pdfTB.WidthPercentage = 99;
