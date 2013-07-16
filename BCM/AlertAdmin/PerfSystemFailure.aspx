@@ -46,9 +46,12 @@
                 <div id="tdIframe" style="overflow:auto;">
                             <asp:Repeater ID="rpAlertType" runat="server">
                                 <ItemTemplate>
-                                    <div>
-                                        <a target="ifList"  href="PerfSystemFailureList.aspx?typeid=<%# Eval("typeid")%>">这里用图片 </a>数量:<%# Eval("num")%>
+                                  <div style="width:80px; height:30px; border: 1px solid #CCCCCC; float:left; margin:5px 0px 0px 5px; padding:5px 5px 0px 5px;">
+                                        <a target="ifList"  href="PerfSystemFailureList.aspx?typeid=<%# Eval("typeid")%>">
+										<img  src="../images/icon/<%# Eval("imgpath")%>" alt="" border="0" style="vertical-align:middle;" />
+										</a>数量:<%# Eval("num")%>
                                     </div>
+
                                 </ItemTemplate>
                             </asp:Repeater>
                        

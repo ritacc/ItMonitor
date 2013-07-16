@@ -47,8 +47,8 @@
         .w75{ width:75px;}
         .w120{ width:120px;}
         .tableContent{ width:100%;border-bottom: 1px dashed #BBBBBB;}
-        .TopTable{ width:100%;border-bottom: 1px solid #EEFFFF;}
-        .tableContentTH{ width:100%;border-bottom: 1px dashed #BBBBBB;}
+        .TopTable{ width:100%;border-bottom: 2px solid #6699ff;}
+        .tableContentTH{ width:100%;border-bottom: 2px solid #6699ff;}
         .tableContent td{ text-align:left; }
         .tableContentTH td{  font-size:12px;  font-weight:bold;}
     </style>

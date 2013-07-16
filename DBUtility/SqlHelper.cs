@@ -11,7 +11,7 @@ namespace DBUtility
     /// </summary>
     public class SqlHelper : DbHelper
     {
-        /// <summary>
+        /// <summary> 
         /// SqlHelper 构造方法
         /// </summary>
         public SqlHelper()

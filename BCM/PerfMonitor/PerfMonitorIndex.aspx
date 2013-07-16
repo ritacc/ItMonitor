@@ -107,7 +107,7 @@
         <asp:TextBox ID="txtSelectItem" runat="server"></asp:TextBox>
     </div>
     <div style=" padding:0px; margin:0px;line-height: 29px;">
-        <table style=" width:100%;padding:0px; margin:0px;line-height: 29px;height: 29px;">
+        <table cellpadding="0" cellspacing="0" style=" width:100%;padding:0px; margin:0px;line-height: 29px;height: 29px;">
             <tr>
                 <td style="height: 29px;">
                      <ul class="Ulcss">
