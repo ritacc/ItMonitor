@@ -42,16 +42,16 @@
 <div class="right_box">
     <table cellpadding="0" id="tableIframe" cellspacing="1" border="0" width="100%">
         <tr>
-            <td  style="vertical-align: top; width: 250px;  border: 1px solid #cccccc;">
+            <td  style="vertical-align: top; width: 280px;  border: 1px solid #cccccc;">
                 <div id="tdIframe" style="overflow:auto;">
                             <asp:Repeater ID="rpAlertType" runat="server">
                                 <ItemTemplate>
-                                  <div style="width:80px; height:30px; border: 1px solid #CCCCCC; float:left; margin:5px 0px 0px 5px; padding:5px 5px 0px 5px;">
-                                        <a target="ifList"  href="PerfSystemFailureList.aspx?typeid=<%# Eval("typeid")%>">
-										<img  src="../images/icon/<%# Eval("imgpath")%>" alt="" border="0" style="vertical-align:middle;" />
-										</a>数量:<%# Eval("num")%>
-                                    </div>
-
+                                        <a target="ifList"  href="PerfSystemFailureList.aspx?typeid=<%# Eval("typeid")%>"  style="width:125px; height:30px; float:left; margin:3px 0px 0px 3px; padding:10px 0px 0px 10px; background:url(../images/icon/bottonbg.gif);">
+										    <img  src="../images/icon/<%# Eval("imgpath")%>" alt="" border="0" style="vertical-align:middle;" />
+                                            
+                                            <%# Eval("NameCN")%>
+										    :<%# Eval("num")%>
+                                        </a>
                                 </ItemTemplate>
                             </asp:Repeater>
                        
