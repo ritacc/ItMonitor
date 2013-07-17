@@ -1,0 +1,12 @@
+1	Server	windows,Mac os,Linux....	1	主机	host.png
+2	Application Server	Tomcat,JBoss,WebLogic,WebSphere,ms.net	1	应用服务器	Application.png
+3	Web Server	IIS,Apache,Oracle...	1	网络服务器	webserver.png
+4	Database Server	oracle,ms sql,mysql,sybase...	1	数据库	database.png
+5	Service	Ftp,ping,telnet...	1	服务	service.png
+6	Mail Server	NULL	1	邮件服务	mail.png
+7	ERP	sap server,oracle EBS	1	ERP	erp.png
+8	Net device	switch,router,ethernet,	1	网络设备	net.png
+9	VM	NULL	1	虚拟机	vm.png
+10	Middleware	NULL	1	中间件	middleware.png
+11	Domino	NULL	1	多米诺组	Domino.png
+12	State Environmental	NULL	1	机房环境状态	room.png

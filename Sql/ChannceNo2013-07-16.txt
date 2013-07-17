@@ -1,0 +1,43 @@
+ insert into t_TmpValue
+	 select * from TestMH.dbo.t_TmpValue 
+		where CONVERT(varchar(15), DeviceID) +CONVERT(varchar(15), ChannelNO)   
+		not in (select  CONVERT(varchar(15), DeviceID) +CONVERT(varchar(15), ChannelNO)  from t_TmpValue)
+
+
+BusSystemID int,
+Host_DiskUseRate
+Host_Memory
+Host_CPUUseRate
+
+DB_TableNameSpace
+DB_Hitrate
+DB_OnlineTime
+
+Mid_Session
+Mid_JVMUse
+Mid_ConnPool
+
+System_Stop
+StopInfo
+AvailableRate
+
+
+Create table t_ReportConfig
+(
+BusSystemID int,
+Host_DiskUseRate	bit,
+Host_Memory			bit,
+Host_CPUUseRate		bit,
+
+DB_TableNameSpace	bit,
+DB_Hitrate	bit,
+DB_OnlineTime	bit,
+
+Mid_Session	bit,
+Mid_JVMUse	bit,
+Mid_ConnPool	bit,
+
+System_Stop	bit,
+StopInfo	bit,
+AvailableRate	bit
+)

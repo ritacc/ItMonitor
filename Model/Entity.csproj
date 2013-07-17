@@ -55,6 +55,7 @@
     <Compile Include="AlertAdmin\EventTypeOR.cs" />
     <Compile Include="AlertAdmin\HealthConfigOR.cs" />
     <Compile Include="AlertAdmin\SysParaOR.cs" />
+    <Compile Include="CompSearch\ReportConfigOR.cs" />
     <Compile Include="CompSearch\SearchOR.cs" />
     <Compile Include="JSClass.cs" />
     <Compile Include="PerfMonitor\DeviceANDItemRefOR.cs" />

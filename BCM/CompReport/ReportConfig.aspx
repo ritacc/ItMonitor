@@ -19,7 +19,8 @@
                     </td>
                     <td>
                         业务类型：
-                        <asp:DropDownList ID="dpdSystem" Width="200px" runat="server">
+                        <asp:DropDownList  ID="dpdSystem" Width="200px" runat="server" 
+							AutoPostBack="True" onselectedindexchanged="dpdSystem_SelectedIndexChanged">
                         </asp:DropDownList>
                     </td>
                 </tr>
@@ -37,21 +38,21 @@
             </tr>
             <tr class="AlternatingRowStyle">
                 <td>主机磁盘利用率汇总统计</td>
-                <td><asp:CheckBox ID="CheckBox1" runat="server"/></td>
+                <td><asp:CheckBox ID="cbHost_DiskUseRate" runat="server"/></td>
                 <td>表空间汇总统计</td>
-                <td><asp:CheckBox ID="CheckBox2"  runat="server"/></td>
+                <td><asp:CheckBox ID="cbDB_TableNameSpace"  runat="server"/></td>
             </tr>
             <tr class="RowStyle">
                 <td>主机内存利用率汇总统计</td>
-                <td><asp:CheckBox ID="CheckBox3" runat="server"/></td>
+                <td><asp:CheckBox ID="cbHost_Memory" runat="server"/></td>
                 <td>命中率汇总统计</td>
-                <td><asp:CheckBox ID="CheckBox4"  runat="server"/></td>
+                <td><asp:CheckBox ID="cbDB_Hitrate"  runat="server"/></td>
             </tr>
             <tr class="AlternatingRowStyle">
                 <td>主机CPU利用率汇总统计</td>
-                <td><asp:CheckBox ID="CheckBox5" runat="server"/></td>
+                <td><asp:CheckBox ID="cbHost_CPUUseRate" runat="server"/></td>
                 <td>连接时间汇总统计</td>
-                <td><asp:CheckBox ID="CheckBox6"  runat="server"/></td>
+                <td><asp:CheckBox ID="cbDB_OnlineTime"  runat="server"/></td>
             </tr>
             <tr class="gridview_skin_header">
                 <th colspan="2">中间件运行状况整体分析配置</th>
@@ -63,21 +64,21 @@
             </tr>
             <tr class="AlternatingRowStyle">
                 <td>会话数汇总统计</td>
-                <td><asp:CheckBox ID="CheckBox7" runat="server"/></td>
+                <td><asp:CheckBox ID="cbMid_Session" runat="server"/></td>
                 <td>系统停机状况统计</td>
-                <td><asp:CheckBox ID="CheckBox8"  runat="server"/></td>
+                <td><asp:CheckBox ID="cbSystem_Stop"  runat="server"/></td>
             </tr>
              <tr class="RowStyle">
                 <td>JVM堆使用汇总统计</td>
-                <td><asp:CheckBox ID="CheckBox9" runat="server"/></td>
+                <td><asp:CheckBox ID="cbMid_JVMUse" runat="server"/></td>
                 <td>停机状况统计</td>
-                <td><asp:CheckBox ID="CheckBox10"  runat="server"/></td>
+                <td><asp:CheckBox ID="cbStopInfo"  runat="server"/></td>
             </tr>
             <tr class="AlternatingRowStyle">
                 <td>数据库连接池汇总统计</td>
-                <td><asp:CheckBox ID="CheckBox11" runat="server"/></td>
+                <td><asp:CheckBox ID="cbMid_ConnPool" runat="server"/></td>
                 <td>可用性汇总统计</td>
-                <td><asp:CheckBox ID="CheckBox12"  runat="server"/></td>
+                <td><asp:CheckBox ID="cbAvailableRate"  runat="server"/></td>
             </tr>
             <tr  class="RowStyle">
                 
