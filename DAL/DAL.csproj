@@ -70,8 +70,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlertAdmin\AlarmGroupsDA.cs" />
+    <Compile Include="AlertAdmin\AlarmLevelSetDA.cs" />
+    <Compile Include="AlertAdmin\AlarmPolicyManagementDA.cs" />
+    <Compile Include="AlertAdmin\DisarmTimeDA.cs" />
+    <Compile Include="AlertAdmin\EventTypeDA.cs" />
     <Compile Include="AlertAdmin\HealthConfigDA.cs" />
     <Compile Include="AlertAdmin\AlertDA.cs" />
+    <Compile Include="AlertAdmin\SysParaDA.cs" />
     <Compile Include="common\Utils.cs" />
     <Compile Include="CompSearch\PdfDA.cs" />
     <Compile Include="CompSearch\PDFReportSearch.cs" />

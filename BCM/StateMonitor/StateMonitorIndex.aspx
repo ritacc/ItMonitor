@@ -51,6 +51,24 @@
         var timer = null;
         var lastClickObj = null;
         $(document).ready(function () {
+            $("#imgRef").click(function () {
+                var murl = window.frmMain.location.href;
+                var index = murl.indexOf('&r');
+                if (index > 0) {
+                    murl = murl.substring(0, index);
+                    if (murl.indexOf("?") > 0)
+                        murl = murl + "&r=" + Math.random();
+                    else
+                        murl = murl + "?r=" + Math.random();
+                }
+                else {
+                    if (murl.indexOf("?") > 0)
+                        murl = murl + "&r=" + Math.random();
+                    else
+                        murl = murl + "?r=" + Math.random();
+                }
+                window.frmMain.location.href = murl;
+            });
             //刷新更新加载项
             SetReLoadSelectItem();
 
@@ -85,16 +103,28 @@
     <div style="display: none;">
         <asp:TextBox ID="txtSelectItem" runat="server"></asp:TextBox>
     </div>
-    <ul class="Ulcss">
-        <li id="net" divname="StateList.aspx" style="background-image: url(../images/selected80.gif);">
-            <a>状态列表</a></li>
-        <li id="sy" divname="StateNet.aspx?type=main"><a>网络拓扑状态</a></li>
-        <li id="tx" divname="StateHost.aspx"><a>主机状态</a></li>
-        <li id="xn" divname="StateApplication.aspx"><a>应用状态</a></li>
-        <li id="others" divname="StateCompRoomEnvi.aspx"><a>机房环境状态</a></li>
-        <li id="showSounds" divname="StateVirtualMachine.aspx">虚拟机</li>
-    </ul>
+    <div style="padding: 0px; margin: 0px; line-height: 29px;">
+        <table cellpadding="0" cellspacing="0" style="width: 100%; padding: 0px; margin: 0px;
+            line-height: 29px; height: 29px;">
+            <tr>
+                <td style="height: 29px;">
+                    <ul class="Ulcss">
+                        <li id="net" divname="StateList.aspx" style="background-image: url(../images/selected80.gif);">
+                            <a>状态列表</a></li>
+                        <li id="sy" divname="StateNet.aspx?type=main"><a>网络拓扑状态</a></li>
+                        <li id="tx" divname="StateHost.aspx"><a>主机状态</a></li>
+                        <li id="xn" divname="StateApplication.aspx"><a>应用状态</a></li>
+                        <li id="others" divname="StateCompRoomEnvi.aspx"><a>机房环境状态</a></li>
+                        <li id="showSounds" divname="StateVirtualMachine.aspx">虚拟机</li>
+                    </ul>
+                </td>
+                <td style="width: 30px;">
+                    <image id="imgRef" src="../images/Common/refresh.gif" />
+                </td>
+            </tr>
+        </table>
+    </div>
     <div  id="divFrm" style="vertical-align: top; border: 1px solid #CCCCCC;">
-        <iframe id="frmMain" frameborder="0" style="overflow:hidden;overflow-x:hidden;" height="100%" width="100%" src="StateList.aspx"></iframe>
+        <iframe id="frmMain"  name="frmMain" frameborder="0" style="overflow:hidden;overflow-x:hidden;" height="100%" width="100%" src="StateList.aspx"></iframe>
     </div>
 </asp:Content>

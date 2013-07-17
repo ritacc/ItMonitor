@@ -108,6 +108,17 @@
     <Reference Include="System.Web.ApplicationServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AlertAdmin\AlarmGroupsEdit.aspx" />
+    <Content Include="AlertAdmin\AlarmGroupsList.aspx" />
+    <Content Include="AlertAdmin\AlarmLevelSetEdit.aspx" />
+    <Content Include="AlertAdmin\AlarmLevelSetList.aspx" />
+    <Content Include="AlertAdmin\AlarmPolicyManagementEdit.aspx" />
+    <Content Include="AlertAdmin\AlarmPolicyManagementList.aspx" />
+    <Content Include="AlertAdmin\AlarmPolicyManagementMain.aspx" />
+    <Content Include="AlertAdmin\DisarmTimeEdit.aspx" />
+    <Content Include="AlertAdmin\DisarmTimeList.aspx" />
+    <Content Include="AlertAdmin\EventTypeEdit.aspx" />
+    <Content Include="AlertAdmin\EventTypeList.aspx" />
     <Content Include="AlertAdmin\HealthConfigEdit.aspx" />
     <Content Include="AlertAdmin\HealthConfigList.aspx" />
     <Content Include="AlertAdmin\HealthConfigMain.aspx" />
@@ -471,6 +482,83 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlertAdmin\AlarmGroupsEdit.aspx.cs">
+      <DependentUpon>AlarmGroupsEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AlertAdmin\AlarmGroupsEdit.aspx.designer.cs">
+      <DependentUpon>AlarmGroupsEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AlertAdmin\AlarmGroupsList.aspx.cs">
+      <DependentUpon>AlarmGroupsList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AlertAdmin\AlarmGroupsList.aspx.designer.cs">
+      <DependentUpon>AlarmGroupsList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AlertAdmin\AlarmLevelSetEdit.aspx.cs">
+      <DependentUpon>AlarmLevelSetEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AlertAdmin\AlarmLevelSetEdit.aspx.designer.cs">
+      <DependentUpon>AlarmLevelSetEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AlertAdmin\AlarmLevelSetList.aspx.cs">
+      <DependentUpon>AlarmLevelSetList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AlertAdmin\AlarmLevelSetList.aspx.designer.cs">
+      <DependentUpon>AlarmLevelSetList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AlertAdmin\AlarmPolicyManagementEdit.aspx.cs">
+      <DependentUpon>AlarmPolicyManagementEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AlertAdmin\AlarmPolicyManagementEdit.aspx.designer.cs">
+      <DependentUpon>AlarmPolicyManagementEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AlertAdmin\AlarmPolicyManagementList.aspx.cs">
+      <DependentUpon>AlarmPolicyManagementList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AlertAdmin\AlarmPolicyManagementList.aspx.designer.cs">
+      <DependentUpon>AlarmPolicyManagementList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AlertAdmin\AlarmPolicyManagementMain.aspx.cs">
+      <DependentUpon>AlarmPolicyManagementMain.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AlertAdmin\AlarmPolicyManagementMain.aspx.designer.cs">
+      <DependentUpon>AlarmPolicyManagementMain.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AlertAdmin\DisarmTimeEdit.aspx.cs">
+      <DependentUpon>DisarmTimeEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AlertAdmin\DisarmTimeEdit.aspx.designer.cs">
+      <DependentUpon>DisarmTimeEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AlertAdmin\DisarmTimeList.aspx.cs">
+      <DependentUpon>DisarmTimeList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AlertAdmin\DisarmTimeList.aspx.designer.cs">
+      <DependentUpon>DisarmTimeList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AlertAdmin\EventTypeEdit.aspx.cs">
+      <DependentUpon>EventTypeEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AlertAdmin\EventTypeEdit.aspx.designer.cs">
+      <DependentUpon>EventTypeEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AlertAdmin\EventTypeList.aspx.cs">
+      <DependentUpon>EventTypeList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AlertAdmin\EventTypeList.aspx.designer.cs">
+      <DependentUpon>EventTypeList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AlertAdmin\HealthConfigEdit.aspx.cs">
       <DependentUpon>HealthConfigEdit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
