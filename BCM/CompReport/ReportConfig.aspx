@@ -83,8 +83,8 @@
             <tr  class="RowStyle">
                 
                 <td colspan="4"  style=" text-align:center;">
-                    <asp:Button Text="提交" ID="btnSubmit" runat="server" />
-                    <asp:Button Text="返回" ID="btnReturn" runat="server" />
+                    <asp:Button Text="提交" ID="btnSubmit" runat="server"   CssClass="btn_bg" 
+                        onclick="lbtSave_Click"/>
                 </td>
             </tr>
         </table>

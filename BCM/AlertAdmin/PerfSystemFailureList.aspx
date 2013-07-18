@@ -10,7 +10,14 @@
     <link href="../Styles/right.css" rel="Stylesheet" />
     <script type="text/javascript" src="../Scripts/jquery-1.4.4.min.js"></script>
     <script type="text/javascript" src="../Scripts/Common.js"></script>
-    <script type="text/javascript" src="../Scripts/MonitorList.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var layout = $.getLayout();
+            var overflow_grid = $(".overflow_grid");
+            var height = layout.innerHeight - 248;
+            overflow_grid.height(height);
+        });
+    </script>
 </head>
 <body>
     <form id="form1" runat="server">

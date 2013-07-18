@@ -26,6 +26,10 @@ namespace GDK.BCM.CompReport
                 dpdSystem.DataTextField = "DeviceName";
                 dpdSystem.DataValueField = "DeviceID";
                 dpdSystem.DataBind();
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    LoadData(Convert.ToInt32(dt.Rows[0]["DeviceID"].ToString()));
+                }
             }
         }
 

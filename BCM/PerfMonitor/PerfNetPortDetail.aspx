@@ -27,7 +27,7 @@
                                 <th>属性值</th>
                             </tr>
                             <tr class="AlternatingRowStyle">
-                                <td><a href="PerfNetAlarmDetail.aspx?id=<%= deviceID %>"><img src='../images/Common/health<%= health %>.gif' alt="性能" title="<%= Performance %>" /></a></td>
+                                <td><a href="PerfNetAlarmDetail.aspx?id=<%= deviceID %>"><img style=" border:0px;" src='../images/Common/health<%= health %>.gif' alt="性能" title="<%= Performance %>" /></a></td>
                                 <td><asp:Label ID="lblName" runat="server"></asp:Label></td>
                             </tr>
                             <tr class="AlternatingRowStyle">

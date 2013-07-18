@@ -46,46 +46,46 @@ where dt.typeid=10 ";
                 return null;
             PerfMiddlewareOR obj = new PerfMiddlewareOR(dt);
             //加载网络接口
-            obj.SubProts = GetNetPorts(obj.Ports);
+            //obj.SubProts = GetNetPorts(obj.Ports);
             return obj;
         }
 
 
-        private DataTable GetNetPorts(string strPortinfo)
-        {
-            if (string.IsNullOrEmpty(strPortinfo))
-                return null;
-            string mWhere = "";
-            //3#^#1705#^#1706#^#1707
-            if (strPortinfo.IndexOf("#^#") > 0)
-            {
-                string[] strArr = strPortinfo.Replace("#^#", "$").Split('$');
-                if (strArr.Length < 2)
-                    return null;
-                mWhere = " d.DeviceID=" + strArr[1];
-                for (int i = 2; i < strArr.Length; i++)
-                {
-                    mWhere += " or d.DeviceID=" + strArr[i];
-                }
-            }
+//        private DataTable GetNetPorts(string strPortinfo)
+//        {
+//            if (string.IsNullOrEmpty(strPortinfo))
+//                return null;
+//            string mWhere = "";
+//            //3#^#1705#^#1706#^#1707
+//            if (strPortinfo.IndexOf("#^#") > 0)
+//            {
+//                string[] strArr = strPortinfo.Replace("#^#", "$").Split('$');
+//                if (strArr.Length < 2)
+//                    return null;
+//                mWhere = " d.DeviceID=" + strArr[1];
+//                for (int i = 2; i < strArr.Length; i++)
+//                {
+//                    mWhere += " or d.DeviceID=" + strArr[i];
+//                }
+//            }
 
-            string sql = @"select * from dbo.t_TmpValue 
-where " + mWhere;
+//            string sql = @"select * from dbo.t_TmpValue 
+//where " + mWhere;
 
-            sql = string.Format(" {0} and  {1}", sql, mWhere);
+//            sql = string.Format(" {0} and  {1}", sql, mWhere);
 
-            DataTable dt = null;
-            try
-            {
-                dt = db.ExecuteQuery(sql);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            return dt;
+//            DataTable dt = null;
+//            try
+//            {
+//                dt = db.ExecuteQuery(sql);
+//            }
+//            catch (Exception ex)
+//            {
+//                throw ex;
+//            }
+//            return dt;
 
-        }
+//        }
 
         /// <summary>
         /// Web应用的会话明细
@@ -225,6 +225,8 @@ where d.DeviceTypeID= 224 and ParentDevID ={0}", ParentDevID);
         /// </summary>
         public DataTable selectJVMHeap( int ParentDevID)
         {
+            DateTime EndTime = DateTime.Now;
+            DateTime StartTime= DateTime.Now.AddHours(-1);
             string strTableName = new HistoryValueDA().GetTableName(ParentDevID);
             if (strTableName == "")
                 return null;
@@ -235,10 +237,14 @@ from(
 	,min(convert(float,d.monitorvalue)) MinHeap,
 	round(avg(convert(float,d.monitorvalue)) ,2) AverageHeap
 	 from {0}  d
-	where d.ChannelNO=22505
+	where d.ChannelNO=22505 and  MonitorTime>'{1}' and MonitorTime<'{2}'
 ) as f
-left join t_TmpValue TotalHeap on TotalHeap.DeviceID= {1} and TotalHeap.ChannelNO=22504
-left join t_TmpValue CurrentHeap on CurrentHeap.DeviceID= {1} and CurrentHeap.ChannelNO=22505",strTableName, ParentDevID);
+left join t_TmpValue TotalHeap on TotalHeap.DeviceID= {3} and TotalHeap.ChannelNO=22504
+left join t_TmpValue CurrentHeap on CurrentHeap.DeviceID= {3} and CurrentHeap.ChannelNO=22505"
+                , strTableName
+                , StartTime.ToString("yyyy-MM-dd HH:mm:ss")
+                , EndTime.ToString("yyyy-MM-dd HH:mm:ss")
+                , ParentDevID);
             DataTable dt = null;
             //int returnC = 0;
             try
@@ -252,5 +258,62 @@ left join t_TmpValue CurrentHeap on CurrentHeap.DeviceID= {1} and CurrentHeap.Ch
             //pageCount = returnC;
             return dt;
         }
+
+        /// <summary>
+        /// Web应用 -最近1小时最高用户会话（前5位）
+        /// </summary>
+        /// <param name="DeviceID"></param>
+        /// <param name="StartTime"></param>
+        /// <param name="EndTime"></param>
+        /// <returns></returns>
+        public DataTable SelectWebSessionImg(int DeviceID, DateTime StartTime, DateTime EndTime)
+        {
+            string strTableName = new HistoryValueDA().GetTableName(DeviceID);
+            if (strTableName == "")
+                return null;
+            string sql = string.Format(@"
+            select top 5 gro.*,ditem.DeviceName from (
+                select  DeviceID,avg(monitorvalue) maxval from (	
+                select  DeviceID,convert(bigint, monitorvalue) monitorvalue
+                    from {0}
+                    where channelno=21102  and  MonitorTime>'{1}' and MonitorTime<'{2}'
+                ) as d  
+                group by DeviceID
+            ) as gro
+            inner join t_DevItemList ditem on ditem.DeviceID= gro.DeviceID
+            order by maxval", strTableName
+                            ,StartTime.ToString("yyyy-MM-dd HH:mm:ss")
+                            , EndTime.ToString("yyyy-MM-dd HH:mm:ss"));
+            return db.ExecuteQuery(sql);
+        }
+
+        /// <summary>
+        /// 线程使用-最后1小时
+        /// </summary>
+        /// <param name="DeviceID"></param>
+        /// <param name="StartTime"></param>
+        /// <param name="EndTime"></param>
+        /// <returns></returns>
+        public DataTable SelectProcesNumber(int DeviceID, DateTime StartTime, DateTime EndTime)
+        {
+            string strTableName = new HistoryValueDA().GetTableName(DeviceID);
+            if (strTableName == "")
+                return null;
+            string sql = string.Format(@"
+            select top 5 gro.*,ditem.DeviceName from (
+                select  DeviceID,avg(monitorvalue) maxval from (	
+                select  DeviceID,convert(bigint, monitorvalue) monitorvalue
+                    from {0}
+                    where channelno=22202 and  MonitorTime>'{1}' and MonitorTime<'{2}'
+                ) as d  
+                group by DeviceID
+            ) as gro
+            inner join t_DevItemList ditem on ditem.DeviceID= gro.DeviceID
+            order by maxval", strTableName
+                            , StartTime.ToString("yyyy-MM-dd HH:mm:ss")
+                            , EndTime.ToString("yyyy-MM-dd HH:mm:ss"));
+            return db.ExecuteQuery(sql);
+        }
+
     }
 }

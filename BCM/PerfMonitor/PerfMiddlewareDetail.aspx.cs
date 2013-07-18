@@ -61,18 +61,6 @@ namespace GDK.BCM.PerfMonitor
             State = _objDevEx.StatusVal;
             health = _objDevEx.HealthStatusVal;
 
-            //switch (_objDevEx.State)
-            //{
-            //    case "正常":
-            //        State = "1";
-            //        break;
-            //    case "故障":
-            //        State = "0";
-            //        break;
-            //    case "未启动":
-            //        State = "3";
-            //        break;
-            //}
             lblName.Text = _objDev.DeviceName;
             //lblWarningStatus.Text = _objDevEx.WarningStatus;
             lblType.Text = _objDevEx.TypeName;
@@ -102,20 +90,31 @@ namespace GDK.BCM.PerfMonitor
 
             //绑定，曲线
             HistoryValueDA mDA = new HistoryValueDA();
-            #region 今天接收、发送
+
+            #region 三个图形，绑定值
             DateTime StartTime = DateTime.Now.AddHours(-1);
             DateTime EndTime = DateTime.Now;
 
 
             // Web应用 -最近1小时最高用户会话（前5位）
-            DataTable dte = mDA.GetDeviceChanncelValue(iDeviceID, 91303, StartTime, EndTime);//磁盘使用率
+            DataTable dte = new PerfMiddlewareDA().SelectWebSessionImg(iDeviceID, StartTime, EndTime);
             if (dte != null)
             {
-                chLine.Series["Series1"].Points.DataBindXY(dte.Rows, "Time", dte.Rows, "MonitorValue");
+                chLine.Series["Series1"].Points.DataBindXY(dte.Rows, "DeviceName", dte.Rows, "maxval");
+                chLine.Series["Series1"].ChartType = SeriesChartType.Column;
+                chLine.Series["Series1"]["DrawingStyle"] = "Cylinder";
+            }
+            //线程使用-最后1小时
+            dte = new PerfMiddlewareDA().SelectWebSessionImg(iDeviceID, StartTime, EndTime);
+            if (dte != null)
+            {
+                chThread.Series["Series1"].Points.DataBindXY(dte.Rows, "DeviceName", dte.Rows, "maxval");
+                chThread.Series["Series1"].ChartType = SeriesChartType.Column;
+                chThread.Series["Series1"]["DrawingStyle"] = "Cylinder";
             }
 
             //最近1小时的JVM堆使用情况图表
-            dte = mDA.GetDeviceChanncelValue(iDeviceID, 22505, StartTime, EndTime);//网络使用率
+            dte = mDA.GetDeviceChanncelValue(iDeviceID, 22505, StartTime, EndTime);
             if (dte != null)
             {
                 chJVMHeap.Series["Series1"].Points.DataBindXY(dte.Rows, "Time", dte.Rows, "MonitorValue");
@@ -209,11 +208,9 @@ namespace GDK.BCM.PerfMonitor
         }
         private void BindGraidJVMHeap()
         {
-            int PageCount = 0;
             DataTable dt = new PerfMiddlewareDA().selectJVMHeap(Convert.ToInt32(Request.QueryString["id"]));//pgJVMHeap.PageIndex, pgJVMHeap.PageSize, out PageCount, Request.QueryString["id"]);
             gvJVMHeap.DataSource = dt;
             gvJVMHeap.DataBind();
-            //this.pgJVMHeap.RecordCount = PageCount;
         }
         #endregion
     }

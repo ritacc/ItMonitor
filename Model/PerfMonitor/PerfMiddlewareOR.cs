@@ -27,7 +27,7 @@ namespace GDK.Entity.PerfMonitor
         /// <summary>
         /// 网各设备的，接口列表
         /// </summary>
-        public DataTable SubProts { get; set; }
+       // public DataTable SubProts { get; set; }
 
         public PerfMiddlewareOR(DataTable dt)
         {
