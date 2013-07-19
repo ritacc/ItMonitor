@@ -118,6 +118,7 @@ namespace GDK.BCM.PerfMonitor
             if (dte != null)
             {
                 chJVMHeap.Series["Series1"].Points.DataBindXY(dte.Rows, "Time", dte.Rows, "MonitorValue");
+                //chJVMHeap.ChartAreas[0].AxisY.LabelStyle.Format = "{0}KB";
             }
             #endregion
         }

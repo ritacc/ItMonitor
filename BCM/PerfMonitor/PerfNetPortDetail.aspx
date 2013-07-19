@@ -216,14 +216,17 @@
         <div class="char_middle overflow_grid_select_NoPage Padding_5" style="height: 496px;">
             <asp:Chart ID="chLine" runat="server" Width="1090" Height="496" BackColor="#f0fbff">
                 <Titles>
+                    <asp:Title Docking="Left" Font="Trebuchet MS, 14.25pt, style=Bold"  Name="titY"
+                                Text="Bytes/ms" TextOrientation="Rotated90">
+                    </asp:Title>
                     <asp:Title ShadowColor="32, 0, 0, 0" Font="Trebuchet MS, 14.25pt, style=Bold" ShadowOffset="3"
                         Text="流量（每秒比特数）-今天" Name="Title1" ForeColor="26, 59, 105">
                     </asp:Title>
                 </Titles>
                 <Legends>
                     <asp:Legend TitleFont="Microsoft Sans Serif, 8pt, style=Bold" BackColor="Transparent"
-                        Font="Trebuchet MS, 8.25pt, style=Bold" IsTextAutoFit="False" Name="Default"
-                        Alignment="Near" LegendStyle="Column">
+                        Font="Trebuchet MS, 8.25pt, style=Bold" IsTextAutoFit="False" Name="Default" Docking="Bottom"
+                        Alignment="Center">
                     </asp:Legend>
                 </Legends>
                 <Series>
@@ -240,7 +243,7 @@
                         <Area3DStyle Rotation="10" Perspective="10" Inclination="15" IsRightAngleAxes="False"
                             WallWidth="0" IsClustered="False" />
                         <AxisY LineColor="64, 64, 64, 64" LabelAutoFitMaxFontSize="8">
-                            <LabelStyle Font="Trebuchet MS, 8.25pt, style=Bold" Format="0" />
+                            <LabelStyle Font="Trebuchet MS, 8.25pt, style=Bold" Format="{0}KB" />
                             <MajorGrid LineColor="64, 64, 64, 64" />
                         </AxisY>
                         <AxisX LineColor="64, 64, 64, 64" Interval="2" LabelAutoFitMaxFontSize="8">
@@ -265,7 +268,7 @@
             <Legends>
                 <asp:Legend TitleFont="Microsoft Sans Serif, 8pt, style=Bold" BackColor="Transparent"
                     Font="Trebuchet MS, 8.25pt, style=Bold" IsTextAutoFit="False" Name="Default"
-                    Alignment="Near" LegendStyle="Column">
+                    Alignment="Center"  Docking="Bottom">
                 </asp:Legend>
             </Legends>
             <Series>
@@ -291,7 +294,7 @@
                             <LabelStyle Font="Trebuchet MS, 8.25pt, style=Bold" Format="0" />
                             <MajorGrid LineColor="64, 64, 64, 64" />
                         </AxisY>
-                        <AxisX LineColor="64, 64, 64, 64" Interval="2" LabelAutoFitMaxFontSize="8">
+                        <AxisX LineColor="64, 64, 64, 64" Interval="2"  LabelAutoFitMaxFontSize="8">
                             <LabelStyle Font="Trebuchet MS, 8.25pt, style=Bold" IsEndLabelVisible="False" />
                             <MajorGrid LineColor="64, 64, 64, 64" />
                         </AxisX>
@@ -313,7 +316,7 @@
             <Legends>
                 <asp:Legend TitleFont="Microsoft Sans Serif, 8pt, style=Bold" BackColor="Transparent"
                     Font="Trebuchet MS, 8.25pt, style=Bold" IsTextAutoFit="False" Name="Default"
-                    Alignment="Near" LegendStyle="Column">
+                    Alignment="Center" Docking="Bottom">
                 </asp:Legend>
             </Legends>
             <Series>
@@ -330,7 +333,7 @@
                     <Area3DStyle Rotation="10" Perspective="10" Inclination="15" IsRightAngleAxes="False"
                         WallWidth="0" IsClustered="False" />
                     <AxisY LineColor="64, 64, 64, 64" LabelAutoFitMaxFontSize="8">
-                        <LabelStyle Font="Trebuchet MS, 8.25pt, style=Bold" Format="0" />
+                        <LabelStyle Font="Trebuchet MS, 8.25pt, style=Bold" Format="{0}M" />
                         <MajorGrid LineColor="64, 64, 64, 64" />
                     </AxisY>
                     <AxisX LineColor="64, 64, 64, 64" Interval="2" LabelAutoFitMaxFontSize="8">

@@ -216,21 +216,21 @@
                 <Legends>
                     <asp:Legend TitleFont="Microsoft Sans Serif, 8pt, style=Bold" BackColor="Transparent"
                         Font="Trebuchet MS, 8.25pt, style=Bold" IsTextAutoFit="False" Name="Default"
-                        Alignment="Near" LegendStyle="Column">
+                        Alignment="Center" Docking="Bottom">
                     </asp:Legend>
                 </Legends>
                 <Series>
-                    <asp:Series Name="Series1" LegendText="交换内存使用率" ChartType="Line" IsValueShownAsLabel="True"
+                    <asp:Series Name="Series1" LegendText="交换内存使用率" ChartType="Line" IsValueShownAsLabel="False"
                         LabelFormat="{0}" BorderColor="180, 26, 59, 105" BorderWidth="2">
                     </asp:Series>
                 </Series>
                 <Series>
-                    <asp:Series Name="Series2" LegendText="物理内存使用率" ChartType="Line" IsValueShownAsLabel="True"
+                    <asp:Series Name="Series2" LegendText="物理内存使用率" ChartType="Line" IsValueShownAsLabel="False"
                         LabelFormat="{0}" BorderColor="180, 26, 59, 105" BorderWidth="2">
                     </asp:Series>
                 </Series>
                 <Series>
-                    <asp:Series Name="Series3" LegendText="CPU使用率" ChartType="Line" IsValueShownAsLabel="True"
+                    <asp:Series Name="Series3" LegendText="CPU使用率" ChartType="Line" IsValueShownAsLabel="False"
                         LabelFormat="{0}" BorderColor="180, 26, 59, 105" BorderWidth="2">
                     </asp:Series>
                 </Series>
@@ -297,21 +297,21 @@
                 <Legends>
                     <asp:Legend TitleFont="Microsoft Sans Serif, 8pt, style=Bold" BackColor="Transparent"
                         Font="Trebuchet MS, 8.25pt, style=Bold" IsTextAutoFit="False" Name="Default"
-                        Alignment="Near" LegendStyle="Column">
+                        Alignment="Center" Docking="Bottom">
                     </asp:Legend>
                 </Legends>
                 <Series>
-                    <asp:Series Name="Series1" LegendText="每分钟的Job数" ChartType="Line" IsValueShownAsLabel="True"
+                    <asp:Series Name="Series1" LegendText="每分钟的Job数" ChartType="Line" IsValueShownAsLabel="False"
                         LabelFormat="{0}" BorderColor="180, 26, 59, 105" BorderWidth="2">
                     </asp:Series>
                 </Series>
                 <Series>
-                    <asp:Series Name="Series2" LegendText="5分钟的Job数" ChartType="Line" IsValueShownAsLabel="True"
+                    <asp:Series Name="Series2" LegendText="5分钟的Job数" ChartType="Line" IsValueShownAsLabel="False"
                         LabelFormat="{0}" BorderColor="180, 26, 59, 105" BorderWidth="2">
                     </asp:Series>
                 </Series>
                 <Series>
-                    <asp:Series Name="Series3" LegendText="15分钟的Job数" ChartType="Line" IsValueShownAsLabel="True"
+                    <asp:Series Name="Series3" LegendText="15分钟的Job数" ChartType="Line" IsValueShownAsLabel="False"
                         LabelFormat="{0}" BorderColor="180, 26, 59, 105" BorderWidth="2">
                     </asp:Series>
                 </Series>

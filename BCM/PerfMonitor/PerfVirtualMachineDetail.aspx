@@ -194,16 +194,16 @@
             <Legends>
                 <asp:Legend TitleFont="Microsoft Sans Serif, 8pt, style=Bold" BackColor="Transparent"
                     Font="Trebuchet MS, 8.25pt, style=Bold" IsTextAutoFit="False" Name="Default"
-                    Alignment="Near" LegendStyle="Column">
+                    Alignment="Center" Docking="Bottom">
                 </asp:Legend>
             </Legends>
             <Series>
-                <asp:Series Name="Series1" LegendText="网络使用率" ChartType="Line" IsValueShownAsLabel="True"
+                <asp:Series Name="Series1" LegendText="网络使用率" ChartType="Line" IsValueShownAsLabel="False"
                     LabelFormat="{0}" BorderColor="180, 26, 59, 105" BorderWidth="2">
                 </asp:Series>
             </Series>
             <Series>
-                <asp:Series Name="Series2" LegendText="磁盘使用率" ChartType="Line" IsValueShownAsLabel="True"
+                <asp:Series Name="Series2" LegendText="磁盘使用率" ChartType="Line" IsValueShownAsLabel="False"
                     LabelFormat="{0}" BorderColor="180, 26, 59, 105" BorderWidth="2">
                 </asp:Series>
             </Series>
@@ -213,7 +213,7 @@
                     <Area3DStyle Rotation="10" Perspective="10" Inclination="15" IsRightAngleAxes="False"
                         WallWidth="0" IsClustered="False" />
                     <AxisY LineColor="64, 64, 64, 64" LabelAutoFitMaxFontSize="8">
-                        <LabelStyle Font="Trebuchet MS, 8.25pt, style=Bold" Format="0" />
+                        <LabelStyle Font="Trebuchet MS, 8.25pt, style=Bold" Format="{0}K" />
                         <MajorGrid LineColor="64, 64, 64, 64" />
                     </AxisY>
                     <AxisX LineColor="64, 64, 64, 64" Interval="2" LabelAutoFitMaxFontSize="8">
