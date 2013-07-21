@@ -640,7 +640,9 @@
     <Compile Include="CompReport\Generate.aspx.designer.cs">
       <DependentUpon>Generate.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CompReport\GenerateDayPDF.cs" />
     <Compile Include="CompReport\GeneratePDF.cs" />
+    <Compile Include="CompReport\GeneratePDFBase.cs" />
     <Compile Include="CompReport\ReportConfig.aspx.cs">
       <DependentUpon>ReportConfig.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

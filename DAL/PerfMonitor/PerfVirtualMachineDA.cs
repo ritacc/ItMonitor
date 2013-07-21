@@ -47,70 +47,8 @@ where dt.typeid=9 ";
             if (dt == null)
                 return null;
             PerfVirtualOR obj = new PerfVirtualOR(dt);
-            //加载网络接口
-            obj.SubProts = GetNetPorts(obj.Ports);
             return obj;
         }
-
-
-        private DataTable GetNetPorts(string strPortinfo)
-        {
-            if (string.IsNullOrEmpty(strPortinfo))
-                return null;
-            string mWhere = "";
-            //3#^#1705#^#1706#^#1707
-            if (strPortinfo.IndexOf("#^#") > 0)
-            {
-                string[] strArr = strPortinfo.Replace("#^#", "$").Split('$');
-                if (strArr.Length < 2)
-                    return null;
-                mWhere = " d.DeviceID=" + strArr[1];
-                for (int i = 2; i < strArr.Length; i++)
-                {
-                    mWhere += " or d.DeviceID=" + strArr[i];
-                }
-            }
-
-            string sql = @"select * from dbo.t_TmpValue where " + mWhere;
-
-            sql = string.Format(" {0} and  {1}", sql, mWhere);
-
-            DataTable dt = null;
-            try
-            {
-                dt = db.ExecuteQuery(sql);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            return dt;
-
-        }
-
-        /// <summary>
-        /// 磁盘、网络使用情况 
-        /// </summary>
-//        public DataTable selectDiskUsage(int pageCrrent, int pageSize, out int pageCount, string ParentDevID)
-//        {
-//            string sql = string.Format(@"select d.deviceid,DiskUsage.MonitorValue DiskUsage,NetworkUtilization.MonitorValue NetworkUtilization
-// from t_Device d 
-//left join t_TmpValue DiskUsage on DiskUsage.DeviceID= d.DeviceID and DiskUsage.ChannelNO=91303
-//left join t_TmpValue NetworkUtilization on NetworkUtilization.DeviceID= d.DeviceID and NetworkUtilization.ChannelNO=91403
-//where d.DeviceTypeID= 913 and ParentDevID ={0} order by LastPollingTime", ParentDevID);
-//            DataTable dt = null;
-//            int returnC = 0; try
-//            {
-//                dt = db.ExecuteQuery(sql, pageCrrent, pageSize, out returnC);
-//            }
-//            catch (Exception ex)
-//            {
-//                throw ex;
-//            }
-//            pageCount = returnC;
-//            return dt;
-//        }
-
 
         /// <summary>
         /// 虚拟机操作系统

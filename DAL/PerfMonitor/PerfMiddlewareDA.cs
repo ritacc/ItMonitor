@@ -228,8 +228,10 @@ where d.DeviceTypeID= 224 and ParentDevID ={0}", ParentDevID);
             DateTime EndTime = DateTime.Now;
             DateTime StartTime= DateTime.Now.AddHours(-1);
             string strTableName = new HistoryValueDA().GetTableName(ParentDevID);
-            if (strTableName == "")
+            if (string.IsNullOrEmpty(strTableName))
+            {
                 return null;
+            }
 
             string sql = string.Format(@"select f.*,TotalHeap.MonitorValue TotalHeap,CurrentHeap.MonitorValue CurrentHeap 
 from(
@@ -269,8 +271,10 @@ left join t_TmpValue CurrentHeap on CurrentHeap.DeviceID= {3} and CurrentHeap.Ch
         public DataTable SelectWebSessionImg(int DeviceID, DateTime StartTime, DateTime EndTime)
         {
             string strTableName = new HistoryValueDA().GetTableName(DeviceID);
-            if (strTableName == "")
+            if (string.IsNullOrEmpty(strTableName))
+            {
                 return null;
+            }
             string sql = string.Format(@"
             select top 5 gro.*,ditem.DeviceName from (
                 select  DeviceID,avg(monitorvalue) maxval from (	
@@ -297,8 +301,10 @@ left join t_TmpValue CurrentHeap on CurrentHeap.DeviceID= {3} and CurrentHeap.Ch
         public DataTable SelectProcesNumber(int DeviceID, DateTime StartTime, DateTime EndTime)
         {
             string strTableName = new HistoryValueDA().GetTableName(DeviceID);
-            if (strTableName == "")
+            if (string.IsNullOrEmpty(strTableName))
+            {
                 return null;
+            }
             string sql = string.Format(@"
             select top 5 gro.*,ditem.DeviceName from (
                 select  DeviceID,avg(monitorvalue) maxval from (	

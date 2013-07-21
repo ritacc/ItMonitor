@@ -17,17 +17,7 @@ namespace GDK.Entity.PerfMonitor
         /// 主机名称
         /// </summary>
         public string HostName { get; set; }
-
-
-         /// <summary>
-        /// 接口列表     3#^#1705#^#1706#^#1707
-        /// </summary>
-        public string Ports { get; set; }
-                
-        /// <summary>
-        /// 网各设备的，接口列表
-        /// </summary>
-       // public DataTable SubProts { get; set; }
+        
 
         public PerfMiddlewareOR(DataTable dt)
         {

@@ -341,9 +341,9 @@
                 <asp:BoundField HeaderText="每分钟的Job数" DataField="OneJob" />
                 <asp:BoundField HeaderText="5分钟的Job数" DataField="FiveJob" />
                 <asp:BoundField HeaderText="15分钟的Job数" DataField="FifteenJob" />
-                <asp:BoundField HeaderText="每分钟的Job数峰值" DataField="OneJobPeak" />
-                <asp:BoundField HeaderText="5分钟的Job数峰值" DataField="FiveJobPeak" />
-                <asp:BoundField HeaderText="15分钟的Job数峰值" DataField="FifteenJobPeak" />
+                <asp:BoundField HeaderText="每分钟的Job数峰值" DataField="max1job" />
+                <asp:BoundField HeaderText="5分钟的Job数峰值" DataField="max5jon" />
+                <asp:BoundField HeaderText="15分钟的Job数峰值" DataField="max15job" />
             </Columns>
             <EmptyDataTemplate>
                 <table cellpadding="0" cellspacing="0" width="100%" class="gridheader_table">
@@ -361,7 +361,7 @@
                 </table>
             </EmptyDataTemplate>
         </asp:GridView>              
-        <uc1:pagenavigate ID="pg" runat="server" />   
+        <%--<uc1:pagenavigate ID="pg" runat="server" />   --%>
      </div>
 
       <div class="div_box Padding_5">

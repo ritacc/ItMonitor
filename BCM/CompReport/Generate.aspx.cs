@@ -16,7 +16,7 @@ namespace GDK.BCM.CompReport
             {
                 Response.Redirect("ReportGenerate.aspx");
             }
-            GeneratePDF PDF = Session["GeneratePDF"] as GeneratePDF;
+            GeneratePDFBase PDF = Session["GeneratePDF"] as GeneratePDFBase;
            
 
             PDF.chLine = chLine;

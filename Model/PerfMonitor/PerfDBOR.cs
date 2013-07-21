@@ -92,10 +92,11 @@ namespace GDK.Entity.PerfMonitor
         /// </summary>
         public string BufferSize { get; set; }
 
+        public double _ShareSize;
         /// <summary>
         /// 共享池大小
         /// </summary>
-        public string ShareSize { get; set; }
+        public double ShareSize { get { return _ShareSize; } }
 
         /// <summary>
         /// 重做日志缓冲器大小
@@ -315,7 +316,7 @@ namespace GDK.Entity.PerfMonitor
                         break;
 
                     case "45202":
-                        ShareSize = dr["MonitorValue"].ToString();
+                        double.TryParse(dr["MonitorValue"].ToString(),out _ShareSize);
                         break;
 
                     case "45203":

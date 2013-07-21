@@ -27,7 +27,7 @@ namespace GDK.BCM.PerfMonitor
         protected void Page_Load(object sender, EventArgs e)
         {
             deviceID = Convert.ToInt32(Request.QueryString["id"]);
-            this.pg.OnPageChanged += new EventHandler(PageChanged);
+            //this.pg.OnPageChanged += new EventHandler(PageChanged);
             this.pgProcessDetail.OnPageChanged += new EventHandler(PageChangedProcessDetail);
             this.pgDiskUtilization.OnPageChanged += new EventHandler(PageChangedDisk);
             this.pgPageSpace.OnPageChanged += new EventHandler(PageChangedPageSpace);
@@ -182,17 +182,16 @@ namespace GDK.BCM.PerfMonitor
 
 
         #region  绑定列表 - 系统负荷 - 最近一小时
-        private void PageChanged(object sender, EventArgs e)
-        {
-            BindGraidSystem();
-        }
+        //private void PageChanged(object sender, EventArgs e)
+        //{
+        //    BindGraidSystem();
+        //}
         private void BindGraidSystem()
         {
-            int PageCount = 0;
-            DataTable dt = new PerfHostDA().selecSystemLoad(pg.PageIndex, pg.PageSize, out PageCount, Request.QueryString["id"]);
+            DataTable dt = new PerfHostDA().selecSystemLoad(Convert.ToInt32(Request.QueryString["id"]));
             gvSystemLoad.DataSource = dt;
             gvSystemLoad.DataBind();
-            this.pg.RecordCount = PageCount;
+            //this.pg.RecordCount = PageCount;
         }
         #endregion
 

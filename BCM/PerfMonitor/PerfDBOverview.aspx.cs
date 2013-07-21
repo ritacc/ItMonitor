@@ -129,43 +129,43 @@ namespace GDK.BCM.PerfMonitor
 
             #region 绑定 共享的SGA
             DataPoint dpSGA = new DataPoint();
-            dpSGA.LegendText = string.Format("{0}({1}%)", "库存储器大小", _Obj.LibraryMemorySize);
-            double[] dSGA = { Convert.ToDouble(_objDev.AvailableRate) };
+            dpSGA.LegendText = string.Format("{0}({1}M)", "库存储器大小", _Obj.LibraryMemorySize);
+            double[] dSGA = { _Obj.LibraryMemorySize };
             dpSGA.Color = Color.Green;
             dpSGA.YValues = dSGA;
             chtSGA.Series["Series1"].Points.Add(dpSGA);
 
             dpSGA = new DataPoint();
-            dpSGA.LegendText = string.Format("{0}({1}%)", "数据字典存储器", _Obj.DataDictionaryMemory);
-            double[] dSGA2 = { Convert.ToDouble(100 - _objDev.AvailableRate) };
+            dpSGA.LegendText = string.Format("{0}({1}M)", "数据字典存储器", _Obj.DataDictionaryMemory);
+            double[] dSGA2 = { _Obj.DataDictionaryMemory };
             dpSGA.Color = Color.Red;
             dpSGA.YValues = dSGA2;
             chtSGA.Series["Series1"].Points.Add(dpSGA);
 
             dpSGA = new DataPoint();
-            dpSGA.LegendText = string.Format("{0}({1}%)", "SG区域大小", _Obj.SGSize);
-            double[] dSGA3 = { Convert.ToDouble(100 - _objDev.AvailableRate) };
+            dpSGA.LegendText = string.Format("{0}({1}M)", "SG区域大小", _Obj.SGSize);
+            double[] dSGA3 = { _Obj.SGSize };
             dpSGA.Color = Color.Blue;
             dpSGA.YValues = dSGA3;
             chtSGA.Series["Series1"].Points.Add(dpSGA);
             
             dpSGA = new DataPoint();
-            dpSGA.LegendText = string.Format("{0}({1}%)", "固定的区域大小", _Obj.FixedRegionSize);
-            double[] dSGA4 = { Convert.ToDouble(100 - _objDev.AvailableRate) };
+            dpSGA.LegendText = string.Format("{0}({1}M)", "固定的区域大小", _Obj.FixedRegionSize);
+            double[] dSGA4 = { _Obj.FixedRegionSize };
             dpSGA.Color = Color.Yellow;
             dpSGA.YValues = dSGA4;
             chtSGA.Series["Series1"].Points.Add(dpSGA);
 
             dpSGA = new DataPoint();
-            dpSGA.LegendText = string.Format("{0}({1}%)", "缓冲存储器大小", _Obj.BufferMemorySize);
-            double[] dSGA5 = { Convert.ToDouble(100 - _objDev.AvailableRate) };
+            dpSGA.LegendText = string.Format("{0}({1}M)", "缓冲存储器大小", _Obj.BufferMemorySize);
+            double[] dSGA5 = { _Obj.BufferMemorySize };
             dpSGA.Color = Color.Orange;
             dpSGA.YValues = dSGA5;
             chtSGA.Series["Series1"].Points.Add(dpSGA);
 
             dpSGA = new DataPoint();
-            dpSGA.LegendText = string.Format("{0}({1}%)", "共享池大小", _Obj.ShareSize);
-            double[] dSGA6 = { Convert.ToDouble(100 - _objDev.AvailableRate) };
+            dpSGA.LegendText = string.Format("{0}({1}M)", "共享池大小", _Obj.ShareSize);
+            double[] dSGA6 = { _Obj.ShareSize };
             dpSGA.Color = Color.OldLace;
             dpSGA.YValues = dSGA6;
             chtSGA.Series["Series1"].Points.Add(dpSGA);

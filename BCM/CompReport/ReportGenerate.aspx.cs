@@ -39,19 +39,16 @@ namespace GDK.BCM.CompReport
 
         protected void btnGeneratePDF_Click(object sender, EventArgs e)
         {
-            GeneratePDF PDF = new GeneratePDF();
+            GeneratePDFBase PDF = new GeneratePDF();
             if (dpdSystem.SelectedItem == null)
             {
                 AlertNormal("请选择报告标题。");
                 return;
             }
-            PDF.SystemID = Convert.ToInt32(dpdSystem.SelectedItem.Value);
-            PDF.SystemTitle =dpdSystem.SelectedItem.Text;
-            PDF.SubTitle = txtSubTitle.Text;
-
-
             if (rdiM.Checked)
             {
+                PDF = new GeneratePDF();
+
                 PDF.ReportData = string.Format("{0}年{1}月", dpdYear.Text, dpdMonth.Text);
                 PDF.StartTime = Convert.ToDateTime(string.Format("{0}-{1}-01 00:00:00"
                     , dpdYear.SelectedItem.Value, dpdMonth.SelectedItem.Value)).AddMonths(-1);
@@ -67,6 +64,8 @@ namespace GDK.BCM.CompReport
                     AlertNormal("请选择时间！");
                     return;
                 }
+                PDF = new GenerateDayPDF();
+                
                 PDF.StartTime = Convert.ToDateTime(txtStartTime.Text);
                 PDF.EndTime = Convert.ToDateTime(txtEndTime.Text);
                 if (PDF.StartTime > PDF.EndTime)
@@ -74,7 +73,15 @@ namespace GDK.BCM.CompReport
                     AlertNormal("开始时间必须大于结束时间！");
                     return;
                 }
+                PDF.ReportData = string.Format("{0}-{1}"
+                    ,PDF.StartTime.ToString("yyyyy年MM月dd日")
+                    ,PDF.EndTime.ToString("yyyyy年MM月dd日"));
             }
+
+            PDF.SystemID = Convert.ToInt32(dpdSystem.SelectedItem.Value);
+            PDF.SystemTitle =dpdSystem.SelectedItem.Text;
+            PDF.SubTitle = txtSubTitle.Text;
+            
             PDF.UserPart = base.CurrentUser.DepartmentName;
             PDF.ReportDesc = reportDesc.Text;
 

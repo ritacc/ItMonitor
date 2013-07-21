@@ -29,7 +29,7 @@
                                     <LabelStyle Font="Trebuchet MS, 8.25pt, style=Bold" Format="0" />
                                     <MajorGrid LineColor="64, 64, 64, 64" />
                                 </AxisY>
-                                <AxisX LineColor="64, 64, 64, 64" LabelAutoFitMaxFontSize="8">
+                                <AxisX LineColor="64, 64, 64, 64" LabelAutoFitMaxFontSize="8" Interval="1">
                                     <LabelStyle Font="Trebuchet MS, 8.25pt, style=Bold" IsEndLabelVisible="False" />
                                     <MajorGrid LineColor="64, 64, 64, 64" />
                                 </AxisX>
