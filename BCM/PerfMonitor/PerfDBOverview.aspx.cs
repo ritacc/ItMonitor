@@ -60,31 +60,9 @@ namespace GDK.BCM.PerfMonitor
             DeviceOREx _objDevEx = new DeviceDA().SelectDeviceORExByID(mDeviceID);
 
             State = _objDevEx.StatusVal;
-            //switch (_objDevEx.State)
-            //{
-            //    case "正常":
-            //        State = "1";
-            //        break;
-            //    case "故障":
-            //        State = "0";
-            //        break;
-            //    case "未启动":
-            //        State = "3";
-            //        break;
-            //}
+         
             Health = _objDevEx.HealthStatusVal;
-            //switch (_objDevEx.HealthStatus)
-            //{
-            //    case "正常":
-            //        Health = "1";
-            //        break;
-            //    case "故障":
-            //        Health = "0";
-            //        break;
-            //    case "未启动":
-            //        Health = "3";
-            //        break;
-            //}
+           
 
             lblState.Text = _objDevEx.State;
 
@@ -93,8 +71,8 @@ namespace GDK.BCM.PerfMonitor
             lblVersion.Text = _objDev.Version;
             lblStartUpTime.Text = _Obj.StartUpTime;
             lblPort.Text = _objDev.Port;
-            lblHostName.Text = _Obj.HostName;
-            lblSystem.Text = _Obj.System;
+            lblHostName.Text = _objDev.OperSystem;
+            lblSystem.Text = _objDev.HostName;
             lblLastPollingTime.Text = _objDev.LastPollingTime.ToString();
             lblNextPollingTime.Text = _objDev.NextPollingTime.ToString();
 

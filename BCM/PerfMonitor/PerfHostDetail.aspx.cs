@@ -114,7 +114,7 @@ namespace GDK.BCM.PerfMonitor
             #region 绑定，曲线
             HistoryValueDA mDA = new HistoryValueDA();
             
-            DateTime StartTime = DateTime.Now.AddHours(-6);
+            DateTime StartTime = DateTime.Now.AddHours(-2);
             DateTime EndTime = DateTime.Now;
 
             DateTime SystemStartTime = DateTime.Now.AddHours(-1);
