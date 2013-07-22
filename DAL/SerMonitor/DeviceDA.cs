@@ -24,7 +24,7 @@ namespace GDK.DAL.SerMonitor
             DataTable dt = null;
             try
             {
-                dt = db.ExecuteQueryDataSet(sql).Tables[0];
+				dt = db.ExecuteQuery(sql);
             }
             catch (Exception ex)
             {
@@ -32,6 +32,28 @@ namespace GDK.DAL.SerMonitor
             }
             return dt;
         }
+
+		/// <summary>
+		/// 查询主机、操作系统
+		/// </summary>
+		/// <param name="strIP"></param>
+		/// <returns></returns>
+		public DataTable SelectHostNmaeSystemByIP(string strIP)
+		{
+			string sql = string.Format(@"select top 1 d.DeviceName,mt.TypeName from t_Device d
+left join t_DeviceType mt on mt.DeviceTypeID= d.DeviceTypeID and mt.TypeID=1 or mt.TypeID=9
+where d.IP='{0}'", strIP);
+			DataTable dt = null;
+			try
+			{
+				dt = db.ExecuteQuery(sql);
+			}
+			catch (Exception ex)
+			{
+				throw ex;
+			}
+			return dt;
+		}
 
         /// <summary>
         /// 选择设备下的通道
@@ -46,7 +68,7 @@ namespace GDK.DAL.SerMonitor
             DataTable dt = null;
             try
             {
-                dt = db.ExecuteQueryDataSet(sql).Tables[0];
+				dt = db.ExecuteQuery(sql);
             }
             catch (Exception ex)
             {
@@ -327,6 +349,15 @@ inner join  t_DeviceType dt on d.DeviceTypeID=dt.DeviceTypeID and d.stationid={0
                 return null;
             DataRow dr = dt.Rows[0];
             DeviceOR m_obj = new DeviceOR(dr);
+			if (!string.IsNullOrEmpty(m_obj.IP))//查询操作系统
+			{
+				dt = SelectHostNmaeSystemByIP(m_obj.IP);
+				if (dt != null && dt.Rows.Count > 0)
+				{
+					m_obj.OperSystem = dt.Rows[0]["TypeName"].ToString();
+					m_obj.HostName = dt.Rows[0]["DeviceName"].ToString();
+				}
+			}
             return m_obj;
         }
 

@@ -102,8 +102,8 @@
                             <Legends>
                                 <asp:Legend TitleFont="Microsoft Sans Serif, 8pt, style=Bold" BackColor="Transparent"
                                     IsEquallySpacedItems="True" Font="Trebuchet MS, 8pt, style=Bold" IsTextAutoFit="True "
-                                    Name="Default">
-                                    <Position Height="10" Width="95" X="2" Y="92" />
+                                    Name="Default"  Docking="Bottom" Alignment="Center">
+                                    
                                 </asp:Legend>
                             </Legends>
                             <Series>

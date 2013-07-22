@@ -80,8 +80,7 @@
                             <Legends>
                                 <asp:Legend TitleFont="Microsoft Sans Serif, 8pt, style=Bold" BackColor="Transparent"
                                     IsEquallySpacedItems="True" Font="Trebuchet MS, 8pt, style=Bold" IsTextAutoFit="True "
-                                    Name="Default">
-                                    <Position Height="10" Width="95" X="2" Y="92" />
+                                    Name="Default"  Docking="Bottom" Alignment="Center">
                                 </asp:Legend>
                             </Legends>
                             <Series>
@@ -118,7 +117,8 @@
                             </ChartAreas>
                         </asp:Chart>
                         <br /><br />
-                    当前可用状态：<img id="imgStatusSub" src='../images/Common/stata<%= State %>.gif' alt="状态" class="imgPerf" /> <asp:Label ID="lblPerf" runat="server"></asp:Label>
+							当前可用状态：<img id="imgStatusSub" src='../images/Common/stata<%= State %>.gif' alt="状态" class="imgPerf" />
+							 <asp:Label ID="lblPerf" runat="server"></asp:Label>
                         <br /><br />
                     </div>
                 </td>

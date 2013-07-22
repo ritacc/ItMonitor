@@ -72,31 +72,8 @@ namespace GDK.BCM.PerfMonitor
             PerfHostOR _ph = new PerfHostDA().SelectHostDetail(mDeviceID);
 
             state = _objDevEx.StatusVal;
-            //switch (_objDevEx.State)
-            //{
-            //    case "正常":
-            //        state = "1";
-            //        break;
-            //    case "故障":
-            //        state = "0";
-            //        break;
-            //    case "未启动":
-            //        state = "3";
-            //        break;
-            //}
             health = _objDevEx.HealthStatusVal;
-            //switch (_objDevEx.HealthStatus)
-            //{
-            //    case "正常":
-            //        health = "1";
-            //        break;
-            //    case "故障":
-            //        health = "0";
-            //        break;
-            //    case " 报警":
-            //        health = "2";
-            //        break;
-            //}
+           
 
             lblPerf.Text = _objDevEx.State;
             lblPerformance.Text = _objDevEx.State;
@@ -105,8 +82,8 @@ namespace GDK.BCM.PerfMonitor
             lblNextPollingTime.Text = _objDev.NextPollingTime.ToString();
 
             lblMonitorName.Text = _objDev.DeviceName;
-            lblHostName.Text = _ph.HostName;
-            lblOperatingSystem.Text = _ph.System;
+            lblHostName.Text = _objDev.HostName;
+			lblOperatingSystem.Text = _objDev.OperSystem;
             lblIP.Text = _objDev.IP;
             lblResponseTime.Text = _ph.ResponseTime;
 
