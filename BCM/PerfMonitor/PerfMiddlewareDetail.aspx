@@ -92,8 +92,7 @@
                             <Legends>
                                 <asp:Legend TitleFont="Microsoft Sans Serif, 8pt, style=Bold" BackColor="Transparent"
                                     IsEquallySpacedItems="True" Font="Trebuchet MS, 8pt, style=Bold" IsTextAutoFit="True "
-                                    Name="Default">
-                                    <Position Height="10" Width="95" X="2" Y="92" />
+                                    Name="Default"  Docking="Bottom" Alignment="Center">
                                 </asp:Legend>
                             </Legends>
                             <Series>
@@ -143,39 +142,32 @@
     <div class="div_box Padding_5">
         <div class="div_box_title">Web应用 -最近1小时最高用户会话（前5位）</div>
         <div class="char_middle overflow_grid_select_NoPage Padding_5" style="height: 496px;">
-        <asp:Chart ID="chLine" runat="server" Width="890" Height="496" BackColor="#f0fbff">
-            <Titles>
-                <asp:Title ShadowColor="32, 0, 0, 0" Font="Trebuchet MS, 14.25pt, style=Bold" ShadowOffset="3"
-                    Text="x轴-请求数" Name="Title1" ForeColor="26, 59, 105">
-                </asp:Title>
-            </Titles>
-            <Legends>
-                <asp:Legend TitleFont="Microsoft Sans Serif, 8pt, style=Bold" BackColor="Transparent"
-                    Font="Trebuchet MS, 8.25pt, style=Bold" IsTextAutoFit="False" Name="Default"
-                    Alignment="Near" LegendStyle="Column">
-                </asp:Legend>
-            </Legends>
-            <Series>
-                <asp:Series Name="Series1" LegendText="请求数" ChartType="Line" IsValueShownAsLabel="True"
-                    LabelFormat="{0}" BorderColor="180, 26, 59, 105" BorderWidth="2">
-                </asp:Series>
-            </Series>
-            <ChartAreas>
-                <asp:ChartArea Name="ChartArea1" BorderColor="64, 64, 64, 64" BorderDashStyle="Solid"
-                    BackSecondaryColor="White" BackColor="Gainsboro" ShadowColor="64, 0, 0, 0" BackGradientStyle="TopBottom">
-                    <Area3DStyle Rotation="10" Perspective="10" Inclination="15" IsRightAngleAxes="False"
-                        WallWidth="0" IsClustered="False" />
-                    <AxisY LineColor="64, 64, 64, 64" LabelAutoFitMaxFontSize="8">
-                        <LabelStyle Font="Trebuchet MS, 8.25pt, style=Bold" Format="0" />
-                        <MajorGrid LineColor="64, 64, 64, 64" />
-                    </AxisY>
-                    <AxisX LineColor="64, 64, 64, 64" Interval="2" LabelAutoFitMaxFontSize="8">
-                        <LabelStyle Font="Trebuchet MS, 8.25pt, style=Bold" IsEndLabelVisible="False" />
-                        <MajorGrid LineColor="64, 64, 64, 64" />
-                    </AxisX>
-                </asp:ChartArea>
-            </ChartAreas>
-        </asp:Chart>
+            <asp:Chart ID="chLine" runat="server" Width="890" Height="496px" BackColor="#FAFAFA">
+                <Titles>
+                    <asp:Title ShadowColor="32, 0, 0, 0" Font="Trebuchet MS, 14.25pt, style=Bold" ShadowOffset="3"
+                        Text="x轴-请求数" Name="Title1" ForeColor="26, 59, 105">
+                    </asp:Title>
+                </Titles>
+                <Series>
+                    <asp:Series Name="Series1" IsValueShownAsLabel="True" LabelFormat="{0}" BorderColor="180, 26, 59, 105">
+                    </asp:Series>
+                </Series>
+                <ChartAreas>
+                    <asp:ChartArea Name="ChartArea1" BorderColor="64, 64, 64, 64" BorderDashStyle="Solid"
+                        BackSecondaryColor="White" BackColor="Gainsboro" ShadowColor="64, 0, 0, 0" BackGradientStyle="TopBottom">
+                        <Area3DStyle Rotation="10" Perspective="10" Inclination="15" IsRightAngleAxes="False"
+                            WallWidth="0" IsClustered="False" />
+                        <AxisY LineColor="64, 64, 64, 64" LabelAutoFitMaxFontSize="8">
+                            <LabelStyle Font="Trebuchet MS, 8.25pt, style=Bold" Format="0" />
+                            <MajorGrid LineColor="64, 64, 64, 64" />
+                        </AxisY>
+                        <AxisX LineColor="64, 64, 64, 64" LabelAutoFitMaxFontSize="8">
+                            <LabelStyle Font="Trebuchet MS, 8.25pt, style=Bold" IsEndLabelVisible="False" />
+                            <MajorGrid LineColor="64, 64, 64, 64" />
+                        </AxisX>
+                    </asp:ChartArea>
+                </ChartAreas>
+            </asp:Chart>
     </div>
      </div>
 
@@ -245,32 +237,25 @@
                     Text="x轴-线程池使用情况" Name="Title1" ForeColor="26, 59, 105">
                 </asp:Title>
             </Titles>
-            <Legends>
-                <asp:Legend TitleFont="Microsoft Sans Serif, 8pt, style=Bold" BackColor="Transparent"
-                    Font="Trebuchet MS, 8.25pt, style=Bold" IsTextAutoFit="False" Name="Default"
-                    Alignment="Near" LegendStyle="Column">
-                </asp:Legend>
-            </Legends>
             <Series>
-                <asp:Series Name="Series1" LegendText="线程池使用情况" ChartType="Line" IsValueShownAsLabel="True"
-                    LabelFormat="{0}" BorderColor="180, 26, 59, 105" BorderWidth="2">
-                </asp:Series>
+               <asp:Series Name="Series1" IsValueShownAsLabel="True" LabelFormat="{0}" BorderColor="180, 26, 59, 105">
+               </asp:Series>
             </Series>
             <ChartAreas>
-                <asp:ChartArea Name="ChartArea1" BorderColor="64, 64, 64, 64" BorderDashStyle="Solid"
-                    BackSecondaryColor="White" BackColor="Gainsboro" ShadowColor="64, 0, 0, 0" BackGradientStyle="TopBottom">
-                    <Area3DStyle Rotation="10" Perspective="10" Inclination="15" IsRightAngleAxes="False"
-                        WallWidth="0" IsClustered="False" />
-                    <AxisY LineColor="64, 64, 64, 64" LabelAutoFitMaxFontSize="8">
-                        <LabelStyle Font="Trebuchet MS, 8.25pt, style=Bold" Format="0" />
-                        <MajorGrid LineColor="64, 64, 64, 64" />
-                    </AxisY>
-                    <AxisX LineColor="64, 64, 64, 64" Interval="2" LabelAutoFitMaxFontSize="8">
-                        <LabelStyle Font="Trebuchet MS, 8.25pt, style=Bold" IsEndLabelVisible="False" />
-                        <MajorGrid LineColor="64, 64, 64, 64" />
-                    </AxisX>
-                </asp:ChartArea>
-            </ChartAreas>
+                    <asp:ChartArea Name="ChartArea1" BorderColor="64, 64, 64, 64" BorderDashStyle="Solid"
+                        BackSecondaryColor="White" BackColor="Gainsboro" ShadowColor="64, 0, 0, 0" BackGradientStyle="TopBottom">
+                        <Area3DStyle Rotation="10" Perspective="10" Inclination="15" IsRightAngleAxes="False"
+                            WallWidth="0" IsClustered="False" />
+                        <AxisY LineColor="64, 64, 64, 64" LabelAutoFitMaxFontSize="8">
+                            <LabelStyle Font="Trebuchet MS, 8.25pt, style=Bold" Format="0" />
+                            <MajorGrid LineColor="64, 64, 64, 64" />
+                        </AxisY>
+                        <AxisX LineColor="64, 64, 64, 64" LabelAutoFitMaxFontSize="8">
+                            <LabelStyle Font="Trebuchet MS, 8.25pt, style=Bold" IsEndLabelVisible="False" />
+                            <MajorGrid LineColor="64, 64, 64, 64" />
+                        </AxisX>
+                    </asp:ChartArea>
+              </ChartAreas>
         </asp:Chart>
     </div>
      </div>
@@ -400,12 +385,12 @@
             <Legends>
                 <asp:Legend TitleFont="Microsoft Sans Serif, 8pt, style=Bold" BackColor="Transparent"
                     Font="Trebuchet MS, 8.25pt, style=Bold" IsTextAutoFit="False" Name="Default"
-                    Alignment="Near" LegendStyle="Column">
+                     Alignment="Center" Docking="Bottom">
                 </asp:Legend>
             </Legends>
             <Series>
                 <asp:Series Name="Series1" LegendText="堆使用情况" ChartType="Line" IsValueShownAsLabel="True"
-                    LabelFormat="{0}" BorderColor="180, 26, 59, 105" BorderWidth="2">
+                    LabelFormat="{0}KB" BorderColor="180, 26, 59, 105" BorderWidth="2">
                 </asp:Series>
             </Series>
             <ChartAreas>
@@ -414,10 +399,10 @@
                     <Area3DStyle Rotation="10" Perspective="10" Inclination="15" IsRightAngleAxes="False"
                         WallWidth="0" IsClustered="False" />
                     <AxisY LineColor="64, 64, 64, 64" LabelAutoFitMaxFontSize="8">
-                        <LabelStyle Font="Trebuchet MS, 8.25pt, style=Bold" Format="0" />
+                        <LabelStyle Font="Trebuchet MS, 8.25pt, style=Bold" Format="{0}KB" />
                         <MajorGrid LineColor="64, 64, 64, 64" />
                     </AxisY>
-                    <AxisX LineColor="64, 64, 64, 64" Interval="2" LabelAutoFitMaxFontSize="8">
+                    <AxisX LineColor="64, 64, 64, 64" Interval="1"    LabelAutoFitMaxFontSize="8">
                         <LabelStyle Font="Trebuchet MS, 8.25pt, style=Bold" IsEndLabelVisible="False" />
                         <MajorGrid LineColor="64, 64, 64, 64" />
                     </AxisX>

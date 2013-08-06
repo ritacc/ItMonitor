@@ -27,7 +27,7 @@ namespace GDK.BCM.PerfMonitor
         protected void Page_Load(object sender, EventArgs e)
         {
             deviceID = Convert.ToInt32(Request.QueryString["id"]);
-            this.pg.OnPageChanged += new EventHandler(PageChanged);
+            //this.pg.OnPageChanged += new EventHandler(PageChanged);
             this.pgProcessDetail.OnPageChanged += new EventHandler(PageChangedProcessDetail);
             this.pgDiskUtilization.OnPageChanged += new EventHandler(PageChangedDisk);
             this.pgPageSpace.OnPageChanged += new EventHandler(PageChangedPageSpace);
@@ -72,31 +72,8 @@ namespace GDK.BCM.PerfMonitor
             PerfHostOR _ph = new PerfHostDA().SelectHostDetail(mDeviceID);
 
             state = _objDevEx.StatusVal;
-            //switch (_objDevEx.State)
-            //{
-            //    case "正常":
-            //        state = "1";
-            //        break;
-            //    case "故障":
-            //        state = "0";
-            //        break;
-            //    case "未启动":
-            //        state = "3";
-            //        break;
-            //}
             health = _objDevEx.HealthStatusVal;
-            //switch (_objDevEx.HealthStatus)
-            //{
-            //    case "正常":
-            //        health = "1";
-            //        break;
-            //    case "故障":
-            //        health = "0";
-            //        break;
-            //    case " 报警":
-            //        health = "2";
-            //        break;
-            //}
+           
 
             lblPerf.Text = _objDevEx.State;
             lblPerformance.Text = _objDevEx.State;
@@ -105,8 +82,8 @@ namespace GDK.BCM.PerfMonitor
             lblNextPollingTime.Text = _objDev.NextPollingTime.ToString();
 
             lblMonitorName.Text = _objDev.DeviceName;
-            lblHostName.Text = _ph.HostName;
-            lblOperatingSystem.Text = _ph.System;
+            lblHostName.Text = _objDev.HostName;
+			lblOperatingSystem.Text = _objDev.OperSystem;
             lblIP.Text = _objDev.IP;
             lblResponseTime.Text = _ph.ResponseTime;
 
@@ -137,7 +114,7 @@ namespace GDK.BCM.PerfMonitor
             #region 绑定，曲线
             HistoryValueDA mDA = new HistoryValueDA();
             
-            DateTime StartTime = DateTime.Now.AddHours(-6);
+            DateTime StartTime = DateTime.Now.AddHours(-2);
             DateTime EndTime = DateTime.Now;
 
             DateTime SystemStartTime = DateTime.Now.AddHours(-1);
@@ -182,17 +159,16 @@ namespace GDK.BCM.PerfMonitor
 
 
         #region  绑定列表 - 系统负荷 - 最近一小时
-        private void PageChanged(object sender, EventArgs e)
-        {
-            BindGraidSystem();
-        }
+        //private void PageChanged(object sender, EventArgs e)
+        //{
+        //    BindGraidSystem();
+        //}
         private void BindGraidSystem()
         {
-            int PageCount = 0;
-            DataTable dt = new PerfHostDA().selecSystemLoad(pg.PageIndex, pg.PageSize, out PageCount, Request.QueryString["id"]);
+            DataTable dt = new PerfHostDA().selecSystemLoad(Convert.ToInt32(Request.QueryString["id"]));
             gvSystemLoad.DataSource = dt;
             gvSystemLoad.DataBind();
-            this.pg.RecordCount = PageCount;
+            //this.pg.RecordCount = PageCount;
         }
         #endregion
 

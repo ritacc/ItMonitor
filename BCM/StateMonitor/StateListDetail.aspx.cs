@@ -64,6 +64,7 @@ namespace GDK.BCM.StateMonitor
             {
                 return;
             }
+            
             Response.Redirect(string.Format("{0}?id={1}",url,mDeviceID));
 
           

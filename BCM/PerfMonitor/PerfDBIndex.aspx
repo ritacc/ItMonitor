@@ -58,54 +58,58 @@
         var lastClickObj = null;
         $(document).ready(function () {
 
-            if (top.location != self.location)
-                top.location = self.location;
+        	if (top.location != self.location)
+        		top.location = self.location;
 
-            $("#imgRef").click(function () {
-                var murl = window.frmMain.location.href;
-                var index = murl.indexOf('&r');
-                if (index > 0) {
-                    murl = murl.substring(0, index);
-                    if (murl.indexOf("?") > 0)
-                        murl = murl + "&r=" + Math.random();
-                    else
-                        murl = murl + "?r=" + Math.random();
-                }
-                else {
-                    if (murl.indexOf("?") > 0)
-                        murl = murl + "&r=" + Math.random();
-                    else
-                        murl = murl + "?r=" + Math.random();
-                }
-                window.frmMain.location.href = murl;
-            });
+        	$("#imgRef").click(function () {
+        		var murl = window.frmMain.location.href;
+        		var index = murl.indexOf('&r');
+        		if (index > 0) {
+        			murl = murl.substring(0, index);
+        			if (murl.indexOf("?") > 0)
+        				murl = murl + "&r=" + Math.random();
+        			else
+        				murl = murl + "?r=" + Math.random();
+        		}
+        		else {
+        			if (murl.indexOf("?") > 0)
+        				murl = murl + "&r=" + Math.random();
+        			else
+        				murl = murl + "?r=" + Math.random();
+        		}
+        		window.frmMain.location.href = murl;
+        	});
 
-            //刷新更新加载项
-            SetReLoadSelectItem();
+        	$("#imgReturn").click(function () {
+        		history.back();
+        	});
 
-            $("li").click(function () {
-                $("#frmMain").attr("src", $(this).attr("divName"))
-                $(this).siblings().css("background-image", "");
-                $(this).css("background-image", "url(../images/selected80.gif)");
-                $("#<%= txtSelectItem.ClientID %>").val($(this).attr("divName"));
-            }); //end li click
-            autoSize();
-            function autoSize() {
-                var divFrm = $("#divFrm");
-                var frmMain = $("#frmMain");
-                if (!timer) {
-                    window.clearTimeout(timer);
-                }
-                timer = window.setTimeout(
+        	//刷新更新加载项
+        	SetReLoadSelectItem();
+
+        	$("li").click(function () {
+        		$("#frmMain").attr("src", $(this).attr("divName"))
+        		$(this).siblings().css("background-image", "");
+        		$(this).css("background-image", "url(../images/selected80.gif)");
+        		$("#<%= txtSelectItem.ClientID %>").val($(this).attr("divName"));
+        	}); //end li click
+        	autoSize();
+        	function autoSize() {
+        		var divFrm = $("#divFrm");
+        		var frmMain = $("#frmMain");
+        		if (!timer) {
+        			window.clearTimeout(timer);
+        		}
+        		timer = window.setTimeout(
                 function () {
-                    var layout = $.getLayout();
-                    var height = layout.innerHeight - 208;
-                    frmMain.height(height);
-                    divFrm.height(height);
+                	var layout = $.getLayout();
+                	var height = layout.innerHeight - 208;
+                	frmMain.height(height);
+                	divFrm.height(height);
                 }, 100);
-            }
+        	}
 
-            $(window).resize(autoSize);
+        	$(window).resize(autoSize);
 
         });
     </script>
@@ -130,8 +134,11 @@
                         <li id="ljwd" divname="PerfDBLock.aspx?id=<% =deviceID %>"><a>锁</a></li>
                     </ul>
                 </td>
-                <td style="width: 30px;">
-                    <image id="imgRef" src="../images/Common/refresh.gif" />
+				<td style="width: 24px;" >
+                    <image id="imgReturn" style="cursor:pointer;" alt="返回" src="../images/Common/cancel.gif" />
+                </td>
+                <td style="width: 24px;" style="cursor:pointer;">
+                    <image id="imgRef" alt="刷新" style="cursor:pointer;"  src="../images/Common/refresh.gif" />
                 </td>
             </tr>
         </table>

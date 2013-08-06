@@ -86,7 +86,7 @@
         </tr>
        <tr class="AlternatingRowStyle">
             <td colspan="4" style=" text-align:center;">
-                <asp:Button ID="btnGeneratePDF" runat="server" Text="生成报告" OnClick="btnGeneratePDF_Click" />
+                <asp:Button ID="btnGeneratePDF" runat="server" Text="生成报告" CssClass="btn_bg"  OnClick="btnGeneratePDF_Click" />
             </td>
         </tr>
     </table>

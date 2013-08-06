@@ -61,7 +61,7 @@ namespace GDK.BCM.PerfMonitor
 
             lblMonitorName.Text = _pa.MonitorName;
             lblHostName.Text = _pa.HostName;
-            lblOperatingSystem.Text = _pa.System;
+            lblOperatingSystem.Text =_objDev.OperSystem;
             lblIP.Text = _objDev.IP;
             lblWarningStatus.Text = _objDevEx.WarningStatus;
 

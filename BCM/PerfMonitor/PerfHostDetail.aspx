@@ -106,8 +106,7 @@
                             <Legends>
                                 <asp:Legend TitleFont="Microsoft Sans Serif, 8pt, style=Bold" BackColor="Transparent"
                                     IsEquallySpacedItems="True" Font="Trebuchet MS, 8pt, style=Bold" IsTextAutoFit="True "
-                                    Name="Default">
-                                    <Position Height="10" Width="95" X="2" Y="92" />
+                                    Name="Default" Docking="Bottom" Alignment="Center">
                                 </asp:Legend>
                             </Legends>
                             <Series>
@@ -216,21 +215,21 @@
                 <Legends>
                     <asp:Legend TitleFont="Microsoft Sans Serif, 8pt, style=Bold" BackColor="Transparent"
                         Font="Trebuchet MS, 8.25pt, style=Bold" IsTextAutoFit="False" Name="Default"
-                        Alignment="Near" LegendStyle="Column">
+                        Alignment="Center" Docking="Bottom">
                     </asp:Legend>
                 </Legends>
                 <Series>
-                    <asp:Series Name="Series1" LegendText="交换内存使用率" ChartType="Line" IsValueShownAsLabel="True"
+                    <asp:Series Name="Series1" LegendText="交换内存使用率" ChartType="Line" IsValueShownAsLabel="False"
                         LabelFormat="{0}" BorderColor="180, 26, 59, 105" BorderWidth="2">
                     </asp:Series>
                 </Series>
                 <Series>
-                    <asp:Series Name="Series2" LegendText="物理内存使用率" ChartType="Line" IsValueShownAsLabel="True"
+                    <asp:Series Name="Series2" LegendText="物理内存使用率" ChartType="Line" IsValueShownAsLabel="False"
                         LabelFormat="{0}" BorderColor="180, 26, 59, 105" BorderWidth="2">
                     </asp:Series>
                 </Series>
                 <Series>
-                    <asp:Series Name="Series3" LegendText="CPU使用率" ChartType="Line" IsValueShownAsLabel="True"
+                    <asp:Series Name="Series3" LegendText="CPU使用率" ChartType="Line" IsValueShownAsLabel="False"
                         LabelFormat="{0}" BorderColor="180, 26, 59, 105" BorderWidth="2">
                     </asp:Series>
                 </Series>
@@ -243,7 +242,7 @@
                             <LabelStyle Font="Trebuchet MS, 8.25pt, style=Bold" Format="0" />
                             <MajorGrid LineColor="64, 64, 64, 64" />
                         </AxisY>
-                        <AxisX LineColor="64, 64, 64, 64" Interval="2" LabelAutoFitMaxFontSize="8">
+                        <AxisX LineColor="64, 64, 64, 64" Interval="1" LabelAutoFitMaxFontSize="8">
                             <LabelStyle Font="Trebuchet MS, 8.25pt, style=Bold" IsEndLabelVisible="False" />
                             <MajorGrid LineColor="64, 64, 64, 64" />
                         </AxisX>
@@ -297,21 +296,21 @@
                 <Legends>
                     <asp:Legend TitleFont="Microsoft Sans Serif, 8pt, style=Bold" BackColor="Transparent"
                         Font="Trebuchet MS, 8.25pt, style=Bold" IsTextAutoFit="False" Name="Default"
-                        Alignment="Near" LegendStyle="Column">
+                        Alignment="Center" Docking="Bottom">
                     </asp:Legend>
                 </Legends>
                 <Series>
-                    <asp:Series Name="Series1" LegendText="每分钟的Job数" ChartType="Line" IsValueShownAsLabel="True"
+                    <asp:Series Name="Series1" LegendText="每分钟的Job数" ChartType="Line" IsValueShownAsLabel="False"
                         LabelFormat="{0}" BorderColor="180, 26, 59, 105" BorderWidth="2">
                     </asp:Series>
                 </Series>
                 <Series>
-                    <asp:Series Name="Series2" LegendText="5分钟的Job数" ChartType="Line" IsValueShownAsLabel="True"
+                    <asp:Series Name="Series2" LegendText="5分钟的Job数" ChartType="Line" IsValueShownAsLabel="False"
                         LabelFormat="{0}" BorderColor="180, 26, 59, 105" BorderWidth="2">
                     </asp:Series>
                 </Series>
                 <Series>
-                    <asp:Series Name="Series3" LegendText="15分钟的Job数" ChartType="Line" IsValueShownAsLabel="True"
+                    <asp:Series Name="Series3" LegendText="15分钟的Job数" ChartType="Line" IsValueShownAsLabel="False"
                         LabelFormat="{0}" BorderColor="180, 26, 59, 105" BorderWidth="2">
                     </asp:Series>
                 </Series>
@@ -324,7 +323,7 @@
                             <LabelStyle Font="Trebuchet MS, 8.25pt, style=Bold" Format="0" />
                             <MajorGrid LineColor="64, 64, 64, 64" />
                         </AxisY>
-                        <AxisX LineColor="64, 64, 64, 64" Interval="2" LabelAutoFitMaxFontSize="8">
+                        <AxisX LineColor="64, 64, 64, 64" Interval="1" LabelAutoFitMaxFontSize="8">
                             <LabelStyle Font="Trebuchet MS, 8.25pt, style=Bold" IsEndLabelVisible="False" />
                             <MajorGrid LineColor="64, 64, 64, 64" />
                         </AxisX>
@@ -341,9 +340,9 @@
                 <asp:BoundField HeaderText="每分钟的Job数" DataField="OneJob" />
                 <asp:BoundField HeaderText="5分钟的Job数" DataField="FiveJob" />
                 <asp:BoundField HeaderText="15分钟的Job数" DataField="FifteenJob" />
-                <asp:BoundField HeaderText="每分钟的Job数峰值" DataField="OneJobPeak" />
-                <asp:BoundField HeaderText="5分钟的Job数峰值" DataField="FiveJobPeak" />
-                <asp:BoundField HeaderText="15分钟的Job数峰值" DataField="FifteenJobPeak" />
+                <asp:BoundField HeaderText="每分钟的Job数峰值" DataField="max1job" />
+                <asp:BoundField HeaderText="5分钟的Job数峰值" DataField="max5jon" />
+                <asp:BoundField HeaderText="15分钟的Job数峰值" DataField="max15job" />
             </Columns>
             <EmptyDataTemplate>
                 <table cellpadding="0" cellspacing="0" width="100%" class="gridheader_table">
@@ -361,7 +360,7 @@
                 </table>
             </EmptyDataTemplate>
         </asp:GridView>              
-        <uc1:pagenavigate ID="pg" runat="server" />   
+        <%--<uc1:pagenavigate ID="pg" runat="server" />   --%>
      </div>
 
       <div class="div_box Padding_5">

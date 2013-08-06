@@ -218,21 +218,34 @@
     <Content Include="images\help\img5.gif" />
     <Content Include="images\help\img6.gif" />
     <Content Include="images\icon\add.png" />
+    <Content Include="images\icon\Application.png" />
+    <Content Include="images\icon\bottonbg.gif" />
     <Content Include="images\icon\building_edit.png" />
     <Content Include="images\icon\changeList.gif" />
     <Content Include="images\icon\changeList.png" />
     <Content Include="images\icon\char.gif" />
     <Content Include="images\icon\close.gif" />
+    <Content Include="images\icon\database.png" />
     <Content Include="images\icon\delete.gif" />
+    <Content Include="images\icon\Domino.png" />
+    <Content Include="images\icon\erp.png" />
+    <Content Include="images\icon\host.png" />
     <Content Include="images\icon\list.gif" />
     <Content Include="images\icon\logout.gif" />
     <Content Include="images\icon\look.gif" />
+    <Content Include="images\icon\mail.png" />
+    <Content Include="images\icon\middleware.png" />
+    <Content Include="images\icon\net.png" />
     <Content Include="images\icon\options.png" />
     <Content Include="images\icon\property.gif" />
     <Content Include="images\icon\remote.png" />
     <Content Include="images\icon\restart.gif" />
+    <Content Include="images\icon\room.png" />
     <Content Include="images\icon\save.gif" />
     <Content Include="images\icon\server_connect.gif" />
+    <Content Include="images\icon\service.png" />
+    <Content Include="images\icon\vm.png" />
+    <Content Include="images\icon\webserver.png" />
     <Content Include="images\kdivbg.jpg" />
     <Content Include="images\login\login_03.gif" />
     <Content Include="images\login\login_06.gif" />
@@ -627,7 +640,9 @@
     <Compile Include="CompReport\Generate.aspx.designer.cs">
       <DependentUpon>Generate.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CompReport\GenerateDayPDF.cs" />
     <Compile Include="CompReport\GeneratePDF.cs" />
+    <Compile Include="CompReport\GeneratePDFBase.cs" />
     <Compile Include="CompReport\ReportConfig.aspx.cs">
       <DependentUpon>ReportConfig.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1248,8 +1263,6 @@
     <None Include="images\gridview\vssver2.scc" />
     <None Include="images\help\Thumbs.db" />
     <None Include="images\help\vssver2.scc" />
-    <None Include="images\icon\Thumbs.db" />
-    <None Include="images\icon\vssver2.scc" />
     <None Include="images\login\Thumbs.db" />
     <None Include="images\login\vssver2.scc" />
     <None Include="images\menu\Thumbs.db" />

@@ -80,7 +80,9 @@
     <Compile Include="AlertAdmin\SysParaDA.cs" />
     <Compile Include="common\Utils.cs" />
     <Compile Include="CompSearch\PdfDA.cs" />
+    <Compile Include="CompSearch\PdfDayDA.cs" />
     <Compile Include="CompSearch\PDFReportSearch.cs" />
+    <Compile Include="CompSearch\ReportConfigDA.cs" />
     <Compile Include="CompSearch\ReportSeachDA.cs" />
     <Compile Include="DALBase.cs" />
     <Compile Include="ModelConvertHelper.cs" />

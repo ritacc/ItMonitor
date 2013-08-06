@@ -131,47 +131,11 @@ where dt.typeid=2 ";
             if (dt == null)
                 return null;
             PerfApplicationOR obj = new PerfApplicationOR(dt);
-            //加载网络接口
-            obj.SubProts = GetNetPorts(obj.Ports);
             return obj;
         }
 
 
-        private DataTable GetNetPorts(string strPortinfo)
-        {
-            if (string.IsNullOrEmpty(strPortinfo))
-                return null;
-            string mWhere = "";
-            //3#^#1705#^#1706#^#1707
-            if (strPortinfo.IndexOf("#^#") > 0)
-            {
-                string[] strArr = strPortinfo.Replace("#^#", "$").Split('$');
-                if (strArr.Length < 2)
-                    return null;
-                mWhere = " d.DeviceID=" + strArr[1];
-                for (int i = 2; i < strArr.Length; i++)
-                {
-                    mWhere += " or d.DeviceID=" + strArr[i];
-                }
-            }
-
-            string sql = @"select * from dbo.t_TmpValue where " + mWhere;
-
-            sql = string.Format(" {0} and  {1}", sql, mWhere);
-
-            DataTable dt = null;
-            try
-            {
-                dt = db.ExecuteQuery(sql);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            return dt;
-
-        }
-
+        
 
         // 系统负荷 - 最近一小时
         public DataTable selecSystemLoad(int pageCrrent, int pageSize, out int pageCount, string ParentDevID)

@@ -31,7 +31,7 @@ namespace GDK.BCM.PerfMonitor
             string mDeviceID = Request.QueryString["id"];
             PerfDBOR _Obj = new PerfDBDA().SelectDeviceDetail(mDeviceID);
             lblBufferSize.Text = _Obj.BufferSize;
-            lblShareSize.Text = _Obj.ShareSize;
+            lblShareSize.Text = _Obj.ShareSize.ToString();
             lblLogBufferSize.Text = _Obj.LogBufferSize;
             lblDatabaseSize.Text = _Obj.DatabaseSize;
             lblDictionarySize.Text = _Obj.DictionarySize;

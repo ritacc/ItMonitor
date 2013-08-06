@@ -49,67 +49,47 @@ where dt.typeid=1 ";
             return obj;
         }
 
-
-		//private DataTable GetNetPorts(string strPortinfo)
-		//{
-		//    if (string.IsNullOrEmpty(strPortinfo))
-		//        return null;
-		//    string mWhere = "";
-		//    //3#^#1705#^#1706#^#1707
-		//    if (strPortinfo.IndexOf("#^#") > 0)
-		//    {
-		//        string[] strArr = strPortinfo.Replace("#^#", "$").Split('$');
-		//        if (strArr.Length < 2)
-		//            return null;
-		//        mWhere = " d.DeviceID=" + strArr[1];
-		//        for (int i = 2; i < strArr.Length; i++)
-		//        {
-		//            mWhere += " or d.DeviceID=" + strArr[i];
-		//        }
-		//    }
-
-		//    string sql = @"select * from dbo.t_TmpValue where " + mWhere;
-
-		//    sql = string.Format(" {0} and  {1}", sql, mWhere);
-
-		//    DataTable dt = null;
-		//    try
-		//    {
-		//        dt = db.ExecuteQuery(sql);
-		//    }
-		//    catch (Exception ex)
-		//    {
-		//        throw ex;
-		//    }
-		//    return dt;
-
-		//}
-
-
         // 系统负荷 - 最近一小时
-        public DataTable selecSystemLoad(int pageCrrent, int pageSize, out int pageCount, string ParentDevID)
+        public DataTable selecSystemLoad(int DeviceID)
         {
-            string sql = string.Format(@"select OneJob.MonitorValue OneJob,FiveJob.MonitorValue FiveJob,
-FifteenJob.MonitorValue FifteenJob,OneJobPeak.MonitorValue OneJobPeak,FiveJobPeak.MonitorValue FiveJobPeak,
-FifteenJobPeak.MonitorValue FifteenJobPeak
- from t_DevItemList d 
-left join t_TmpValue OneJob on OneJob.DeviceID= d.DeviceID and OneJob.ChannelNO=13101
-left join t_TmpValue FiveJob on FiveJob.DeviceID= d.DeviceID and FiveJob.ChannelNO=13102
-left join t_TmpValue FifteenJob on FifteenJob.DeviceID= d.DeviceID and FifteenJob.ChannelNO=13103
-left join t_TmpValue OneJobPeak on OneJobPeak.DeviceID= d.DeviceID and OneJobPeak.ChannelNO=13201
-left join t_TmpValue FiveJobPeak on FiveJobPeak.DeviceID= d.DeviceID and FiveJobPeak.ChannelNO=13202
-left join t_TmpValue FifteenJobPeak on FifteenJobPeak.DeviceID= d.DeviceID and FifteenJobPeak.ChannelNO=13203
-where d.DeviceTypeID= 132 and ParentDevID ={0}", ParentDevID);
-            DataTable dt = null;
-            int returnC = 0; try
+            string strTableName = new HistoryValueDA().GetTableName(DeviceID);
+            if (string.IsNullOrEmpty(strTableName))
             {
-                dt = db.ExecuteQuery(sql, pageCrrent, pageSize, out returnC);
+                return null;
+            }
+
+            string sql = string.Format(@"select top 1 OneJob.MonitorValue OneJob,FiveJob.MonitorValue FiveJob,FifteenJob.MonitorValue FifteenJob
+,max1.max1job,max5.max5jon,max15.max15job from t_Device d 
+left join t_TmpValue OneJob on OneJob.DeviceID= {0} and OneJob.ChannelNO=13101
+left join t_TmpValue FiveJob on FiveJob.DeviceID={0} and FiveJob.ChannelNO=13102
+left join t_TmpValue FifteenJob on FifteenJob.DeviceID= {0} and FifteenJob.ChannelNO=13103
+left join (
+	select DeviceID,max(convert(float,MonitorValue)) max1job from {1} 
+	where ChannelNo=13101  and MonitorTime>'{2}' and MonitorTime<'{3}'
+	group by DeviceID
+) as max1 on max1.deviceid=d.DeviceID
+left join (
+	select DeviceID,max(convert(float,MonitorValue)) max5jon from {1} 
+	where ChannelNo=13102   and MonitorTime>'{2}' and MonitorTime<'{3}'
+	group by DeviceID
+) as max5 on max5.deviceid=d.DeviceID
+left join (
+	select DeviceID,max(convert(float,MonitorValue)) max15job from {1} 
+	where ChannelNo=13102  and MonitorTime>'{2}' and MonitorTime<'{3}'
+	group by DeviceID
+) as max15 on max15.deviceid=d.DeviceID
+where d.DeviceID={0}", DeviceID, strTableName 
+                     ,DateTime.Now.AddHours(-1).ToString("yyyy-MM-dd HH:mm:ss")
+                     , DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+            DataTable dt = null;
+            try
+            {
+                dt = db.ExecuteQuery(sql);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            pageCount = returnC;
             return dt;
         }
 

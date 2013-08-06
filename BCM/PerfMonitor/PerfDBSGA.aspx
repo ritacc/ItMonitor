@@ -26,7 +26,7 @@
                 <Legends>
                     <asp:Legend TitleFont="Microsoft Sans Serif, 8pt, style=Bold" BackColor="Transparent"
                         Font="Trebuchet MS, 8.25pt, style=Bold" IsTextAutoFit="False" Name="Default"
-                        Alignment="Near" LegendStyle="Column">
+                         Docking="Bottom" Alignment="Center">
                     </asp:Legend>
                 </Legends>
                 <Series>
@@ -49,7 +49,7 @@
                             <LabelStyle Font="Trebuchet MS, 8.25pt, style=Bold" Format="0" />
                             <MajorGrid LineColor="64, 64, 64, 64" />
                         </AxisY>
-                        <AxisX LineColor="64, 64, 64, 64" Interval="2" LabelAutoFitMaxFontSize="8">
+                        <AxisX LineColor="64, 64, 64, 64" Interval="1" LabelAutoFitMaxFontSize="8">
                             <LabelStyle Font="Trebuchet MS, 8.25pt, style=Bold" IsEndLabelVisible="False" />
                             <MajorGrid LineColor="64, 64, 64, 64" />
                         </AxisX>

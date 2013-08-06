@@ -329,6 +329,16 @@ namespace GDK.Entity.PerfMonitor
             set { _Password = value; }
         }
 
+		/// <summary>
+		/// 操作系统
+		/// </summary>
+		public string OperSystem { get; set; }
+
+		/// <summary>
+		/// 主机名称
+		/// </summary>
+		public string HostName { get; set; }
+
         /// <summary>
         /// 可用性
         /// </summary>

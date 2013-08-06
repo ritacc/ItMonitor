@@ -19,6 +19,26 @@
             margin: 0px;
         }
     </style>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".aItem").each(function (i, o) {
+                var obj = $(o);
+                obj.click(function () {
+                    if (obj.attr("typeid") == "4") {
+                        var mTopUrl = window.location.href;
+                        mTopUrl = mTopUrl.substring(0,mTopUrl.indexOf("StateMonitor"));
+                        //alert(mTopUrl);
+
+                        window.top.location.href = mTopUrl + "PerfMonitor/PerfDBIndex.aspx?id=" + obj.attr("deviceid");
+                        return false;
+                    }
+
+                });
+            });
+        });
+    </script>
+
 </head>
 <body style="overflow-x: hidden">
     <form id="form1" runat="server">
@@ -71,7 +91,8 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="名称">
                         <ItemTemplate>
-                            <a href="StateListDetail.aspx?typeid=<%# Eval("typeid")%>&id=<%#Eval("DeviceID") %>">
+                            <a class="aItem" typeid="<%# Eval("typeid")%>" deviceid="<%#Eval("DeviceID") %>"
+                             href="StateListDetail.aspx?typeid=<%# Eval("typeid")%>&id=<%#Eval("DeviceID") %>">
                                 <%# Eval("DeviceName")%></a>
                         </ItemTemplate>
                     </asp:TemplateField>

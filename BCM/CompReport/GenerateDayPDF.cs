@@ -13,9 +13,9 @@ using System.Threading;
 
 namespace GDK.BCM.CompReport
 {
-    public class GeneratePDF : GeneratePDFBase
+    public class GenerateDayPDF : GeneratePDFBase
     {
-        PdfDA mda = new PdfDA();
+        PdfDayDA mda = new PdfDayDA();
         /// <summary>
         /// 本文档表序号
         /// </summary>
@@ -58,7 +58,7 @@ namespace GDK.BCM.CompReport
         public void ContentFirstpart()
         {
             document.NewPage();
-            string strContent = "第一部分、本月检查概述";
+            string strContent = "第一部分、本时段检查概述";
             Paragraph pg = new Paragraph(strContent, GetFont(FontEnum.TitleCenter));
             pg.Alignment = Element.ALIGN_CENTER;
             document.Add(pg);
@@ -70,9 +70,9 @@ namespace GDK.BCM.CompReport
 
             StringBuilder sb = new StringBuilder();
             sb.Append("    ").Append(ReportData);
-            sb.Append("健康检查结果数据是来自广东国税IT集中监控系统的监控数据，");
+            sb.Append(string.Format("健康检查结果数据是来自{0}IT集中监控系统的监控数据，",Company));
             sb.Append("本报告是由系统自动和人工编辑组合而成，");
-            sb.Append("由系统自动生成的数据为").Append(ReportData).Append("1日，");
+            sb.Append(string.Format("由系统自动生成的数据为为2013年06月15日(起始日）到2013年06月16日（截止日）,", StartTime.ToString("yyyy年MM月dd日"), EndTime.ToString("yyyy年MM月dd日")));
             sb.Append("基于系统生成的数据，");
             sb.Append(UserPart).Append(DateTime.Now.ToString("yyyy年MM月dd日")).Append("完成了数据的统计分析工作。");
             sb.Append("现将本次检查结果进行通报。\n");
@@ -86,12 +86,9 @@ namespace GDK.BCM.CompReport
             pg = new Paragraph("本月健康检查内容包括如下几个方面：", GetFont(FontEnum.Content));
             document.Add(pg);
 
-
-            pg = new Paragraph("1. 主机系统检查", GetFont(FontEnum.Content));
-            document.Add(pg);
-            sb.Clear();
-            sb.Append("    用于业务系统的主机压力情况，主要包括HP-UX、AIX、Windows、Linux主机运行状态检查，包括主机状态、CPU利用率、内存利用率、磁盘空间大小及利用率等信息。\n");
-            pg = new Paragraph(sb.ToString(), GetFont(FontEnum.Content));
+            
+            document.Add(new Paragraph("1. 主机系统检查", GetFont(FontEnum.Content)));
+            pg = new Paragraph("    用于业务系统的主机压力情况，主要包括HP-UX、AIX、Windows、Linux主机运行状态检查，包括主机状态、CPU利用率、内存利用率、磁盘空间大小及利用率等信息。\n", GetFont(FontEnum.Content));
             document.Add(pg);
 
 
@@ -103,31 +100,25 @@ namespace GDK.BCM.CompReport
             sb.Append("库Session监控，包括运行的SQL语句、Buffer Cache命中率等信息。\n");
             pg = new Paragraph(sb.ToString(), GetFont(FontEnum.Content));
             document.Add(pg);
+            
 
+            document.Add(new Paragraph("\n3. 中间件检查", GetFont(FontEnum.Content)));
+            document.Add(new Paragraph("    实现对Weblogic应用服务器的运行状态监控，根据不同的中间件提供不同的监控指标。\n", GetFont(FontEnum.Content)));
 
-            pg = new Paragraph("\n3. 中间件检查", GetFont(FontEnum.Content));
-            document.Add(pg);
-            pg = new Paragraph("    实现对Weblogic应用服务器的运行状态监控，根据不同的中间件提供不同的监控指标。\n", GetFont(FontEnum.Content));
-            document.Add(pg);
-
-
-            pg = new Paragraph("\n4. 业务/应用系统检查", GetFont(FontEnum.Content));
-            document.Add(pg);
-            pg = new Paragraph("    实现对关键业务/应用系统的运行状态的监控，通过业务视图方式直观监视业务可用性、端到端响应时间、业务/应用所关联的资源对象的性能和故障等信息。\n"
-                , GetFont(FontEnum.Content));
+            document.Add(new Paragraph("\n4. 业务/应用系统检查", GetFont(FontEnum.Content)));
+            pg = new Paragraph("    实现对关键业务/应用系统的运行状态的监控，通过业务视图方式直观监视业务可用性、端到端响应时间、业务/应用所关联的资源对象的性能和故障等信息。\n", GetFont(FontEnum.Content));
             document.Add(pg);
 
-            pg = new Paragraph("\n5. 网络系统检查", GetFont(FontEnum.Content));
-            document.Add(pg);
+            
+            document.Add(new Paragraph("\n5. 网络系统检查", GetFont(FontEnum.Content)));
             sb.Clear();
-            sb.Append("实现网络设备、网络安全设备的在线状态的检查。");
-            sb.Append("对网络线路运行状态监控，包括线路流量、线路带宽利用率、线路错包率、线路丢包率等信息。");
+            sb.Append("实现网络设备、网络安全设备的在线状态的检查。对网络线路运行状态监控，包括线路流量、线路带宽利用率、线路错包率、线路丢包率等信息。");
             sb.Append("对网络设备接口状态进行监管，包括接口面板、接口状态、接口流量性能等信息。\n");
             pg = new Paragraph(sb.ToString(), GetFont(FontEnum.Content));
             document.Add(pg);
 
-            pg = new Paragraph("\n6. 健康检查报告", GetFont(FontEnum.Content));
-            document.Add(pg);
+
+            document.Add(new Paragraph("\n6. 健康检查报告", GetFont(FontEnum.Content)));
             pg = new Paragraph("    由各科室进行编写，主要包括需上报的问题以及对前期发现问题的处理情况反馈等等。\n", GetFont(FontEnum.Content));
             document.Add(pg);
 
@@ -136,7 +127,7 @@ namespace GDK.BCM.CompReport
 
 		#region 第二部分-内容
 		public void ContentSecondPart()
-        {
+		{
             document.NewPage();
             string strContent = "第二部分、系统运行状况整体分析\n";
             Paragraph pg = new Paragraph(strContent, GetFont(FontEnum.TitleCenter));
@@ -155,7 +146,7 @@ namespace GDK.BCM.CompReport
             if (RepConfigOR.HostCpuuserate || RepConfigOR.HostDiskuserate || RepConfigOR.HostMemory)
             {
                 //一
-                chLine.Legends[0].Enabled = false;
+               
                 pg = new Paragraph(string.Format("\n\n{0}、主机运行状况统计分析", GetDX(dx)), GetFont(FontEnum.TitleLeft1));
                 dx++;
                 document.Add(pg);
@@ -163,8 +154,7 @@ namespace GDK.BCM.CompReport
                 sb.Append("    这部分主要针对主机CPU利用率、内存利用率、磁盘利用率进行统计分析。分别以业务系统来分析评估主机的总体运行情况。包括CPU利用率统计分析、内存利用率统计分析、磁盘利用率统计分析等三个部分。");
                 pg = new Paragraph(sb.ToString(), GetFont(FontEnum.Content));
                 document.Add(pg);
-
-                mda.InitHostInfo(this.SystemID, StartTime.AddMonths(-5), EndTime);//初使化,主机
+                mda.InitHostInfo(this.SystemID, StartTime, EndTime);//初使化,主机
 
                 DataTable dtList = null;
                 //主要CPU
@@ -174,8 +164,7 @@ namespace GDK.BCM.CompReport
                     Index++;
                     document.Add(pg);
                     chLine.Titles["titY"].Text = "均值(%)";
-                    chLine.Titles["titTop"].Text = "主机CPU利用率均值曲线序列图";
-                    
+                    chLine.Titles["titTop"].Text = "主机CPU利用率均值曲线序列图";                    
                     dtList = UseReprot(25201);
                     if (dtList != null && dtList.Rows.Count > 1)
                         document.NewPage();
@@ -218,7 +207,7 @@ namespace GDK.BCM.CompReport
                 pg = new Paragraph(string.Format("\n\n{0}、数据库使用情况统计分析", GetDX(dx)), GetFont(FontEnum.TitleLeft1));
                 dx++;
                 document.Add(pg);
-                mda.SecondDBInit(this.SystemID, StartTime.AddMonths(-5), EndTime);//数据库初使化
+                mda.SecondDBInit(this.SystemID, StartTime, EndTime);//数据库初使化
                                 
                 Index = 1;
                 if (RepConfigOR.DbTablenamespace)//1.
@@ -264,7 +253,7 @@ namespace GDK.BCM.CompReport
                 pg = new Paragraph(string.Format("\n\n{0}、中间件运行状况统计分析", GetDX(dx)), GetFont(FontEnum.TitleLeft1));
                 dx++;
                 document.Add(pg);
-                mda.SecondMiddlewareInit(this.SystemID, StartTime.AddMonths(-5), EndTime);
+                mda.SecondMiddlewareInit(this.SystemID, StartTime, EndTime);
 
                 pg = new Paragraph("    本部分主要是针对运行各业务系统的中间件(WebLogic)的各项指标进行统计分析，分别从数据库连接池、Java虚拟机内存、应用会话等三个方面来分析评估综合征管系统中间件的总体运行情况。"
                     , GetFont(FontEnum.Content));
@@ -315,8 +304,8 @@ namespace GDK.BCM.CompReport
 
             string DescContent = string.Format(@"1) 本表是按照{0}利用率均值降序排列
 2) 表中的数据含意如下：
-    均值：本月工作日中，{0}利用率的所有采点的均值。
-    峰值：本月工作日中，{0}利用率的所有采点的最高值。
+    均值：全月工作日中，{0}利用率的所有采点的均值。
+    峰值：全月工作日中，{0}利用率的所有采点的最高值。
     峰值>80%的次数，按照每5分钟一次的采样率，本月{0}峰值达80%及以上的出现次数。
     {0}压力状态，按照规定评级标准，对{0}压力情况的评估，详细评级标准如下：
         极低：均值<20%,且峰值<100%
@@ -341,13 +330,21 @@ namespace GDK.BCM.CompReport
             ser.MarkerStyle = MarkerStyle.Circle;
             ser.MarkerSize = 3;
             //ser.IsValueShownAsLabel = true;
-            ser.LabelFormat = "{0}%";
-
+            //ser.LabelFormat = "{0}%";
+            ser.LegendText = "均值";
             ser.Points.DataBindXY(dt.Rows, "monitordate", dt.Rows, "val");
             chLine.Series.Add(ser);
 
+            Series ser1 = new Series();
+            ser1.ChartType = SeriesChartType.Line;
+            ser1.MarkerStyle = MarkerStyle.Circle;
+            ser1.MarkerSize = 3;
+            ser1.Points.DataBindXY(dt.Rows, "monitordate", dt.Rows, "maxval");
+            ser1.LegendText = "峰值";
+            chLine.Series.Add(ser1);
+
             AddImg();//生成，统计图
-			return mda.GetUseTableInfo(StartTime.Year,StartTime.Month,this.SystemID, ChaanceNo);
+			return mda.GetUseTableInfo(this.SystemID, ChaanceNo);
         }
 
         /// <summary>
@@ -356,57 +353,26 @@ namespace GDK.BCM.CompReport
         /// <param name="dt"></param>
         public void WriteTable(DataTable dt, string mTypeStatusInfo)
         {
-            PdfPTable pdfTB = new PdfPTable(11);
+            PdfPTable pdfTB = new PdfPTable(6);
             pdfTB.WidthPercentage = 99;
-			//pdfTB.SetWidths(new float[] { 150f, 150f, 150f, 100f, 100f, 100f, 100f, 100f, 100f, 100f, 120f, 120f });
-            //业务系统名称  IP	均值(%)		峰值(%) 峰值>80%出现次数(次) 当月CPU压力状态
             Font ft = GetFont(FontEnum.TableHeader);
-            PdfPCell headr = GetPdfCell("业务系统名称");            
-            headr.Rowspan = 2;            
+            PdfPCell headr = GetPdfCell("业务系统名称");
             pdfTB.AddCell(headr);
 
-            headr = GetPdfCell("主机IP");            
-            headr.Rowspan = 2;            
-            pdfTB.AddCell(headr);
-
-
-            headr = GetPdfCell("均值(%)");            
-            headr.Colspan = 4;            
+            headr = GetPdfCell("主机IP");
             pdfTB.AddCell(headr);
 
 
-            headr = GetPdfCell("峰值(%)");
-            headr.Rowspan = 2;
+            headr = GetPdfCell("当前时间段均值（%）");
+            pdfTB.AddCell(headr);
+
+            headr = GetPdfCell("当前时间段峰值（%）");
             pdfTB.AddCell(headr);
 
             headr = GetPdfCell("峰值>=80%出现次数（次）");
-            headr.Colspan = 3;
             pdfTB.AddCell(headr);
 
-            headr = GetPdfCell(mTypeStatusInfo);            
-            headr.Rowspan = 2;
-            pdfTB.AddCell(headr);
-
-
-            headr = GetPdfCell("整月(%)");            
-            pdfTB.AddCell(headr);
-
-            headr = GetPdfCell("1-5");            
-            pdfTB.AddCell(headr);
-
-            headr = GetPdfCell("11-15");            
-            pdfTB.AddCell(headr);
-
-            headr = GetPdfCell("25-31");            
-            pdfTB.AddCell(headr);
-			
-            headr = GetPdfCell("1-5");            
-            pdfTB.AddCell(headr);
-
-            headr = GetPdfCell("11-15");            
-            pdfTB.AddCell(headr);
-
-            headr = GetPdfCell("25-31");            
+            headr = GetPdfCell("状态");            
             pdfTB.AddCell(headr);
 
             if (dt != null)
@@ -418,15 +384,9 @@ namespace GDK.BCM.CompReport
 					pdfTB.AddCell(new Phrase(dr["DeviceName"].ToString(), ftContent));
 
                     pdfTB.AddCell(new Phrase(dr["avgval"].ToString(), ftContent));
-                    pdfTB.AddCell(new Phrase(dr["avgNum15"].ToString(), ftContent));
-                    pdfTB.AddCell(new Phrase(dr["avgNum1115"].ToString(), ftContent));
-                    pdfTB.AddCell(new Phrase(dr["avgNum2531"].ToString(), ftContent));
-
                     pdfTB.AddCell(new Phrase(dr["maxval"].ToString(), ftContent));
-                    pdfTB.AddCell(new Phrase(dr["MaxNum15"].ToString(), ftContent));
-                    pdfTB.AddCell(new Phrase(dr["MaxNum1115"].ToString(), ftContent));
-                    pdfTB.AddCell(new Phrase(dr["MaxNum2531"].ToString(), ftContent));
-                    
+
+                    pdfTB.AddCell(new Phrase(dr["maxnum"].ToString(), ftContent));
                     pdfTB.AddCell(new Phrase(dr["Status"].ToString(), ftContent));
                 }
             }
@@ -445,7 +405,6 @@ namespace GDK.BCM.CompReport
             pcell.HorizontalAlignment = 1;
             pcell.BackgroundColor = bgColor;
             return pcell;
-
         }
         /// <summary>
         /// 1. 表空间汇总统计
@@ -469,7 +428,6 @@ namespace GDK.BCM.CompReport
             
             chLine.Series.Add(ser);
             AddImg();//生成，统计图
-
             
             //添加表
             dt = mda.SlectDBNameSpanceUse();
@@ -497,16 +455,16 @@ namespace GDK.BCM.CompReport
             headr.Colspan = 3;            
             pdfTB.AddCell(headr);
 
-            headr = GetPdfCell("本月");
+            headr = GetPdfCell("起始日");
             pdfTB.AddCell(headr);
 
-            headr = GetPdfCell("上月");
+            headr = GetPdfCell("截止日");
             pdfTB.AddCell(headr);
 
             headr = GetPdfCell("同比%");
             pdfTB.AddCell(headr);
 
-           dt= mda.SlectDBNameSpanceUseDetail(this.StartTime.Year, this.StartTime.Month,SystemID);
+           dt= mda.SlectDBNameSpanceUseDetail(StartTime,EndTime,SystemID);
             if (dt != null)
             {
                 foreach (DataRow dr in dt.Rows)
@@ -596,7 +554,7 @@ namespace GDK.BCM.CompReport
                 pdfTB.AddCell(headr);
             }
             
-            DataTable dt = mda.SelectMZLDetail(this.StartTime.Year, this.StartTime.Month);
+            DataTable dt = mda.SelectMZLDetail(this.StartTime , this.EndTime);
             if (dt != null)
             {
                 foreach (DataRow dr in dt.Rows)
@@ -737,7 +695,7 @@ namespace GDK.BCM.CompReport
             headr = GetPdfCell(">阀值（60ms）的次数");
             pdfTB.AddCell(headr);
 
-              dt = mda.SelectOnlineDetail(this.StartTime.Year, this.StartTime.Month,SystemID);
+              dt = mda.SelectOnlineDetail(this.StartTime, this.EndTime,SystemID);
              if (dt != null)
              {
                  foreach (DataRow dr in dt.Rows)
@@ -806,7 +764,7 @@ namespace GDK.BCM.CompReport
              }
             
              //数据详细，表格
-             PdfPTable pdfTB = new PdfPTable(8);
+             PdfPTable pdfTB = new PdfPTable(5);
              pdfTB.WidthPercentage = 99;
 
              Font ft = GetFont(FontEnum.TableHeader);
@@ -814,33 +772,29 @@ namespace GDK.BCM.CompReport
              headr.Colspan = 2;
              pdfTB.AddCell(headr);
 
-             headr = GetPdfCell("本月");
+             headr = GetPdfCell("当前统计时段");
              headr.Colspan = 3;
              pdfTB.AddCell(headr);
 
-             headr = GetPdfCell("上月");
-             headr.Colspan = 3;
-             pdfTB.AddCell(headr);
-
+          
              headr = GetPdfCell("名称");
              pdfTB.AddCell(headr);
 
              headr = GetPdfCell("连接池名");
              pdfTB.AddCell(headr);
-             for (int i = 0; i < 2; i++)
-             {
-                 headr = GetPdfCell("连接数峰值");
-                 pdfTB.AddCell(headr);
 
-                 headr = GetPdfCell("最小值");
-                 pdfTB.AddCell(headr);
+             headr = GetPdfCell("连接数峰值");
+             pdfTB.AddCell(headr);
 
-                 headr = GetPdfCell("均值");
-                 pdfTB.AddCell(headr);
-             }
+             headr = GetPdfCell("最小值");
+             pdfTB.AddCell(headr);
+
+             headr = GetPdfCell("均值");
+             pdfTB.AddCell(headr);
+            
 
 
-            DataTable dt = mda.DBTableSpaceLineNumberDetail(StartTime.Year, StartTime.Month, SystemID);
+            DataTable dt = mda.DBTableSpaceLineNumberDetail(StartTime, EndTime, SystemID);
             if (dt != null)
             {
                 foreach (DataRow dr in dt.Rows)
@@ -852,10 +806,6 @@ namespace GDK.BCM.CompReport
                     pdfTB.AddCell(new Phrase(dr["maxval"].ToString(), dbftContent));
                     pdfTB.AddCell(new Phrase(dr["minval"].ToString(), dbftContent));
                     pdfTB.AddCell(new Phrase(dr["avgval"].ToString(), dbftContent));
-
-                    pdfTB.AddCell(new Phrase(dr["symaxval"].ToString(), dbftContent));
-                    pdfTB.AddCell(new Phrase(dr["syminval"].ToString(), dbftContent));
-                    pdfTB.AddCell(new Phrase(dr["syavgval"].ToString(), dbftContent));
                 }
             }
             if (dt != null && dt.Rows.Count > 1)
@@ -935,7 +885,7 @@ namespace GDK.BCM.CompReport
 			}
             
 			//数据详细，表格
-			PdfPTable pdfTB = new PdfPTable(8);
+			PdfPTable pdfTB = new PdfPTable(5);
 			pdfTB.WidthPercentage = 99;
 
 			Font ft = GetFont(FontEnum.TableHeader);
@@ -943,21 +893,18 @@ namespace GDK.BCM.CompReport
 			headr.Colspan = 2;
 			pdfTB.AddCell(headr);
 
-			headr = GetPdfCell("本月");
+            headr = GetPdfCell("当前统计时段");
 			headr.Colspan = 3;
 			pdfTB.AddCell(headr);
 
-			headr = GetPdfCell("上月");
-			headr.Colspan = 3;
-			pdfTB.AddCell(headr);
+		 
 
 			headr = GetPdfCell("业务系统名称");
 			pdfTB.AddCell(headr);
 
 			headr = GetPdfCell("IP地址");
 			pdfTB.AddCell(headr);
-			for (int i = 0; i < 2; i++)
-			{
+			 
 				headr = GetPdfCell("JVM堆最大值");
 				pdfTB.AddCell(headr);
 
@@ -966,10 +913,10 @@ namespace GDK.BCM.CompReport
 
 				headr = GetPdfCell("均值");
 				pdfTB.AddCell(headr);
-			}
+		 
 
 
-			DataTable dt = mda.MiddlewareJVMDetail(StartTime.Year, StartTime.Month);
+			DataTable dt = mda.MiddlewareJVMDetail(StartTime,EndTime);
 			if (dt != null)
 			{
 				foreach (DataRow dr in dt.Rows)
@@ -981,10 +928,6 @@ namespace GDK.BCM.CompReport
 					pdfTB.AddCell(new Phrase(dr["maxval"].ToString(), dbftContent));
 					pdfTB.AddCell(new Phrase(dr["minval"].ToString(), dbftContent));
 					pdfTB.AddCell(new Phrase(dr["avgval"].ToString(), dbftContent));
-
-					pdfTB.AddCell(new Phrase(dr["symaxval"].ToString(), dbftContent));
-					pdfTB.AddCell(new Phrase(dr["syminval"].ToString(), dbftContent));
-					pdfTB.AddCell(new Phrase(dr["syavgval"].ToString(), dbftContent));
 				}
 			}
             if (dt != null && dt.Rows.Count > 1)
@@ -1078,7 +1021,7 @@ namespace GDK.BCM.CompReport
 			headr.Rowspan = 2;
 			pdfTB.AddCell(headr);
 
-			headr = GetPdfCell("本月");
+            headr = GetPdfCell("当前统计时段");
 			headr.Colspan = 3;
 			pdfTB.AddCell(headr);
 
@@ -1093,7 +1036,7 @@ namespace GDK.BCM.CompReport
 
 
 
-			DataTable dt = mda.MiddlewareServerSessionDetail(StartTime.Year, StartTime.Month, this.SystemID);
+			DataTable dt = mda.MiddlewareServerSessionDetail(StartTime, EndTime, this.SystemID);
 			if (dt != null)
 			{
 				foreach (DataRow dr in dt.Rows)

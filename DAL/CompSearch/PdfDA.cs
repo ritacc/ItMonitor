@@ -70,19 +70,7 @@ namespace GDK.DAL.CompSearch
 		  // whereOR.DeviceType = devObj.DeviceTypeID;
 		   whereOR.StationID = devObj.StationID;
 		   whereOR.ReportType = "month";
-		   /*
-		    --表空间	421
---连接数	42109
---%可用		42105
 
---直接数据库
---击中率
---41601		--缓冲器
---41602		--数据字典
---41603		--库
---41101		连接时间
-		    * 
-		    * */
 		   whereOR.ListChanncel = new List<SearchChanncelOR>() { 
             new SearchChanncelOR(){ ChanncelNo= 42109}//--连接数
 			,new SearchChanncelOR(){ ChanncelNo= 42105}//--%可用
@@ -129,16 +117,9 @@ namespace GDK.DAL.CompSearch
 
 	   }
 	   #endregion
-	   /// <summary>
-       /// 获取使用率曲线数据
-       /// </summary>
-       public DataTable GetUseLine(int ChaanceNo)
-       {
-		   string sql =string.Format( @"select channelno,monitordate,round( avg(monitorvalue),2) val from ReportTemp
-where channelno={0} group by channelno,monitordate ",ChaanceNo);
 
-           return db.ExecuteQuery(sql);
-       }
+
+	  
 
 	   public List<int> GetBussDataBase(int busDeviceID)
 	   {
@@ -203,6 +184,17 @@ where bus.ParentId= {0} and dt.TypeID=10", busDeviceID);
 	   }
 
        /// <summary>
+       /// 获取使用率曲线数据
+       /// </summary>
+       public DataTable GetUseLine(int ChaanceNo)
+       {
+           string sql = string.Format(@"select channelno,monitordate,round( avg(monitorvalue),2) val from ReportTemp
+where channelno={0} group by channelno,monitordate order by monitordate", ChaanceNo);
+
+           return db.ExecuteQuery(sql);
+       }
+
+       /// <summary>
        /// 
        /// </summary>
        /// <returns></returns>
@@ -237,7 +229,7 @@ from (
 	) as f
 	group by deviceno,channelno--,monitordate
 ) as sf
-inner join t_Bussiness bus on sf.deviceno =bus.Id --and bus.parentid={3}
+inner join t_Bussiness bus on sf.deviceno =bus.Id and bus.parentid={3}
 inner join t_Device host on host.DeviceID= bus.Id
 inner join t_Device  dbus on  dbus.DeviceID= bus.ParentId 
 order by host.DeviceName", Start.ToString("yyyy-MM-dd")
@@ -314,22 +306,22 @@ order by monitordate",ChanncelNo);
 from (
 	select  deviceno,max(monitorvalue) maxval,MIN(monitorvalue) minval,
 	round(AVG(monitorvalue),2) avgval from ReportTemp	 
-	where channelno=41601 and MonitorTime >='2013-06-01 00:00:00' and MonitorTime <='2013-06-30 23:59:59'
+	where channelno=41601 and MonitorTime >='{0} 00:00:00' and MonitorTime <='{1} 23:59:59'
 	group by deviceno
 ) as hcq
 left join (
 	select  deviceno,max(monitorvalue) maxval,MIN(monitorvalue) minval,
 	round(AVG(monitorvalue),2) avgval from ReportTemp	 
-	where channelno=41602 and MonitorTime >='2013-06-01 00:00:00' and MonitorTime <='2013-06-30 23:59:59'
+	where channelno=41602 and MonitorTime >='{0} 00:00:00' and MonitorTime <='{1} 23:59:59'
 	group by deviceno
 ) as sjzd   on hcq.deviceno= sjzd.deviceno
 left join (
 	select  deviceno,max(monitorvalue) maxval,MIN(monitorvalue) minval,
 	round(AVG(monitorvalue),2) avgval from ReportTemp	 
-	where channelno=41603 and MonitorTime >='2013-06-01 00:00:00' and MonitorTime <='2013-06-30 23:59:59'
+	where channelno=41603 and MonitorTime >='{0} 00:00:00' and MonitorTime <='{1} 23:59:59'
 	group by deviceno
 ) as k on k.deviceno= hcq.deviceno
-left join t_Device d on hcq.deviceno= d.DeviceID",  Start.ToString("yyyy-MM-dd")
+left join t_Device d on hcq.deviceno= d.DeviceID  order by d.DeviceName", Start.ToString("yyyy-MM-dd")
            , Start.AddMonths(1).AddDays(-1).ToString("yyyy-MM-dd"));
            return db.ExecuteQuery(sql);
        }

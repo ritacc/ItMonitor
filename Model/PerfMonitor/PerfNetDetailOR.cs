@@ -75,10 +75,7 @@ namespace GDK.Entity.PerfMonitor
        public string Monitor { get; set; }
 
        
-       /// <summary>
-       /// 10 接口列表     3#^#1705#^#1706#^#1707
-       /// </summary>
-       public string Ports { get; set; }
+      
        
        /// <summary>
        /// 网各设备的，接口列表
@@ -123,11 +120,6 @@ namespace GDK.Entity.PerfMonitor
 
                    case "32003":
                        LoseRate = dr["MonitorValue"].ToString();
-                       break;
-
-                       
-                   case "10":
-                       Ports = dr["MonitorValue"].ToString();
                        break;
                }
 
