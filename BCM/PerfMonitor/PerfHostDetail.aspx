@@ -401,7 +401,7 @@
                 <asp:BoundField HeaderText="磁盘名称" DataField="DeviceName" />
                 <asp:TemplateField HeaderText="磁盘使用率">
                     <ItemTemplate>
-                        <div style="height:12px; border:1px solid #3da0ce; background:white;">
+                        <div style="height:12px; border:1px solid #3da0ce; background:white; text-align:left;">
                             <span style="display:block; width:<%# Eval("DiskUsage") %>px; height:10px; background:url(../images/ProgressBarBg.gif);border:1px solid #FFFFFF;"></span>
                          </div>
                     </ItemTemplate>

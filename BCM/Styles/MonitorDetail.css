@@ -5,3 +5,4 @@
 .div_title{ background-image:url(../images/gridview/grid_th.gif); padding:5px; border-bottom:1px solid #78c5ec; }
 .div_text{ font-size:36px; font-weight:bold; line-height:200px; color:#006699; background:#efefef; }
 .Padding_5{ margin:5px; }
+body{overflow-x:hidden;}
